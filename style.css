@@ -1,362 +1,126 @@
-/* =========================================
-   INDEX PAGE - Avant-Garde Theme
-   ========================================= */
-
-/* 전용 폰트 및 배경 (ACW/Margiela 감성) */
-body.avant-garde-theme {
-  background: #fdfdfd; /* 완전 흰색보다 약간 테크니컬한 느낌 */
-  font-family: 'Helvetica Neue', Helvetica, Arial, monospace, sans-serif;
-  letter-spacing: -0.5px;
+/* 기본 설정 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #111;
+  background: #fdfdfd;
+  line-height: 1.5;
   overflow-x: hidden;
 }
 
-/* 네비게이션바 아방가르드 수정 */
-body.index-page nav {
-  background: rgba(255, 255, 255, 0.98);
-  border-bottom: 1px solid #111; /* 선 강조 */
-  backdrop-filter: blur(5px);
-}
-
-body.index-page .nav-inner {
-  padding: 15px 20px; /* 더 꽉 차게 */
-}
-
-body.index-page .brand-logo {
-  font-weight: 700;
-  letter-spacing: -1.5px;
-  font-size: 16px;
-  text-decoration: none;
-  color: #111;
-}
-
-body.index-page .menu a {
-  font-family: 'Courier New', Courier, monospace; /* 테크니컬 폰트 */
-  font-size: 12px;
-  font-weight: 600;
-  margin-left: 20px;
-  letter-spacing: 0;
-}
-
-/* Ader Error 포인트 블루 (hover) */
-body.index-page .menu a:hover {
-  color: #0000ff;
-}
-
-/* 메인 레이아웃 (플렉스 그리드 혼합) */
-.main-content {
-  display: flex;
-  margin-top: 60px; /* nav 높이 */
-  height: calc(100vh - 60px);
+/* 네비게이션 - 모든 페이지 공통 */
+nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
   border-bottom: 1px solid #111;
 }
 
-/* 왼쪽 소개 섹션 */
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+}
+
+.nav-inner a {
+  text-decoration: none;
+  color: #111;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -1px;
+}
+
+.menu a {
+  margin-left: 25px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.menu a:hover {
+  color: #0000ff; /* Ader Error Blue */
+}
+
+/* 애니메이션 */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   [1] INDEX PAGE (메인 레이아웃)
+   ========================================= */
+
+.main-content {
+  display: flex;
+  margin-top: 55px; /* nav 높이만큼 */
+  height: calc(100vh - 55px);
+}
+
 .intro-section {
-  width: 35%; /* 3분의 1 */
+  width: 35%;
   border-right: 1px solid #111;
   padding: 60px 40px;
   display: flex;
-  align-items: flex-end; /* 아래쪽 정렬 */
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .main-title {
-  font-size: 8vw; /* 화면 크기에 비례 */
+  font-size: 8vw;
   font-weight: 800;
   letter-spacing: -5px;
   line-height: 0.8;
-  margin: 0 0 40px 0;
-  position: relative;
+  margin: 0 0 20px 0;
 }
 
-.main-title .version {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 12px;
-  letter-spacing: 0;
-  color: #888;
-  position: absolute;
-  top: 0;
-  right: -30px;
-}
+.slogan-en { font-family: 'Courier New', Courier, monospace; font-size: 14px; margin: 0; }
+.slogan-kr { font-size: 13px; color: #888; margin: 5px 0 0 0; }
 
-.slogan-box p {
-  margin: 5px 0;
-}
-
-.slogan-en {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 14px;
-  color: #111;
-}
-
-.slogan-kr {
-  font-size: 13px;
-  color: #888;
-  font-weight: 400;
-}
-
-/* 오른쪽 아카이브 콜라주 섹션 */
 .archive-collage {
-  width: 65%; /* 나머지 */
+  width: 65%;
   display: grid;
-  grid-template-columns: repeat(10, 1fr); /* 10컬럼 그리드 */
-  grid-template-rows: repeat(10, 1fr); /* 10로우 그리드 */
-  gap: 1px; /* 선 느낌 */
-  background: #111; /* 그리드 선 색상 */
-  padding: 1px;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  background: #111;
+  gap: 1px;
 }
 
-.collage-item {
-  background: #fff;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+.collage-item { background: #fff; overflow: hidden; position: relative; }
+.collage-item img { width: 100%; height: 100%; object-fit: cover; }
 
-.collage-item img {
-  width: 101%; /* 선에 딱 맞게 */
-  height: 101%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-/* 이미지 호버 효과 (Y/Project 느낌의 해체) */
-.collage-item:hover img {
-  transform: scale(1.05) rotate(1deg);
-}
-
-.img-label {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.7);
-  background: rgba(0, 0, 0, 0.5);
-  padding: 2px 5px;
-}
-
-/* 콜라주 아이템 불규칙 배치 (핵심) */
-
-/* 1번 메인 (finale.jpg) */
-.large-focuse {
-  grid-column: 1 / 7; /* 1~6컬럼 */
-  grid-row: 1 / 8; /* 1~7로우 */
-}
-
-/* 2번 세로 (새 이미지) */
-.vertical-accent {
-  grid-column: 7 / 11; /* 7~10컬럼 */
-  grid-row: 2 / 11; /* 2~10로우 */
-}
-
-/* 3번 정사각형 (새 이미지) */
-.squar-detail {
-  grid-column: 2 / 6; /* 2~5컬럼 */
-  grid-row: 8 / 11; /* 8~10로우 */
-}
-
-/* 모바일 대응 */
-@media (max-width: 768px) {
-  .main-content {
-    flex-direction: column;
-    height: auto;
-  }
-  .intro-section, .archive-collage {
-    width: 100%;
-    border-right: none;
-  }
-  .intro-section {
-    border-bottom: 1px solid #111;
-    padding: 40px 20px;
-  }
-  .main-title { font-size: 60px; }
-  .archive-collage {
-    height: 100vw;
-  }
-}
-
+/* 이미지 배치 */
+.large-focuse { grid-column: 1 / 7; grid-row: 1 / 8; }
+.vertical-accent { grid-column: 7 / 11; grid-row: 1 / 11; }
+.squar-detail { grid-column: 1 / 7; grid-row: 8 / 11; }
 
 /* =========================================
-   CONTACT & CV PAGE (Avant-Garde Archive Vibe)
+   [2] CONTACT PAGE (CV 레이아웃)
    ========================================= */
 
-/* 좌측 쏠림 및 네비게이션 겹침 해결 */
 .cv-wrapper {
+  padding: 120px 20px 80px;
+  background: #f5f5f5;
   display: flex;
   justify-content: center;
-  padding: 140px 20px 100px; /* nav바 높이만큼 위쪽 패딩을 줍니다 */
-  background: #f5f5f5; /* ACW 느낌의 차가운 배경 */
 }
 
-/* 마르지엘라/ACW 스타일의 테크니컬 아카이브 문서 디자인 */
 .cv-archive-sheet {
   width: 100%;
   max-width: 800px;
   background: #fff;
-  border: 1px solid #111; /* 그림자 대신 딱 떨어지는 실선 */
-  color: #111;
+  border: 1px solid #111;
 }
 
-/* 헤더 박스 */
-.cv-header {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #111;
-}
-
-.cv-title-box {
-  padding: 40px;
-  border-right: 1px solid #111;
-  flex: 1;
-}
-
-.cv-title-box h2 {
-  font-size: 32px;
-  margin: 0;
-  font-weight: 600;
-  letter-spacing: -1px;
-}
-
-.kr-name {
-  color: #888;
-  font-size: 18px !important;
-  margin-top: 10px !important;
-  font-weight: 400 !important;
-}
-
-.cv-info-box {
-  padding: 40px;
-  text-align: right;
-  font-family: 'Courier New', Courier, monospace; /* 테크니컬한 모노스페이스 폰트 */
-  font-size: 13px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.cv-info-box p {
-  margin: 2px 0;
-}
-
-/* 섹션 공통 */
-.cv-section {
-  display: flex;
-  border-bottom: 1px solid #111;
-}
-
-.sect-title {
-  width: 160px;
-  padding: 30px;
-  margin: 0;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  border-right: 1px solid #111;
-  font-family: 'Courier New', Courier, monospace;
-}
-
-.sect-content {
-  padding: 30px;
-  flex: 1;
-}
-
-.sect-content p {
-  margin: 6px 0;
-  font-size: 14px;
-}
-
-/* 라벨 (TEL, MAIL 등) */
-.label {
-  display: inline-block;
-  width: 60px;
-  font-family: 'Courier New', Courier, monospace;
-  color: #888;
-  font-size: 12px;
-}
-
-/* 타임라인 (Education, Experience) */
-.timeline-item {
-  display: flex;
-  margin-bottom: 25px;
-}
-
-.timeline-item:last-child {
-  margin-bottom: 0;
-}
-
-.timeline-item .date {
-  width: 150px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 13px;
-  color: #111;
-}
-
-.timeline-item .desc p {
-  margin: 0 0 4px 0;
-}
-
-.kr-desc {
-  color: #888;
-  font-size: 13px !important;
-}
-
-/* Experience 특별 헤더 */
-.experience-header {
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px dashed #ccc;
-}
-
-.experience-header h4 {
-  margin: 0 0 10px 0;
-  font-size: 16px;
-  letter-spacing: 1px;
-}
-
-.experience-header .kr-desc {
-  line-height: 1.6;
-}
-
-/* 스킬 & 언어 반반 분할 */
-.grid-section {
-  display: flex;
-  border-bottom: none; /* 마지막 섹션은 선 제거 */
-}
-
-.half {
-  flex: 1;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-}
-
-.border-left {
-  border-left: 1px solid #111;
-}
-
-.half .sect-title {
-  width: auto;
-  padding: 0;
-  border: none;
-  margin-bottom: 20px;
-}
-
-.half p {
-  font-size: 14px;
-  line-height: 1.8;
-  margin: 0;
-}
-
-/* Ader Error 느낌의 블루 포인트 링크 */
-.ader-link {
-  color: #0000ff; /* 쨍한 블루 */
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.ader-link:hover {
-  background: #0000ff;
-  color: #fff;
-}
+.cv-header { display: flex; border-bottom: 1px solid #111; }
+.cv-title-box { padding: 40px
