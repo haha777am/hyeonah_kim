@@ -1,1 +1,50 @@
+body {
+  margin: 0;
+  font-family: Helvetica, Arial;
+}
 
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+  padding: 20px;
+}
+
+nav ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+}
+
+.hero img {
+  width: 100%;
+}
+
+.intro {
+  padding: 60px;
+}
+
+.text {
+  padding: 60px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 40px;
+}
+
+.full img {
+  width: 100%;
+}
+
+.list {
+  padding: 80px;
+}
