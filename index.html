@@ -1,34 +1,182 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>HYEON AH KIM</title>
-<link rel="stylesheet" href="style.css">
-</head>
+/* =========================================
+   CONTACT & CV PAGE (Avant-Garde Archive Vibe)
+   ========================================= */
 
-<body>
+/* 좌측 쏠림 및 네비게이션 겹침 해결 */
+.cv-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 140px 20px 100px; /* nav바 높이만큼 위쪽 패딩을 줍니다 */
+  background: #f5f5f5; /* ACW 느낌의 차가운 배경 */
+}
 
-<nav>
-<div class="nav-inner">
-<a href="index.html">HYEON AH KIM</a>
+/* 마르지엘라/ACW 스타일의 테크니컬 아카이브 문서 디자인 */
+.cv-archive-sheet {
+  width: 100%;
+  max-width: 800px;
+  background: #fff;
+  border: 1px solid #111; /* 그림자 대신 딱 떨어지는 실선 */
+  color: #111;
+}
 
-<div class="menu">
-<a href="work.html">WORK</a>
-<a href="collab.html">COLLAB</a>
-<a href="art.html">ART</a>
-<a href="contact.html">CONTACT</a>
-</div>
-</div>
-</nav>
+/* 헤더 박스 */
+.cv-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #111;
+}
 
-<section class="hero fade">
-<img src="images/finale.jpg">
-</section>
+.cv-title-box {
+  padding: 40px;
+  border-right: 1px solid #111;
+  flex: 1;
+}
 
-<section class="intro fade">
-<h1>HYEON AH KIM</h1>
-<p>Archive / Structure / Reconstruction</p>
-</section>
+.cv-title-box h2 {
+  font-size: 32px;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -1px;
+}
 
-</body>
-</html>
+.kr-name {
+  color: #888;
+  font-size: 18px !important;
+  margin-top: 10px !important;
+  font-weight: 400 !important;
+}
+
+.cv-info-box {
+  padding: 40px;
+  text-align: right;
+  font-family: 'Courier New', Courier, monospace; /* 테크니컬한 모노스페이스 폰트 */
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cv-info-box p {
+  margin: 2px 0;
+}
+
+/* 섹션 공통 */
+.cv-section {
+  display: flex;
+  border-bottom: 1px solid #111;
+}
+
+.sect-title {
+  width: 160px;
+  padding: 30px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  border-right: 1px solid #111;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.sect-content {
+  padding: 30px;
+  flex: 1;
+}
+
+.sect-content p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+/* 라벨 (TEL, MAIL 등) */
+.label {
+  display: inline-block;
+  width: 60px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #888;
+  font-size: 12px;
+}
+
+/* 타임라인 (Education, Experience) */
+.timeline-item {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-item .date {
+  width: 150px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  color: #111;
+}
+
+.timeline-item .desc p {
+  margin: 0 0 4px 0;
+}
+
+.kr-desc {
+  color: #888;
+  font-size: 13px !important;
+}
+
+/* Experience 특별 헤더 */
+.experience-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed #ccc;
+}
+
+.experience-header h4 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.experience-header .kr-desc {
+  line-height: 1.6;
+}
+
+/* 스킬 & 언어 반반 분할 */
+.grid-section {
+  display: flex;
+  border-bottom: none; /* 마지막 섹션은 선 제거 */
+}
+
+.half {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.border-left {
+  border-left: 1px solid #111;
+}
+
+.half .sect-title {
+  width: auto;
+  padding: 0;
+  border: none;
+  margin-bottom: 20px;
+}
+
+.half p {
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* Ader Error 느낌의 블루 포인트 링크 */
+.ader-link {
+  color: #0000ff; /* 쨍한 블루 */
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.ader-link:hover {
+  background: #0000ff;
+  color: #fff;
+}
