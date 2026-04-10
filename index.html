@@ -3,20 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="HYEON AH KIM — CREATIVE DIRECTION">
+    <meta property="og:description" content="Fashion Designer & Art Show Director. Archive / Structure / Reconstruction.">
+    <meta property="og:image" content="https://haha777am.github.io/hyeonah_kim/images/main-focus.jpg">
+    <meta property="og:url" content="https://haha777am.github.io/hyeonah_kim/">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    
     <title>HYEON AH KIM — ARCHIVE</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-    
     <style>
         /* [1] CSS 초기화 및 공통 스타일 */
         body {
             margin: 0; padding: 0;
             background-color: #000; color: #fff;
             font-family: 'Noto Sans KR', sans-serif;
-            /* 👉 디테일 수정: 모바일/작은 화면을 위해 가로 스크롤만 숨김 */
             overflow-x: hidden; 
+            cursor: none; 
         }
 
-        /* [2] 네비게이션 (전 페이지 통일 디자인) */
+        /* --- 커스텀 커서 스타일 --- */
+        .custom-cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 12px; height: 12px;
+            background-color: #fff;
+            border-radius: 50%;
+            pointer-events: none; 
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+            mix-blend-mode: difference; 
+        }
+        .custom-cursor.hover {
+            width: 45px; height: 45px;
+            background-color: transparent;
+            border: 1px solid #fff;
+        }
+
+        /* [2] 네비게이션 */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             padding: 40px 0; display: flex; justify-content: center;
@@ -36,52 +63,35 @@
             color: #fff; background: rgba(255,255,255,0.15);
         }
 
-        /* [3] 메인 인트로 레이아웃 (가로 2단 구성) */
+        /* [3] 메인 인트로 레이아웃 */
         .main-intro {
-            /* 화면 높이에 딱 맞추되, 내용이 길어지면 여백을 주도록 수정 */
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 100px 10%; /* 위아래 패딩 추가 */
-            box-sizing: border-box;
+            height: 100vh; display: flex; align-items: center;
+            justify-content: space-between; padding: 0 10%;
         }
 
         /* 왼쪽: 타이틀 영역 */
         .intro-left { flex: 1.2; }
         .brand-title {
             font-family: 'Playfair Display', serif;
-            font-size: 7.5vw;
-            line-height: 1.3;
-            margin: 0;
-            letter-spacing: -3px;
-            font-weight: 400;
+            font-size: 8.5vw; line-height: 0.9; margin: 0;
+            letter-spacing: -3px; font-weight: 400;
         }
         .brand-subtitle {
-            font-family: monospace;
-            color: #444;
-            font-size: 14px;
-            margin-top: 30px;
-            letter-spacing: 4px;
+            font-family: monospace; color: #444; font-size: 14px;
+            margin-top: 30px; letter-spacing: 4px;
         }
 
         /* 오른쪽: 원형 이미지 영역 */
         .intro-right {
-            flex: 0.8;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            text-align: right;
+            flex: 0.8; display: flex; flex-direction: column;
+            align-items: flex-end; text-align: right;
         }
         .circle-image-wrap {
-            width: 25vw;
-            height: 25vw;
+            width: 25vw; height: 25vw;
             max-width: 450px; max-height: 450px;
-            border-radius: 50%;
-            overflow: hidden;
+            border-radius: 50%; overflow: hidden;
             border: 1px solid rgba(255,255,255,0.2);
-            margin-bottom: 35px;
-            transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
+            margin-bottom: 35px; transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
         }
         .circle-image-wrap:hover {
             transform: scale(1.03) rotate(2deg);
@@ -90,39 +100,34 @@
             width: 100%; height: 100%; object-fit: cover;
         }
         .intro-desc {
-            font-size: 14px;
-            color: #777;
-            line-height: 2;
-            font-weight: 300;
-            letter-spacing: 0.5px;
+            font-size: 14px; color: #777; line-height: 2;
+            font-weight: 300; letter-spacing: 0.5px;
         }
 
-        /* [4] 페이드 인 애니메이션 */
+        /* 페이드 인 애니메이션 */
         .fade-in {
-            opacity: 0;
-            animation: fadeIn 1.5s ease forwards;
+            opacity: 0; animation: fadeIn 1.5s ease forwards;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* [5] 모바일 반응형 대응 */
+        /* 모바일 대응 */
         @media (max-width: 768px) {
-            .main-intro { 
-                flex-direction: column; 
-                justify-content: center; 
-                text-align: center; 
-                padding-top: 150px; /* 모바일에서 네비게이션에 안 가려지게 여백 확보 */
-            }
+            .main-intro { flex-direction: column; justify-content: center; text-align: center; }
             .intro-left { margin-bottom: 50px; }
             .intro-right { align-items: center; text-align: center; }
             .brand-title { font-size: 18vw; }
             .circle-image-wrap { width: 60vw; height: 60vw; }
+            .custom-cursor { display: none; }
+            body { cursor: auto; }
         }
     </style>
 </head>
 <body>
+
+    <div class="custom-cursor"></div>
 
     <header>
         <div class="nav-capsule">
@@ -152,5 +157,23 @@
         </div>
     </main>
 
+    <script>
+        const cursor = document.querySelector('.custom-cursor');
+        const links = document.querySelectorAll('a');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+    </script>
 </body>
 </html>
