@@ -4,151 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C.V — HYEON AH KIM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* [1] 기본 테마 */
-        body { 
-            margin: 0; 
-            background-color: #000; 
-            color: #fff; 
-            font-family: 'Noto Sans KR', sans-serif; 
-            overflow-x: hidden; 
+        /* [1] 배경 및 공통 서체 */
+        body {
+            margin: 0; background-color: #0b0b0b; color: #fff;
+            font-family: 'Noto Sans KR', sans-serif; line-height: 1.6;
         }
 
-        /* [2] 네비게이션 */
-        header { 
-            position: fixed; top: 0; width: 100%; z-index: 1000; 
-            padding: 40px 0; display: flex; justify-content: center; 
+        /* [2] 네비게이션 (캡슐 스타일 유지) */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 40px 0; display: flex; justify-content: center;
         }
-        .nav-capsule { 
-            display: flex; background: rgba(255,255,255,0.08); 
-            border-radius: 50px; padding: 6px; backdrop-filter: blur(15px); 
-            border: 1px solid rgba(255,255,255,0.1); 
+        .nav-capsule {
+            display: flex; background: rgba(255,255,255,0.05);
+            border-radius: 50px; padding: 6px; backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        .nav-capsule a { 
-            text-decoration: none; color: #777; padding: 10px 25px; 
-            border-radius: 50px; font-size: 13px; letter-spacing: 1px; transition: 0.3s; 
+        .nav-capsule a {
+            text-decoration: none; color: #666; padding: 10px 25px;
+            border-radius: 50px; font-size: 13px; transition: 0.4s;
         }
-        .nav-capsule a:hover { color: #fff; }
-        .nav-capsule a.active { color: #fff; background: rgba(255,255,255,0.15); }
+        .nav-capsule a.active, .nav-capsule a:hover { color: #fff; background: rgba(255,255,255,0.1); }
 
-        /* [3] CV 레이아웃 컨테이너 */
+        /* [3] 컨텐츠 레이아웃 */
         .cv-container {
             padding: 180px 10% 100px;
-            max-width: 1400px;
-            margin: 0 auto;
-            animation: fadeIn 1s ease forwards;
+            max-width: 1200px; margin: 0 auto;
         }
 
-        /* [4] 압도적인 타이포 헤더 (수정됨) */
-        .cv-header {
-            margin-bottom: 100px;
-            border-bottom: 1px solid #222;
-            padding-bottom: 60px;
+        /* 큰 제목 스타일 (마지막 이미지 참조) */
+        .cv-hero {
+            margin-bottom: 120px;
         }
-        .cv-name {
+        .cv-hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 8.5vw; /* 메인 페이지와 동일한 크기 */
-            margin: 0;
-            line-height: 0.85;
-            letter-spacing: -4px;
-            font-weight: 400;
+            font-size: 8vw; line-height: 0.9; margin: 0;
+            text-transform: uppercase; letter-spacing: -2px;
         }
-        .cv-role-line {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-top: 30px;
-        }
-        .cv-role {
-            font-family: monospace;
-            color: #444;
-            font-size: 14px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-        
-        /* 연락처 영역 (강조됨) */
-        .cv-contact {
-            text-align: right;
-            font-family: monospace;
-            font-size: 13px;
-            line-height: 1.8;
-        }
-        .cv-contact a {
-            color: #fff;
-            text-decoration: none;
-            border-bottom: 1px solid #444;
-            transition: 0.3s;
-            margin-left: 15px;
-        }
-        .cv-contact a:hover {
-            border-bottom-color: #fff;
-            color: #aaa;
-        }
+        .cv-hero h1 span { color: #a68d60; } /* 금색 포인트 */
 
-        /* [5] 섹션 공통 스타일 */
-        .cv-section { margin-bottom: 100px; }
+        /* 섹션 구분 */
+        .cv-section {
+            display: grid; grid-template-columns: 1fr 2fr;
+            padding: 60px 0; border-top: 1px solid #222;
+        }
         .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            margin-bottom: 50px;
-            font-style: italic;
-            border-left: 4px solid #fff;
-            padding-left: 20px;
+            font-family: monospace; color: #a68d60;
+            font-size: 14px; letter-spacing: 3px; text-transform: uppercase;
         }
 
-        .timeline-item {
-            display: flex;
-            margin-bottom: 50px;
+        /* 리스트 스타일 */
+        .cv-list { list-style: none; padding: 0; margin: 0; }
+        .cv-item { margin-bottom: 40px; }
+        .cv-item h3 {
+            font-size: 24px; margin: 0 0 10px 0; font-weight: 400;
         }
-        .timeline-date {
-            flex: 0 0 250px;
-            font-family: monospace;
-            color: #555;
-            font-size: 14px;
-        }
-        .timeline-content { flex: 1; }
-        .item-title { font-size: 22px; font-weight: 500; margin-bottom: 5px; }
-        .item-subtitle { font-size: 14px; color: #777; margin-bottom: 20px; font-family: monospace; }
-        
-        .item-desc {
-            list-style: none; padding: 0; margin: 0; color: #999;
-            font-size: 15px; line-height: 1.8;
-        }
-        .item-desc li { position: relative; padding-left: 20px; margin-bottom: 10px; }
-        .item-desc li::before { content: '→'; position: absolute; left: 0; color: #444; }
+        .cv-item p { color: #888; margin: 0; font-size: 15px; }
+        .cv-item .date { font-family: monospace; color: #444; margin-bottom: 5px; display: block; }
 
-        /* [6] 자기소개서 에디토리얼 레이아웃 */
-        .cover-letter-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            border-top: 1px solid #111;
-            padding-top: 50px;
+        /* 연락처 스타일 */
+        .contact-link {
+            display: block; font-size: 3vw; color: #fff;
+            text-decoration: none; margin-top: 20px;
+            font-family: 'Playfair Display', serif; transition: 0.3s;
         }
-        .article-box h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px; margin-top: 0; margin-bottom: 20px;
-        }
-        .article-box p {
-            font-size: 15px; color: #888; line-height: 2; font-weight: 300;
-            text-align: justify;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .contact-link:hover { opacity: 0.5; padding-left: 20px; }
 
         @media (max-width: 768px) {
-            .cv-name { font-size: 15vw; }
-            .cv-role-line { flex-direction: column; align-items: flex-start; gap: 20px; }
-            .cv-contact { text-align: left; }
-            .cv-contact a { margin-left: 0; margin-right: 15px; }
-            .timeline-item { flex-direction: column; gap: 10px; }
-            .cover-letter-grid { grid-template-columns: 1fr; }
+            .cv-section { grid-template-columns: 1fr; gap: 30px; }
+            .cv-hero h1 { font-size: 15vw; }
+            .contact-link { font-size: 8vw; }
         }
     </style>
 </head>
@@ -165,53 +92,54 @@
     </header>
 
     <main class="cv-container">
-        
-        <div class="cv-header">
-            <h1 class="cv-name">Hyeon Ah<br>Kim</h1>
-            
-            <div class="cv-role-line">
-                <div class="cv-role">Fashion Designer & Art Show Director</div>
-                
-                <div class="cv-contact">
-                    <a href="mailto:haha777am@gmail.com">haha777am@gmail.com</a>
-                    <a href="https://instagram.com/plus.jackpot" target="_blank">@plus.jackpot</a>
-                </div>
-            </div>
+        <div class="cv-hero">
+            <p style="font-family: monospace; letter-spacing: 5px; color: #444; margin-bottom: 20px;">CURRICULUM VITAE</p>
+            <h1>CREATIVE<br><span>DIRECTION</span></h1>
         </div>
 
         <section class="cv-section">
-            <h2 class="section-title">Experience</h2>
-            
-            <div class="timeline-item">
-                <div class="timeline-date">24SS — 25FW</div>
-                <div class="timeline-content">
-                    <h3 class="item-title">Fashion Designer</h3>
-                    <div class="item-subtitle">Apparel Planning & Production</div>
-                    <ul class="item-desc">
-                        <li>시즌 컨셉 리서치 및 제안서 기획, 샘플링 및 도식화 진행</li>
-                        <li>다이마루/우븐 메인 핸들링 및 생산 프로세스 조율</li>
-                        <li>서울시, 겸손은 힘들다, 인수스 등 콜라보레이션 프로젝트 디자인 참여</li>
-                        <li>패딩 점퍼 9개를 해체하여 제작한 피날레 원피스 등 시그니처 의상 제작</li>
-                    </ul>
+            <div class="section-title">Experience</div>
+            <div class="cv-list">
+                <div class="cv-item">
+                    <span class="date">2020 — PRESENT</span>
+                    <h3>Art Show Director</h3>
+                    <p>Focus Art Fair, Paris & London. 전시 총괄 및 시각 스토리텔링 디렉팅.</p>
                 </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-date">2020.10 — 2022.09</div>
-                <div class="timeline-content">
-                    <h3 class="item-title">Art Show Director</h3>
-                    <div class="item-subtitle">Focus Art Fair (Paris, London)</div>
-                    <ul class="item-desc">
-                        <li>파리 루브르, 런던 사치 갤러리 등 총 4회의 아트쇼 총괄 디렉팅</li>
-                        <li>전시와 패션쇼를 결합한 퍼포먼스 기획, 모델 동선 및 무대 연출</li>
-                    </ul>
+                <div class="cv-item">
+                    <span class="date">2022</span>
+                    <h3>Creative Planner</h3>
+                    <p>Retail Space Planning & 3D Store Layout Proposal.</p>
                 </div>
             </div>
         </section>
 
         <section class="cv-section">
-            <h2 class="section-title">Director's Note</h2>
-            
+            <div class="section-title">Education</div>
+            <div class="cv-list">
+                <div class="cv-item">
+                    <span class="date">GRADUATED</span>
+                    <h3>Studio Berçot, Paris</h3>
+                    <p>Fashion Design & Artistic Direction.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <div class="section-title">Expertise</div>
+            <div class="cv-list">
+                <div class="cv-item">
+                    <h3>Visual Tools</h3>
+                    <p>Adobe Photoshop, Illustrator, Rhino 3D, CLO 3D.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <div class="section-title">Contact</div>
+            <div>
+                <a href="mailto:haha777am@gmail.com" class="contact-link">Email.</a>
+                <a href="https://instagram.com/plus.jackpot" class="contact-link">Instagram.</a>
+            </div>
         </section>
 
     </main>
