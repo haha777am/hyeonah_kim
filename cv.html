@@ -1,50 +1,135 @@
-<header>
-    <div class="nav-capsule">
-        <a href="index.html">HOME</a>
-        <a href="work.html">WORK</a>
-        <a href="artshow.html">ART SHOW</a>
-        <a href="collab.html">COLLAB</a>
-        <a href="cv.html">C.V</a>
-    </div>
-</header>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C.V - HYEON AH KIM</title>
+    <title>C.V — HYEON AH KIM</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <style>
         /* [1] 기본 테마 */
-        body { margin: 0; background-color: #000; color: #fff; font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; }
+        body { 
+            margin: 0; 
+            background-color: #000; 
+            color: #fff; 
+            font-family: 'Noto Sans KR', sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
         
-        /* [2] 네비게이션 */
-        header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 30px 0; display: flex; justify-content: center; }
-        .nav-capsule { display: flex; background: rgba(255,255,255,0.08); border-radius: 50px; padding: 5px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); }
-        .nav-capsule a { text-decoration: none; color: #666; padding: 10px 20px; border-radius: 50px; font-size: 13px; transition: 0.3s; }
-        .nav-capsule a.active, .nav-capsule a:hover { color: #fff; background: rgba(255,255,255,0.15); }
+        /* [2] 네비게이션 (캡슐 스타일 통일) */
+        header { 
+            position: fixed; top: 0; width: 100%; z-index: 1000; 
+            padding: 40px 0; display: flex; justify-content: center; 
+        }
+        .nav-capsule { 
+            display: flex; background: rgba(255,255,255,0.08); 
+            border-radius: 50px; padding: 6px; backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255,255,255,0.1); 
+        }
+        .nav-capsule a { 
+            text-decoration: none; color: #777; padding: 10px 25px; 
+            border-radius: 50px; font-size: 13px; transition: 0.3s; 
+        }
+        .nav-capsule a:hover { color: #fff; }
+        .nav-capsule a.active { color: #fff; background: rgba(255,255,255,0.15); }
 
         /* [3] CV 레이아웃 */
-        .cv-wrapper { padding: 180px 10% 100px; max-width: 1000px; margin: 0 auto; }
-        .page-title { font-family: 'Playfair Display', serif; font-size: 5vw; margin-bottom: 80px; font-weight: 400; letter-spacing: -2px; }
+        .cv-wrapper { 
+            padding: 180px 10% 100px; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            animation: fadeIn 1.2s ease forwards;
+        }
+        .page-title { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 5vw; 
+            margin-bottom: 80px; 
+            font-weight: 400; 
+            letter-spacing: -2px; 
+        }
 
-        .cv-section { display: flex; border-top: 1px solid #222; padding: 40px 0; }
-        .sect-title { width: 30%; font-family: monospace; color: #444; font-size: 13px; letter-spacing: 2px; }
-        .sect-content { width: 70%; }
+        /* 섹션 구분선 및 레이아웃 */
+        .cv-section { 
+            display: flex; 
+            border-top: 1px solid #222; 
+            padding: 50px 0; 
+        }
+        .sect-title { 
+            width: 30%; 
+            font-family: monospace; 
+            color: #444; 
+            font-size: 13px; 
+            letter-spacing: 2px; 
+            text-transform: uppercase;
+        }
+        .sect-content { 
+            width: 70%; 
+        }
 
-        .item { margin-bottom: 30px; }
-        .item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
-        .item-name { font-size: 18px; font-weight: 400; color: #fff; }
-        .item-date { font-family: monospace; color: #444; font-size: 13px; }
-        .item-desc { color: #888; font-size: 14px; white-space: pre-line; }
+        /* 개별 항목 스타일 */
+        .item { margin-bottom: 40px; }
+        .item:last-child { margin-bottom: 0; }
+        .item-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: baseline; 
+            margin-bottom: 8px; 
+        }
+        .item-name { 
+            font-size: 20px; 
+            font-weight: 400; 
+            color: #fff; 
+            font-family: 'Playfair Display', serif;
+        }
+        .item-date { 
+            font-family: monospace; 
+            color: #555; 
+            font-size: 13px; 
+        }
+        .item-desc { 
+            color: #888; 
+            font-size: 15px; 
+            font-weight: 300;
+            white-space: pre-line; 
+            margin: 0;
+        }
 
-        /* 연락처 스타일 */
-        .contact-link { color: #fff; text-decoration: none; border-bottom: 1px solid #333; transition: 0.3s; }
-        .contact-link:hover { border-bottom-color: #fff; color: #aaa; }
+        /* 연락처 링크 */
+        .contact-link { 
+            color: #fff; 
+            text-decoration: none; 
+            border-bottom: 1px solid #333; 
+            transition: 0.3s; 
+        }
+        .contact-link:hover { 
+            border-bottom-color: #fff; 
+            color: #ccc; 
+        }
 
-        /* 하단 장식 */
-        .footer-line { margin-top: 100px; border-top: 1px solid #222; padding-top: 20px; font-family: monospace; font-size: 10px; color: #222; text-align: center; }
+        /* 푸터 장식 */
+        .footer-line { 
+            margin-top: 100px; 
+            border-top: 1px solid #111; 
+            padding-top: 40px; 
+            font-family: monospace; 
+            font-size: 11px; 
+            color: #333; 
+            text-align: center; 
+            letter-spacing: 1px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .cv-section { flex-direction: column; }
+            .sect-title { width: 100%; margin-bottom: 20px; }
+            .sect-content { width: 100%; }
+            .page-title { font-size: 12vw; }
+        }
     </style>
 </head>
 <body>
@@ -99,8 +184,8 @@
             <div class="sect-title">SKILLS</div>
             <div class="sect-content">
                 <div class="item">
-                    <span class="item-name">Technical</span>
-                    <p class="item-desc">Photoshop, Illustrator, 3D Store Layout, Creative Direction</p>
+                    <span class="item-name" style="font-size: 16px; font-family: sans-serif; text-transform: uppercase; letter-spacing: 1px;">Creative Tools</span>
+                    <p class="item-desc">Photoshop, Illustrator, 3D Store Layout, Creative Direction, Visual Storytelling</p>
                 </div>
             </div>
         </section>
@@ -111,7 +196,7 @@
                 <div class="item">
                     <p class="item-desc">
                         Email: <a href="mailto:haha777am@gmail.com" class="contact-link">haha777am@gmail.com</a><br>
-                        Instagram: <a href="https://instagram.com/hyeonhyoen.official" target="_blank" class="contact-link">@plus.jackpot</a>
+                        Instagram: <a href="https://instagram.com/plus.jackpot" target="_blank" class="contact-link">@plus.jackpot</a>
                     </p>
                 </div>
             </div>
