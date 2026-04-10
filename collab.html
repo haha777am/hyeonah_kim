@@ -6,14 +6,27 @@
     <title>COLLABORATION — HYEON AH KIM</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* [1] 기본 테마: 다크 아카이브 무드 */
+        /* [1] 기본 테마 및 페이지 전환 효과 */
         body { 
             margin: 0; 
             background-color: #000; 
             color: #fff; 
             font-family: 'Noto Sans KR', sans-serif; 
             overflow-x: hidden; 
+            cursor: none; /* 기본 마우스 숨기기 */
+            animation: fadeInPage 0.8s ease forwards;
         }
+
+        @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
+        body.fade-out { opacity: 0 !important; transition: opacity 0.5s ease; }
+
+        /* 커스텀 커서 스타일 */
+        .custom-cursor {
+            position: fixed; top: 0; left: 0; width: 12px; height: 12px;
+            background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999;
+            transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease; mix-blend-mode: difference;
+        }
+        .custom-cursor.hover { width: 45px; height: 45px; background-color: transparent; border: 1px solid #fff; }
         
         /* [2] 네비게이션 */
         header { 
@@ -63,25 +76,18 @@
             overflow: hidden;
             text-decoration: none;
             background: #111;
-            aspect-ratio: 4 / 5; /* 세로형 비율 */
+            aspect-ratio: 4 / 5; 
         }
 
-        /* 가로로 꽉 차게 만들고 싶을 때 사용하는 클래스 */
-        .grid-item.span-full {
-            grid-column: 1 / -1; 
-            aspect-ratio: 21 / 9; 
-        }
-
-        /* 이미지 스타일 설정 */
         .grid-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(100%); /* 기본 흑백 */
+            filter: grayscale(100%); 
             transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), filter 0.8s ease;
         }
 
-        /* 텍스트 정보 (호버 시 아래에서 올라옴) */
+        /* 텍스트 정보 */
         .item-info {
             position: absolute;
             bottom: 0;
@@ -105,7 +111,6 @@
             opacity: 1;
         }
 
-        /* 텍스트 디테일 */
         .item-title { 
             font-family: 'Playfair Display', serif; 
             font-size: 28px; 
@@ -130,7 +135,7 @@
         @media (max-width: 768px) {
             .page-title { font-size: 10vw; margin-bottom: 40px; }
             .archive-grid { grid-template-columns: 1fr; } 
-            .grid-item, .grid-item.span-full {
+            .grid-item {
                 grid-column: 1 / -1; 
                 aspect-ratio: 4 / 5;
             }
@@ -138,17 +143,22 @@
                 opacity: 1; 
                 transform: translateY(0);
             }
+            /* 모바일은 커서 끄기 */
+            .custom-cursor { display: none; }
+            body { cursor: auto; }
         }
     </style>
 </head>
 <body>
+
+    <div class="custom-cursor"></div>
 
     <header>
         <div class="nav-capsule">
             <a href="index.html">HOME</a>
             <a href="work.html">WORK</a>
             <a href="artshow.html">ART SHOW</a>
-            <a href="collab.html"class="active">COLLAB</a>
+            <a href="collab.html" class="active">COLLAB</a>
             <a href="cv.html">C.V</a>
         </div>
     </header>
@@ -157,7 +167,6 @@
         <h1 class="page-title">Collaborations</h1>
         
         <div class="archive-grid">
-            
             <a href="#" class="grid-item">
                 <img src="images/collab_seoul.jpg" alt="Seoul Collaboration">
                 <div class="item-info">
@@ -181,9 +190,34 @@
                     <span class="item-meta">CREATIVE</span>
                 </div>
             </a>
-
         </div>
     </main>
 
+    <script>
+        const cursor = document.querySelector('.custom-cursor');
+        const links = document.querySelectorAll('a');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
+            link.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
+            
+            link.addEventListener('click', function(e) {
+                if (this.target === '_blank' || this.getAttribute('href').startsWith('mailto:')) return;
+                
+                e.preventDefault();
+                const targetUrl = this.href;
+                document.body.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 500); 
+            });
+        });
+    </script>
 </body>
 </html>
