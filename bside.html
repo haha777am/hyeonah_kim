@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OFF THE RECORD — HYEON AH KIM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* [1] 기본 테마 & 전환 효과 */
+        body {
+            margin: 0; padding: 0; background-color: #050505; color: #fff;
+            font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden;
+            cursor: none; animation: fadeInPage 1s ease forwards;
+        }
+        @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
+        body.fade-out { opacity: 0 !important; transition: opacity 0.5s ease; }
+
+        /* 커스텀 커서 */
+        .custom-cursor {
+            position: fixed; top: 0; left: 0; width: 12px; height: 12px;
+            background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999;
+            transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease; mix-blend-mode: difference;
+        }
+        .custom-cursor.hover { width: 45px; height: 45px; background-color: transparent; border: 1px solid #fff; }
+
+        /* [2] 미니멀 네비게이션 (비밀 공간이므로 심플하게) */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 40px 5%; display: flex; justify-content: space-between; align-items: center;
+            box-sizing: border-box; mix-blend-mode: difference;
+        }
+        .back-btn {
+            font-family: monospace; color: #fff; text-decoration: none;
+            font-size: 13px; letter-spacing: 2px; transition: 0.3s;
+        }
+        .back-btn:hover { opacity: 0.5; letter-spacing: 4px; }
+        .page-indicator {
+            font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; color: #888;
+        }
+
+        /* [3] B-SIDE 레이아웃 */
+        .bside-container {
+            padding: 150px 5% 100px; max-width: 1600px; margin: 0 auto;
+        }
+        
+        .bside-hero { margin-bottom: 80px; text-align: center; }
+        .bside-hero h1 {
+            font-family: 'Playfair Display', serif; font-size: 5vw; margin: 0 0 10px; line-height: 1; letter-spacing: -1px;
+        }
+        .bside-hero p { font-family: monospace; color: #555; letter-spacing: 3px; font-size: 13px; margin: 0; }
+
+        /* 핀터레스트 스타일 벽돌(Masonry) 그리드 */
+        .masonry-grid {
+            column-count: 4; /* 데스크톱에서는 4열 */
+            column-gap: 15px; /* 사진 사이 간격 */
+        }
+        
+        .masonry-item {
+            break-inside: avoid; margin-bottom: 15px; position: relative;
+            overflow: hidden; cursor: none;
+        }
+        .masonry-item img {
+            width: 100%; display: block; filter: grayscale(50%); transition: 0.5s ease;
+        }
+        
+        /* 사진 호버 효과 */
+        .masonry-item:hover img {
+            filter: grayscale(0%); transform: scale(1.02);
+        }
+
+        /* 사진 위 마우스 올리면 나오는 캡션 */
+        .item-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4); opacity: 0; transition: 0.4s ease;
+            display: flex; align-items: flex-end; padding: 20px; box-sizing: border-box;
+        }
+        .masonry-item:hover .item-overlay { opacity: 1; }
+        .item-overlay p {
+            font-family: monospace; color: #fff; margin: 0; font-size: 12px; letter-spacing: 1px;
+        }
+
+        /* 모바일 대응 */
+        @media (max-width: 1024px) { .masonry-grid { column-count: 3; } }
+        @media (max-width: 768px) {
+            .masonry-grid { column-count: 2; }
+            .bside-hero h1 { font-size: 12vw; }
+            .custom-cursor { display: none; } body { cursor: auto; }
+            .item-overlay { display: none; } /* 모바일은 오버레이 생략 */
+        }
+        @media (max-width: 480px) { .masonry-grid { column-count: 1; } }
+    </style>
+</head>
+<body>
+
+    <div class="custom-cursor"></div>
+
+    <header>
+        <a href="cv.html" class="back-btn">← BACK TO C.V</a>
+        <div class="page-indicator">Off The Record</div>
+    </header>
+
+    <main class="bside-container">
+        
+        <div class="bside-hero">
+            <h1>Fragments & Inspirations</h1>
+            <p>DAILY LOG / ARCHIVE / TASTE</p>
+        </div>
+
+        <div class="masonry-grid">
+            
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=600" alt="취미사진1">
+                <div class="item-overlay"><p>Paris, 2021</p></div>
+            </div>
+
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600" alt="취미사진2">
+                <div class="item-overlay"><p>Weekend Vibe</p></div>
+            </div>
+
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=600" alt="취미사진3">
+                <div class="item-overlay"><p>Exhibition Visit</p></div>
+            </div>
+
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1509305717900-84f40c786d82?q=80&w=600" alt="취미사진4">
+                <div class="item-overlay"><p>Fabric Sourcing</p></div>
+            </div>
+
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=600" alt="취미사진5">
+                <div class="item-overlay"><p>Inspiration</p></div>
+            </div>
+
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=600" alt="취미사진6">
+                <div class="item-overlay"><p>My Desk</p></div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        // 커서 및 페이드 아웃 스크립트
+        const cursor = document.querySelector('.custom-cursor');
+        const links = document.querySelectorAll('a');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
+            link.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
+            
+            link.addEventListener('click', function(e) {
+                if (this.target === '_blank' || this.getAttribute('href').startsWith('mailto:')) return;
+                e.preventDefault();
+                const targetUrl = this.href;
+                document.body.classList.add('fade-out');
+                setTimeout(() => { window.location.href = targetUrl; }, 500); 
+            });
+        });
+    </script>
+</body>
+</html>
