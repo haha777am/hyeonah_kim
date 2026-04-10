@@ -84,25 +84,6 @@
         }
         .contact-link:hover { opacity: 0.5; padding-left: 20px; }
 
-        /* ✨ 문의 폼 스타일 */
-        #contact-section { scroll-margin-top: 100px; } /* 이동 시 여백 */
-        .contact-form-wrapper { background: rgba(255,255,255,0.02); padding: 40px; border-radius: 5px; }
-        .contact-form-wrapper h2 { font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 10px; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-        .form-group { display: flex; flex-direction: column; margin-bottom: 20px; }
-        .form-group label { font-size: 12px; color: #666; margin-bottom: 8px; font-family: monospace; }
-        .form-group input, .form-group textarea {
-            background: transparent; border: 1px solid #333; padding: 12px; color: #fff;
-            font-family: 'Noto Sans KR', sans-serif; outline: none; transition: 0.3s;
-        }
-        .form-group input:focus, .form-group textarea:focus { border-color: #a68d60; }
-        
-        .send-btn {
-            background: #a68d60; color: #fff; border: none; padding: 15px 40px;
-            font-family: monospace; letter-spacing: 2px; cursor: none; transition: 0.3s;
-            float: right;
-        }
-
         .secret-link { display: inline-block; margin-top: 50px; font-family: monospace; font-size: 12px; color: #333; letter-spacing: 2px; text-decoration: none; transition: 0.4s ease; }
         .secret-link:hover { color: #a68d60; }
 
@@ -111,7 +92,6 @@
             .cv-section { grid-template-columns: 1fr; gap: 30px; }
             .cv-hero h1 { font-size: 15vw; }
             .contact-link { font-size: 8vw; }
-            .form-row { grid-template-columns: 1fr; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
         }
@@ -200,12 +180,49 @@
         <section class="cv-section">
             <div class="section-title">Contact</div>
             <div>
-                <a href="#contact-section" class="contact-link scroll-link">Message.</a>
+                <a href="contact.html" class="contact-link">Message.</a>
                 <a href="https://instagram.com/hyeonhyeon.official" class="contact-link" target="_blank">Instagram.</a>
                 <a href="bside.html" class="secret-link">[+] OFF THE RECORD</a>
             </div>
         </section>
+    </main>
 
+    <script>
+        // [1] 미니 원형 랜덤 이미지 설정
+        const images = ['images/main1.jpg.jpg', 'images/main2.jpg.jpg', 'images/main3.jpg.jpg'];
+        const randomImgTag = document.getElementById('random-img');
+        if (randomImgTag) {
+            randomImgTag.src = images[Math.floor(Math.random() * images.length)];
+        }
+
+        // [2] 커스텀 커서 엔진 (사라진 커서 복구)
+        const cursor = document.querySelector('.custom-cursor');
+        const interactives = document.querySelectorAll('a, button');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        interactives.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // [3] 페이지 전환 효과
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.target === '_blank' || this.getAttribute('href').startsWith('#')) return;
+                
+                e.preventDefault();
+                const targetUrl = this.href;
+                document.body.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 500); 
+            });
+        });
     </script>
 </body>
 </html>
