@@ -4,136 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ART SHOW — HYEON AH KIM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         /* [1] 기본 테마 */
         body { 
-            margin: 0; 
-            background-color: #000; 
-            color: #fff; 
-            font-family: 'Noto Sans KR', sans-serif; 
-            overflow-x: hidden; 
+            margin: 0; background-color: #0b0b0b; color: #fff; 
+            font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden; 
         }
         
-        /* [2] 네비게이션 (전 페이지 공통 디자인) */
+        /* [2] 네비게이션 (공통 캡슐 디자인) */
         header { 
             position: fixed; top: 0; width: 100%; z-index: 1000; 
             padding: 40px 0; display: flex; justify-content: center; 
         }
         .nav-capsule { 
-            display: flex; background: rgba(255,255,255,0.08); 
-            border-radius: 50px; padding: 6px; backdrop-filter: blur(15px); 
+            display: flex; background: rgba(255,255,255,0.05); 
+            border-radius: 50px; padding: 6px; backdrop-filter: blur(20px); 
             border: 1px solid rgba(255,255,255,0.1); 
         }
         .nav-capsule a { 
-            text-decoration: none; color: #777; padding: 10px 25px; 
-            border-radius: 50px; font-size: 13px; transition: 0.3s; 
+            text-decoration: none; color: #666; padding: 10px 25px; 
+            border-radius: 50px; font-size: 13px; transition: 0.4s; 
         }
         .nav-capsule a:hover { color: #fff; }
-        .nav-capsule a.active { color: #fff; background: rgba(255,255,255,0.15); }
+        .nav-capsule a.active { color: #fff; background: rgba(255,255,255,0.1); }
 
-        /* [3] 아카이브 컨테이너 */
-        .container { 
-            padding: 180px 10% 100px; 
-            max-width: 1400px; 
-            margin: 0 auto; 
+        /* [3] 시네마틱 히어로 섹션 (영상/대표이미지 활용) */
+        .hero-video-section {
+            height: 80vh; width: 100%; position: relative;
+            overflow: hidden; display: flex; align-items: center; justify-content: center;
         }
-        .page-title { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 5vw; 
-            margin-bottom: 80px; 
-            font-weight: 400; 
-            letter-spacing: -2px; 
-            animation: fadeIn 1s ease forwards;
+        .hero-video-section video, .hero-video-section img {
+            position: absolute; width: 100%; height: 100%; object-fit: cover;
+            filter: brightness(0.4) grayscale(0.5); z-index: -1;
+        }
+        .hero-content { text-align: center; }
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif; font-size: 8vw;
+            margin: 0; line-height: 0.9; text-transform: uppercase;
+        }
+        .hero-content p {
+            font-family: monospace; letter-spacing: 5px; color: #a68d60; margin-top: 20px;
         }
 
-        /* [4] 아트쇼 리스트 (세련된 인터페이스) */
-        .archive-list { 
-            border-top: 1px solid #222; 
-            animation: fadeIn 1.2s ease forwards;
-        }
+        /* [4] 아카이브 컨테이너 */
+        .container { padding: 100px 10% 200px; max-width: 1400px; margin: 0 auto; }
+
+        /* 아트쇼 리스트 */
+        .archive-list { border-top: 1px solid #1a1a1a; margin-top: 50px; }
         
         .archive-item {
-            display: flex; justify-content: space-between; align-items: flex-end;
-            padding: 45px 0; border-bottom: 1px solid #222;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 60px 0; border-bottom: 1px solid #1a1a1a;
             text-decoration: none; color: #fff; 
             transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
             position: relative;
         }
 
-        .archive-item:hover { 
-            border-bottom-color: #fff; 
-            padding-left: 20px; 
-        }
+        .archive-item:hover { padding-left: 30px; }
 
-        .item-main { pointer-events: none; }
+        .item-main { pointer-events: none; flex: 1; }
         .item-title { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 3.5vw; 
-            line-height: 1.1; 
-            transition: 0.4s; 
+            font-family: 'Playfair Display', serif; font-size: 4vw; 
+            line-height: 1.1; transition: 0.4s; display: block;
         }
-        .archive-item:hover .item-title { 
-            font-style: italic; 
-        }
+        .archive-item:hover .item-title { font-style: italic; color: #a68d60; }
         
         .item-location { 
-            font-family: monospace; 
-            color: #555; 
-            font-size: 13px; 
-            margin-top: 12px; 
-            display: block; 
-            letter-spacing: 1.5px; 
-            text-transform: uppercase;
+            font-family: monospace; color: #444; font-size: 13px; 
+            margin-top: 15px; display: block; letter-spacing: 2px; text-transform: uppercase;
         }
         .item-year { 
-            font-family: 'Playfair Display', serif; 
-            color: #444; 
-            font-size: 2vw; 
-            transition: 0.4s; 
+            font-family: 'Playfair Display', serif; color: #222; 
+            font-size: 5vw; transition: 0.4s; font-weight: 700;
         }
-        .archive-item:hover .item-year { 
-            color: #fff; 
-        }
+        .archive-item:hover .item-year { color: #333; }
 
-        /* [5] 호버 시 나타나는 이미지 미리보기 (세로형 최적화) */
+        /* [5] 호버 시 나타나는 플로팅 프리뷰 */
         .preview {
-            position: fixed; 
-            top: 50%; 
-            right: 12%; 
+            position: fixed; top: 50%; right: 10%; 
             transform: translateY(-50%) scale(0.8);
-            width: 350px; 
-            height: 480px; 
-            opacity: 0; 
-            pointer-events: none;
-            transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1); 
-            z-index: 5;
-            background: #111;
+            width: 380px; height: 500px; opacity: 0; 
+            pointer-events: none; transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1); 
+            z-index: 10; border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
         }
-        .preview img { 
-            width: 100%; height: 100%; 
-            object-fit: cover; 
-            filter: grayscale(1); 
-        }
+        .preview img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.5); }
         
-        .archive-item:hover .preview { 
-            opacity: 1; 
-            transform: translateY(-50%) scale(1); 
-        }
-        .archive-item:hover .preview img {
-            filter: grayscale(0.2);
-        }
+        .archive-item:hover .preview { opacity: 1; transform: translateY(-50%) scale(1); }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 모바일 대응 */
         @media (max-width: 768px) {
-            .page-title { font-size: 10vw; }
-            .item-title { font-size: 7vw; }
-            .item-year { font-size: 5vw; }
+            .hero-content h1 { font-size: 15vw; }
+            .item-title { font-size: 8vw; }
+            .item-year { display: none; }
             .preview { display: none; }
         }
     </style>
@@ -144,33 +112,39 @@
         <div class="nav-capsule">
             <a href="index.html">HOME</a>
             <a href="work.html">WORK</a>
-            <a href="artshow.html">ART SHOW</a>
+            <a href="artshow.html" class="active">ART SHOW</a>
             <a href="collab.html">COLLAB</a>
-            <a href="cv.html" class="active">C.V</a>
+            <a href="cv.html">C.V</a>
         </div>
     </header>
 
+    <section class="hero-video-section">
+        <img src="images/art_hero_bg.jpg" alt="Exhibition Highlight">
+        <div class="hero-content">
+            <p>VISUAL STORYTELLING</p>
+            <h1>ART SHOW</h1>
+        </div>
+    </section>
+
     <main class="container">
-        <h1 class="page-title">Art Show Archive</h1>
-        
         <div class="archive-list">
             
             <a href="#" class="archive-item">
                 <div class="item-main">
-                    <span class="item-title">Focus Art Fair: BOOM</span>
+                    <span class="item-title">Focus: BOOM</span>
                     <span class="item-location">Carrousel du Louvre, Paris</span>
                 </div>
                 <span class="item-year">2022</span>
-                <div class="preview"><img src="images/art_2022_paris.jpg" alt="Paris 2022"></div>
+                <div class="preview"><img src="images/art_2022_paris.jpg" alt="Paris 2022 View"></div>
             </a>
 
             <a href="#" class="archive-item">
                 <div class="item-main">
-                    <span class="item-title">Focus: Color of Life</span>
+                    <span class="item-title">Color of Life</span>
                     <span class="item-location">Saatchi Gallery, London</span>
                 </div>
                 <span class="item-year">2021</span>
-                <div class="preview"><img src="images/art_2021_london.jpg" alt="London 2021"></div>
+                <div class="preview"><img src="images/art_2021_london.jpg" alt="London 2021 View"></div>
             </a>
 
             <a href="#" class="archive-item">
@@ -179,16 +153,16 @@
                     <span class="item-location">Atelier Richelieu, Paris</span>
                 </div>
                 <span class="item-year">2021</span>
-                <div class="preview"><img src="images/art_2021_paris.jpg" alt="Paris 2021"></div>
+                <div class="preview"><img src="images/art_2021_paris.jpg" alt="Paris 2021 View"></div>
             </a>
 
             <a href="#" class="archive-item">
                 <div class="item-main">
-                    <span class="item-title">Focus: Color of 3</span>
+                    <span class="item-title">Color of 3</span>
                     <span class="item-location">Espace Thorigny, Paris</span>
                 </div>
                 <span class="item-year">2020</span>
-                <div class="preview"><img src="images/art_2020_paris.jpg" alt="Paris 2020"></div>
+                <div class="preview"><img src="images/art_2020_paris.jpg" alt="Paris 2020 View"></div>
             </a>
 
         </div>
