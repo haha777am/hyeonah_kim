@@ -4,78 +4,183 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C.V — HYEON AH KIM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <style>
-        /* [1] 배경 및 공통 서체 */
-        body {
-            margin: 0; background-color: #0b0b0b; color: #fff;
-            font-family: 'Noto Sans KR', sans-serif; line-height: 1.6;
+        /* [1] 기본 테마 */
+        body { 
+            margin: 0; 
+            background-color: #000; 
+            color: #fff; 
+            font-family: 'Noto Sans KR', sans-serif; 
+            overflow-x: hidden; 
         }
 
-        /* [2] 네비게이션 (캡슐 스타일 유지) */
-        header {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            padding: 40px 0; display: flex; justify-content: center;
+        /* [2] 네비게이션 */
+        header { 
+            position: fixed; top: 0; width: 100%; z-index: 1000; 
+            padding: 40px 0; display: flex; justify-content: center; 
         }
-        .nav-capsule {
-            display: flex; background: rgba(255,255,255,0.05);
-            border-radius: 50px; padding: 6px; backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
+        .nav-capsule { 
+            display: flex; background: rgba(255,255,255,0.08); 
+            border-radius: 50px; padding: 6px; backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255,255,255,0.1); 
         }
-        .nav-capsule a {
-            text-decoration: none; color: #666; padding: 10px 25px;
-            border-radius: 50px; font-size: 13px; transition: 0.4s;
+        .nav-capsule a { 
+            text-decoration: none; color: #777; padding: 10px 25px; 
+            border-radius: 50px; font-size: 13px; letter-spacing: 1px; transition: 0.3s; 
         }
-        .nav-capsule a.active, .nav-capsule a:hover { color: #fff; background: rgba(255,255,255,0.1); }
+        .nav-capsule a:hover { color: #fff; }
+        .nav-capsule a.active { color: #fff; background: rgba(255,255,255,0.15); }
 
-        /* [3] 컨텐츠 레이아웃 */
+        /* [3] CV 레이아웃 컨테이너 */
         .cv-container {
             padding: 180px 10% 100px;
-            max-width: 1200px; margin: 0 auto;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease forwards;
         }
 
-        /* 큰 제목 스타일 (마지막 이미지 참조) */
-        .cv-hero {
-            margin-bottom: 120px;
+        /* 페이지 타이틀 (이름 & 정보) */
+        .cv-header {
+            margin-bottom: 80px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 40px;
         }
-        .cv-hero h1 {
+        .cv-name {
             font-family: 'Playfair Display', serif;
-            font-size: 8vw; line-height: 0.9; margin: 0;
-            text-transform: uppercase; letter-spacing: -2px;
+            font-size: 6vw;
+            margin: 0 0 10px 0;
+            line-height: 1;
+            letter-spacing: -2px;
         }
-        .cv-hero h1 span { color: #a68d60; } /* 금색 포인트 */
+        .cv-role {
+            font-family: monospace;
+            color: #888;
+            font-size: 16px;
+            letter-spacing: 3px;
+        }
+        .cv-contact {
+            margin-top: 30px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #aaa;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+        }
+        .cv-contact span { display: block; }
+        .cv-contact a { color: #aaa; text-decoration: none; transition: 0.3s; }
+        .cv-contact a:hover { color: #fff; }
 
-        /* 섹션 구분 */
+        /* 각 섹션 공통 스타일 */
         .cv-section {
-            display: grid; grid-template-columns: 1fr 2fr;
-            padding: 60px 0; border-top: 1px solid #222;
+            margin-bottom: 80px;
         }
         .section-title {
-            font-family: monospace; color: #a68d60;
-            font-size: 14px; letter-spacing: 3px; text-transform: uppercase;
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: #fff;
+            margin-bottom: 40px;
+            font-style: italic;
         }
 
-        /* 리스트 스타일 */
-        .cv-list { list-style: none; padding: 0; margin: 0; }
-        .cv-item { margin-bottom: 40px; }
-        .cv-item h3 {
-            font-size: 24px; margin: 0 0 10px 0; font-weight: 400;
+        /* 타임라인 스타일 (Experience & Education) */
+        .timeline-item {
+            display: flex;
+            margin-bottom: 40px;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 30px;
         }
-        .cv-item p { color: #888; margin: 0; font-size: 15px; }
-        .cv-item .date { font-family: monospace; color: #444; margin-bottom: 5px; display: block; }
-
-        /* 연락처 스타일 */
-        .contact-link {
-            display: block; font-size: 3vw; color: #fff;
-            text-decoration: none; margin-top: 20px;
-            font-family: 'Playfair Display', serif; transition: 0.3s;
+        .timeline-date {
+            flex: 0 0 250px;
+            font-family: monospace;
+            color: #666;
+            font-size: 14px;
+            letter-spacing: 1px;
         }
-        .contact-link:hover { opacity: 0.5; padding-left: 20px; }
+        .timeline-content {
+            flex: 1;
+        }
+        .item-title {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0 0 5px 0;
+            color: #ddd;
+        }
+        .item-subtitle {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: monospace;
+        }
+        .item-desc {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: #bbb;
+            font-size: 14px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .item-desc li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 8px;
+        }
+        .item-desc li::before {
+            content: '-';
+            position: absolute;
+            left: 0;
+            color: #555;
+        }
 
+        /* 텍스트 하이라이트 (피날레 의상 등) */
+        .highlight { color: #fff; font-weight: 500; }
+
+        /* 스킬 & 랭귀지 테이블 */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .skill-list h4 { margin: 0 0 15px 0; font-family: monospace; color: #888; letter-spacing: 2px; }
+        .skill-list p { margin: 5px 0; font-size: 15px; color: #ccc; font-weight: 300; }
+        .skill-list span { color: #666; font-size: 13px; margin-left: 10px; font-family: monospace; }
+
+        /* 커버레터 (자기소개서) - 에디토리얼 스타일 */
+        .cover-letter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        .article-box {
+            margin-bottom: 40px;
+        }
+        .article-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin: 0 0 15px 0;
+            color: #fff;
+        }
+        .article-box p {
+            font-size: 14.5px;
+            color: #999;
+            line-height: 1.9;
+            font-weight: 300;
+            text-align: justify;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 모바일 반응형 */
         @media (max-width: 768px) {
-            .cv-section { grid-template-columns: 1fr; gap: 30px; }
-            .cv-hero h1 { font-size: 15vw; }
-            .contact-link { font-size: 8vw; }
+            .cv-name { font-size: 12vw; }
+            .timeline-item { flex-direction: column; }
+            .timeline-date { margin-bottom: 15px; flex: auto; }
+            .skill-grid, .cover-letter-grid { grid-template-columns: 1fr; gap: 20px; }
         }
     </style>
 </head>
@@ -92,53 +197,148 @@
     </header>
 
     <main class="cv-container">
-        <div class="cv-hero">
-            <p style="font-family: monospace; letter-spacing: 5px; color: #444; margin-bottom: 20px;">기왕이면 즐겁게 살아보고 싶습니다.</p>
-            <h1>CURRICULUM<br><span>VITAE</span></h1>
+        
+        <div class="cv-header">
+            <h1 class="cv-name">Hyeon Ah Kim</h1>
+            <div class="cv-role">FASHION DESIGNER & ART SHOW DIRECTOR</div>
+            
+            <div class="cv-contact">
+                <span>Seoul, Republic of Korea | 1997.05.17</span>
+                <span>+82 10 3145 0987</span>
+                <span><a href="mailto:haha777am@gmail.com">haha777am@gmail.com</a></span>
+                <span>Instagram: @plus.jackpot</span>
+            </div>
         </div>
 
         <section class="cv-section">
-            <div class="section-title">Experience</div>
-            <div class="cv-list">
-                <div class="cv-item">
-                    <span class="date">2020 — PRESENT</span>
-                    <h3>Art Show Director</h3>
-                    <p>Focus Art Fair, Paris & London. 전시 총괄 및 시각 스토리텔링 디렉팅.</p>
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">24SS ~ 25FW<br>(Current)</div>
+                <div class="timeline-content">
+                    <h3 class="item-title">Fashion Designer</h3>
+                    <div class="item-subtitle">Apparel Planning & Production</div>
+                    <ul class="item-desc">
+                        <li>시즌 컨셉 리서치 및 제안서(PPT) 기획, 시즌별 기획 및 샘플링 진행</li>
+                        <li>샘플 도식화(Illustrator), 핏 수정 및 그레이딩 가이드 진행</li>
+                        <li>다이마루 및 우븐 메인 핸들링, 자재 발주 관리 및 프로모션 업체 소통/조율</li>
+                        <li>브랜드 심볼 및 시즌 그래픽 작업, 그래픽 의상 기획 및 스타일링 아이디어 제안</li>
+                        <li>콜라보레이션 기획 (서울시, '겸손은 힘들다', 인수스 등) 및 제품 상업적 성과 달성</li>
+                        <li>룩북 스타일링 및 촬영 어시스트, 24FW~25FW 브랜드 패션쇼 운영 지원</li>
+                        <li><span class="highlight">피날레 특별 의상 제작 (패딩 점퍼 9개를 해체/재조합한 원피스 제작)</span></li>
+                    </ul>
                 </div>
-                <div class="cv-item">
-                    <span class="date">2022</span>
-                    <h3>Creative Planner</h3>
-                    <p>Retail Space Planning & 3D Store Layout Proposal.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2020.10 - 2022.09<br>France & UK</div>
+                <div class="timeline-content">
+                    <h3 class="item-title">Art Show Director</h3>
+                    <div class="item-subtitle">Focus Art Fair</div>
+                    <ul class="item-desc">
+                        <li><span class="highlight">2022.09</span> Focus Art Fair, BOOM (Carrousel du Louvre, Paris, France)</li>
+                        <li><span class="highlight">2021.08</span> Focus Art Fair, Color of Life (Saatchi Gallery, London, UK)</li>
+                        <li><span class="highlight">2021.06</span> Focus Art Fair, Identity (Atelier Richelieu, Paris, France)</li>
+                        <li><span class="highlight">2020.10</span> Focus Art Fair, Color of 3 (Espace Thogynie, Paris, France)</li>
+                        <br>
+                        <li>패션쇼와 전시회를 결합한 아트쇼 퍼포먼스 총괄 디렉팅 (총 4회)</li>
+                        <li>아트쇼 퍼포먼스용 시그니처 의상 구상 및 직접 제작</li>
+                        <li>모델 이동 동선, 쇼 음악 셀렉션, 작품 순서 조율 및 무대 조명 연출 총괄</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2021.04 - 2021.08<br>Paris, France</div>
+                <div class="timeline-content">
+                    <h3 class="item-title">Design Intern</h3>
+                    <div class="item-subtitle">Hong Lee Company</div>
+                    <ul class="item-desc">
+                        <li>STUDIO BERCOT 3년 과정 수료 후 현지 인턴십 진행</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <section class="cv-section">
-            <div class="section-title">Education</div>
-            <div class="cv-list">
-                <div class="cv-item">
-                    <span class="date">GRADUATED</span>
-                    <h3>Studio Berçot, Paris</h3>
-                    <p>Fashion Design & Artistic Direction.</p>
+            <h2 class="section-title">Education</h2>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">2018.09 - 2021.06</div>
+                <div class="timeline-content">
+                    <h3 class="item-title">Studio Berçot</h3>
+                    <div class="item-subtitle">Paris, France (BAC +3)</div>
+                    <ul class="item-desc">
+                        <li>스튜디오 베르소 패션 디자인 과정 3년 졸업</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2017.09 - 2018.06</div>
+                <div class="timeline-content">
+                    <h3 class="item-title">Alliance Française Cavilam</h3>
+                    <div class="item-subtitle">Vichy, France</div>
+                    <ul class="item-desc">
+                        <li>알리앙스 프랑세즈 까빌람 프랑스어 어학연수 (10개월)</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <section class="cv-section">
-            <div class="section-title">Expertise</div>
-            <div class="cv-list">
-                <div class="cv-item">
-                    <h3>Visual Tools</h3>
-                    <p>Adobe Photoshop, Illustrator, CLO 3D.</p>
+            <h2 class="section-title">Skills & Languages</h2>
+            <div class="skill-grid">
+                <div class="skill-list">
+                    <h4>LANGUAGES</h4>
+                    <p>Korean <span>Native</span></p>
+                    <p>French <span>Business Fluent</span></p>
+                    <p>English <span>Conversational</span></p>
+                </div>
+                <div class="skill-list">
+                    <h4>TECHNICAL SKILLS</h4>
+                    <p>Adobe Photoshop</p>
+                    <p>Adobe Illustrator</p>
+                    <p>Garment Construction & Technical Drawing</p>
+                    <p>Driving License <span>(Class 1 / C1)</span></p>
                 </div>
             </div>
         </section>
 
         <section class="cv-section">
-            <div class="section-title">Contact</div>
-            <div>
-                <a href="mailto:haha777am@gmail.com" class="contact-link">Email.</a>
-                <a href="https://instagram.com/hyeonhyeon.official" class="contact-link">Instagram.</a>
+            <h2 class="section-title">Director's Note</h2>
+            
+            <div class="cover-letter-grid">
+                <div>
+                    <div class="article-box">
+                        <h4>아트쇼 디렉터로서의 경험</h4>
+                        <p>
+                            파리 유학 중 우연한 인연으로 아트쇼 총괄 디렉터로 참여하게 되었고, 총 4번의 아트쇼를 성공적으로 기획 및 운영했습니다. 퍼포먼스와 패션쇼, 전시가 결합된 형태로, 의상 제작부터 모델 동선, 음악 및 무대 연출까지 총괄하며 창의성과 미적 감각을 실현했습니다. 이 경험을 통해 작은 시작이 큰 성취로 이어질 수 있음을 직접 체험했고, 기회를 향한 열린 마음가짐을 갖게 되었습니다.
+                        </p>
+                    </div>
+                    <div class="article-box">
+                        <h4>디자이너로서의 책임감</h4>
+                        <p>
+                            작업을 끝까지 마무리하는 책임감을 강점으로 삼고 있으며, 주어진 업무는 어떤 상황에서도 긍정적으로 해결하고자 합니다. 시즌 준비 중 발생한 변수에도 끈기 있게 대응하며 더 나은 결과를 만들어냈고, 팀 내 소통과 협업을 통해 업무 효율을 높였습니다. 부족한 부분을 인식하고 개선하기 위해 지속적인 학습을 이어가고 있습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="article-box">
+                        <h4>세대 차이를 극복한 소통의 힘</h4>
+                        <p>
+                            고지식한 아버지와의 갈등을 극복하면서, 관점을 바꾸는 태도의 중요성을 배웠습니다. 불필요한 충돌보다는 이해와 존중을 우선하는 자세로 대인관계에서 원만한 소통 능력을 기르게 되었고, 이는 팀워크와 조직 문화 형성에도 긍정적인 영향을 주었습니다.
+                        </p>
+                    </div>
+                    <div class="article-box">
+                        <h4>넓은 세상에 도전하는 자세와 성장</h4>
+                        <p>
+                            프랑스 유학을 위해 독학과 어학원을 병행하며 자립적으로 준비했습니다. 새로운 언어와 문화, 환경에 대한 적응 과정은 낯선 도전을 향한 두려움을 줄여주었고, 목표를 향해 계획하고 실현하는 능력을 길렀습니다.<br><br>
+                            저는 새로운 일을 두려워하지 않고, 변화 속에서 배움을 추구합니다. 협업과 리더십을 강화하며 디자이너로서 지속적인 발전을 목표로 삼고 있으며, 팀원들과의 유연한 소통을 통해 함께 성장하는 조직을 만드는 데 기여하고자 합니다.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
