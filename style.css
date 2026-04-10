@@ -1,78 +1,134 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400&display=swap');
-
-body {
-    margin: 0; background-color: #000; color: #fff;
-    font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden;
-}
-
-/* 네비게이션 */
-header {
-    position: fixed; top: 0; width: 100%; z-index: 1000;
-    padding: 30px 0; display: flex; justify-content: center;
-}
-.nav-capsule {
-    display: flex; background: rgba(255,255,255,0.1);
-    border-radius: 50px; padding: 5px; backdrop-filter: blur(10px);
-}
-.nav-capsule a {
-    text-decoration: none; color: #888; padding: 10px 20px;
-    border-radius: 50px; font-size: 13px; transition: 0.3s;
-}
-.nav-capsule a.active, .nav-capsule a:hover { color: #fff; background: rgba(255,255,255,0.2); }
-
-/* 아카이브 리스트 레이아웃 */
-.container { padding: 150px 8% 100px; max-width: 1400px; margin: 0 auto; }
-.page-title { font-family: 'Playfair Display', serif; font-size: 5vw; margin-bottom: 60px; font-weight: 400; }
-
-.archive-list { border-top: 1px solid #333; }
-.archive-item {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 35px 0; border-bottom: 1px solid #333;
-    text-decoration: none; color: #fff; transition: 0.4s; position: relative;
-}
-.archive-item:hover { padding-left: 20px; border-bottom-color: #fff; }
-.item-title { font-family: 'Playfair Display', serif; font-size: 2.5vw; }
-.item-meta { font-family: monospace; color: #666; font-size: 14px; }
-
-/* 이미지 프리뷰 호버 (영상 효과) */
-.preview {
-    position: fixed; top: 50%; right: 10%; transform: translateY(-50%);
-    width: 350px; height: 450px; opacity: 0; pointer-events: none;
-    transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1); z-index: 5;
-}
-.preview img { width: 100%; height: 100%; object-fit: cover; }
-.archive-item:hover .preview { opacity: 1; right: 15%; }
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>HYEON AH KIM</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYEON AH KIM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* [1] CSS 초기화 및 공통 스타일 */
+        body {
+            margin: 0; padding: 0;
+            background-color: #000; color: #fff;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow: hidden; /* 메인 화면은 스크롤 없이 깔끔하게 */
+        }
+
+        /* [2] 네비게이션 (캡슐 스타일) */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 40px 0; display: flex; justify-content: center;
+        }
+        .nav-capsule {
+            display: flex; background: rgba(255,255,255,0.08);
+            border-radius: 50px; padding: 6px; backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav-capsule a {
+            text-decoration: none; color: #777; padding: 10px 25px;
+            border-radius: 50px; font-size: 13px; letter-spacing: 1px;
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .nav-capsule a.active, .nav-capsule a:hover {
+            color: #fff; background: rgba(255,255,255,0.15);
+        }
+
+        /* [3] 메인 인트로 레이아웃 (가로 2단 구성) */
+        .main-intro {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10%;
+        }
+
+        /* 왼쪽: 텍스트 영역 */
+        .intro-left { flex: 1.2; }
+        .brand-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 8.5vw;
+            line-height: 0.9;
+            margin: 0;
+            letter-spacing: -3px;
+            font-weight: 400;
+        }
+        .brand-subtitle {
+            font-family: monospace;
+            color: #555;
+            font-size: 14px;
+            margin-top: 30px;
+            letter-spacing: 3px;
+        }
+
+        /* 오른쪽: 이미지 영역 */
+        .intro-right {
+            flex: 0.8;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* 오른쪽 정렬 */
+            text-align: right;
+        }
+        .circle-image-wrap {
+            width: 25vw;
+            height: 25vw;
+            max-width: 450px; max-height: 450px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 30px;
+            transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .circle-image-wrap:hover {
+            transform: scale(1.02) rotate(2deg);
+        }
+        .circle-image-wrap img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .intro-desc {
+            font-size: 14px;
+            color: #888;
+            line-height: 1.8;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* 페이드 인 애니메이션 */
+        .fade-in {
+            animation: fadeIn 1.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <div class="nav-capsule">
-      <a href="index.html" class="active">HOME</a>
-      <a href="portfolio.html">PORTFOLIO</a>
-      <a href="cv.html">C.V</a>
-    </div>
-  </header>
+    <header>
+        <div class="nav-capsule">
+            <a href="index.html" class="active">HOME</a>
+            <a href="portfolio.html">PORTFOLIO</a>
+            <a href="cv.html">C.V</a>
+        </div>
+    </header>
 
-  <main class="main-intro">
-    <div class="intro-left">
-      <h1 class="brand-title">Hyeon Ah<br>Kim</h1>
-      <p class="brand-subtitle">FASHION DESIGNER & ART DIRECTOR</p>
-    </div>
-    
-    <div class="intro-right">
-      <div class="circle-image-wrap">
-        <img src="images/main-focus.jpg" alt="Art Show Directing">
-      </div>
-      <p class="intro-desc">Archive / Structure / Reconstruction<br>패션쇼와 전시회를 결합한 시각적 스토리텔링</p>
-    </div>
-  </main>
+    <main class="main-intro">
+        <div class="intro-left fade-in">
+            <h1 class="brand-title">Hyeon Ah<br>Kim</h1>
+            <p class="brand-subtitle">ARCHIVE & DIRECTION</p>
+        </div>
+        
+        <div class="intro-right fade-in" style="animation-delay: 0.3s;">
+            <div class="circle-image-wrap">
+                <img src="images/main-focus.jpg" alt="Art Show Directing">
+            </div>
+            <p class="intro-desc">
+                Archive / Structure / Reconstruction<br>
+                패션쇼와 전시회를 결합한<br>
+                시각적 스토리텔링
+            </p>
+        </div>
+    </main>
 
 </body>
 </html>
