@@ -1,57 +1,136 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>PORTFOLIO - HYEON AH KIM</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTFOLIO - HYEON AH KIM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* [1] 공통 스타일 */
+        body {
+            margin: 0; background-color: #000; color: #fff;
+            font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden;
+        }
+
+        /* [2] 네비게이션 (기존 스타일 유지) */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 30px 0; display: flex; justify-content: center;
+        }
+        .nav-capsule {
+            display: flex; background: rgba(255,255,255,0.1);
+            border-radius: 50px; padding: 5px; backdrop-filter: blur(10px);
+        }
+        .nav-capsule a {
+            text-decoration: none; color: #888; padding: 10px 20px;
+            border-radius: 50px; font-size: 13px; transition: 0.3s;
+        }
+        .nav-capsule a.active, .nav-capsule a:hover { color: #fff; background: rgba(255,255,255,0.2); }
+
+        /* [3] 아카이브 컨테이너 */
+        .container { padding: 150px 8% 100px; max-width: 1400px; margin: 0 auto; }
+        .page-title { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 5vw; margin-bottom: 60px; font-weight: 400; 
+            letter-spacing: -1px;
+        }
+
+        /* [4] 영상 속 리스트 인터페이스 핵심 코드 */
+        .archive-list { border-top: 1px solid #333; }
+        
+        .archive-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 35px 0; border-bottom: 1px solid #333;
+            text-decoration: none; color: #fff; transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            position: relative;
+        }
+
+        /* 마우스 올렸을 때의 변화 */
+        .archive-item:hover {
+            padding-left: 30px; /* 살짝 오른쪽으로 밀리는 효과 */
+            border-bottom-color: #fff;
+        }
+
+        .item-title { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 2.8vw; 
+            transition: 0.4s;
+        }
+        .archive-item:hover .item-title {
+            font-style: italic; /* 영상처럼 이탈릭체로 변함 */
+        }
+
+        .item-meta { 
+            font-family: monospace; 
+            color: #555; 
+            font-size: 14px; 
+            letter-spacing: 2px;
+            transition: 0.4s;
+        }
+        .archive-item:hover .item-meta { color: #fff; }
+
+        /* [5] 이미지 프리뷰 호버 효과 (영상 속 그 기능) */
+        .preview {
+            position: fixed; 
+            top: 50%; right: 10%; 
+            transform: translateY(-50%) scale(0.9);
+            width: 380px; height: 500px; 
+            opacity: 0; pointer-events: none;
+            transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1); 
+            z-index: 5;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .preview img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* 마우스 올리면 이미지가 나타남 */
+        .archive-item:hover .preview { 
+            opacity: 1; 
+            right: 15%; /* 살짝 안으로 들어오는 효과 */
+            transform: translateY(-50%) scale(1);
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <div class="nav-capsule">
-      <a href="index.html">HOME</a>
-      <a href="portfolio.html" class="active">PORTFOLIO</a>
-      <a href="cv.html">C.V</a>
-    </div>
-  </header>
+    <header>
+        <div class="nav-capsule">
+            <a href="index.html">HOME</a>
+            <a href="portfolio.html" class="active">PORTFOLIO</a>
+            <a href="cv.html">C.V</a>
+        </div>
+    </header>
 
-  <main class="portfolio-wrapper">
-    <h1 class="page-title serif-font">Selected Works</h1>
-    
-    <div class="project-grid">
-      
-      <a href="#" class="project-card">
-        <div class="project-img-box">
-          <img src="images/work1.jpg" alt="Focus Art Fair">
-        </div>
-        <div class="project-info">
-          <div class="project-category">ART SHOW DIRECTING</div>
-          <h2 class="project-name serif-font">Focus Art Fair: BOOM</h2>
-        </div>
-      </a>
+    <main class="container">
+        <h1 class="page-title">Selected Works</h1>
+        
+        <div class="archive-list">
+            
+            <a href="artshow.html" class="archive-item">
+                <span class="item-title">Focus Art Fair: BOOM</span>
+                <span class="item-meta">2022 / ART SHOW DIRECTING</span>
+                <div class="preview">
+                    <img src="images/work1.jpg" alt="Focus Art Fair">
+                </div>
+            </a>
 
-      <a href="#" class="project-card">
-        <div class="project-img-box">
-          <img src="images/work2.jpg" alt="Retail Space Planning">
-        </div>
-        <div class="project-info">
-          <div class="project-category">3D SPACE ARCHIVE</div>
-          <h2 class="project-name serif-font">Retail Store Layout</h2>
-        </div>
-      </a>
+            <a href="work.html" class="archive-item">
+                <span class="item-title">Retail Store Layout</span>
+                <span class="item-meta">2022 / 3D SPACE ARCHIVE</span>
+                <div class="preview">
+                    <img src="images/work2.jpg" alt="Retail Space Planning">
+                </div>
+            </a>
 
-      <a href="#" class="project-card">
-        <div class="project-img-box">
-          <img src="images/work3.jpg" alt="Character Design">
-        </div>
-        <div class="project-info">
-          <div class="project-category">VISUAL STORYTELLING</div>
-          <h2 class="project-name serif-font">Gas Personification Webtoon</h2>
-        </div>
-      </a>
+            <a href="art.html" class="archive-item">
+                <span class="item-title">Gas Personification Webtoon</span>
+                <span class="item-meta">2022 / VISUAL STORYTELLING</span>
+                <div class="preview">
+                    <img src="images/work3.jpg" alt="Character Design">
+                </div>
+            </a>
 
-    </div>
-  </main>
+        </div>
+    </main>
 
 </body>
 </html>
