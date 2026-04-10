@@ -2,42 +2,113 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C.V - HYEON AH KIM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* [1] 기본 테마 */
+        body { margin: 0; background-color: #000; color: #fff; font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; }
+        
+        /* [2] 네비게이션 */
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 30px 0; display: flex; justify-content: center; }
+        .nav-capsule { display: flex; background: rgba(255,255,255,0.08); border-radius: 50px; padding: 5px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); }
+        .nav-capsule a { text-decoration: none; color: #666; padding: 10px 20px; border-radius: 50px; font-size: 13px; transition: 0.3s; }
+        .nav-capsule a.active, .nav-capsule a:hover { color: #fff; background: rgba(255,255,255,0.15); }
+
+        /* [3] CV 레이아웃 */
+        .cv-wrapper { padding: 180px 10% 100px; max-width: 1000px; margin: 0 auto; }
+        .page-title { font-family: 'Playfair Display', serif; font-size: 5vw; margin-bottom: 80px; font-weight: 400; letter-spacing: -2px; }
+
+        .cv-section { display: flex; border-top: 1px solid #222; padding: 40px 0; }
+        .sect-title { width: 30%; font-family: monospace; color: #444; font-size: 13px; letter-spacing: 2px; }
+        .sect-content { width: 70%; }
+
+        .item { margin-bottom: 30px; }
+        .item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+        .item-name { font-size: 18px; font-weight: 400; color: #fff; }
+        .item-date { font-family: monospace; color: #444; font-size: 13px; }
+        .item-desc { color: #888; font-size: 14px; white-space: pre-line; }
+
+        /* 연락처 스타일 */
+        .contact-link { color: #fff; text-decoration: none; border-bottom: 1px solid #333; transition: 0.3s; }
+        .contact-link:hover { border-bottom-color: #fff; color: #aaa; }
+
+        /* 하단 장식 */
+        .footer-line { margin-top: 100px; border-top: 1px solid #222; padding-top: 20px; font-family: monospace; font-size: 10px; color: #222; text-align: center; }
+    </style>
 </head>
 <body>
+
     <header>
         <div class="nav-capsule">
             <a href="index.html">HOME</a>
             <a href="work.html">WORK</a>
             <a href="artshow.html">ART SHOW</a>
             <a href="collab.html">COLLAB</a>
-            <a href="art.html">ART</a>
             <a href="cv.html" class="active">C.V</a>
         </div>
     </header>
-    <main class="container">
+
+    <main class="cv-wrapper">
         <h1 class="page-title">Curriculum Vitae</h1>
-        
-        <div class="archive-list">
-            <div class="archive-item">
-                <span class="item-title">Art Show Director</span>
-                <span class="item-meta">Experience [cite: 21]</span>
+
+        <section class="cv-section">
+            <div class="sect-title">EDUCATION</div>
+            <div class="sect-content">
+                <div class="item">
+                    <div class="item-header">
+                        <span class="item-name">Studio Berçot, Paris</span>
+                        <span class="item-date">2018 — 2021</span>
+                    </div>
+                    <p class="item-desc">Fashion Design & Creative Direction</p>
+                </div>
             </div>
-            <div class="archive-item">
-                <span class="item-title">Studio Berçot, Paris</span>
-                <span class="item-meta">Education [cite: 15, 16]</span>
+        </section>
+
+        <section class="cv-section">
+            <div class="sect-title">EXPERIENCE</div>
+            <div class="sect-content">
+                <div class="item">
+                    <div class="item-header">
+                        <span class="item-name">Art Show Director</span>
+                        <span class="item-date">2022 — PRESENT</span>
+                    </div>
+                    <p class="item-desc">Directing international art fairs and exhibitions in Paris and London.</p>
+                </div>
+                <div class="item">
+                    <div class="item-header">
+                        <span class="item-name">Fashion Designer</span>
+                        <span class="item-date">2021 — PRESENT</span>
+                    </div>
+                    <p class="item-desc">Concept development and collection planning for seasonal projects.</p>
+                </div>
             </div>
-            <div class="archive-item">
-                <span class="item-title">Photoshop & Illustrator</span>
-                <span class="item-meta">Skills [cite: 36, 37]</span>
+        </section>
+
+        <section class="cv-section">
+            <div class="sect-title">SKILLS</div>
+            <div class="sect-content">
+                <div class="item">
+                    <span class="item-name">Technical</span>
+                    <p class="item-desc">Photoshop, Illustrator, 3D Store Layout, Creative Direction</p>
+                </div>
             </div>
-        </div>
-        
-        <div style="margin-top: 50px; color: #666; font-size: 14px;">
-            <p>Email: haha777am@gmail.com [cite: 8]</p>
-            <p>Instagram: @plus.jackpot [cite: 9]</p>
-        </div>
+        </section>
+
+        <section class="cv-section">
+            <div class="sect-title">CONTACT</div>
+            <div class="sect-content">
+                <div class="item">
+                    <p class="item-desc">
+                        Email: <a href="mailto:haha777am@gmail.com" class="contact-link">haha777am@gmail.com</a><br>
+                        Instagram: <a href="https://instagram.com/plus.jackpot" target="_blank" class="contact-link">@plus.jackpot</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer-line">HYEON AH KIM © 2026 ARCHIVE ALL RIGHTS RESERVED.</div>
     </main>
+
 </body>
 </html>
