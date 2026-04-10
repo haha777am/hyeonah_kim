@@ -6,12 +6,28 @@
     <title>ART SHOW — HYEON AH KIM</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* [1] 기본 테마 */
+        /* [1] 기본 테마 및 페이지 전환 효과 */
         body { 
-            margin: 0; background-color: #0b0b0b; color: #fff; 
-            font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden; 
+            margin: 0; 
+            background-color: #0b0b0b; 
+            color: #fff; 
+            font-family: 'Noto Sans KR', sans-serif; 
+            overflow-x: hidden; 
+            cursor: none; /* 기본 마우스 숨기기 */
+            animation: fadeInPage 0.8s ease forwards;
         }
         
+        @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
+        body.fade-out { opacity: 0 !important; transition: opacity 0.5s ease; }
+
+        /* 커스텀 커서 스타일 */
+        .custom-cursor {
+            position: fixed; top: 0; left: 0; width: 12px; height: 12px;
+            background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999;
+            transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease; mix-blend-mode: difference;
+        }
+        .custom-cursor.hover { width: 45px; height: 45px; background-color: transparent; border: 1px solid #fff; }
+
         /* [2] 네비게이션 (공통 캡슐 디자인) */
         header { 
             position: fixed; top: 0; width: 100%; z-index: 1000; 
@@ -98,15 +114,22 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* 모바일 대응 */
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 15vw; }
             .item-title { font-size: 8vw; }
             .item-year { display: none; }
             .preview { display: none; }
+            
+            /* 모바일은 커스텀 커서 끄기 */
+            .custom-cursor { display: none; }
+            body { cursor: auto; }
         }
     </style>
 </head>
 <body>
+
+    <div class="custom-cursor"></div>
 
     <header>
         <div class="nav-capsule">
@@ -168,5 +191,34 @@
         </div>
     </main>
 
+    <script>
+        const cursor = document.querySelector('.custom-cursor');
+        const links = document.querySelectorAll('a');
+
+        // 커서 따라다니기
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // 링크 호버 및 클릭 시 페이지 전환 효과
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
+            link.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
+            
+            link.addEventListener('click', function(e) {
+                // 새 창이나 이메일 링크는 효과 제외
+                if (this.target === '_blank' || this.getAttribute('href').startsWith('mailto:')) return;
+                
+                e.preventDefault();
+                const targetUrl = this.href;
+                document.body.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 500); 
+            });
+        });
+    </script>
 </body>
 </html>
