@@ -196,3 +196,18 @@
     </script>
 </body>
 </html>
+/* --- ✨ 부드러운 페이지 전환 효과 --- */
+/* 1) 페이지에 처음 들어올 때 스르륵 밝아짐 */
+body {
+    animation: fadeInPage 0.8s ease forwards;
+}
+@keyframes fadeInPage {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 2) 링크를 클릭해서 나갈 때 스르륵 어두워짐 */
+body.fade-out {
+    opacity: 0 !important;
+    transition: opacity 0.5s ease;
+}
