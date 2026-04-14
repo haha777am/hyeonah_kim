@@ -3,73 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Focus: BOOM (Paris) — HYEON AH KIM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+    <title>SHOW ARCHIVE — HYEON AH KIM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <style>
         /* [1] 기본 테마 및 전환 효과 */
-        body {
-            margin: 0; background-color: #0b0b0b; color: #fff;
-            font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden;
-            cursor: none; animation: fadeInPage 0.8s ease forwards;
-        }
+        body { margin: 0; background-color: #0b0b0b; color: #fff; font-family: 'Noto Sans KR', sans-serif; cursor: none; animation: fadeInPage 0.8s ease forwards; overflow-x: hidden; }
         @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
         body.fade-out { opacity: 0 !important; transition: opacity 0.5s ease; }
 
         /* 커스텀 커서 */
-        .custom-cursor {
-            position: fixed; top: 0; left: 0; width: 12px; height: 12px;
-            background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999;
-            transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease; mix-blend-mode: difference;
-        }
+        .custom-cursor { position: fixed; top: 0; left: 0; width: 12px; height: 12px; background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease; mix-blend-mode: difference; }
         .custom-cursor.hover { width: 45px; height: 45px; background-color: transparent; border: 1px solid #fff; }
 
-        /* [2] 상단 네비게이션 (뒤로가기 강조) */
-        header {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            padding: 40px 5%; display: flex; justify-content: space-between; align-items: center;
-            box-sizing: border-box; mix-blend-mode: difference;
-        }
-        .back-btn {
-            font-family: monospace; color: #fff; text-decoration: none;
-            font-size: 13px; letter-spacing: 2px; transition: 0.3s;
-        }
+        /* 네비게이션 */
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 40px 5%; box-sizing: border-box; mix-blend-mode: difference; }
+        .back-btn { font-family: monospace; color: #fff; text-decoration: none; font-size: 13px; letter-spacing: 2px; transition: 0.3s; }
         .back-btn:hover { opacity: 0.5; padding-left: 10px; }
 
-        /* [3] 컨텐츠 레이아웃 */
+        /* 레이아웃 */
         .show-container { padding: 150px 5% 100px; max-width: 1400px; margin: 0 auto; }
-
-        /* 히어로 타이틀 */
         .show-hero { margin-bottom: 80px; border-bottom: 1px solid #222; padding-bottom: 40px; }
-        .show-hero h1 {
-            font-family: 'Playfair Display', serif; font-size: 6vw; margin: 0; line-height: 1.1;
-        }
+        .show-hero h1 { font-family: 'Playfair Display', serif; font-size: 6vw; margin: 0; line-height: 1.1; }
         .show-hero h1 span { font-style: italic; color: #a68d60; }
-        .show-meta {
-            display: flex; gap: 40px; margin-top: 30px; font-family: monospace; 
-            font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase;
-        }
+        .show-meta { display: flex; gap: 40px; margin-top: 30px; font-family: monospace; font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* 텍스트 영역 (2단 구성) */
-        .show-info {
-            display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; margin-bottom: 100px;
-        }
+        .show-info { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; margin-bottom: 100px; }
         .info-title { font-size: 20px; font-weight: 300; line-height: 1.5; color: #ccc; }
         .info-text { font-size: 16px; font-weight: 300; line-height: 2; color: #777; text-align: justify; }
 
-        /* 갤러리 - 불규칙한 그리드 배치 */
+        /* 갤러리 */
         .show-gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
-        .gallery-item { overflow: hidden; position: relative; background: #111; }
-        .gallery-item img { width: 100%; height: auto; display: block; filter: grayscale(100%); transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); }
+        .gallery-item { overflow: hidden; background: #111; }
+        .gallery-item img { width: 100%; height: auto; display: block; filter: grayscale(100%); transition: 0.8s; }
         .gallery-item:hover img { filter: grayscale(0%); transform: scale(1.05); }
 
-        /* 그리드 크기 커스텀 */
+        /* 그리드 변형 */
         .wide { grid-column: span 8; }
         .narrow { grid-column: span 4; margin-top: 50px; }
         .full { grid-column: span 12; margin: 60px 0; }
-        .center { grid-column: 3 / span 8; }
 
         @media (max-width: 768px) {
-            .show-info { grid-template-columns: 1fr; gap: 40px; }
+            .show-info { grid-template-columns: 1fr; }
             .show-hero h1 { font-size: 10vw; }
             .show-gallery { display: flex; flex-direction: column; }
             .narrow { margin-top: 0; }
@@ -79,7 +53,6 @@
     </style>
 </head>
 <body>
-
     <div class="custom-cursor"></div>
 
     <header>
@@ -87,63 +60,48 @@
     </header>
 
     <main class="show-container">
-        
         <div class="show-hero">
-            <h1>Focus: <span>BOOM</span></h1>
+            <h1>Focus: <span>BOOM</span></h1> 
             <div class="show-meta">
-                <span>Carrousel du Louvre, Paris</span>
-                <span>2022</span>
-                <span>Exhibition & Performance</span>
+                <span>Location Name</span> <span>Year</span> <span>Exhibition</span>
             </div>
         </div>
 
         <div class="show-info">
-            <div class="info-title">
-                예술적 폭발의 순간을<br>공간과 의상으로 재해석하다.
-            </div>
-            <div class="info-text">
-                파리 루브르 박물관의 카루젤 드 루브르에서 개최된 이 전시는 정적인 조형물과 동적인 패션 퍼포먼스의 충돌을 'BOOM'이라는 키워드로 풀어냈습니다. <br><br>
-                해체주의적 실루엣의 의상들은 무대 위 모델들의 움직임을 통해 공간 속에서 완성되었으며, 현지 관람객들에게 패션이 단순한 의복을 넘어 하나의 시각 예술로서 어떻게 기능하는지 보여주는 계기가 되었습니다.
-            </div>
-        </div>
+            <div class="info-title">전시 제목이나 짧은 슬로건</div> <div class="info-text">상세 설명을 여기에 적어주세요.</div> </div>
 
         <div class="show-gallery">
-            <div class="gallery-item wide">
-                <img src="images/art_boom_01.jpg" alt="Art Show View 1">
-            </div>
-            <div class="gallery-item narrow">
-                <img src="images/art_boom_02.jpg" alt="Detail Cut">
-            </div>
-            <div class="gallery-item full">
-                <img src="images/art_boom_main.jpg" alt="Main Performance Section">
-            </div>
-            <div class="gallery-item center">
-                <img src="images/art_boom_03.jpg" alt="Model Archive">
-            </div>
+            <div class="gallery-item wide"><img src="images/사진1.jpg" alt=""></div> 
+            <div class="gallery-item narrow"><img src="images/사진2.jpg" alt=""></div>
+            <div class="gallery-item full"><img src="images/사진3.jpg" alt=""></div>
         </div>
-
     </main>
 
     <script>
+        // 커서 및 페이드 효과 통합 스크립트
         const cursor = document.querySelector('.custom-cursor');
-        const links = document.querySelectorAll('a');
-
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        links.forEach(link => {
-            link.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
-            link.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
-            
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            link.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
             link.addEventListener('click', function(e) {
                 if (this.target === '_blank') return;
                 e.preventDefault();
                 const targetUrl = this.href;
                 document.body.classList.add('fade-out');
-                setTimeout(() => { window.location.href = targetUrl; }, 500); 
+                setTimeout(() => { window.location.href = targetUrl; }, 500);
             });
+        });
+
+        // 뒤로가기 시 흰 화면 방지
+        window.addEventListener('pageshow', function(e) {
+            if (e.persisted || (window.performance && window.performance.navigation.type === 2)) {
+                document.body.classList.remove('fade-out');
+            }
         });
     </script>
 </body>
