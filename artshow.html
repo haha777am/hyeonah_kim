@@ -32,7 +32,7 @@
 
         /* [3] 시네마틱 히어로 섹션 */
         .hero-video-section {
-            height: 60vh; width: 100%; position: relative;
+            height: 70vh; width: 100%; position: relative;
             overflow: hidden; display: flex; align-items: center; justify-content: center;
         }
         .hero-video-section video, .hero-video-section img {
@@ -43,8 +43,7 @@
         .hero-content h1 { font-family: 'Playfair Display', serif; font-size: 8vw; margin: 0; line-height: 0.9; text-transform: uppercase; }
         .hero-content p { font-family: monospace; letter-spacing: 5px; color: #a68d60; margin-top: 20px; }
 
-        /* [4] 아카이브 갤러리 컨테이너 */
-        /* ✨ 상단 여백을 대폭 줄여 목록이 바로 보이게 했습니다. */
+        /* [4] 4분할 아카이브 갤러리 컨테이너 */
         .container { padding: 40px 5% 200px; max-width: 1600px; margin: 0 auto; }
 
         /* 4열 그리드 레이아웃 설정 */
@@ -90,10 +89,13 @@
         .item-year { font-family: 'Playfair Display', serif; color: #555; font-size: 15px; margin-top: 15px; font-weight: 700; }
 
         @media (max-width: 1024px) {
-            .archive-list { grid-template-columns: repeat(2, 1fr); }
+            .archive-list { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+            .preview { height: 450px; }
         }
         @media (max-width: 768px) {
-            .archive-list { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 15vw; }
+            .archive-list { grid-template-columns: 1fr; gap: 50px; }
+            .preview { height: 400px; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
             .preview video { display: none; }
@@ -126,6 +128,31 @@
     <main class="container">
         <div class="archive-list">
             
+            <a href="boom_paris.html" class="archive-item hover-video-container">
+                <div class="preview">
+                    <img src="images/art_2022_paris.jpg" alt="Paris 2022 View">
+                    
+                    )을 지우고 영상 경로를 넣어주세요! -->
+                    </div>
+                <div class="item-main">
+                    <span class="item-title">Focus: BOOM</span>
+                    <span class="item-location">Carrousel du Louvre, Paris</span>
+                    <span class="item-year">2022</span>
+                </div>
+            </a>
+
+            <a href="color_london.html" class="archive-item hover-video-container">
+                <div class="preview">
+                    <img src="images/art_2021_london.jpg" alt="London 2021 View">
+                    
+                    </div>
+                <div class="item-main">
+                    <span class="item-title">Color of Life</span>
+                    <span class="item-location">Saatchi Gallery, London</span>
+                    <span class="item-year">2021</span>
+                </div>
+            </a>
+
             <a href="identity_paris.html" class="archive-item hover-video-container">
                 <div class="preview">
                     <img src="images/2/affiche.jpg" alt="Identity Preview">
@@ -162,11 +189,13 @@
         const links = document.querySelectorAll('a');
         const hoverContainers = document.querySelectorAll('.hover-video-container');
 
+        // 커서 따라다니기
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
+        // 링크 호버 효과 및 클릭 시 페이지 전환 효과
         links.forEach(link => {
             link.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
             link.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
@@ -180,11 +209,12 @@
             });
         });
 
+        // 마우스 오버 시 비디오 재생 / 아웃 시 일시정지
         hoverContainers.forEach(container => {
             const video = container.querySelector('.hover-video');
             if (video) {
                 container.addEventListener('mouseenter', () => {
-                    video.play().catch(error => console.log("Play error:", error));
+                    video.play().catch(error => console.log("비디오 재생 오류:", error));
                 });
                 container.addEventListener('mouseleave', () => {
                     video.pause();
@@ -193,6 +223,7 @@
             }
         });
 
+        // 뒤로가기 시 흰 화면 방지
         window.addEventListener('pageshow', function(event) {
             if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
                 document.body.classList.remove('fade-out');
