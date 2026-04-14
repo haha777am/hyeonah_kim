@@ -3,106 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHOW ARCHIVE — HYEON AH KIM</title>
+    <title>Color of Life (London) — HYEON AH KIM</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <style>
         /* [1] 기본 테마 및 전환 효과 */
-        body { margin: 0; background-color: #0b0b0b; color: #fff; font-family: 'Noto Sans KR', sans-serif; cursor: none; animation: fadeInPage 0.8s ease forwards; overflow-x: hidden; }
+        body { 
+            margin: 0; background-color: #0b0b0b; color: #fff; 
+            font-family: 'Noto Sans KR', sans-serif; cursor: none; 
+            animation: fadeInPage 0.8s ease forwards; overflow-x: hidden; 
+        }
         @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
         body.fade-out { opacity: 0 !important; transition: opacity 0.5s ease; }
 
         /* 커스텀 커서 */
-        .custom-cursor { position: fixed; top: 0; left: 0; width: 12px; height: 12px; background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease; mix-blend-mode: difference; }
+        .custom-cursor { 
+            position: fixed; top: 0; left: 0; width: 12px; height: 12px; 
+            background-color: #fff; border-radius: 50%; pointer-events: none; 
+            z-index: 9999; transform: translate(-50%, -50%); 
+            transition: width 0.3s ease, height 0.3s ease; mix-blend-mode: difference; 
+        }
         .custom-cursor.hover { width: 45px; height: 45px; background-color: transparent; border: 1px solid #fff; }
 
-        /* 네비게이션 */
-        header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 40px 5%; box-sizing: border-box; mix-blend-mode: difference; }
-        .back-btn { font-family: monospace; color: #fff; text-decoration: none; font-size: 13px; letter-spacing: 2px; transition: 0.3s; }
+        /* 네비게이션 (뒤로가기) */
+        header { 
+            position: fixed; top: 0; width: 100%; z-index: 1000; 
+            padding: 40px 5%; box-sizing: border-box; mix-blend-mode: difference; 
+        }
+        .back-btn { 
+            font-family: monospace; color: #fff; text-decoration: none; 
+            font-size: 13px; letter-spacing: 2px; transition: 0.3s; 
+        }
         .back-btn:hover { opacity: 0.5; padding-left: 10px; }
 
-        /* 레이아웃 */
-        .show-container { padding: 150px 5% 100px; max-width: 1400px; margin: 0 auto; }
-        .show-hero { margin-bottom: 80px; border-bottom: 1px solid #222; padding-bottom: 40px; }
-        .show-hero h1 { font-family: 'Playfair Display', serif; font-size: 6vw; margin: 0; line-height: 1.1; }
-        .show-hero h1 span { font-style: italic; color: #a68d60; }
-        .show-meta { display: flex; gap: 40px; margin-top: 30px; font-family: monospace; font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase; }
+        /* [2] 메인 컨테이너 */
+        .show-container { padding: 150px 0 100px; max-width: 1200px; margin: 0 auto; }
 
-        .show-info { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; margin-bottom: 100px; }
-        .info-title { font-size: 20px; font-weight: 300; line-height: 1.5; color: #ccc; }
-        .info-text { font-size: 16px; font-weight: 300; line-height: 2; color: #777; text-align: justify; }
+        /* [3] 히어로 (제목) 섹션 */
+        .show-hero { text-align: center; margin-bottom: 100px; padding: 0 5%; }
+        .show-hero h2 { font-family: monospace; font-size: 14px; color: #777; letter-spacing: 4px; font-weight: 300; margin-bottom: 20px; }
+        .show-hero h1 { font-family: 'Playfair Display', serif; font-size: 5vw; margin: 0; line-height: 1.2; text-transform: uppercase; }
+        .show-hero p { font-family: monospace; font-size: 13px; color: #a68d60; letter-spacing: 2px; margin-top: 30px; }
 
-        /* 갤러리 */
-        .show-gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
-        .gallery-item { overflow: hidden; background: #111; }
-        .gallery-item img { width: 100%; height: auto; display: block; filter: grayscale(100%); transition: 0.8s; }
-        .gallery-item:hover img { filter: grayscale(0%); transform: scale(1.05); }
+        /* [4] 설명 텍스트 섹션 */
+        .show-description { 
+            max-width: 800px; margin: 0 auto 120px; padding: 0 5%;
+            font-size: 15px; font-weight: 300; line-height: 2.2; color: #888; text-align: center; 
+        }
+        .show-description p { margin-bottom: 30px; }
 
-        /* 그리드 변형 */
-        .wide { grid-column: span 8; }
-        .narrow { grid-column: span 4; margin-top: 50px; }
-        .full { grid-column: span 12; margin: 60px 0; }
+        /* [5] 섹션 타이틀 */
+        .section-divider {
+            text-align: center; margin: 120px 0 60px;
+        }
+        .section-divider h3 {
+            font-family: monospace; font-size: 16px; color: #fff; 
+            letter-spacing: 3px; font-weight: 400; text-transform: uppercase;
+        }
+        .section-divider p {
+            font-size: 13px; color: #666; margin-top: 10px; font-weight: 300;
+        }
 
-        @media (max-width: 768px) {
-            .show-info { grid-template-columns: 1fr; }
-            .show-hero h1 { font-size: 10vw; }
-            .show-gallery { display: flex; flex-direction: column; }
-            .narrow { margin-top: 0; }
-            .custom-cursor { display: none; }
-            body { cursor: auto; }
+        /* [6] 이미지 갤러리 (세로 스크롤) */
+        .image-block { margin-bottom: 60px; padding: 0 5%; text-align: center; }
+        .image-block img { 
+            max-width: 100%; height: auto; display: block; margin: 0 auto;
+            filter: grayscale(80%); transition: 1s cubic-bezier(0.19, 1, 0.22, 1); 
+        }
+        .image-block:hover img { filter: grayscale(0%); transform: scale(1.02); }
+
+        /* 이미지 가로 크기 제어 */
+        .img-large { max-width: 100%; }
+        .img-medium { max-width: 80%; }
+        .img-small { max-width: 50%; } /* 세로로 긴 포스터 등에 적합 */
+
+        /* 하단 카피라이트 */
+        footer { text-align: center; padding: 50px 0; font-family: monospace; font-size: 11px; color: #444; border-top: 1px solid #111; margin-top: 100px; }
+
+        @media (max-width: 768px) { 
+            .show-hero h1 { font-size: 10vw; } 
+            .show-description { text-align: left; }
+            .image-block img { max-width: 100% !important; }
+            .custom-cursor { display: none; } 
+            body { cursor: auto; } 
         }
     </style>
 </head>
 <body>
     <div class="custom-cursor"></div>
-
-    <header>
-        <a href="artshow.html" class="back-btn">← BACK TO ARCHIVE</a>
-    </header>
-
+    <header><a href="artshow.html" class="back-btn">← BACK TO ARCHIVE</a></header>
+    
     <main class="show-container">
+        
         <div class="show-hero">
-            <h1>Focus: <span>BOOM</span></h1> 
-            <div class="show-meta">
-                <span>Location Name</span> <span>Year</span> <span>Exhibition</span>
-            </div>
+            <h2>2021 FOCUS ART FAIR</h2>
+            <h1>à Sattchi Gallery. London</h1>
+            <p>2021.08</p>
         </div>
 
-        <div class="show-info">
-            <div class="info-title">전시 제목이나 짧은 슬로건</div> <div class="info-text">상세 설명을 여기에 적어주세요.</div> </div>
-
-        <div class="show-gallery">
-            <div class="gallery-item wide"><img src="images/사진1.jpg" alt=""></div> 
-            <div class="gallery-item narrow"><img src="images/사진2.jpg" alt=""></div>
-            <div class="gallery-item full"><img src="images/사진3.jpg" alt=""></div>
+        <div class="show-description">
+            <p>제가 세 번째로 아트디렉터로서 일했던 프로젝트입니다. 이전과 마찬가지로, 아트쇼 퍼포먼스의 의상 구상 및 제작, 모델의 이동 동선, 쇼에 사용할 음악, 작품의 순서 조율 및 조명 등 아트 쇼의 총 디렉팅을 맡았습니다.</p>
+            <p>컨셉은 'COLOR OF LIFE'로, 아트쇼에서 세상의 다양한 벽에 걸려 있는 작품들을 표현하기 위해 다양한 색깔의 스프레이와 테이프를 이용하여 의상을 준비했습니다. 제가 표현한 벽은 세상에 존재하는 것인지, 상상 속의 벽인지는 각자의 상상에 따라 달려 있습니다.</p>
+            <p>또한 모델의 머리와 메이크업도 벽 너머의 나무와 덩굴을 표현하고자 했고, 작품과 옷 그리고 모델과의 하모니를 생각하며 진행했습니다.</p>
         </div>
+
+        <div class="section-divider">
+            <h3>Affiche</h3>
+        </div>
+        <div class="image-block">
+            <img src="images/affiche.jpg" alt="Affiche" class="img-small"> 
+        </div>
+
+        <div class="section-divider">
+            <h3>Hair and Make up Concept</h3>
+        </div>
+        <div class="image-block">
+            <img src="images/hair.jpg" alt="Hair and Make up Concept" class="img-medium">
+        </div>
+
+        <div class="section-divider">
+            <h3>Plan de Art Show</h3>
+            <p>: 동선, 모델의 간격, 의자 위치</p>
+        </div>
+        <div class="image-block">
+            <img src="images/ART SHOW LINE.jpg" alt="Plan de Art Show" class="img-large">
+        </div>
+
+        <div class="section-divider">
+            <h3>Exhibition & Performance</h3>
+        </div>
+        <div class="image-block">
+            <img src="images/2A2A6324.jpg" alt="Performance View 1" class="img-large">
+        </div>
+        <div class="image-block">
+            <img src="images/2A2A6559.jpg" alt="Performance View 2" class="img-large">
+        </div>
+
     </main>
 
-    <script>
-        // 커서 및 페이드 효과 통합 스크립트
-        const cursor = document.querySelector('.custom-cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
+    <footer>
+        © Hyeon Ah KIM
+    </footer>
 
+    <script>
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
         document.querySelectorAll('a').forEach(link => {
             link.addEventListener('mouseenter', () => cursor.classList.add('hover'));
             link.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
             link.addEventListener('click', function(e) {
-                if (this.target === '_blank') return;
-                e.preventDefault();
-                const targetUrl = this.href;
-                document.body.classList.add('fade-out');
-                setTimeout(() => { window.location.href = targetUrl; }, 500);
+                if (this.target === '_blank') return; e.preventDefault();
+                document.body.classList.add('fade-out'); setTimeout(() => { window.location.href = this.href; }, 500);
             });
         });
-
-        // 뒤로가기 시 흰 화면 방지
-        window.addEventListener('pageshow', function(e) {
-            if (e.persisted || (window.performance && window.performance.navigation.type === 2)) {
-                document.body.classList.remove('fade-out');
-            }
-        });
+        window.addEventListener('pageshow', e => { if (e.persisted || (window.performance && window.performance.navigation.type === 2)) document.body.classList.remove('fade-out'); });
     </script>
 </body>
 </html>
