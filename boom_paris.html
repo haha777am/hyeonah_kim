@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus: BOOM — HYEON AH KIM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* [1] 공통 테마 및 전환 효과 */
+        body {
+            margin: 0; background-color: #0b0b0b; color: #fff;
+            font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden;
+            cursor: none; animation: fadeInPage 0.8s ease forwards;
+        }
+        @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
+        body.fade-out { opacity: 0 !important; transition: opacity 0.5s ease; }
+
+        .custom-cursor {
+            position: fixed; top: 0; left: 0; width: 12px; height: 12px;
+            background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999;
+            transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease; mix-blend-mode: difference;
+        }
+        .custom-cursor.hover { width: 45px; height: 45px; background-color: transparent; border: 1px solid #fff; }
+
+        /* [2] 네비게이션 (독립된 느낌을 위해 상단 바 간소화) */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 40px 5%; display: flex; justify-content: space-between; align-items: center;
+            box-sizing: border-box; mix-blend-mode: difference;
+        }
+        .back-btn {
+            font-family: monospace; color: #fff; text-decoration: none;
+            font-size: 13px; letter-spacing: 2px; transition: 0.3s;
+        }
+        .back-btn:hover { opacity: 0.5; padding-left: 10px; }
+
+        /* [3] 컨텐츠 레이아웃 */
+        .show-container { padding: 150px 5% 100px; max-width: 1400px; margin: 0 auto; }
+
+        /* 히어로 타이틀 */
+        .show-hero { margin-bottom: 100px; border-bottom: 1px solid #222; padding-bottom: 50px; }
+        .show-hero h1 {
+            font-family: 'Playfair Display', serif; font-size: 7vw; margin: 0; line-height: 1;
+        }
+        .show-hero h1 span { font-style: italic; color: #a68d60; }
+        .show-meta {
+            display: flex; gap: 40px; margin-top: 30px; font-family: monospace; 
+            font-size: 13px; color: #555; letter-spacing: 2px;
+        }
+
+        /* 텍스트 영역 */
+        .show-description {
+            display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; margin-bottom: 120px;
+        }
+        .desc-title { font-size: 20px; font-weight: 300; line-height: 1.5; color: #ccc; }
+        .desc-text { font-size: 16px; font-weight: 300; line-height: 2; color: #777; text-align: justify; }
+
+        /* 갤러리 - 시원시원한 배치 */
+        .show-gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+        .gallery-item { overflow: hidden; position: relative; }
+        .gallery-item img { width: 100%; height: auto; display: block; filter: grayscale(100%); transition: 0.7s; }
+        .gallery-item:hover img { filter: grayscale(0%); transform: scale(1.03); }
+
+        /* 그리드 커스텀 (불규칙한 느낌) */
+        .item-large { grid-column: span 8; }
+        .item-small { grid-column: span 4; margin-top: 100px; }
+        .item-full { grid-column: span 12; margin: 80px 0; }
+        .item-medium { grid-column: 3 / span 8; }
+
+        @media (max-width: 768px) {
+            .show-description { grid-template-columns: 1fr; gap: 40px; }
+            .show-hero h1 { font-size: 12vw; }
+            .show-gallery { display: flex; flex-direction: column; }
+            .item-small { margin-top: 0; }
+            .custom-cursor { display: none; }
+            body { cursor: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-cursor"></div>
+
+    <header>
+        <a href="artshow.html" class="back-btn">← BACK TO ARCHIVE</a>
+    </header>
+
+    <main class="show-container">
+        
+        <div class="show-hero">
+            <h1>Focus: <span>BOOM</span></h1>
+            <div class="show-meta">
+                <span>PARIS</span>
+                <span>2022</span>
+                <span>ART PERFORMANCE</span>
+            </div>
+        </div>
+
+        <div class="show-description">
+            <div class="desc-title">
+                전시와 패션쇼를 결합하여<br>강렬한 시각적 폭발을 표현하다.
+            </div>
+            <div class="desc-text">
+                Carrousel du Louvre에서 진행된 이 전시는 'BOOM'이라는 주제 아래, 정적인 예술 작품과 동적인 패션 퍼포먼스의 경계를 허무는 시도였습니다. <br><br>
+                의상의 실루엣은 해체주의적인 기법을 사용하여 에너지가 분출되는 순간을 형상화하였으며, 무채색의 공간 속에서 모델들의 움직임을 통해 작품의 생명력을 극대화했습니다. 총 4회에 걸친 퍼포먼스는 파리 현지의 높은 관심을 끌어냈습니다.
+            </div>
+        </div>
+
+        <div class="show-gallery">
+            <div class="gallery-item item-large">
+                <img src="images/art_paris_01.jpg" alt="Exhibition View 1">
+            </div>
+            <div class="gallery-item item-small">
+                <img src="images/art_paris_02.jpg" alt="Detail View">
+            </div>
+            <div class="gallery-item item-full">
+                <img src="images/art_paris_03.jpg" alt="Main Performance">
+            </div>
+            <div class="gallery-item item-medium">
+                <img src="images/art_paris_04.jpg" alt="Model Stance">
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const cursor = document.querySelector('.custom-cursor');
+        const links = document.querySelectorAll('a');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            link.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetUrl = this.href;
+                document.body.classList.add('fade-out');
+                setTimeout(() => { window.location.href = targetUrl; }, 500); 
+            });
+        });
+    </script>
+</body>
+</html>
