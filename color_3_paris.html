@@ -32,7 +32,7 @@
         .info-text { font-size: 16px; font-weight: 300; line-height: 2; color: #888; text-align: justify;}
 
         /* 갤러리 설정 */
-        .show-gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 40px; } /* gap을 늘려 상하 여백 확보 */
+        .show-gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 40px; }
         .gallery-item { overflow: hidden; background: #111; position: relative; }
         
         /* 공통 필터 적용 */
@@ -50,20 +50,19 @@
         }
         .gallery-item:hover .overlay-text { opacity: 1; }
 
-        /* ✨ 한 줄씩 띄우는 그리드 클래스들 */
+        /* ✨ 그리드 클래스들 */
         .full { grid-column: span 12; height: 75vh; } /* 가로 100% 꽉 채움 */
+        .center-block { grid-column: 3 / span 8; height: auto; } /* 중앙에 큼직하게 1개씩 띄움 */
         
-        /* 중앙에 큼직하게 띄우기 (사진용) */
-        .center-block { grid-column: 3 / span 8; height: auto; } 
-
-        /* 중앙에 좁게 띄우기 (백스테이지/피날레 세로 영상용) */
-        .center-narrow { grid-column: 4 / span 6; height: 70vh; } 
+        /* ✨ 반반(50:50) 배치용 클래스 (총 12칸 중 6칸씩 차지) */
+        .half { grid-column: span 6; height: 70vh; } 
 
         @media (max-width: 768px) {
             .show-hero h1 { font-size: 10vw; }
             .show-meta { flex-direction: column; gap: 10px; }
             .show-gallery { display: flex; flex-direction: column; gap: 20px; }
-            .full, .center-block, .center-narrow { height: auto; margin-bottom: 20px; }
+            /* 모바일에서는 반반 배치도 1줄씩 세로로 나오게 조절 */
+            .full, .center-block, .half { height: auto; margin-bottom: 20px; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
         }
@@ -124,14 +123,13 @@
                 <img src="images/1/3.jpg" alt="Collection Detail">
             </div>
             
-            <div class="gallery-item center-narrow">
+            <div class="gallery-item half">
                 <span class="overlay-text">BACKSTAGE PREP</span>
                 <video autoplay muted loop playsinline>
                     <source src="images/1/backstage1.mp4" type="video/mp4">
                 </video>
             </div>
-            
-            <div class="gallery-item center-narrow">
+            <div class="gallery-item half">
                 <span class="overlay-text">FINALE</span>
                 <video autoplay muted loop playsinline>
                     <source src="images/1/end.mp4" type="video/mp4">
