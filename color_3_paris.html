@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHOW ARCHIVE — HYEON AH KIM</title>
+    <title>Color of 3 (Paris) — HYEON AH KIM</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <style>
         /* [1] 기본 테마 및 전환 효과 */
@@ -22,31 +22,46 @@
 
         /* 레이아웃 */
         .show-container { padding: 150px 5% 100px; max-width: 1400px; margin: 0 auto; }
-        .show-hero { margin-bottom: 80px; border-bottom: 1px solid #222; padding-bottom: 40px; }
+        .show-hero { margin-bottom: 80px; border-bottom: 1px solid #222; padding-bottom: 40px; text-align: center; }
         .show-hero h1 { font-family: 'Playfair Display', serif; font-size: 6vw; margin: 0; line-height: 1.1; }
         .show-hero h1 span { font-style: italic; color: #a68d60; }
-        .show-meta { display: flex; gap: 40px; margin-top: 30px; font-family: monospace; font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase; }
+        .show-meta { display: flex; justify-content: center; gap: 40px; margin-top: 30px; font-family: monospace; font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase; }
 
-        .show-info { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; margin-bottom: 100px; }
-        .info-title { font-size: 20px; font-weight: 300; line-height: 1.5; color: #ccc; }
-        .info-text { font-size: 16px; font-weight: 300; line-height: 2; color: #777; text-align: justify; }
+        .show-info { max-width: 800px; margin: 0 auto 100px; text-align: center; }
+        .info-title { font-size: 20px; font-weight: 300; line-height: 1.5; color: #ccc; margin-bottom: 30px; }
+        .info-text { font-size: 16px; font-weight: 300; line-height: 2; color: #888; text-align: justify;}
 
-        /* 갤러리 */
+        /* 갤러리 (사진 + 영상 혼합 배치) */
         .show-gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
-        .gallery-item { overflow: hidden; background: #111; }
-        .gallery-item img { width: 100%; height: auto; display: block; filter: grayscale(100%); transition: 0.8s; }
-        .gallery-item:hover img { filter: grayscale(0%); transform: scale(1.05); }
+        .gallery-item { overflow: hidden; background: #111; position: relative; }
+        
+        /* 공통 필터 적용 (사진/영상 모두) */
+        .gallery-item img, .gallery-item video { 
+            width: 100%; height: 100%; object-fit: cover; display: block; 
+            filter: grayscale(80%); transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); 
+        }
+        .gallery-item:hover img, .gallery-item:hover video { filter: grayscale(0%); transform: scale(1.02); }
+
+        /* 텍스트 오버레이 (영상/사진 위에 글씨) */
+        .overlay-text {
+            position: absolute; bottom: 20px; left: 20px; z-index: 10;
+            font-family: monospace; font-size: 12px; color: #fff; letter-spacing: 2px;
+            opacity: 0; transition: 0.5s; pointer-events: none; text-shadow: 0px 2px 4px rgba(0,0,0,0.8);
+        }
+        .gallery-item:hover .overlay-text { opacity: 1; }
 
         /* 그리드 변형 */
-        .wide { grid-column: span 8; }
-        .narrow { grid-column: span 4; margin-top: 50px; }
-        .full { grid-column: span 12; margin: 60px 0; }
+        .full { grid-column: span 12; height: 70vh; margin-bottom: 40px; } /* 메인 영상용 */
+        .wide { grid-column: span 8; height: 500px; }
+        .narrow { grid-column: span 4; height: 500px; }
+        .half { grid-column: span 6; height: 600px; margin: 40px 0; }
+        .center-block { grid-column: 3 / span 8; margin: 40px 0; }
 
         @media (max-width: 768px) {
-            .show-info { grid-template-columns: 1fr; }
             .show-hero h1 { font-size: 10vw; }
+            .show-meta { flex-direction: column; gap: 10px; }
             .show-gallery { display: flex; flex-direction: column; }
-            .narrow { margin-top: 0; }
+            .full, .wide, .narrow, .half, .center-block { height: auto; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
         }
@@ -61,24 +76,72 @@
 
     <main class="show-container">
         <div class="show-hero">
-            <h1>Focus: <span>BOOM</span></h1> 
+            <h1>Color of <span>3</span></h1> 
             <div class="show-meta">
-                <span>Location Name</span> <span>Year</span> <span>Exhibition</span>
+                <span>Espace Thorigny, PARIS</span> 
+                <span>2020.10</span> 
+                <span>Art Show Directing</span>
             </div>
         </div>
 
         <div class="show-info">
-            <div class="info-title">전시 제목이나 짧은 슬로건</div> <div class="info-text">상세 설명을 여기에 적어주세요.</div> </div>
+            <div class="info-title">똑같은 티셔츠에서 시작된<br>다양한 디자인의 변주</div> 
+            <div class="info-text">
+                패션쇼와 전시회를 결합한 아트쇼 퍼포먼스의 의상 구상 및 제작, 모델의 이동 동선, 쇼에 사용할 음악, 작품의 순서 조율 및 조명 등 아트 쇼의 총 디렉팅을 맡았습니다.<br><br>
+                하얀 반팔 티셔츠에 로고를 박아 주문 제작한 뒤, 리폼을 통해 다양한 방법으로 자르고 묶거나 태우는 시도를 진행했습니다. 시작은 모두 똑같은 티셔츠지만 다양한 방식의 과정들을 거쳐 다른 느낌을 줄 수 있다는 것을 보여주고자 다채로운 디자인을 선보였습니다.
+            </div> 
+        </div>
 
         <div class="show-gallery">
-            <div class="gallery-item wide"><img src="images/사진1.jpg" alt=""></div> 
-            <div class="gallery-item narrow"><img src="images/사진2.jpg" alt=""></div>
-            <div class="gallery-item full"><img src="images/사진3.jpg" alt=""></div>
+            
+            <div class="gallery-item full">
+                <span class="overlay-text">MAIN SHOW FILM</span>
+                <video autoplay muted loop playsinline>
+                    <source src="images/video.mp4" type="video/mp4">
+                    <img src="images/main.jpg" alt="Main View Fallback">
+                </video>
+            </div>
+
+            <div class="gallery-item narrow">
+                <span class="overlay-text">BACKSTAGE PREP</span>
+                <video autoplay muted loop playsinline>
+                    <source src="images/backstage1.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="gallery-item wide">
+                <span class="overlay-text">ETUDE PROCESS</span>
+                <img src="images/etude.jpg" alt="Etude Process">
+            </div>
+
+            <div class="gallery-item half">
+                <span class="overlay-text">RUNWAY CUT 01</span>
+                <img src="images/1.jpg" alt="Runway View 1">
+            </div>
+            <div class="gallery-item half">
+                <span class="overlay-text">RUNWAY CUT 02</span>
+                <img src="images/2.jpg" alt="Runway View 2">
+            </div>
+
+            <div class="gallery-item center-block">
+                <span class="overlay-text">HAIR & MAKEUP CONCEPT</span>
+                <img src="images/hair_makeup.jpg" alt="Hair and Make Up">
+            </div>
+
+            <div class="gallery-item wide">
+                <span class="overlay-text">COLLECTION DETAIL</span>
+                <img src="images/3.jpg" alt="Collection Detail">
+            </div>
+            <div class="gallery-item narrow">
+                <span class="overlay-text">FINALE</span>
+                <video autoplay muted loop playsinline>
+                    <source src="images/end.mp4" type="video/mp4">
+                </video>
+            </div>
+
         </div>
     </main>
 
     <script>
-        // 커서 및 페이드 효과 통합 스크립트
         const cursor = document.querySelector('.custom-cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
@@ -97,7 +160,6 @@
             });
         });
 
-        // 뒤로가기 시 흰 화면 방지
         window.addEventListener('pageshow', function(e) {
             if (e.persisted || (window.performance && window.performance.navigation.type === 2)) {
                 document.body.classList.remove('fade-out');
