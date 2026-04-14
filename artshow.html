@@ -44,38 +44,52 @@
         .hero-content p { font-family: monospace; letter-spacing: 5px; color: #a68d60; margin-top: 20px; }
 
         /* [4] 4분할 아카이브 갤러리 컨테이너 */
-        .container { padding: 100px 5% 200px; max-width: 1600px; margin: 0 auto; }
+        /* ✨ 상단 여백(padding-top)을 100px에서 40px로 대폭 줄였습니다. */
+        .container { padding: 40px 5% 200px; max-width: 1600px; margin: 0 auto; }
 
         /* 4열 그리드 레이아웃 설정 */
-        .archive-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 50px; }
+        /* ✨ 목록 위쪽 여백(margin-top)을 50px에서 0px로 없앴습니다. */
+        .archive-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 0; }
         
         /* 개별 카드 디자인 */
         .archive-item {
-            display: flex; flex-direction: column; color: #fff; 
+            display: flex; flex-direction: column; text-decoration: none; color: #fff; 
             transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
         .archive-item:hover { transform: translateY(-15px); }
 
-        /* ✨ 카드 이미지/비디오 (프리뷰) */
+        /* 카드 이미지/비디오 (프리뷰) */
         .preview {
             width: 100%; height: 500px; overflow: hidden;
             margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.1);
-            position: relative;
+            position: relative; 
         }
+        
+        /* 썸네일 이미지 및 비디오 공통 설정 */
         .preview img, .preview video { 
+            position: absolute; top: 0; left: 0;
             width: 100%; height: 100%; object-fit: cover; 
-            filter: grayscale(100%); transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); 
+            transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); 
             transform: scale(1.05); display: block;
         }
-        .archive-item:hover .preview img, .archive-item:hover .preview video { filter: grayscale(0%); transform: scale(1); }
+        
+        /* 썸네일 이미지는 기본적으로 흑백 */
+        .preview img { filter: grayscale(100%); z-index: 2; }
+        
+        /* 비디오는 기본적으로 투명(안 보임)하게 숨김 */
+        .preview video { opacity: 0; z-index: 1; }
 
-        /* ✨ 텍스트 영역 (이제 텍스트를 누르면 페이지가 넘어갑니다) */
-        .item-main { display: flex; flex-direction: column; text-decoration: none; color: #fff; }
+        /* 호버 효과: 이미지 투명화 + 비디오 나타남 + 원래 크기 */
+        .archive-item:hover .preview img { opacity: 0; transform: scale(1); }
+        .archive-item:hover .preview video { opacity: 1; transform: scale(1); filter: grayscale(0%); }
+
+        /* 텍스트 영역 */
+        .item-main { display: flex; flex-direction: column; }
         .item-title { 
             font-family: 'Playfair Display', serif; font-size: 26px; 
             line-height: 1.2; transition: 0.4s; display: block; margin-bottom: 10px;
         }
-        .item-main:hover .item-title { font-style: italic; color: #a68d60; }
+        .archive-item:hover .item-title { font-style: italic; color: #a68d60; }
         
         .item-location { font-family: monospace; color: #888; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
         .item-year { font-family: 'Playfair Display', serif; color: #555; font-size: 16px; margin-top: 15px; font-weight: 700; }
@@ -91,6 +105,8 @@
             .preview { height: 400px; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
+            .preview video { display: none; }
+            .preview img { filter: grayscale(0%); opacity: 1 !important; transform: scale(1) !important; }
         }
     </style>
 </head>
@@ -119,43 +135,58 @@
     <main class="container">
         <div class="archive-list">
             
-            <div class="archive-item">
+            <a href="boom_paris.html" class="archive-item hover-video-container">
                 <div class="preview">
-                    <video poster="images/art_2022_paris.jpg" src="images/1/video.mp4" playsinline loop onclick="this.paused ? this.play() : this.pause()"></video>
+                    <img src="images/art_2022_paris.jpg" alt="Paris 2022 View">
+                    <video muted loop playsinline class="hover-video">
+                        <source src="images/1/video.mp4" type="video/mp4">
+                    </video>
                 </div>
-                <a href="boom_paris.html" class="item-main">
+                <div class="item-main">
                     <span class="item-title">Focus: BOOM</span>
                     <span class="item-location">Carrousel du Louvre, Paris</span>
                     <span class="item-year">2022</span>
-                </a>
-            </div>
+                </div>
+            </a>
 
-            <div class="archive-item">
-                <div class="preview"><img src="images/art_2021_london.jpg" alt="London 2021 View"></div>
-                <a href="color_london.html" class="item-main">
+            <a href="color_london.html" class="archive-item hover-video-container">
+                <div class="preview">
+                    <img src="images/art_2021_london.jpg" alt="London 2021 View">
+                    </div>
+                <div class="item-main">
                     <span class="item-title">Color of Life</span>
                     <span class="item-location">Saatchi Gallery, London</span>
                     <span class="item-year">2021</span>
-                </a>
-            </div>
+                </div>
+            </a>
 
-            <div class="archive-item">
-                <div class="preview"><img src="images/art_2021_paris.jpg" alt="Paris 2021 View"></div>
-                <a href="identity_paris.html" class="item-main">
+            <a href="identity_paris.html" class="archive-item hover-video-container">
+                <div class="preview">
+                    <img src="images/art_2021_paris.jpg" alt="Paris 2021 View">
+                    <video muted loop playsinline class="hover-video">
+                        <source src="images/2/video.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="item-main">
                     <span class="item-title">Focus: Identity</span>
                     <span class="item-location">Atelier Richelieu, Paris</span>
                     <span class="item-year">2021</span>
-                </a>
-            </div>
+                </div>
+            </a>
 
-            <div class="archive-item">
-                <div class="preview"><img src="images/art_2020_paris.jpg" alt="Paris 2020 View"></div>
-                <a href="color_3_paris.html" class="item-main">
+            <a href="color_3_paris.html" class="archive-item hover-video-container">
+                <div class="preview">
+                    <img src="images/art_2020_paris.jpg" alt="Paris 2020 View">
+                    <video muted loop playsinline class="hover-video">
+                        <source src="images/color_of_3/video.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="item-main">
                     <span class="item-title">Color of 3</span>
                     <span class="item-location">Espace Thorigny, Paris</span>
                     <span class="item-year">2020</span>
-                </a>
-            </div>
+                </div>
+            </a>
 
         </div>
     </main>
@@ -163,7 +194,7 @@
     <script>
         const cursor = document.querySelector('.custom-cursor');
         const links = document.querySelectorAll('a');
-        const videos = document.querySelectorAll('video'); // 비디오도 호버 효과 받게 추가
+        const hoverContainers = document.querySelectorAll('.hover-video-container');
 
         // 커서 따라다니기
         document.addEventListener('mousemove', (e) => {
@@ -171,13 +202,10 @@
             cursor.style.top = e.clientY + 'px';
         });
 
-        // 링크 및 비디오 호버 효과
-        const addHover = () => cursor.classList.add('hover');
-        const removeHover = () => cursor.classList.remove('hover');
-
+        // 링크 호버 효과 및 클릭 시 페이지 전환 효과
         links.forEach(link => {
-            link.addEventListener('mouseenter', addHover);
-            link.addEventListener('mouseleave', removeHover);
+            link.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
+            link.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
             
             link.addEventListener('click', function(e) {
                 if (this.target === '_blank' || this.getAttribute('href').startsWith('mailto:')) return;
@@ -188,9 +216,18 @@
             });
         });
 
-        videos.forEach(video => {
-            video.addEventListener('mouseenter', addHover);
-            video.addEventListener('mouseleave', removeHover);
+        // 마우스 오버 시 비디오 재생 / 아웃 시 일시정지
+        hoverContainers.forEach(container => {
+            const video = container.querySelector('.hover-video');
+            if (video) {
+                container.addEventListener('mouseenter', () => {
+                    video.play().catch(error => console.log("비디오 재생 오류:", error));
+                });
+                container.addEventListener('mouseleave', () => {
+                    video.pause();
+                    video.currentTime = 0; 
+                });
+            }
         });
 
         // 뒤로가기 시 흰 화면 방지
