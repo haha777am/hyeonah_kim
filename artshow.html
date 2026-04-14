@@ -8,15 +8,10 @@
     <style>
         /* [1] 기본 테마 및 페이지 전환 효과 */
         body { 
-            margin: 0; 
-            background-color: #0b0b0b; 
-            color: #fff; 
-            font-family: 'Noto Sans KR', sans-serif; 
-            overflow-x: hidden; 
-            cursor: none; 
-            animation: fadeInPage 0.8s ease forwards;
+            margin: 0; background-color: #0b0b0b; color: #fff; 
+            font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden; 
+            cursor: none; animation: fadeInPage 0.8s ease forwards;
         }
-        
         @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
         body.fade-out { opacity: 0 !important; transition: opacity 0.5s ease; }
 
@@ -29,19 +24,9 @@
         .custom-cursor.hover { width: 45px; height: 45px; background-color: transparent; border: 1px solid #fff; }
 
         /* [2] 네비게이션 */
-        header { 
-            position: fixed; top: 0; width: 100%; z-index: 1000; 
-            padding: 40px 0; display: flex; justify-content: center; 
-        }
-        .nav-capsule { 
-            display: flex; background: rgba(255,255,255,0.05); 
-            border-radius: 50px; padding: 6px; backdrop-filter: blur(20px); 
-            border: 1px solid rgba(255,255,255,0.1); 
-        }
-        .nav-capsule a { 
-            text-decoration: none; color: #666; padding: 10px 25px; 
-            border-radius: 50px; font-size: 13px; transition: 0.4s; 
-        }
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 40px 0; display: flex; justify-content: center; }
+        .nav-capsule { display: flex; background: rgba(255,255,255,0.05); border-radius: 50px; padding: 6px; backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); }
+        .nav-capsule a { text-decoration: none; color: #666; padding: 10px 25px; border-radius: 50px; font-size: 13px; transition: 0.4s; }
         .nav-capsule a:hover { color: #fff; }
         .nav-capsule a.active { color: #fff; background: rgba(255,255,255,0.1); }
 
@@ -55,62 +40,45 @@
             filter: brightness(0.4) grayscale(0.5); z-index: -1;
         }
         .hero-content { text-align: center; }
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif; font-size: 8vw;
-            margin: 0; line-height: 0.9; text-transform: uppercase;
-        }
-        .hero-content p {
-            font-family: monospace; letter-spacing: 5px; color: #a68d60; margin-top: 20px;
-        }
+        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: 8vw; margin: 0; line-height: 0.9; text-transform: uppercase; }
+        .hero-content p { font-family: monospace; letter-spacing: 5px; color: #a68d60; margin-top: 20px; }
 
         /* [4] 4분할 아카이브 갤러리 컨테이너 */
         .container { padding: 100px 5% 200px; max-width: 1600px; margin: 0 auto; }
 
-        /* ✨ 4열 그리드 레이아웃 설정 */
-        .archive-list { 
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 30px; 
-            margin-top: 50px; 
-        }
+        /* 4열 그리드 레이아웃 설정 */
+        .archive-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 50px; }
         
         /* 개별 카드 디자인 */
         .archive-item {
-            display: flex; flex-direction: column;
-            text-decoration: none; color: #fff; 
+            display: flex; flex-direction: column; color: #fff; 
             transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
-        .archive-item:hover { transform: translateY(-15px); } /* 마우스 올리면 위로 살짝 떠오름 */
+        .archive-item:hover { transform: translateY(-15px); }
 
-        /* 카드 이미지 (프리뷰) */
+        /* ✨ 카드 이미지/비디오 (프리뷰) */
         .preview {
             width: 100%; height: 500px; overflow: hidden;
             margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
         }
-        .preview img { 
+        .preview img, .preview video { 
             width: 100%; height: 100%; object-fit: cover; 
             filter: grayscale(100%); transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); 
-            transform: scale(1.05);
+            transform: scale(1.05); display: block;
         }
-        /* 호버 시 흑백 풀리고 원래 크기로 축소 */
-        .archive-item:hover .preview img { filter: grayscale(0%); transform: scale(1); }
+        .archive-item:hover .preview img, .archive-item:hover .preview video { filter: grayscale(0%); transform: scale(1); }
 
-        /* 텍스트 영역 */
-        .item-main { display: flex; flex-direction: column; }
+        /* ✨ 텍스트 영역 (이제 텍스트를 누르면 페이지가 넘어갑니다) */
+        .item-main { display: flex; flex-direction: column; text-decoration: none; color: #fff; }
         .item-title { 
             font-family: 'Playfair Display', serif; font-size: 26px; 
             line-height: 1.2; transition: 0.4s; display: block; margin-bottom: 10px;
         }
-        .archive-item:hover .item-title { font-style: italic; color: #a68d60; }
+        .item-main:hover .item-title { font-style: italic; color: #a68d60; }
         
-        .item-location { 
-            font-family: monospace; color: #888; font-size: 12px; 
-            letter-spacing: 2px; text-transform: uppercase;
-        }
-        .item-year { 
-            font-family: 'Playfair Display', serif; color: #555; 
-            font-size: 16px; margin-top: 15px; font-weight: 700;
-        }
+        .item-location { font-family: monospace; color: #888; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
+        .item-year { font-family: 'Playfair Display', serif; color: #555; font-size: 16px; margin-top: 15px; font-weight: 700; }
 
         /* 반응형 모바일 대응 */
         @media (max-width: 1024px) {
@@ -151,41 +119,43 @@
     <main class="container">
         <div class="archive-list">
             
-            <a href="boom_paris.html" class="archive-item">
-                <div class="preview"><img src="images/art_2022_paris.jpg" alt="Paris 2022 View"></div>
-                <div class="item-main">
+            <div class="archive-item">
+                <div class="preview">
+                    <video poster="images/art_2022_paris.jpg" src="images/1/video.mp4" playsinline loop onclick="this.paused ? this.play() : this.pause()"></video>
+                </div>
+                <a href="boom_paris.html" class="item-main">
                     <span class="item-title">Focus: BOOM</span>
                     <span class="item-location">Carrousel du Louvre, Paris</span>
                     <span class="item-year">2022</span>
-                </div>
-            </a>
+                </a>
+            </div>
 
-            <a href="color_london.html" class="archive-item">
+            <div class="archive-item">
                 <div class="preview"><img src="images/art_2021_london.jpg" alt="London 2021 View"></div>
-                <div class="item-main">
+                <a href="color_london.html" class="item-main">
                     <span class="item-title">Color of Life</span>
                     <span class="item-location">Saatchi Gallery, London</span>
                     <span class="item-year">2021</span>
-                </div>
-            </a>
+                </a>
+            </div>
 
-            <a href="identity_paris.html" class="archive-item">
+            <div class="archive-item">
                 <div class="preview"><img src="images/art_2021_paris.jpg" alt="Paris 2021 View"></div>
-                <div class="item-main">
+                <a href="identity_paris.html" class="item-main">
                     <span class="item-title">Focus: Identity</span>
                     <span class="item-location">Atelier Richelieu, Paris</span>
                     <span class="item-year">2021</span>
-                </div>
-            </a>
+                </a>
+            </div>
 
-            <a href="color_3_paris.html" class="archive-item">
+            <div class="archive-item">
                 <div class="preview"><img src="images/art_2020_paris.jpg" alt="Paris 2020 View"></div>
-                <div class="item-main">
+                <a href="color_3_paris.html" class="item-main">
                     <span class="item-title">Color of 3</span>
                     <span class="item-location">Espace Thorigny, Paris</span>
                     <span class="item-year">2020</span>
-                </div>
-            </a>
+                </a>
+            </div>
 
         </div>
     </main>
@@ -193,6 +163,7 @@
     <script>
         const cursor = document.querySelector('.custom-cursor');
         const links = document.querySelectorAll('a');
+        const videos = document.querySelectorAll('video'); // 비디오도 호버 효과 받게 추가
 
         // 커서 따라다니기
         document.addEventListener('mousemove', (e) => {
@@ -200,23 +171,26 @@
             cursor.style.top = e.clientY + 'px';
         });
 
-        // 링크 호버 및 클릭 시 페이지 전환 효과
+        // 링크 및 비디오 호버 효과
+        const addHover = () => cursor.classList.add('hover');
+        const removeHover = () => cursor.classList.remove('hover');
+
         links.forEach(link => {
-            link.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
-            link.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
+            link.addEventListener('mouseenter', addHover);
+            link.addEventListener('mouseleave', removeHover);
             
             link.addEventListener('click', function(e) {
-                // 새 창이나 이메일 링크는 효과 제외
                 if (this.target === '_blank' || this.getAttribute('href').startsWith('mailto:')) return;
-                
                 e.preventDefault();
                 const targetUrl = this.href;
                 document.body.classList.add('fade-out');
-                
-                setTimeout(() => {
-                    window.location.href = targetUrl;
-                }, 500); 
+                setTimeout(() => { window.location.href = targetUrl; }, 500); 
             });
+        });
+
+        videos.forEach(video => {
+            video.addEventListener('mouseenter', addHover);
+            video.addEventListener('mouseleave', removeHover);
         });
 
         // 뒤로가기 시 흰 화면 방지
