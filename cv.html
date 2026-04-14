@@ -43,7 +43,7 @@
         /* 컨텐츠 레이아웃 */
         .cv-container { padding: 180px 10% 100px; max-width: 1200px; margin: 0 auto; }
 
-        /* ✨ 상단 타이틀 + 미니 랜덤 원형 이미지 */
+        /* 상단 타이틀 + 미니 랜덤 원형 이미지 */
         .cv-hero { 
             margin-bottom: 120px; 
             display: flex; 
@@ -144,17 +144,48 @@
         </section>
 
         <section class="cv-section">
+            <div class="section-title">Exhibitions</div>
+            <div class="cv-list">
+                <div class="cv-item">
+                    <span class="date">2022.09</span>
+                    <h3>Focus Art Fair &lt;Boom&gt;</h3>
+                    <p>Paris, France</p>
+                </div>
+                <div class="cv-item">
+                    <span class="date">2021.08</span>
+                    <h3>Focus Art Fair &lt;Life of color&gt;</h3>
+                    <p>London, UK</p>
+                </div>
+                <div class="cv-item">
+                    <span class="date">2021.06</span>
+                    <h3>Focus Art Fair &lt;Identity&gt;</h3>
+                    <p>Paris, France</p>
+                </div>
+                <div class="cv-item">
+                    <span class="date">2020.10</span>
+                    <h3>Focus Art Fair &lt;Color of 3&gt;</h3>
+                    <p>Paris, France</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cv-section">
             <div class="section-title">Education</div>
             <div class="cv-list">
                 <div class="cv-item">
                     <span class="date">2018.09 — 2021.06</span>
-                    <h3>Studio Berçot (Paris, France)</h3>
-                    <p>Fashion Design & Artistic Direction (BAC +3).</p>
+                    <h3>Ecole Studio Berçot</h3>
+                    <p>Paris, France (Fashion Design & Artistic Direction)</p>
                 </div>
                 <div class="cv-item">
                     <span class="date">2017.09 — 2018.06</span>
                     <h3>Alliance Française Cavilam</h3>
-                    <p>프랑스어 어학연수 10개월 (Vichy, France).</p>
+                    <p>Vichy, France (프랑스어 어학연수)</p>
+                </div>
+                <div class="cv-item">
+                    <span class="date">2014.03 — 2016.03</span>
+                    <h3>경원고등학교</h3>
+                    <p>Busan, South Korea</p>
                 </div>
             </div>
         </section>
@@ -188,14 +219,14 @@
     </main>
 
     <script>
-        // [1] 미니 원형 랜덤 이미지 설정
+        // 미니 원형 랜덤 이미지 설정
         const images = ['images/main1.jpg.jpg', 'images/main2.jpg.jpg', 'images/main3.jpg.jpg'];
         const randomImgTag = document.getElementById('random-img');
         if (randomImgTag) {
             randomImgTag.src = images[Math.floor(Math.random() * images.length)];
         }
 
-        // [2] 커스텀 커서 엔진 (사라진 커서 복구)
+        // 커스텀 커서 엔진
         const cursor = document.querySelector('.custom-cursor');
         const interactives = document.querySelectorAll('a, button');
 
@@ -209,7 +240,7 @@
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
 
-        // [3] 페이지 전환 효과
+        // 페이지 전환 효과
         document.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', function(e) {
                 if (this.target === '_blank' || this.getAttribute('href').startsWith('#')) return;
@@ -222,6 +253,13 @@
                     window.location.href = targetUrl;
                 }, 500); 
             });
+        });
+        
+        // 뒤로가기 시 흰 화면 방지 (BF Cache 대응)
+        window.addEventListener('pageshow', function(e) {
+            if (e.persisted || (window.performance && window.performance.navigation.type === 2)) {
+                document.body.classList.remove('fade-out');
+            }
         });
     </script>
 </body>
