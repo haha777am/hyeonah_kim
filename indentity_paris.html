@@ -9,7 +9,6 @@
         /* [1] 기본 테마 및 전환 효과 */
         body { margin: 0; background-color: #0b0b0b; color: #fff; font-family: 'Noto Sans KR', sans-serif; cursor: none; animation: fadeInPage 0.8s ease forwards; overflow-x: hidden; }
         @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
-        body.fade-out { opacity: 0 !important; transition: opacity 0.5s ease; }
 
         /* 커스텀 커서 */
         .custom-cursor { position: fixed; top: 0; left: 0; width: 12px; height: 12px; background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease; mix-blend-mode: difference; }
@@ -237,22 +236,8 @@
             link.addEventListener('mouseenter', () => cursor.classList.add('hover'));
             link.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
             
-            // ✨ 에러가 나지 않도록 훨씬 안전하게 수정한 페이지 이동 스크립트
-            link.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (!href || this.target === '_blank' || href.startsWith('#') || href.startsWith('mailto:')) return;
-                
-                e.preventDefault();
-                const targetUrl = this.href;
-                document.body.classList.add('fade-out');
-                setTimeout(() => { window.location.href = targetUrl; }, 500);
-            });
-        });
-
-        window.addEventListener('pageshow', function(e) {
-            if (e.persisted || (window.performance && window.performance.navigation.type === 2)) {
-                document.body.classList.remove('fade-out');
-            }
+            // 문제를 일으키던 e.preventDefault() 와 setTimeout 스크립트를 제거했습니다!
+            // 이제 기본 HTML 링크 방식으로 아주 깔끔하고 확실하게 페이지가 넘어갑니다.
         });
     </script>
 </body>
