@@ -56,28 +56,28 @@
         }
         .archive-item:hover { transform: translateY(-15px); }
 
-        /* 카드 이미지/비디오 프리뷰 */
+        /* 카드 이미지 프리뷰 컨테이너 */
         .preview {
             width: 100%; height: 500px; overflow: hidden;
             margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.1);
             position: relative; 
         }
         
-        /* ✨ 썸네일 이미지 및 비디오 공통 설정 (클릭 오류 완벽 해결!) */
-        .preview img, .preview video { 
+        /* ✨ 사진-사진 스왑 기본 설정 (흑백 제거) */
+        .preview img { 
             position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%; object-fit: cover; 
-            transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); 
-            transform: scale(1.05); display: block;
-            pointer-events: none; /* 비디오가 클릭을 가로채는 것을 방지합니다! */
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); 
+            /* filter: grayscale(100%); <- 제거하여 컬러 유지 */
         }
         
-        .preview img { filter: grayscale(100%); z-index: 2; }
-        .preview video { opacity: 0; z-index: 1; }
+        /* 기본 사진(위)과 호버 사진(아래)의 레이어 설정 */
+        .photo-static { opacity: 1; z-index: 2; transform: scale(1); }
+        .photo-hover { opacity: 0; z-index: 1; transform: scale(1.05); }
 
-        /* 호버 효과: 사진 투명화 + 영상 재생 */
-        .archive-item:hover .preview img { opacity: 0; transform: scale(1); }
-        .archive-item:hover .preview video { opacity: 1; transform: scale(1); filter: grayscale(0%); }
+        /* 호버 시 위쪽 사진을 투명하게 만들어 아래쪽 사진이 보이게 함 */
+        .archive-item:hover .photo-static { opacity: 0; }
+        .archive-item:hover .photo-hover { opacity: 1; transform: scale(1); }
 
         /* 텍스트 영역 */
         .item-main { display: flex; flex-direction: column; }
@@ -100,8 +100,9 @@
             .preview { height: 400px; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
-            .preview video { display: none; }
-            .preview img { filter: grayscale(0%); opacity: 1 !important; transform: scale(1) !important; }
+            /* 모바일에서는 호버 효과 끄기 */
+            .photo-hover { display: none; }
+            .photo-static { opacity: 1 !important; }
         }
     </style>
 </head>
@@ -130,9 +131,10 @@
     <main class="container">
         <div class="archive-list">
             
-            <a href="boom_paris.html" class="archive-item hover-video-container">
+            <a href="boom_paris.html" class="archive-item">
                 <div class="preview">
-                    <img src="images/art_2022_paris.jpg" alt="Paris 2022 View">
+                    <img src="images/art_2022_paris.jpg" alt="Paris 2022 Static" class="photo-static">
+                    <img src="images/art_2022_paris_hover.jpg" alt="Paris 2022 Hover" class="photo-hover">
                 </div>
                 <div class="item-main">
                     <span class="item-title">Focus: BOOM</span>
@@ -141,9 +143,10 @@
                 </div>
             </a>
 
-            <a href="color_london.html" class="archive-item hover-video-container">
+            <a href="color_london.html" class="archive-item">
                 <div class="preview">
-                    <img src="images/art_2021_london.jpg" alt="London 2021 View">
+                    <img src="images/art_2021_london.jpg" alt="London 2021 Static" class="photo-static">
+                    <img src="images/art_2021_london_hover.jpg" alt="London 2021 Hover" class="photo-hover">
                 </div>
                 <div class="item-main">
                     <span class="item-title">Color of Life</span>
@@ -152,12 +155,10 @@
                 </div>
             </a>
 
-            <a href="identity_paris.html" class="archive-item hover-video-container">
+            <a href="identity_paris.html" class="archive-item">
                 <div class="preview">
-                    <img src="images/2/affiche.jpg" alt="Identity Preview">
-                    <video muted loop playsinline class="hover-video">
-                        <source src="images/2/video.mp4" type="video/mp4">
-                    </video>
+                    <img src="images/2/affiche.jpg" alt="Identity Static" class="photo-static">
+                    <img src="images/2/01.jpg" alt="Identity Hover" class="photo-hover">
                 </div>
                 <div class="item-main">
                     <span class="item-title">Focus: Identity</span>
@@ -166,12 +167,10 @@
                 </div>
             </a>
 
-            <a href="color_3_paris.html" class="archive-item hover-video-container">
+            <a href="color_3_paris.html" class="archive-item">
                 <div class="preview">
-                    <img src="images/1/main.jpg" alt="Color of 3 Preview">
-                    <video muted loop playsinline class="hover-video">
-                        <source src="images/1/video.mp4" type="video/mp4">
-                    </video>
+                    <img src="images/1/main.jpg" alt="Color of 3 Static" class="photo-static">
+                    <img src="images/1/1.jpg" alt="Color of 3 Hover" class="photo-hover">
                 </div>
                 <div class="item-main">
                     <span class="item-title">Color of 3</span>
@@ -186,7 +185,6 @@
     <script>
         const cursor = document.querySelector('.custom-cursor');
         const links = document.querySelectorAll('a');
-        const hoverContainers = document.querySelectorAll('.hover-video-container');
 
         // 커서 따라다니기
         document.addEventListener('mousemove', (e) => {
@@ -200,33 +198,8 @@
             link.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
             
             link.addEventListener('click', function(e) {
-                if (this.target === '_blank' || this.getAttribute('href').startsWith('mailto:')) return;
-                e.preventDefault();
-                const targetUrl = this.href;
-                document.body.classList.add('fade-out');
-                setTimeout(() => { window.location.href = targetUrl; }, 500); 
+                // 부드러운 전환을 막던 오류 유발 스크립트를 제거하고 기본 링크 동작에 맡깁니다.
             });
-        });
-
-        // 마우스 오버 시 비디오 재생 / 아웃 시 일시정지
-        hoverContainers.forEach(container => {
-            const video = container.querySelector('.hover-video');
-            if (video) {
-                container.addEventListener('mouseenter', () => {
-                    video.play().catch(error => console.log("비디오 재생 오류:", error));
-                });
-                container.addEventListener('mouseleave', () => {
-                    video.pause();
-                    video.currentTime = 0; 
-                });
-            }
-        });
-
-        // 뒤로가기 시 흰 화면 방지
-        window.addEventListener('pageshow', function(event) {
-            if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
-                document.body.classList.remove('fade-out');
-            }
         });
     </script>
 </body>
