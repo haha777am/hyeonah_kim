@@ -236,8 +236,12 @@
         document.querySelectorAll('a').forEach(link => {
             link.addEventListener('mouseenter', () => cursor.classList.add('hover'));
             link.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            
+            // ✨ 에러가 나지 않도록 훨씬 안전하게 수정한 페이지 이동 스크립트
             link.addEventListener('click', function(e) {
-                if (this.target === '_blank') return;
+                const href = this.getAttribute('href');
+                if (!href || this.target === '_blank' || href.startsWith('#') || href.startsWith('mailto:')) return;
+                
                 e.preventDefault();
                 const targetUrl = this.href;
                 document.body.classList.add('fade-out');
