@@ -21,38 +21,42 @@
 
         /* 레이아웃 */
         .show-container { padding: 150px 5% 100px; max-width: 1400px; margin: 0 auto; }
-        .show-hero { margin-bottom: 80px; border-bottom: 1px solid #222; padding-bottom: 40px; text-align: center; }
+        .show-hero { margin-bottom: 80px; text-align: center; }
         .show-hero h1 { font-family: 'Playfair Display', serif; font-size: 6vw; margin: 0; line-height: 1.1; }
         .show-hero h1 span { font-style: italic; color: #a68d60; }
         .show-meta { display: flex; justify-content: center; gap: 40px; margin-top: 30px; font-family: monospace; font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase; }
 
-        .show-info { max-width: 800px; margin: 0 auto 100px; text-align: center; }
+        /* 중간 설명글 영역 (비디오 아래) */
+        .show-info { max-width: 800px; margin: 80px auto 100px; text-align: center; border-top: 1px solid #222; padding-top: 80px; }
         .info-title { font-size: 20px; font-weight: 300; line-height: 1.5; color: #ccc; margin-bottom: 30px; }
         .info-text { font-size: 16px; font-weight: 300; line-height: 2; color: #888; text-align: justify; }
 
         /* 갤러리 설정 */
-        .show-gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 40px 20px; } /* 상하 여백을 40px로 늘려 지그재그 시 답답함 해소 */
-        .gallery-item { overflow: hidden; background: transparent; position: relative; } /* 배경을 투명하게 해서 여백이 자연스럽게 보이도록 */
+        .show-gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 40px 20px; }
+        .gallery-item { overflow: hidden; background: transparent; position: relative; }
         
-        /* ✨ 사진 및 영상 꽉 차게 설정 (흑백 필터 제거!) */
+        /* ✨ 사진 및 영상 꽉 차게 설정 (원본 컬러) */
         .gallery-item img, .gallery-item video { 
             width: 100%; height: 100%; object-fit: cover; display: block; 
             transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); 
         }
-        /* 호버 시 살짝 커지는 효과만 남김 */
         .gallery-item:hover img, .gallery-item:hover video { transform: scale(1.02); }
 
         /* ✨ 그리드 변형 클래스 */
-        .full { grid-column: span 12; height: auto; } /* 가로 100% 꽉 채우고 비율 유지 */
-        .half { grid-column: span 6; height: auto; } /* 가로 절반 (1줄에 2개) */
+        .full { grid-column: span 12; height: auto; } /* 메인 영상 */
+        .half { grid-column: span 6; height: auto; } /* 1~11번 나란히 배치용 */
         
-        /* 1~11번 지그재그 배치를 위한 8칸짜리 블록 */
-        .align-left { grid-column: 1 / span 8; height: auto; } /* 왼쪽부터 8칸 차지 */
-        .align-right { grid-column: 5 / span 8; height: auto; } /* 5번째 칸부터 8칸 차지 (오른쪽 정렬 효과) */
+        /* 12~18번 지그재그 엇갈림 배치 (안 겹치게) */
+        .align-left { grid-column: 2 / span 5; height: auto; } 
+        .align-right { grid-column: 7 / span 5; height: auto; margin-top: 100px; } /* 오른쪽을 살짝 내려서 엇갈리게 */
 
-        /* 작은 사진 3개 나란히 배치용 (비율 유지) */
-        .third-auto { grid-column: span 4; height: auto; display: flex; align-items: center; justify-content: center; }
-        .third-auto img { object-fit: contain; max-height: 500px; } /* 잘리지 않고 전체가 다 보이게 contain 적용 */
+        /* Affiche 중앙 작게 배치 */
+        .center-half { grid-column: span 6; height: auto; display: flex; justify-content: center; }
+        .center-half img { object-fit: contain; max-height: 600px; width: 80%; background: transparent; }
+
+        /* Invitation 중앙 작게 한 줄에 하나씩 */
+        .center-full { grid-column: span 12; height: auto; display: flex; justify-content: center; margin-bottom: 40px; }
+        .center-full img { object-fit: contain; max-height: 400px; width: 60%; }
 
         /* 텍스트 오버레이 */
         .overlay-text {
@@ -66,7 +70,8 @@
             .show-info { grid-template-columns: 1fr; }
             .show-hero h1 { font-size: 10vw; }
             .show-gallery { display: flex; flex-direction: column; }
-            .full, .half, .align-left, .align-right, .third-auto { height: auto; margin: 0; }
+            .full, .half, .align-left, .align-right, .center-half, .center-full { height: auto; margin: 0; width: 100%; }
+            .center-half img, .center-full img { width: 100%; max-height: auto; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
         }
@@ -80,12 +85,22 @@
     </header>
 
     <main class="show-container">
+        
         <div class="show-hero">
             <h1>Focus: <span>Identity</span></h1> 
             <div class="show-meta">
                 <span>Atelier Richelieu, PARIS</span> 
                 <span>2021.06</span> 
                 <span>Art Show Directing</span>
+            </div>
+        </div>
+
+        <div class="show-gallery">
+            <div class="gallery-item full">
+                <span class="overlay-text">SHOW FILM</span>
+                <video autoplay muted loop playsinline>
+                    <source src="images/2/video.mp4" type="video/mp4">
+                </video>
             </div>
         </div>
 
@@ -98,134 +113,76 @@
         </div>
 
         <div class="show-gallery">
+            <div class="gallery-item half"><span class="overlay-text">RUNWAY 01</span><img src="images/2/01.jpg" alt="Runway 01"></div>
+            <div class="gallery-item half"><span class="overlay-text">RUNWAY 02</span><img src="images/2/02.jpg" alt="Runway 02"></div>
             
-            <div class="gallery-item full">
-                <span class="overlay-text">SHOW FILM</span>
-                <video autoplay muted loop playsinline>
-                    <source src="images/2/video.mp4" type="video/mp4">
-                </video>
-            </div>
+            <div class="gallery-item half"><span class="overlay-text">RUNWAY 03</span><img src="images/2/03.jpg" alt="Runway 03"></div>
+            <div class="gallery-item half"><span class="overlay-text">RUNWAY 04</span><img src="images/2/04.jpg" alt="Runway 04"></div>
+            
+            <div class="gallery-item half"><span class="overlay-text">RUNWAY 05</span><img src="images/2/05.jpg" alt="Runway 05"></div>
+            <div class="gallery-item half"><span class="overlay-text">RUNWAY 06</span><img src="images/2/06.jpg" alt="Runway 06"></div>
+            
+            <div class="gallery-item half"><span class="overlay-text">RUNWAY 07</span><img src="images/2/07.jpg" alt="Runway 07"></div>
+            <div class="gallery-item half"><span class="overlay-text">RUNWAY 08</span><img src="images/2/08.jpg" alt="Runway 08"></div>
+            
+            <div class="gallery-item half"><span class="overlay-text">RUNWAY 09</span><img src="images/2/09.jpg" alt="Runway 09"></div>
+            <div class="gallery-item half"><span class="overlay-text">RUNWAY 10</span><img src="images/2/10.jpg" alt="Runway 10"></div>
+            
+            <div class="gallery-item full"><span class="overlay-text">RUNWAY 11</span><img src="images/2/11.jpg" alt="Runway 11"></div>
+
 
             <div class="gallery-item align-left">
-                <span class="overlay-text">RUNWAY 01</span>
-                <img src="images/2/01.jpg" alt="Runway 01">
-            </div>
-            <div class="gallery-item align-right">
-                <span class="overlay-text">RUNWAY 02</span>
-                <img src="images/2/02.jpg" alt="Runway 02">
-            </div>
-
-            <div class="gallery-item align-left">
-                <span class="overlay-text">RUNWAY 03</span>
-                <img src="images/2/03.jpg" alt="Runway 03">
-            </div>
-            <div class="gallery-item align-right">
-                <span class="overlay-text">RUNWAY 04</span>
-                <img src="images/2/04.jpg" alt="Runway 04">
-            </div>
-
-            <div class="gallery-item align-left">
-                <span class="overlay-text">RUNWAY 05</span>
-                <img src="images/2/05.jpg" alt="Runway 05">
-            </div>
-            <div class="gallery-item align-right">
-                <span class="overlay-text">RUNWAY 06</span>
-                <img src="images/2/06.jpg" alt="Runway 06">
-            </div>
-
-            <div class="gallery-item align-left">
-                <span class="overlay-text">RUNWAY 07</span>
-                <img src="images/2/07.jpg" alt="Runway 07">
-            </div>
-            <div class="gallery-item align-right">
-                <span class="overlay-text">RUNWAY 08</span>
-                <img src="images/2/08.jpg" alt="Runway 08">
-            </div>
-
-            <div class="gallery-item align-left">
-                <span class="overlay-text">RUNWAY 09</span>
-                <img src="images/2/09.jpg" alt="Runway 09">
-            </div>
-            <div class="gallery-item align-right">
-                <span class="overlay-text">RUNWAY 10</span>
-                <img src="images/2/10.jpg" alt="Runway 10">
-            </div>
-
-            <div class="gallery-item align-left">
-                <span class="overlay-text">RUNWAY 11</span>
-                <img src="images/2/11.jpg" alt="Runway 11">
-            </div>
-
-
-            <div class="gallery-item half">
                 <span class="overlay-text">RUNWAY 12</span>
                 <img src="images/2/12.jpg" alt="Runway 12">
             </div>
-            <div class="gallery-item half">
+            <div class="gallery-item align-right">
                 <span class="overlay-text">RUNWAY 13</span>
                 <img src="images/2/13.jpg" alt="Runway 13">
             </div>
 
-            <div class="gallery-item half">
+            <div class="gallery-item align-left">
                 <span class="overlay-text">RUNWAY 14</span>
                 <img src="images/2/14.jpg" alt="Runway 14">
             </div>
-            <div class="gallery-item half">
+            <div class="gallery-item align-right">
                 <span class="overlay-text">RUNWAY 15</span>
                 <img src="images/2/15.jpg" alt="Runway 15">
             </div>
 
-            <div class="gallery-item half">
+            <div class="gallery-item align-left">
                 <span class="overlay-text">RUNWAY 16</span>
                 <img src="images/2/16.jpg" alt="Runway 16">
             </div>
-            <div class="gallery-item half">
+            <div class="gallery-item align-right">
                 <span class="overlay-text">RUNWAY 17</span>
                 <img src="images/2/17.jpg" alt="Runway 17">
             </div>
 
-            <div class="gallery-item half">
+            <div class="gallery-item align-left">
                 <span class="overlay-text">RUNWAY 18</span>
                 <img src="images/2/18.jpg" alt="Runway 18">
             </div>
-            <div class="gallery-item half">
+
+            <div class="full" style="height: 50px;"></div>
+
+
+            <div class="gallery-item center-half">
                 <span class="overlay-text">AFFICHE 1</span>
                 <img src="images/2/affiche.jpg" alt="Affiche 1">
             </div>
-            <div class="gallery-item half">
+            <div class="gallery-item center-half">
                 <span class="overlay-text">AFFICHE 2</span>
                 <img src="images/2/affiche2.jpg" alt="Affiche 2">
             </div>
 
-            <div class="gallery-item full">
+
+            <div class="gallery-item center-full">
                 <span class="overlay-text">INVITATION</span>
                 <img src="images/2/invitation.jpg" alt="Invitation">
             </div>
-
-
-            <div class="gallery-item third-auto">
-                <span class="overlay-text">LUMIERE</span>
-                <img src="images/2/lumiere.jpg" alt="Lumiere">
-            </div>
-            <div class="gallery-item third-auto">
-                <span class="overlay-text">PASSAGE</span>
-                <img src="images/2/passage.jpg" alt="Passage">
-            </div>
-            <div class="gallery-item third-auto">
-                <span class="overlay-text">CHAISE</span>
-                <img src="images/2/chaise.jpg" alt="Chaise">
-            </div>
-
-
-            <div class="gallery-item full">
-                <span class="overlay-text">MAKE UP CONCEPT</span>
-                <img src="images/2/make_up.jpg" alt="Make up">
-            </div>
-
-
-            <div class="gallery-item full">
-                <span class="overlay-text">FINALE</span>
-                <img src="images/2/z.jpg" alt="Finale Z">
+            <div class="gallery-item center-full">
+                <span class="overlay-text">INVITATION NORMAL</span>
+                <img src="images/2/invitation_normal.jpg" alt="Invitation Normal">
             </div>
 
         </div>
@@ -238,12 +195,7 @@
             cursor.style.top = e.clientY + 'px';
         });
 
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            link.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-            
-            // 페이지 넘김 스크립트 삭제 완료 (기본 동작)
-        });
+        // 텍스트 호버 이벤트 유지, a 태그 페이지 이동 삭제 (기본 기능에 맡김)
     </script>
 </body>
 </html>
