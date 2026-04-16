@@ -75,7 +75,10 @@
             flex: 0.8; display: flex; flex-direction: column;
             align-items: flex-end; text-align: right;
         }
+        
+        /* ✨ 사진 컨테이너 디자인 (a 태그로 변경되었으므로 display: block 추가) */
         .circle-image-wrap {
+            display: block; /* a 태그가 영역을 제대로 갖도록 추가 */
             width: 25vw; height: 25vw;
             max-width: 450px; max-height: 450px;
             border-radius: 50%; overflow: hidden;
@@ -134,9 +137,9 @@
         </div>
         
         <div class="intro-right fade-in" style="animation-delay: 0.3s;">
-            <div class="circle-image-wrap">
+            <a href="cv.html" class="circle-image-wrap">
                 <img src="images/profile.jpg" alt="Profile Image">
-            </div>
+            </a>
             <p class="intro-desc">
                 Archive / Structure / Reconstruction<br>
                 아카이브 / 구조 / 재구성<br>
