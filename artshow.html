@@ -63,11 +63,13 @@
             position: relative; 
         }
         
+        /* ✨ 썸네일 이미지 및 비디오 공통 설정 (클릭 오류 완벽 해결!) */
         .preview img, .preview video { 
             position: absolute; top: 0; left: 0;
             width: 100%; height: 100%; object-fit: cover; 
             transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); 
             transform: scale(1.05); display: block;
+            pointer-events: none; /* 비디오가 클릭을 가로채는 것을 방지합니다! */
         }
         
         .preview img { filter: grayscale(100%); z-index: 2; }
@@ -131,9 +133,7 @@
             <a href="boom_paris.html" class="archive-item hover-video-container">
                 <div class="preview">
                     <img src="images/art_2022_paris.jpg" alt="Paris 2022 View">
-                    
-                    )을 지우고 영상 경로를 넣어주세요! -->
-                    </div>
+                </div>
                 <div class="item-main">
                     <span class="item-title">Focus: BOOM</span>
                     <span class="item-location">Carrousel du Louvre, Paris</span>
@@ -144,8 +144,7 @@
             <a href="color_london.html" class="archive-item hover-video-container">
                 <div class="preview">
                     <img src="images/art_2021_london.jpg" alt="London 2021 View">
-                    
-                    </div>
+                </div>
                 <div class="item-main">
                     <span class="item-title">Color of Life</span>
                     <span class="item-location">Saatchi Gallery, London</span>
