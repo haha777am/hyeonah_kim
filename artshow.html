@@ -3,204 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ART SHOW — HYEON AH KIM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Focus: Color of Life — HYEON AH KIM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* [1] 기본 테마 및 페이지 전환 효과 */
-        body { 
-            margin: 0; background-color: #0b0b0b; color: #fff; 
-            font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden; 
-            cursor: none; animation: fadeInPage 0.8s ease forwards;
-        }
+        /* [1] 기본 테마 및 전환 효과 */
+        body { margin: 0; background-color: #0b0b0b; color: #fff; font-family: 'Noto Sans KR', sans-serif; cursor: none; animation: fadeInPage 0.8s ease forwards; overflow-x: hidden; }
         @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
         body.fade-out { opacity: 0 !important; transition: opacity 0.5s ease; }
 
-        /* 커스텀 커서 스타일 */
-        .custom-cursor {
-            position: fixed; top: 0; left: 0; width: 12px; height: 12px;
-            background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999;
-            transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease; mix-blend-mode: difference;
-        }
+        /* 커스텀 커서 */
+        .custom-cursor { position: fixed; top: 0; left: 0; width: 12px; height: 12px; background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease; mix-blend-mode: difference; }
         .custom-cursor.hover { width: 45px; height: 45px; background-color: transparent; border: 1px solid #fff; }
 
-        /* [2] 네비게이션 */
-        header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 40px 0; display: flex; justify-content: center; }
-        .nav-capsule { display: flex; background: rgba(255,255,255,0.05); border-radius: 50px; padding: 6px; backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); }
-        .nav-capsule a { text-decoration: none; color: #666; padding: 10px 25px; border-radius: 50px; font-size: 13px; transition: 0.4s; }
-        .nav-capsule a:hover { color: #fff; }
-        .nav-capsule a.active { color: #fff; background: rgba(255,255,255,0.1); }
+        /* 네비게이션 */
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 40px 5%; box-sizing: border-box; mix-blend-mode: difference; }
+        .back-btn { font-family: monospace; color: #fff; text-decoration: none; font-size: 13px; letter-spacing: 2px; transition: 0.3s; }
+        .back-btn:hover { opacity: 0.5; padding-left: 10px; }
 
-        /* [3] 시네마틱 히어로 섹션 */
-        .hero-video-section {
-            height: 70vh; width: 100%; position: relative;
-            overflow: hidden; display: flex; align-items: center; justify-content: center;
-        }
-        .hero-video-section video, .hero-video-section img {
-            position: absolute; width: 100%; height: 100%; object-fit: cover;
-            filter: brightness(0.4) grayscale(0.5); z-index: -1;
-        }
-        .hero-content { text-align: center; }
-        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: 8vw; margin: 0; line-height: 0.9; text-transform: uppercase; }
-        .hero-content p { font-family: monospace; letter-spacing: 5px; color: #a68d60; margin-top: 20px; }
+        /* 레이아웃 */
+        .show-container { padding: 150px 5% 100px; max-width: 1400px; margin: 0 auto; }
+        .show-hero { margin-bottom: 80px; text-align: center; }
+        .show-hero h1 { font-family: 'Playfair Display', serif; font-size: 6vw; margin: 0; line-height: 1.1; }
+        .show-hero h1 span { font-style: italic; color: #a68d60; }
+        .show-meta { display: flex; justify-content: center; gap: 40px; margin-top: 30px; font-family: monospace; font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* [4] 4분할 아카이브 갤러리 컨테이너 */
-        .container { padding: 40px 5% 200px; max-width: 1600px; margin: 0 auto; }
+        /* 중간 설명글 영역 */
+        .show-info { max-width: 800px; margin: 100px auto; text-align: center; border-top: 1px solid #222; padding-top: 80px; }
+        .info-title { font-size: 20px; font-weight: 300; line-height: 1.5; color: #ccc; margin-bottom: 30px; }
+        .info-text { font-size: 16px; font-weight: 300; line-height: 2; color: #888; text-align: justify; }
 
-        /* 4열 그리드 레이아웃 설정 */
-        .archive-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 0; }
+        /* 갤러리 설정 */
+        .show-gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 40px 20px; }
+        .gallery-item { overflow: hidden; background: transparent; position: relative; }
         
-        /* 개별 카드 디자인 */
-        .archive-item {
-            display: flex; flex-direction: column; text-decoration: none; color: #fff; 
-            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        /* 사진 및 영상 기본 설정 */
+        .gallery-item img, .gallery-item video { 
+            width: 100%; height: 100%; object-fit: cover; display: block; 
+            transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); 
         }
-        .archive-item:hover { transform: translateY(-15px); }
+        .gallery-item:hover img, .gallery-item:hover video { transform: scale(1.02); }
 
-        /* 카드 이미지 프리뷰 컨테이너 */
-        .preview {
-            width: 100%; height: 500px; overflow: hidden;
-            margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.1);
-            position: relative; 
+        /* 텍스트 오버레이 */
+        .overlay-text {
+            position: absolute; bottom: 20px; left: 20px; z-index: 10;
+            font-family: monospace; font-size: 12px; color: #fff; letter-spacing: 2px;
+            opacity: 0; transition: 0.5s; pointer-events: none; text-shadow: 0px 2px 4px rgba(0,0,0,0.8);
         }
-        
-        /* ✨ 사진-사진 스왑 기본 설정 (흑백 제거) */
-        .preview img { 
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%; object-fit: cover; display: block;
-            transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); 
-            /* filter: grayscale(100%); <- 제거하여 컬러 유지 */
-        }
-        
-        /* 기본 사진(위)과 호버 사진(아래)의 레이어 설정 */
-        .photo-static { opacity: 1; z-index: 2; transform: scale(1); }
-        .photo-hover { opacity: 0; z-index: 1; transform: scale(1.05); }
+        .gallery-item:hover .overlay-text { opacity: 1; }
 
-        /* 호버 시 위쪽 사진을 투명하게 만들어 아래쪽 사진이 보이게 함 */
-        .archive-item:hover .photo-static { opacity: 0; }
-        .archive-item:hover .photo-hover { opacity: 1; transform: scale(1); }
+        /* 그리드 변형 클래스 */
+        .full { grid-column: span 12; height: auto; margin-bottom: 40px; } 
+        .half { grid-column: span 6; height: auto; } 
+        .center-small { grid-column: 4 / span 6; height: auto; margin: 0 auto; width: 100%; }
 
-        /* 텍스트 영역 */
-        .item-main { display: flex; flex-direction: column; }
-        .item-title { 
-            font-family: 'Playfair Display', serif; font-size: 24px; 
-            line-height: 1.2; transition: 0.4s; display: block; margin-bottom: 10px;
+        /* 사진 크기 및 간격 조절 클래스 */
+        .item-small { 
+            grid-column: span 3; 
+            height: auto; 
+            width: 70%; 
+            margin: 0 auto; 
         }
-        .archive-item:hover .item-title { font-style: italic; color: #a68d60; }
-        
-        .item-location { font-family: monospace; color: #888; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
-        .item-year { font-family: 'Playfair Display', serif; color: #555; font-size: 15px; margin-top: 15px; font-weight: 700; }
 
-        @media (max-width: 1024px) {
-            .archive-list { grid-template-columns: repeat(2, 1fr); gap: 40px; }
-            .preview { height: 450px; }
-        }
+        /* A4 사이즈 잘림 방지 */
+        .contain-img img { object-fit: contain; max-height: 700px; background: #000; }
+
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 15vw; }
-            .archive-list { grid-template-columns: 1fr; gap: 50px; }
-            .preview { height: 400px; }
+            .show-hero h1 { font-size: 10vw; }
+            .show-gallery { display: flex; flex-direction: column; gap: 30px; }
+            .full, .half, .center-small, .item-small { height: auto; margin: 0; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
-            /* 모바일에서는 호버 효과 끄기 */
-            .photo-hover { display: none; }
-            .photo-static { opacity: 1 !important; }
         }
     </style>
 </head>
 <body>
-
     <div class="custom-cursor"></div>
 
     <header>
-        <div class="nav-capsule">
-            <a href="index.html">HOME</a>
-            <a href="work.html">WORK</a>
-            <a href="artshow.html" class="active">ART SHOW</a>
-            <a href="collab.html">COLLAB</a>
-            <a href="cv.html">C.V</a>
-        </div>
+        <a href="artshow.html" class="back-btn">← BACK TO ARCHIVE</a>
     </header>
 
-    <section class="hero-video-section">
-        <img src="images/art_hero_bg.jpg" alt="Exhibition Highlight">
-        <div class="hero-content">
-            <p>FASHION SHOW + EXPOSITION</p>
-            <h1>ART SHOW</h1>
+    <main class="show-container">
+        
+        <div class="show-hero">
+            <h1>Color of <span>Life</span></h1> 
+            <div class="show-meta">
+                <span>Saatchi Gallery, LONDON</span> 
+                <span>2021.08</span> 
+                <span>Art Show Directing</span>
+            </div>
         </div>
-    </section>
 
-    <main class="container">
-        <div class="archive-list">
+        <div class="show-gallery">
             
-            <a href="boom_paris.html" class="archive-item">
-                <div class="preview">
-                    <img src="images/art_2022_paris.jpg" alt="Paris 2022 Static" class="photo-static">
-                    <img src="images/art_2022_paris_hover.jpg" alt="Paris 2022 Hover" class="photo-hover">
-                </div>
-                <div class="item-main">
-                    <span class="item-title">Focus: BOOM</span>
-                    <span class="item-location">Carrousel du Louvre, Paris</span>
-                    <span class="item-year">2022</span>
-                </div>
-            </a>
+            <div class="gallery-item full">
+                <span class="overlay-text">MAIN SHOW FILM</span>
+                <video id="main-video" autoplay muted loop playsinline>
+                    <source src="images/3/video2.mp4" type="video/mp4">
+                </video>
+            </div>
 
-            <a href="color_london.html" class="archive-item">
-                <div class="preview">
-                    <img src="images/art_2021_london.jpg" alt="London 2021 Static" class="photo-static">
-                    <img src="images/art_2021_london_hover.jpg" alt="London 2021 Hover" class="photo-hover">
-                </div>
-                <div class="item-main">
-                    <span class="item-title">Color of Life</span>
-                    <span class="item-location">Saatchi Gallery, London</span>
-                    <span class="item-year">2021</span>
-                </div>
-            </a>
+            <div class="gallery-item center-small">
+                <span class="overlay-text">SIDE FILM</span>
+                <video autoplay muted loop playsinline>
+                    <source src="images/3/video1.mp4" type="video/mp4">
+                </video>
+            </div>
+            
+        </div>
 
-            <a href="identity_paris.html" class="archive-item">
-                <div class="preview">
-                    <img src="images/2/affiche.jpg" alt="Identity Static" class="photo-static">
-                    <img src="images/2/01.jpg" alt="Identity Hover" class="photo-hover">
-                </div>
-                <div class="item-main">
-                    <span class="item-title">Focus: Identity</span>
-                    <span class="item-location">Atelier Richelieu, Paris</span>
-                    <span class="item-year">2021</span>
-                </div>
-            </a>
+        <div class="show-info">
+            <div class="info-title">세상의 다양한 벽을 표현하다</div> 
+            <div class="info-text">
+                제가 세 번째로 아트디렉터로써 일했던 프로젝트 입니다. 이전과 마찬가지로, 아트쇼 퍼포먼스의 의상 구상 및 제작, 모델의 이동 동선, 쇼에 사용할 음악, 작품의 순서 조율 및 조명 등 아트 쇼의 총 디렉팅을 맡았습니다.<br><br>
+                컨셉은 'COLOR OF LIFE'로, 아트쇼에서 세상의 다양한 벽에 걸려 있는 작품들을 표현하기 위해 다양한 색깔의 스프레이와 테이프를 이용하여 의상을 준비했습니다. 제가 표현한 벽은 세상에 존재하는 것인지, 상상 속의 벽인지는 각자의 상상에 달려 있습니다.<br><br>
+                또한 모델의 머리와 메이크업도 벽 너머의 나무와 덩굴을 표현하고자 했고, 작품과 옷 그리고 모델과의 하모니를 생각하며 진행했습니다.
+            </div> 
+        </div>
 
-            <a href="color_3_paris.html" class="archive-item">
-                <div class="preview">
-                    <img src="images/1/main.jpg" alt="Color of 3 Static" class="photo-static">
-                    <img src="images/1/1.jpg" alt="Color of 3 Hover" class="photo-hover">
-                </div>
-                <div class="item-main">
-                    <span class="item-title">Color of 3</span>
-                    <span class="item-location">Espace Thorigny, Paris</span>
-                    <span class="item-year">2020</span>
-                </div>
-            </a>
+        <div class="show-gallery">
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 01</span><img src="images/3/1.jpg" alt="Runway 01"></div>
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 02</span><img src="images/3/2.jpg" alt="Runway 02"></div>
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 03</span><img src="images/3/3.jpg" alt="Runway 03"></div>
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 04</span><img src="images/3/4.jpg" alt="Runway 04"></div>
+
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 05</span><img src="images/3/5.jpg" alt="Runway 05"></div>
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 06</span><img src="images/3/6.jpg" alt="Runway 06"></div>
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 07</span><img src="images/3/7.jpg" alt="Runway 07"></div>
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 08</span><img src="images/3/8.jpg" alt="Runway 08"></div>
+
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 09</span><img src="images/3/9.jpg" alt="Runway 09"></div>
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 10</span><img src="images/3/10.jpg" alt="Runway 10"></div>
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 11</span><img src="images/3/11.jpg" alt="Runway 11"></div>
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 12</span><img src="images/3/12.jpg" alt="Runway 12"></div>
+
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 13</span><img src="images/3/13.jpg" alt="Runway 13"></div>
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 14</span><img src="images/3/14.jpg" alt="Runway 14"></div>
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 15</span><img src="images/3/15.jpg" alt="Runway 15"></div>
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 16</span><img src="images/3/16.jpg" alt="Runway 16"></div>
+
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 17</span><img src="images/3/17.jpg" alt="Runway 17"></div>
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 18</span><img src="images/3/18.jpg" alt="Runway 18"></div>
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 19</span><img src="images/3/19.jpg" alt="Runway 19"></div>
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 20</span><img src="images/3/20.jpg" alt="Runway 20"></div>
+            
+            <div class="gallery-item item-small"><span class="overlay-text">RUNWAY 21</span><img src="images/3/21.jpg" alt="Runway 21"></div>
+
+            <div class="gallery-item half contain-img">
+                <span class="overlay-text">AFFICHE 1</span>
+                <img src="images/3/affiche.jpg" alt="Affiche 1">
+            </div>
+            <div class="gallery-item half contain-img">
+                <span class="overlay-text">AFFICHE 2</span>
+                <img src="images/3/affiche2.jpg" alt="Affiche 2">
+            </div>
+
+            <div class="gallery-item half">
+                <span class="overlay-text">ETUDE FILM 1</span>
+                <video autoplay muted loop playsinline>
+                    <source src="images/3/etude1.MP4" type="video/mp4">
+                </video>
+            </div>
+            <div class="gallery-item half">
+                <span class="overlay-text">ETUDE FILM 2</span>
+                <video autoplay muted loop playsinline>
+                    <source src="images/3/etude2.MP4" type="video/mp4">
+                </video>
+            </div>
 
         </div>
     </main>
 
     <script>
         const cursor = document.querySelector('.custom-cursor');
-        const links = document.querySelectorAll('a');
-
-        // 커서 따라다니기
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        // 링크 호버 효과 및 클릭 시 페이지 전환 효과
-        links.forEach(link => {
-            link.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
-            link.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            link.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
             
             link.addEventListener('click', function(e) {
-                // 부드러운 전환을 막던 오류 유발 스크립트를 제거하고 기본 링크 동작에 맡깁니다.
+                const href = this.getAttribute('href');
+                if (!href || this.target === '_blank' || href.startsWith('#') || href.startsWith('mailto:')) return;
+                
+                e.preventDefault();
+                const targetUrl = this.href;
+                document.body.classList.add('fade-out');
+                setTimeout(() => { window.location.href = targetUrl; }, 500);
             });
         });
+
+        window.addEventListener('pageshow', function(e) {
+            if (e.persisted || (window.performance && window.performance.navigation.type === 2)) {
+                document.body.classList.remove('fade-out');
+            }
+        });
+
+        // ✨ 메인 비디오(video2.mp4) 특정 구간 빨리감기 스크립트
+        const mainVideo = document.getElementById('main-video');
+        if (mainVideo) {
+            mainVideo.addEventListener('timeupdate', function() {
+                // 14초 이상 ~ 38초 미만일 때는 속도를 4배속으로!
+                if (this.currentTime >= 14 && this.currentTime < 38) {
+                    this.playbackRate = 4.0; // 숫자를 키우면 더 빨리 감아집니다 (예: 6.0, 8.0)
+                } else {
+                    // 그 외의 구간은 정상 속도(1배속) 유지
+                    this.playbackRate = 1.0; 
+                }
+            });
+        }
     </script>
 </body>
 </html>
