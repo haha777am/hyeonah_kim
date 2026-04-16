@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHOW ARCHIVE — HYEON AH KIM</title>
+    <title>Focus: BOOM (Paris) — HYEON AH KIM</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <style>
         /* [1] 기본 테마 및 전환 효과 */
         body { margin: 0; background-color: #0b0b0b; color: #fff; font-family: 'Noto Sans KR', sans-serif; cursor: none; animation: fadeInPage 0.8s ease forwards; overflow-x: hidden; }
         @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
-        body.fade-out { opacity: 0 !important; transition: opacity 0.5s ease; }
 
         /* 커스텀 커서 */
         .custom-cursor { position: fixed; top: 0; left: 0; width: 12px; height: 12px; background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease; mix-blend-mode: difference; }
@@ -22,31 +21,63 @@
 
         /* 레이아웃 */
         .show-container { padding: 150px 5% 100px; max-width: 1400px; margin: 0 auto; }
-        .show-hero { margin-bottom: 80px; border-bottom: 1px solid #222; padding-bottom: 40px; }
-        .show-hero h1 { font-family: 'Playfair Display', serif; font-size: 6vw; margin: 0; line-height: 1.1; }
+        .show-hero { margin-bottom: 80px; text-align: center; }
+        .show-hero h1 { font-family: 'Playfair Display', serif; font-size: 6vw; margin: 0; line-height: 1.1; text-transform: uppercase; }
         .show-hero h1 span { font-style: italic; color: #a68d60; }
-        .show-meta { display: flex; gap: 40px; margin-top: 30px; font-family: monospace; font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase; }
+        .show-meta { display: flex; justify-content: center; gap: 40px; margin-top: 30px; font-family: monospace; font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase; }
 
-        .show-info { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; margin-bottom: 100px; }
-        .info-title { font-size: 20px; font-weight: 300; line-height: 1.5; color: #ccc; }
-        .info-text { font-size: 16px; font-weight: 300; line-height: 2; color: #777; text-align: justify; }
+        /* 중간 설명글 영역 */
+        .show-info { max-width: 800px; margin: 80px auto 100px; text-align: center; border-top: 1px solid #222; padding-top: 80px; }
+        .info-title { font-size: 20px; font-weight: 300; line-height: 1.5; color: #ccc; margin-bottom: 30px; }
+        .info-text { font-size: 16px; font-weight: 300; line-height: 2; color: #888; text-align: justify; }
 
-        /* 갤러리 */
-        .show-gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
-        .gallery-item { overflow: hidden; background: #111; }
-        .gallery-item img { width: 100%; height: auto; display: block; filter: grayscale(100%); transition: 0.8s; }
-        .gallery-item:hover img { filter: grayscale(0%); transform: scale(1.05); }
+        /* 갤러리 설정 */
+        .show-gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 40px 20px; }
+        
+        /* 갤러리 아이템 기본 (배경을 어둡게 두어 사진이 없을 때도 틀이 보이게 함) */
+        .gallery-item { overflow: hidden; background: #1a1a1a; position: relative; min-height: 400px; display: flex; align-items: center; justify-content: center; }
+        
+        /* 사진 및 영상 꽉 차게 설정 (원본 컬러) */
+        .gallery-item img, .gallery-item video { 
+            width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; top: 0; left: 0;
+            transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); 
+        }
+        .gallery-item:hover img, .gallery-item:hover video { transform: scale(1.02); }
 
-        /* 그리드 변형 */
-        .wide { grid-column: span 8; }
-        .narrow { grid-column: span 4; margin-top: 50px; }
-        .full { grid-column: span 12; margin: 60px 0; }
+        /* ✨ 상황별 레이아웃 클래스 (복사해서 골라 쓰세요!) */
+        .full { grid-column: span 12; height: auto; min-height: 70vh; } /* 메인 영상이나 와이드 사진 */
+        .half { grid-column: span 6; height: auto; min-height: 600px; } /* 한 줄에 두 개 */
+        .third { grid-column: span 4; height: auto; min-height: 500px; } /* 한 줄에 세 개 */
+        
+        /* 엇갈림(지그재그) 배치용 */
+        .align-left { grid-column: 2 / span 5; height: auto; min-height: 600px; } 
+        .align-right { grid-column: 7 / span 5; height: auto; min-height: 600px; margin-top: 100px; } 
+
+        /* 포스터/Affiche 중앙 작게 배치용 */
+        .center-half { grid-column: span 6; height: auto; min-height: 500px; display: flex; justify-content: center; background: transparent; }
+        .center-half img { object-fit: contain; max-height: 600px; width: 80%; }
+
+        /* 가로로 긴 인비테이션 중앙 작게 배치용 */
+        .center-full { grid-column: span 12; height: auto; min-height: 300px; display: flex; justify-content: center; background: transparent; }
+        .center-full img { object-fit: contain; max-height: 400px; width: 60%; }
+
+        /* 텍스트 오버레이 (마우스 올리면 나오는 글씨) */
+        .overlay-text {
+            position: absolute; bottom: 20px; left: 20px; z-index: 10;
+            font-family: monospace; font-size: 12px; color: #fff; letter-spacing: 2px;
+            opacity: 0; transition: 0.5s; pointer-events: none; text-shadow: 0px 2px 4px rgba(0,0,0,0.8);
+        }
+        .gallery-item:hover .overlay-text { opacity: 1; }
+        
+        /* 사진이 아직 없을 때 보여줄 안내 텍스트 */
+        .placeholder-text { font-family: monospace; color: #555; font-size: 14px; letter-spacing: 2px; z-index: 0; }
 
         @media (max-width: 768px) {
             .show-info { grid-template-columns: 1fr; }
             .show-hero h1 { font-size: 10vw; }
             .show-gallery { display: flex; flex-direction: column; }
-            .narrow { margin-top: 0; }
+            .full, .half, .third, .align-left, .align-right, .center-half, .center-full { height: auto; margin: 0; width: 100%; min-height: 300px; }
+            .center-half img, .center-full img { width: 100%; max-height: auto; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
         }
@@ -60,48 +91,93 @@
     </header>
 
     <main class="show-container">
+        
         <div class="show-hero">
             <h1>Focus: <span>BOOM</span></h1> 
             <div class="show-meta">
-                <span>Location Name</span> <span>Year</span> <span>Exhibition</span>
+                <span>à Carrousel du Louvre, PARIS</span> 
+                <span>2022.09.02</span> 
+                <span>Art Show Directing</span>
             </div>
         </div>
 
+        <div class="show-gallery">
+            <div class="gallery-item full">
+                <div class="placeholder-text">[MAIN VIDEO AREA]</div>
+                <span class="overlay-text">SHOW FILM</span>
+                </div>
+        </div>
+
         <div class="show-info">
-            <div class="info-title">전시 제목이나 짧은 슬로건</div> <div class="info-text">상세 설명을 여기에 적어주세요.</div> </div>
+            <div class="info-title">포커스 아트페어 &lt;BOOM&gt;에서의 네 번째 아트쇼 프로젝트</div> 
+            <div class="info-text">
+                이곳에 BOOM 전시의 상세 컨셉과 설명, 비하인드 스토리 등을 적어주세요. <br><br>
+                현재 아래 갤러리는 레이아웃을 미리 잡아둔 상태입니다. 사진과 영상이 정리되면 해당 블록의 <code>&lt;img src="..."&gt;</code> 주소만 알맞게 변경하시거나, 필요 없는 레이아웃 블록은 지우면서 자유롭게 페이지를 완성하실 수 있습니다.
+            </div> 
+        </div>
 
         <div class="show-gallery">
-            <div class="gallery-item wide"><img src="images/사진1.jpg" alt=""></div> 
-            <div class="gallery-item narrow"><img src="images/사진2.jpg" alt=""></div>
-            <div class="gallery-item full"><img src="images/사진3.jpg" alt=""></div>
+            
+            <div class="gallery-item half">
+                <div class="placeholder-text">[HALF 01]</div>
+                <span class="overlay-text">RUNWAY 01</span>
+                </div>
+            <div class="gallery-item half">
+                <div class="placeholder-text">[HALF 02]</div>
+                <span class="overlay-text">RUNWAY 02</span>
+                </div>
+
+            <div class="gallery-item align-left">
+                <div class="placeholder-text">[ZIGZAG LEFT]</div>
+                <span class="overlay-text">RUNWAY 03</span>
+                </div>
+            <div class="gallery-item align-right">
+                <div class="placeholder-text">[ZIGZAG RIGHT]</div>
+                <span class="overlay-text">RUNWAY 04</span>
+                </div>
+
+            <div class="full" style="height: 50px; min-height: 0; background: transparent;"></div>
+
+            <div class="gallery-item third">
+                <div class="placeholder-text">[THIRD 01]</div>
+                <span class="overlay-text">RUNWAY 05</span>
+                </div>
+            <div class="gallery-item third">
+                <div class="placeholder-text">[THIRD 02]</div>
+                <span class="overlay-text">RUNWAY 06</span>
+                </div>
+            <div class="gallery-item third">
+                <div class="placeholder-text">[THIRD 03]</div>
+                <span class="overlay-text">RUNWAY 07</span>
+                </div>
+
+            <div class="gallery-item center-half">
+                <div class="placeholder-text">[AFFICHE 1]</div>
+                <span class="overlay-text">AFFICHE 1</span>
+                </div>
+            <div class="gallery-item center-half">
+                <div class="placeholder-text">[AFFICHE 2]</div>
+                <span class="overlay-text">AFFICHE 2</span>
+                </div>
+
+            <div class="gallery-item center-full">
+                <div class="placeholder-text">[INVITATION]</div>
+                <span class="overlay-text">INVITATION</span>
+                </div>
+
+            <div class="gallery-item full">
+                <div class="placeholder-text">[FULL WIDE IMAGE]</div>
+                <span class="overlay-text">FINALE</span>
+                </div>
+
         </div>
     </main>
 
     <script>
-        // 커서 및 페이드 효과 통합 스크립트
         const cursor = document.querySelector('.custom-cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
-        });
-
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            link.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-            link.addEventListener('click', function(e) {
-                if (this.target === '_blank') return;
-                e.preventDefault();
-                const targetUrl = this.href;
-                document.body.classList.add('fade-out');
-                setTimeout(() => { window.location.href = targetUrl; }, 500);
-            });
-        });
-
-        // 뒤로가기 시 흰 화면 방지
-        window.addEventListener('pageshow', function(e) {
-            if (e.persisted || (window.performance && window.performance.navigation.type === 2)) {
-                document.body.classList.remove('fade-out');
-            }
         });
     </script>
 </body>
