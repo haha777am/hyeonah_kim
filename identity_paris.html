@@ -9,6 +9,7 @@
         /* [1] 기본 테마 및 전환 효과 */
         body { margin: 0; background-color: #0b0b0b; color: #fff; font-family: 'Noto Sans KR', sans-serif; cursor: none; animation: fadeInPage 0.8s ease forwards; overflow-x: hidden; }
         @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
+        body.fade-out { opacity: 0 !important; transition: opacity 0.5s ease; }
 
         /* 커스텀 커서 */
         .custom-cursor { position: fixed; top: 0; left: 0; width: 12px; height: 12px; background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease; mix-blend-mode: difference; }
@@ -26,37 +27,20 @@
         .show-hero h1 span { font-style: italic; color: #a68d60; }
         .show-meta { display: flex; justify-content: center; gap: 40px; margin-top: 30px; font-family: monospace; font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* 중간 설명글 영역 (비디오 아래) */
+        /* 중간 설명글 영역 */
         .show-info { max-width: 800px; margin: 80px auto 100px; text-align: center; border-top: 1px solid #222; padding-top: 80px; }
         .info-title { font-size: 20px; font-weight: 300; line-height: 1.5; color: #ccc; margin-bottom: 30px; }
         .info-text { font-size: 16px; font-weight: 300; line-height: 2; color: #888; text-align: justify; }
 
-        /* 갤러리 설정 */
-        .show-gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 40px 20px; }
+        /* 공통 갤러리 셋팅 */
+        .show-gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 40px 20px; margin-bottom: 80px; }
         .gallery-item { overflow: hidden; background: transparent; position: relative; }
         
-        /* ✨ 사진 및 영상 꽉 차게 설정 (원본 컬러) */
         .gallery-item img, .gallery-item video { 
             width: 100%; height: 100%; object-fit: cover; display: block; 
             transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); 
         }
         .gallery-item:hover img, .gallery-item:hover video { transform: scale(1.02); }
-
-        /* ✨ 그리드 변형 클래스 */
-        .full { grid-column: span 12; height: auto; } /* 메인 영상 */
-        .half { grid-column: span 6; height: auto; } /* 1~11번 나란히 배치용 */
-        
-        /* 12~18번 지그재그 엇갈림 배치 (안 겹치게) */
-        .align-left { grid-column: 2 / span 5; height: auto; } 
-        .align-right { grid-column: 7 / span 5; height: auto; margin-top: 100px; } /* 오른쪽을 살짝 내려서 엇갈리게 */
-
-        /* Affiche 중앙 작게 배치 */
-        .center-half { grid-column: span 6; height: auto; display: flex; justify-content: center; }
-        .center-half img { object-fit: contain; max-height: 600px; width: 80%; background: transparent; }
-
-        /* Invitation 중앙 작게 한 줄에 하나씩 */
-        .center-full { grid-column: span 12; height: auto; display: flex; justify-content: center; margin-bottom: 40px; }
-        .center-full img { object-fit: contain; max-height: 400px; width: 60%; }
 
         /* 텍스트 오버레이 */
         .overlay-text {
@@ -66,11 +50,38 @@
         }
         .gallery-item:hover .overlay-text { opacity: 1; }
 
+        /* 영상 및 하단 포스터 레이아웃 클래스 */
+        .full { grid-column: span 12; height: auto; } /* 메인 영상 */
+        .center-half { grid-column: span 6; height: auto; display: flex; justify-content: center; }
+        .center-half img { object-fit: contain; max-height: 600px; width: 80%; background: transparent; }
+        .center-full { grid-column: span 12; height: auto; display: flex; justify-content: center; margin-bottom: 40px; }
+        .center-full img { object-fit: contain; max-height: 400px; width: 60%; }
+
+        /* =========================================
+           ✨ 숫자 사진(1~18) 전용 완벽한 지그재그 레이아웃
+           ========================================= */
+        .show-gallery-zigzag {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2칸 분할 */
+            gap: 60px 40px; /* 상하좌우 여백으로 사진 절대 안 겹침 */
+            width: 75%; /* 사이즈 75%로 줄임 */
+            margin: 0 auto 150px; 
+            padding-bottom: 120px; 
+        }
+        
+        /* 오른쪽 사진들만 무조건 아래로 내려서 엇갈리게 만듦 */
+        .show-gallery-zigzag .gallery-item:nth-child(even) {
+            transform: translateY(120px); 
+        }
+
+        /* 모바일 대응 */
         @media (max-width: 768px) {
             .show-info { grid-template-columns: 1fr; }
             .show-hero h1 { font-size: 10vw; }
-            .show-gallery { display: flex; flex-direction: column; }
-            .full, .half, .align-left, .align-right, .center-half, .center-full { height: auto; margin: 0; width: 100%; }
+            .show-gallery { display: flex; flex-direction: column; gap: 30px; }
+            .show-gallery-zigzag { grid-template-columns: 1fr; width: 100%; gap: 30px; padding-bottom: 0; margin-bottom: 80px; }
+            .show-gallery-zigzag .gallery-item:nth-child(even) { transform: translateY(0); } /* 모바일에선 지그재그 해제 */
+            .full, .center-half, .center-full { height: auto; margin: 0; width: 100%; }
             .center-half img, .center-full img { width: 100%; max-height: auto; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
@@ -87,7 +98,7 @@
     <main class="show-container">
         
         <div class="show-hero">
-            <h1><span>Identity</span></h1> 
+            <h1>Focus: <span>Identity</span></h1> 
             <div class="show-meta">
                 <span>Atelier Richelieu, PARIS</span> 
                 <span>2021.06</span> 
@@ -112,60 +123,37 @@
             </div> 
         </div>
 
+        <div class="show-gallery-zigzag">
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 01</span><img src="images/2/01.jpg" alt="Runway 01"></div>
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 02</span><img src="images/2/02.jpg" alt="Runway 02"></div>
+            
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 03</span><img src="images/2/03.jpg" alt="Runway 03"></div>
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 04</span><img src="images/2/04.jpg" alt="Runway 04"></div>
+            
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 05</span><img src="images/2/05.jpg" alt="Runway 05"></div>
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 06</span><img src="images/2/06.jpg" alt="Runway 06"></div>
+            
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 07</span><img src="images/2/07.jpg" alt="Runway 07"></div>
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 08</span><img src="images/2/08.jpg" alt="Runway 08"></div>
+            
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 09</span><img src="images/2/09.jpg" alt="Runway 09"></div>
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 10</span><img src="images/2/10.jpg" alt="Runway 10"></div>
+            
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 11</span><img src="images/2/11.jpg" alt="Runway 11"></div>
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 12</span><img src="images/2/12.jpg" alt="Runway 12"></div>
+
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 13</span><img src="images/2/13.jpg" alt="Runway 13"></div>
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 14</span><img src="images/2/14.jpg" alt="Runway 14"></div>
+
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 15</span><img src="images/2/15.jpg" alt="Runway 15"></div>
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 16</span><img src="images/2/16.jpg" alt="Runway 16"></div>
+
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 17</span><img src="images/2/17.jpg" alt="Runway 17"></div>
+            <div class="gallery-item"><span class="overlay-text">RUNWAY 18</span><img src="images/2/18.jpg" alt="Runway 18"></div>
+        </div>
+
         <div class="show-gallery">
-            <div class="gallery-item half"><span class="overlay-text">RUNWAY 01</span><img src="images/2/01.jpg" alt="Runway 01"></div>
-            <div class="gallery-item half"><span class="overlay-text">RUNWAY 02</span><img src="images/2/02.jpg" alt="Runway 02"></div>
             
-            <div class="gallery-item half"><span class="overlay-text">RUNWAY 03</span><img src="images/2/03.jpg" alt="Runway 03"></div>
-            <div class="gallery-item half"><span class="overlay-text">RUNWAY 04</span><img src="images/2/04.jpg" alt="Runway 04"></div>
-            
-            <div class="gallery-item half"><span class="overlay-text">RUNWAY 05</span><img src="images/2/05.jpg" alt="Runway 05"></div>
-            <div class="gallery-item half"><span class="overlay-text">RUNWAY 06</span><img src="images/2/06.jpg" alt="Runway 06"></div>
-            
-            <div class="gallery-item half"><span class="overlay-text">RUNWAY 07</span><img src="images/2/07.jpg" alt="Runway 07"></div>
-            <div class="gallery-item half"><span class="overlay-text">RUNWAY 08</span><img src="images/2/08.jpg" alt="Runway 08"></div>
-            
-            <div class="gallery-item half"><span class="overlay-text">RUNWAY 09</span><img src="images/2/09.jpg" alt="Runway 09"></div>
-            <div class="gallery-item half"><span class="overlay-text">RUNWAY 10</span><img src="images/2/10.jpg" alt="Runway 10"></div>
-            
-            <div class="gallery-item full"><span class="overlay-text">RUNWAY 11</span><img src="images/2/11.jpg" alt="Runway 11"></div>
-
-
-            <div class="gallery-item align-left">
-                <span class="overlay-text">RUNWAY 12</span>
-                <img src="images/2/12.jpg" alt="Runway 12">
-            </div>
-            <div class="gallery-item align-right">
-                <span class="overlay-text">RUNWAY 13</span>
-                <img src="images/2/13.jpg" alt="Runway 13">
-            </div>
-
-            <div class="gallery-item align-left">
-                <span class="overlay-text">RUNWAY 14</span>
-                <img src="images/2/14.jpg" alt="Runway 14">
-            </div>
-            <div class="gallery-item align-right">
-                <span class="overlay-text">RUNWAY 15</span>
-                <img src="images/2/15.jpg" alt="Runway 15">
-            </div>
-
-            <div class="gallery-item align-left">
-                <span class="overlay-text">RUNWAY 16</span>
-                <img src="images/2/16.jpg" alt="Runway 16">
-            </div>
-            <div class="gallery-item align-right">
-                <span class="overlay-text">RUNWAY 17</span>
-                <img src="images/2/17.jpg" alt="Runway 17">
-            </div>
-
-            <div class="gallery-item align-left">
-                <span class="overlay-text">RUNWAY 18</span>
-                <img src="images/2/18.jpg" alt="Runway 18">
-            </div>
-
-            <div class="full" style="height: 50px;"></div>
-
-
             <div class="gallery-item center-half">
                 <span class="overlay-text">AFFICHE 1</span>
                 <img src="images/2/affiche.jpg" alt="Affiche 1">
@@ -174,7 +162,6 @@
                 <span class="overlay-text">AFFICHE 2</span>
                 <img src="images/2/affiche2.jpg" alt="Affiche 2">
             </div>
-
 
             <div class="gallery-item center-full">
                 <span class="overlay-text">INVITATION</span>
@@ -195,7 +182,26 @@
             cursor.style.top = e.clientY + 'px';
         });
 
-        // 텍스트 호버 이벤트 유지, a 태그 페이지 이동 삭제 (기본 기능에 맡김)
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            link.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (!href || this.target === '_blank' || href.startsWith('#') || href.startsWith('mailto:')) return;
+                
+                e.preventDefault();
+                const targetUrl = this.href;
+                document.body.classList.add('fade-out');
+                setTimeout(() => { window.location.href = targetUrl; }, 500);
+            });
+        });
+
+        window.addEventListener('pageshow', function(e) {
+            if (e.persisted || (window.performance && window.performance.navigation.type === 2)) {
+                document.body.classList.remove('fade-out');
+            }
+        });
     </script>
 </body>
 </html>
