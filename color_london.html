@@ -28,7 +28,7 @@
         .show-meta { display: flex; justify-content: center; gap: 40px; margin-top: 30px; font-family: monospace; font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase; }
 
         /* 중간 설명글 영역 (비디오 아래) */
-        .show-info { max-width: 800px; margin: 80px auto 100px; text-align: center; border-top: 1px solid #222; padding-top: 80px; }
+        .show-info { max-width: 800px; margin: 100px auto; text-align: center; border-top: 1px solid #222; padding-top: 80px; }
         .info-title { font-size: 20px; font-weight: 300; line-height: 1.5; color: #ccc; margin-bottom: 30px; }
         .info-text { font-size: 16px; font-weight: 300; line-height: 2; color: #888; text-align: justify; }
 
@@ -113,7 +113,7 @@
 
             <div class="gallery-item center-small">
                 <span class="overlay-text">SIDE FILM</span>
-                <video autoplay muted loop playsinline>
+                <video id="side-video" autoplay muted playsinline>
                     <source src="images/3/video1.mp4" type="video/mp4">
                 </video>
             </div>
@@ -226,6 +226,28 @@
                 } else {
                     this.playbackRate = 1.0; 
                 }
+            });
+        }
+
+        // ✨ 서브 비디오(video1.mp4) 1~6초 재생 후 52초 점프 후 끝까지 재생 무한 반복
+        const sideVideo = document.getElementById('side-video');
+        if (sideVideo) {
+            // 영상 데이터를 불러오면 1초 위치로 셋업
+            sideVideo.addEventListener('loadedmetadata', function() {
+                this.currentTime = 1;
+            });
+
+            sideVideo.addEventListener('timeupdate', function() {
+                // 6초 이상이 되고 52초보다 작을 경우 -> 52초로 강제 점프!
+                if (this.currentTime >= 6 && this.currentTime < 52) {
+                    this.currentTime = 52;
+                }
+            });
+
+            // 영상 재생이 끝에 도달하면 다시 1초부터 재생 시작
+            sideVideo.addEventListener('ended', function() {
+                this.currentTime = 1;
+                this.play();
             });
         }
     </script>
