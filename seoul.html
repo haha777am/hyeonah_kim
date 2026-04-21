@@ -4,46 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seoul City Collaboration — HYEON AH KIM</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; background-color: #0b0b0b; color: #fff; font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden; cursor: none; animation: fadeInPage 0.8s ease forwards; }
+        /* 공통 스타일 및 애니메이션 */
+        body {
+            margin: 0; background-color: #0b0b0b; color: #fff;
+            font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden;
+            cursor: none; animation: fadeInPage 0.8s ease forwards;
+        }
         @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
         body.fade-out { opacity: 0 !important; transition: opacity 0.5s ease; }
-        .custom-cursor { position: fixed; top: 0; left: 0; width: 12px; height: 12px; background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease; mix-blend-mode: difference; }
+
+        /* 커스텀 커서 */
+        .custom-cursor {
+            position: fixed; top: 0; left: 0; width: 12px; height: 12px;
+            background-color: #fff; border-radius: 50%; pointer-events: none; 
+            z-index: 9999; transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease; mix-blend-mode: difference; 
+        }
         .custom-cursor.hover { width: 45px; height: 45px; background-color: transparent; border: 1px solid #fff; }
+
+        /* 네비게이션 & 뒤로가기 */
         header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 40px 0; display: flex; justify-content: center; }
         .nav-capsule { display: flex; background: rgba(255,255,255,0.08); border-radius: 50px; padding: 6px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); }
         .nav-capsule a { text-decoration: none; color: #777; padding: 10px 25px; border-radius: 50px; font-size: 13px; letter-spacing: 1px; transition: 0.4s; }
         .nav-capsule a:hover, .nav-capsule a.active { color: #fff; }
+        
         .back-btn { position: absolute; left: 5%; top: 50px; font-family: monospace; color: #fff; text-decoration: none; font-size: 13px; letter-spacing: 2px; transition: 0.3s; z-index: 1001; }
         .back-btn:hover { opacity: 0.5; padding-left: 10px; }
+
+        /* 상세 페이지 레이아웃 */
         .project-container { padding: 150px 5% 100px; max-width: 1400px; margin: 0 auto; }
         .project-hero { margin-bottom: 80px; text-align: center; }
         .project-hero h1 { font-family: 'Playfair Display', serif; font-size: 6vw; margin: 0 0 20px; line-height: 1; }
         .project-meta { font-family: monospace; color: #a68d60; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; }
-        .project-info { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; border-top: 1px solid #222; border-bottom: 1px solid #222; padding: 60px 0; margin-bottom: 100px; }
+
+        /* 프로젝트 설명 영역 */
+        .project-info {
+            display: grid; grid-template-columns: 1fr 2fr; gap: 60px;
+            border-top: 1px solid #222; border-bottom: 1px solid #222;
+            padding: 60px 0; margin-bottom: 100px;
+        }
         .info-left h3 { font-family: monospace; font-size: 14px; color: #666; margin-bottom: 10px; letter-spacing: 2px;}
         .info-left p { margin-bottom: 30px; font-size: 15px; color: #ddd; }
         .info-right p { font-size: 16px; line-height: 1.8; color: #aaa; font-weight: 300; margin-top: 0; text-align: justify; }
+
+        /* 갤러리 영역 */
         .gallery-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 40px 20px; }
         .gallery-item { position: relative; overflow: hidden; background: transparent; }
+        
+        /* 이미지 설정 (원본 컬러 유지) */
         .gallery-item img { width: 100%; height: auto; display: block; object-fit: contain; transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1); }
         .gallery-item:hover img { transform: scale(1.02); }
+        
+        /* 레이아웃 클래스 */
         .full { grid-column: span 12; margin-bottom: 40px; } 
         .half { grid-column: span 6; margin-bottom: 40px; } 
+        
+        .tight-bottom { margin-bottom: 10px !important; }
+
         @media (max-width: 768px) {
             .project-info { grid-template-columns: 1fr; gap: 30px; }
             .gallery-grid { display: flex; flex-direction: column; gap: 30px; }
             .full, .half { margin-bottom: 0; }
             .project-hero h1 { font-size: 12vw; }
             .back-btn { top: 20px; font-size: 11px; }
-            .custom-cursor { display: none; } body { cursor: auto; }
+            .custom-cursor { display: none; }
+            body { cursor: auto; }
         }
     </style>
 </head>
 <body>
+
     <div class="custom-cursor"></div>
+
     <a href="collab.html" class="back-btn">← BACK TO COLLAB</a>
+
     <header>
         <div class="nav-capsule">
             <a href="index.html">HOME</a>
@@ -53,15 +90,18 @@
             <a href="cv.html">C.V</a>
         </div>
     </header>
+
     <main class="project-container">
+        
         <div class="project-hero">
             <h1>Seoul City</h1>
             <div class="project-meta">Accessories Collaboration</div>
         </div>
+
         <div class="project-info">
             <div class="info-left">
                 <h3>ROLE</h3>
-                <p>Accessory Designer</p>
+                <p>Accessory / Graphic Designer</p>
                 <h3>YEAR</h3>
                 <p>202X</p>
                 <h3>CATEGORY</h3>
@@ -69,27 +109,63 @@
             </div>
             <div class="info-right">
                 <p>
-                    이곳에 Seoul City 콜라보레이션에 대한 상세한 프로젝트 설명, 기획 의도, 작업 과정 등을 작성해 주세요.<br><br>
-                    어떤 브랜드/기관과 협업했는지, 본인이 담당한 핵심적인 디자인 포인트가 무엇인지 적어주시면 좋습니다.
+                    서울시와의 콜라보레이션 프로젝트 'Seoul My Soul' 컬렉션입니다.<br><br>
+                    서울의 아이코닉한 상징물들을 담아낸 그래픽 패턴을 개발하여 스카프와 트윌리에 적용했으며, 심볼 로고를 활용한 볼캡의 생산지시서 작성부터 실제 샘플링, 패키징 기획까지의 과정을 담당했습니다.
                 </p>
             </div>
         </div>
+
         <div class="gallery-grid">
-            <div class="gallery-item full"><img src="images/seoul_main.jpg" alt="Seoul City Main"></div>
-            <div class="gallery-item half"><img src="images/seoul_detail1.jpg" alt="Seoul City Detail 1"></div>
-            <div class="gallery-item half"><img src="images/seoul_detail2.jpg" alt="Seoul City Detail 2"></div>
+            
+            <div class="gallery-item full">
+                <img src="images/seoul/cap1.jpg" alt="Cap Tech Pack">
+            </div>
+            <div class="gallery-item half">
+                <img src="images/seoul/cap2.jpg" alt="Seoul Cap Look 1">
+            </div>
+            <div class="gallery-item half">
+                <img src="images/seoul/cap3.jpg" alt="Seoul Cap Look 2">
+            </div>
+
+            <div class="gallery-item half">
+                <img src="images/seoul/scarf_green.jpg" alt="Scarf Green">
+            </div>
+            <div class="gallery-item half">
+                <img src="images/seoul/scarf_pink.jpg" alt="Scarf Pink">
+            </div>
+
+            <div class="gallery-item full tight-bottom">
+                <img src="images/seoul/twilly1.jpg" alt="Twilly Pattern 1">
+            </div>
+            <div class="gallery-item full">
+                <img src="images/seoul/twilly2.jpg" alt="Twilly Pattern 2">
+            </div>
+            <div class="gallery-item full">
+                <img src="images/seoul/twilly3.jpg" alt="Twilly Product & Package">
+            </div>
+
         </div>
+
     </main>
+
     <script>
         const cursor = document.querySelector('.custom-cursor');
         const links = document.querySelectorAll('a');
-        document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
         links.forEach(link => {
             link.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
             link.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
+            
             link.addEventListener('click', function(e) {
                 if (this.target === '_blank' || this.getAttribute('href').startsWith('mailto:')) return;
-                e.preventDefault(); const targetUrl = this.href; document.body.classList.add('fade-out');
+                e.preventDefault();
+                const targetUrl = this.href;
+                document.body.classList.add('fade-out');
                 setTimeout(() => { window.location.href = targetUrl; }, 500); 
             });
         });
