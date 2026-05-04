@@ -76,23 +76,25 @@
             align-items: flex-end; text-align: right;
         }
         
-        /* ✨ 사진 컨테이너 디자인 (a 태그로 변경되었으므로 display: block 추가) */
-        .circle-image-wrap {
-            display: block; /* a 태그가 영역을 제대로 갖도록 추가 */
-            width: 25vw; height: 25vw;
-            max-width: 450px; max-height: 450px;
-            border-radius: 50%; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.2);
+        /* ✨ 비디오 컨테이너 디자인 (직사각형으로 변경) */
+        .video-wrap {
+            display: block;
+            width: 28vw; /* 너비 조정 */
+            height: 38vw; /* 높이 조정 (직사각형 비율) */
+            max-width: 500px; max-height: 680px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
             margin-bottom: 35px; transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
+            background-color: #111; /* 로딩 전 배경색 */
         }
-        .circle-image-wrap:hover { transform: scale(1.03) rotate(2deg); }
+        .video-wrap:hover { transform: scale(1.02) translateY(-10px); }
 
-        /* 이미지 스타일 */
-        .circle-image-wrap img {
+        /* 비디오 스타일 */
+        .video-wrap video {
             width: 100%; height: 100%; object-fit: cover;
             filter: grayscale(100%); transition: 0.8s ease;
         }
-        .circle-image-wrap:hover img { filter: grayscale(0%); }
+        .video-wrap:hover video { filter: grayscale(0%); }
 
         .intro-desc {
             font-size: 14px; color: #777; line-height: 2;
@@ -110,7 +112,7 @@
             .intro-left { margin-bottom: 50px; }
             .intro-right { align-items: center; text-align: center; }
             .brand-title { font-size: 18vw; }
-            .circle-image-wrap { width: 60vw; height: 60vw; }
+            .video-wrap { width: 70vw; height: 95vw; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
         }
@@ -133,17 +135,19 @@
     <main class="main-intro">
         <div class="intro-left fade-in">
             <h1 class="brand-title">Hyeon Ah<br>Kim</h1>
-            <p class="brand-subtitle">fashion desinger</p>
+            <p class="brand-subtitle">fashion designer</p>
         </div>
         
         <div class="intro-right fade-in" style="animation-delay: 0.3s;">
-            <a href="cv.html" class="circle-image-wrap">
-                <img src="images/profile.jpg" alt="Profile Image">
+            <a href="cv.html" class="video-wrap">
+                <video autoplay muted loop playsinline>
+                    <source src="images/3/etude1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </a>
             <p class="intro-desc">
                 Archive / Structure / Reconstruction<br>
                 아카이브 / 구조 / 재구성<br>
-                
             </p>
         </div>
     </main>
@@ -166,17 +170,20 @@
             link.addEventListener('click', function(e) {
                 if (this.target === '_blank' || this.getAttribute('href').startsWith('#') || this.getAttribute('href').startsWith('mailto:')) return;
 
-                e.preventDefault();
-                const targetUrl = this.href;
-                document.body.classList.add('fade-out');
+                const href = this.getAttribute('href');
+                if (href && href !== '#') {
+                    e.preventDefault();
+                    const targetUrl = this.href;
+                    document.body.classList.add('fade-out');
 
-                setTimeout(() => {
-                    window.location.href = targetUrl;
-                }, 500);
+                    setTimeout(() => {
+                        window.location.href = targetUrl;
+                    }, 500);
+                }
             });
         });
 
-        // [3] 뒤로 가기 시 화면이 안 뜨는 문제 해결 (핵심!)
+        // [3] 뒤로 가기 시 화면이 안 뜨는 문제 해결
         window.addEventListener('pageshow', function(event) {
             if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
                 document.body.classList.remove('fade-out');
