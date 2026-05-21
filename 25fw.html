@@ -76,42 +76,29 @@
         .img-wrap img { width: 100%; height: auto; display: block; transition: transform 0.6s ease; }
         .img-wrap:hover img { transform: scale(1.02); }
 
-        /* SECTION 1: TECH PACK (마스터 피스) */
+        /* SECTION 1: TECH PACK */
         .design-master-piece {
             padding: 0 5%; margin-bottom: 20px;
         }
 
-        /* SECTION 2: LOOKBOOK EDITORIAL (단독 풀 레이아웃) */
+        /* ✨ [NEW] SECTION 2: MAIN CAMPAIGN (2열 가로 배치) */
+        .grid-main-focus {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 0 5%;
+        }
+
+        /* SECTION 3: LOOKBOOK EDITORIAL */
         .grid-lookbook {
             display: flex; flex-direction: column; gap: 60px; padding: 0 5%;
         }
         .lookbook-item { width: 100%; }
 
-        /* SECTION 3: RUNWAY COLLECTION (해결된 2열 컬럼 분리형 지그재그) */
+        /* SECTION 4: RUNWAY COLLECTION (해결된 2열 컬럼 분리형 지그재그) */
         .grid-runway-masonry {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            padding: 0 5%;
-            margin-top: 80px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 0 5%; margin-top: 80px;
         }
-
-        .runway-column {
-            display: flex;
-            flex-direction: column;
-            gap: 100px;
-        }
-
-        .runway-column.right-col {
-            padding-top: 250px; /* 오른쪽 열을 내려서 지그재그 생성 */
-        }
-
-        .runway-item {
-            width: 100%;
-            max-width: 480px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-        
+        .runway-column { display: flex; flex-direction: column; gap: 100px; }
+        .runway-column.right-col { padding-top: 250px; }
+        .runway-item { width: 100%; max-width: 480px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
         .runway-column.left-col .runway-item { margin-left: auto; }
         .runway-column.right-col .runway-item { margin-right: auto; }
 
@@ -119,6 +106,7 @@
         @media (max-width: 768px) {
             .project-info { grid-template-columns: 1fr; gap: 30px; }
             .project-hero h1 { font-size: 12vw; }
+            .grid-main-focus { grid-template-columns: 1fr; }
             .grid-runway-masonry { grid-template-columns: 1fr; gap: 40px; }
             .runway-column { gap: 40px; }
             .runway-column.right-col { padding-top: 0; }
@@ -161,8 +149,8 @@
             </div>
             <div class="info-right">
                 <p>
-                    브랜드 LIE의 25FW 컬렉션을 위해 테일러링의 본질적인 구조를 재해석하는 작업을 수행했습니다. 미니멀한 실루엣 안에서도 시즌컨셉의 정체성이 드러날 수 있도록 패턴과 디테일을 설계했습니다.<br><br>
-                    셔츠와 자켓의 칼라 구조를 변형하거나, 정제된 무채색 팔레트 안에서 소재의 텍스처 대비를 활용하여 시각적 깊이감을 더했습니다. 디자인 기획부터 샘플 생산 관리, 그리고 최종 런웨이 쇼 피스 스타일링까지 전 과정을 직접 핸들링하며 컬렉션의 완성도를 높였습니다.
+                    재직 중인 브랜드의 25FW 컬렉션을 위해 테일러링의 본질적인 구조를 재해석하는 작업을 수행했습니다. 정교한 도식화 작성을 통해 미니멀한 실루엣 안에서도 브랜드 특유의 정체성이 드러날 수 있도록 패턴과 디테일을 설계했습니다.<br><br>
+                    셔츠와 자켓의 칼라 구조를 변형하거나, 정제된 무채색 팔레트 안에서 소재의 텍스처 대비를 활용하여 시각적 깊이감을 더했습니다. 디자인 기획부터 샘플 생산 관리, 그리고 최종 런웨이 쇼 피스 확정까지 전 과정을 직접 핸들링하며 컬렉션의 완성도를 높였습니다.
                 </p>
             </div>
         </div>
@@ -170,6 +158,12 @@
         <div class="gallery-section-title">Technical Flat</div>
         <div class="design-master-piece">
             <div class="img-wrap"><img src="images/25fw/25fw_design.png" alt="25fw Master Design"></div>
+        </div>
+
+        <div class="gallery-section-title">Collection Focus</div>
+        <div class="grid-main-focus">
+            <div class="img-wrap"><img src="images/25fw/main1.jpg" alt="25fw Main 01"></div>
+            <div class="img-wrap"><img src="images/25fw/main2.jpg" alt="25fw Main 02"></div>
         </div>
 
 
