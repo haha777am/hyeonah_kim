@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>26FW Collection — HYEON AH KIM</title>
+    <title>25FW Collection — HYEON AH KIM</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -44,11 +44,10 @@
 
         /* [3] 상세 페이지 레이아웃 */
         .project-container {
-            padding: 150px 0 100px; /* 좌우 여백을 없애서 이미지가 꽉 차게 준비 */
-            max-width: 1400px; margin: 0 auto;
+            padding: 150px 0 100px;
+            max-width: 1300px; margin: 0 auto;
         }
 
-        /* 텍스트 영역 (여백 유지) */
         .project-hero, .project-info {
             padding-left: 5%; padding-right: 5%;
         }
@@ -60,37 +59,71 @@
         .project-info {
             display: grid; grid-template-columns: 1fr 2fr; gap: 60px;
             border-top: 1px solid #222; border-bottom: 1px solid #222;
-            padding: 60px 5%; margin-bottom: 100px;
+            padding: 60px 5%; margin-bottom: 80px;
         }
         .info-left h3 { font-family: monospace; font-size: 14px; color: #666; margin-bottom: 10px; letter-spacing: 2px;}
         .info-left p { margin-bottom: 30px; font-size: 15px; color: #ddd; }
         .info-right p { font-size: 16px; line-height: 1.8; color: #aaa; font-weight: 300; margin-top: 0; text-align: justify; }
 
-        /* [4] PDF 스타일 갤러리 (틈 없이 연결) */
-        .gallery-seamless {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            gap: 0; /* 이미지 사이 간격 0 */
-        }
-        
-        .gallery-item {
-            width: 100%;
-            overflow: hidden;
-            background: #fff; /* 작업지시서 배경색과 통일 */
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            display: block; /* 이미지 하단 미세 여백 제거 핵심 */
-            border: none;
-            outline: none;
+        /* 섹션 타이틀 */
+        .gallery-section-title {
+            font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: 3px;
+            color: #555; padding: 0 5%; margin: 120px 0 40px; text-transform: uppercase;
         }
 
+        /* 이미지 기본 공통 스타일 */
+        .img-wrap { overflow: hidden; background: #fff; display: block; }
+        .img-wrap img { width: 100%; height: auto; display: block; transition: transform 0.6s ease; }
+        .img-wrap:hover img { transform: scale(1.02); }
+
+        /* SECTION 1: TECH PACK (마스터 피스) */
+        .design-master-piece {
+            padding: 0 5%; margin-bottom: 20px;
+        }
+
+        /* SECTION 2: LOOKBOOK EDITORIAL (단독 풀 레이아웃) */
+        .grid-lookbook {
+            display: flex; flex-direction: column; gap: 60px; padding: 0 5%;
+        }
+        .lookbook-item { width: 100%; }
+
+        /* SECTION 3: RUNWAY COLLECTION (해결된 2열 컬럼 분리형 지그재그) */
+        .grid-runway-masonry {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            padding: 0 5%;
+            margin-top: 80px;
+        }
+
+        .runway-column {
+            display: flex;
+            flex-direction: column;
+            gap: 100px;
+        }
+
+        .runway-column.right-col {
+            padding-top: 250px; /* 오른쪽 열을 내려서 지그재그 생성 */
+        }
+
+        .runway-item {
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        
+        .runway-column.left-col .runway-item { margin-left: auto; }
+        .runway-column.right-col .runway-item { margin-right: auto; }
+
+        /* 모바일 반응형 */
         @media (max-width: 768px) {
             .project-info { grid-template-columns: 1fr; gap: 30px; }
             .project-hero h1 { font-size: 12vw; }
+            .grid-runway-masonry { grid-template-columns: 1fr; gap: 40px; }
+            .runway-column { gap: 40px; }
+            .runway-column.right-col { padding-top: 0; }
+            .runway-item { max-width: none; margin: 0 auto !important; }
+            .gallery-section-title { margin: 80px 0 20px; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
         }
@@ -113,36 +146,58 @@
     <main class="project-container">
         
         <div class="project-hero">
-            <h1>26FW Collection</h1>
-            <div class="project-meta">LIE / Apparel Planning & Production</div>
+            <h1>25FW Collection</h1>
+            <div class="project-meta">Structural Tailoring & Minimalism</div>
         </div>
 
         <div class="project-info">
             <div class="info-left">
                 <h3>ROLE</h3>
-                <p>Fashion Designer</p>
+                <p>Fashion Designer & Creative Director</p>
                 <h3>YEAR</h3>
-                <p>2026</p>
+                <p>2025</p>
                 <h3>CATEGORY</h3>
-                <p>Design, Sampling, Tech Pack</p>
+                <p>Runway, Tech Pack, Sampling</p>
             </div>
             <div class="info-right">
                 <p>
-                    LIE 26FW 컬렉션의 주요 피스 디자인 및 샘플링을 진행했습니다. 자수 디테일이 가미된 점퍼와 레이어링 팬츠, 그리고 트임 디테일 셔츠의 소재 선정부터 도식화, 핏 수정까지의 전 과정을 핸들링했습니다.<br><br>
-                    스트라이프와 솔리드 원단을 배색하고, 플라스틱 스토퍼 등 부자재를 활용하여 브랜드 특유의 유니크한 디테일을 살렸으며, 하프 바라클라바와 베스트 세트 기획을 통해 시즌 트렌드를 반영한 니트 웨어를 제안했습니다.
+                    브랜드 LIE의 25FW 컬렉션을 위해 테일러링의 본질적인 구조를 재해석하는 작업을 수행했습니다. 미니멀한 실루엣 안에서도 시즌컨셉의 정체성이 드러날 수 있도록 패턴과 디테일을 설계했습니다.<br><br>
+                    셔츠와 자켓의 칼라 구조를 변형하거나, 정제된 무채색 팔레트 안에서 소재의 텍스처 대비를 활용하여 시각적 깊이감을 더했습니다. 디자인 기획부터 샘플 생산 관리, 그리고 최종 런웨이 쇼 피스 스타일링까지 전 과정을 직접 핸들링하며 컬렉션의 완성도를 높였습니다.
                 </p>
             </div>
         </div>
 
-        <div class="gallery-seamless">
-            <div class="gallery-item"><img src="images/2026fw/1.jpg" alt="Work 01"></div>
-            <div class="gallery-item"><img src="images/2026fw/2.jpg" alt="Work 02"></div>
-            <div class="gallery-item"><img src="images/2026fw/3.jpg" alt="Work 03"></div>
-            <div class="gallery-item"><img src="images/2026fw/4.jpg" alt="Work 04"></div>
-            <div class="gallery-item"><img src="images/2026fw/5.jpg" alt="Work 05"></div>
-            <div class="gallery-item"><img src="images/2026fw/6.jpg" alt="Work 06"></div>
-            <div class="gallery-item"><img src="images/2026fw/7.jpg" alt="Work 07"></div>
-            <div class="gallery-item"><img src="images/2026fw/8.jpg" alt="Work 08"></div>
+        <div class="gallery-section-title">Technical Flat</div>
+        <div class="design-master-piece">
+            <div class="img-wrap"><img src="images/25fw/25fw_design.png" alt="25fw Master Design"></div>
+        </div>
+
+
+        <div class="gallery-section-title">Lookbook Editorial</div>
+        <div class="gallery-container grid-lookbook">
+            <div class="img-wrap lookbook-item"><img src="images/25fw/lookbook-01.jpg" alt="25fw Editorial 01"></div>
+            <div class="img-wrap lookbook-item"><img src="images/25fw/lookbook-02.jpg" alt="25fw Editorial 02"></div>
+            <div class="img-wrap lookbook-item"><img src="images/25fw/lookbook-03.jpg" alt="25fw Editorial 03"></div>
+            <div class="img-wrap lookbook-item"><img src="images/25fw/lookbook-04.jpg" alt="25fw Editorial 04"></div>
+            <div class="img-wrap lookbook-item"><img src="images/25fw/lookbook-05.jpg" alt="25fw Editorial 05"></div>
+        </div>
+
+
+        <div class="gallery-section-title">Runway Highlights</div>
+        <div class="grid-runway-masonry">
+            
+            <div class="runway-column left-col">
+                <div class="img-wrap runway-item"><img src="images/25fw/show1.jpg" alt="Runway Show 01"></div>
+                <div class="img-wrap runway-item"><img src="images/25fw/show3.jpg" alt="Runway Show 03"></div>
+                <div class="img-wrap runway-item"><img src="images/25fw/show5.jpg" alt="Runway Show 05"></div>
+            </div>
+
+            <div class="runway-column right-col">
+                <div class="img-wrap runway-item"><img src="images/25fw/show2.jpg" alt="Runway Show 02"></div>
+                <div class="img-wrap runway-item"><img src="images/25fw/show4.jpg" alt="Runway Show 04"></div>
+                <div class="img-wrap runway-item"><img src="images/25fw/show6.jpg" alt="Runway Show 06"></div>
+            </div>
+
         </div>
 
     </main>
