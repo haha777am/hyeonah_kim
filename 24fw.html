@@ -79,42 +79,53 @@
         .design-master-piece {
             padding: 0 5%;
         }
+        /* 모자 파일 자체의 쓸데없는 위아래 여백을 쳐내기 위한 내부 크롭 조절 */
         .caps-tight-row {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 0px;
-            padding: 0 5%;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+            padding: 0 5%; margin-top: 20px;
+        }
+        .caps-tight-row .img-wrap {
+            max-height: 380px; /* 불필요한 흰 하단 여백 가두기 */
+        }
+        .caps-tight-row .img-wrap img {
+            object-fit: cover; width: 100%; height: 100%;
         }
 
-        /* SECTION 2: LOOKBOOK EDITORIAL (1열 배치) */
+        /* SECTION 2: LOOKBOOK EDITORIAL */
         .grid-lookbook {
             display: flex; flex-direction: column; gap: 60px; padding: 0 5%;
         }
         .lookbook-item { width: 100%; }
 
-        /* ✨ [NEW] SECTION 3: RUNWAY COLLECTION (color_london 스타일 완벽 지그재그) */
-        .grid-runway-zigzag {
+        /* ✨ [해결] SECTION 3: RUNWAY COLLECTION (2열 컬럼 분리형 메이슨리 구조) */
+        .grid-runway-masonry {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* 좌우 확실한 2열 구조 */
-            gap: 120px 80px; /* 세로 간격 120px, 가로 간격 80px로 시원하게 여백 확보 */
-            padding: 0 8%; /* 양 옆 여백을 줘서 사진 집약도 높임 */
+            grid-template-columns: 1fr 1fr; /* 좌측 기둥, 우측 기둥 반반 분리 */
+            gap: 60px; /* 기둥 사이 좌우 여백 */
+            padding: 0 5%;
             margin-top: 80px;
+        }
+
+        /* 각각의 기둥 세로 배열 스타일 */
+        .runway-column {
+            display: flex;
+            flex-direction: column;
+            gap: 100px; /* 사진과 사진 사이 세로 간격을 확실하게 벌림 */
+        }
+
+        /* 우측 기둥에만 상단 패딩을 살짝 줘서 완벽한 엇박자 지그재그 구현 */
+        .runway-column.right-col {
+            padding-top: 250px; 
         }
 
         .runway-item {
             width: 100%;
-            max-width: 460px;
+            max-width: 480px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        
-        /* color_london 스타일의 핵심: 왼쪽 열과 오른쪽 열의 시작점을 다르게 엇갈리게 함 */
-        /* 우측 열(짝수번째 이미지)을 전체적으로 아래로 툭 떨어트려 비대칭 지그재그 리듬 생성 */
-        .runway-item:nth-child(even) {
-            margin-top: 150px; /* 오른쪽 라인만 아래로 밀어내어 지그재그 매칭 */
-            justify-self: flex-end; /* 오른쪽 정렬 */
-        }
-        
-        .runway-item:nth-child(odd) {
-            justify-self: flex-start; /* 왼쪽 라인은 왼쪽 정렬 */
-        }
+        .runway-column.left-col .runway-item { justify-self: flex-start; margin-left: auto; margin-right: 0; }
+        .runway-column.right-col .runway-item { justify-self: flex-end; margin-left: 0; margin-right: auto; }
 
         .runway-item:hover {
             transform: translateY(-10px);
@@ -125,12 +136,13 @@
             .project-info { grid-template-columns: 1fr; gap: 30px; }
             .project-hero h1 { font-size: 12vw; }
             .caps-tight-row { grid-template-columns: 1fr; }
+            .caps-tight-row .img-wrap { max-height: none; }
             
-            /* 모바일에서는 1열 정렬로 깔끔하게 떨어지도록 리셋 */
-            .grid-runway-zigzag { grid-template-columns: 1fr; gap: 50px; padding: 0 5%; }
-            .runway-item:nth-child(even) { margin-top: 0; justify-self: center; }
-            .runway-item:nth-child(odd) { justify-self: center; }
-            .runway-item { max-width: none; width: 90%; }
+            /* 모바일은 1열로 펴주기 */
+            .grid-runway-masonry { grid-template-columns: 1fr; gap: 40px; }
+            .runway-column { gap: 40px; }
+            .runway-column.right-col { padding-top: 0; }
+            .runway-item { max-width: none; margin: 0 auto !important; }
             
             .gallery-section-title { margin: 80px 0 20px; }
             .custom-cursor { display: none; }
@@ -198,22 +210,23 @@
 
 
         <div class="gallery-section-title">Runway Collection</div>
-        <div class="gallery-container grid-runway-zigzag">
+        <div class="grid-runway-masonry">
             
-            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look1.jpg" alt="Runway Look 1"></div>
-            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look2.jpg" alt="Runway Look 2"></div>
-            
-            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look3.jpg" alt="Runway Look 3"></div>
-            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look4.jpg" alt="Runway Look 4"></div>
-            
-            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look5.jpg" alt="Runway Look 5"></div>
-            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look6.jpg" alt="Runway Look 6"></div>
-            
-            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look7.jpg" alt="Runway Look 7"></div>
-            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look8.jpg" alt="Runway Look 8"></div>
-            
-            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look9.jpg" alt="Runway Look 9"></div>
-            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look10.jpg" alt="Runway Look 10"></div>
+            <div class="runway-column left-col">
+                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look1.jpg" alt="Runway Look 1"></div>
+                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look3.jpg" alt="Runway Look 3"></div>
+                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look5.jpg" alt="Runway Look 5"></div>
+                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look7.jpg" alt="Runway Look 7"></div>
+                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look9.jpg" alt="Runway Look 9"></div>
+            </div>
+
+            <div class="runway-column right-col">
+                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look2.jpg" alt="Runway Look 2"></div>
+                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look4.jpg" alt="Runway Look 4"></div>
+                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look6.jpg" alt="Runway Look 6"></div>
+                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look8.jpg" alt="Runway Look 8"></div>
+                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look10.jpg" alt="Runway Look 10"></div>
+            </div>
 
         </div>
 
