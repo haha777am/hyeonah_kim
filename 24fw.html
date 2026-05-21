@@ -69,70 +69,69 @@
         .gallery-section-title {
             font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: 3px;
             color: #555; padding: 0 5%; margin: 120px 0 40px; text-transform: uppercase;
-            position: relative;
         }
 
         /* 이미지 기본 공통 스타일 */
         .img-wrap { overflow: hidden; background: #fff; display: block; }
         .img-wrap img { width: 100%; height: auto; display: block; }
 
-        /* ✨ [NEW] SECTION 1: TECH PACK & GOODS DESIGN */
+        /* SECTION 1: TECH PACK & GOODS DESIGN */
         .design-master-piece {
-            padding: 0 5%; margin-bottom: 0px; /* 모자 섹션과 밀착을 위해 하단 마진 제로 */
+            padding: 0 5%;
         }
-        
-        /* 모자 스펙 영역: 불필요한 공백을 자르고 타이트하게 2열 배치 */
         .caps-tight-row {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 0px; /* 모자끼리 틈 없이 붙임 */
-            padding: 0 5%; margin-top: 0px;
-        }
-        /* 흰 배경의 불필요한 여백을 크롭하는 효과 효과 */
-        .caps-tight-row .img-wrap {
-            padding: 0; /* 내부 여백 완전 삭제 */
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0px;
+            padding: 0 5%;
         }
 
-        /* ✨ [NEW] SECTION 2: LOOKBOOK EDITORIAL (1열 시네마틱 종독 배치) */
+        /* SECTION 2: LOOKBOOK EDITORIAL (1열 배치) */
         .grid-lookbook {
             display: flex; flex-direction: column; gap: 60px; padding: 0 5%;
         }
         .lookbook-item { width: 100%; }
 
-        /* ✨ [NEW] SECTION 3: RUNWAY COLLECTION (감각적인 지그재그 레이아웃) */
+        /* ✨ [NEW] SECTION 3: RUNWAY COLLECTION (color_london 스타일 완벽 지그재그) */
         .grid-runway-zigzag {
-            display: flex; flex-direction: column;
-            gap: 100px; /* 세로 사진들 사이의 명확한 숨통 공간 확보 */
-            padding: 0 5%;
-            margin-top: 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 좌우 확실한 2열 구조 */
+            gap: 120px 80px; /* 세로 간격 120px, 가로 간격 80px로 시원하게 여백 확보 */
+            padding: 0 8%; /* 양 옆 여백을 줘서 사진 집약도 높임 */
+            margin-top: 80px;
         }
 
-        /* 지그재그 열 구성을 위한 로우 스타일 */
-        .runway-row {
-            display: flex; width: 100%;
-        }
-        
-        /* 홀수 번째 로우: 사진을 왼쪽에 배치 (우측 마진 확보) */
-        .runway-row:nth-child(odd) { justify-content: flex-start; }
-        /* 짝수 번째 로우: 사진을 오른쪽에 배치 (좌측 마진 확보) */
-        .runway-row:nth-line(even), .runway-row.even-row { justify-content: flex-end; }
-
-        /* 런웨이 단독 박스 크기 설정 (런웨이 특유의 세로 실루엣 극대화) */
         .runway-item {
-            width: 45%; /* 화면의 절반 조금 안되는 이상적인 비율 */
-            max-width: 520px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 460px;
             transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
+        
+        /* color_london 스타일의 핵심: 왼쪽 열과 오른쪽 열의 시작점을 다르게 엇갈리게 함 */
+        /* 우측 열(짝수번째 이미지)을 전체적으로 아래로 툭 떨어트려 비대칭 지그재그 리듬 생성 */
+        .runway-item:nth-child(even) {
+            margin-top: 150px; /* 오른쪽 라인만 아래로 밀어내어 지그재그 매칭 */
+            justify-self: flex-end; /* 오른쪽 정렬 */
+        }
+        
+        .runway-item:nth-child(odd) {
+            justify-self: flex-start; /* 왼쪽 라인은 왼쪽 정렬 */
+        }
+
         .runway-item:hover {
-            transform: scale(1.02) translateY(-5px);
+            transform: translateY(-10px);
         }
 
         /* [5] 모바일 반응형 */
         @media (max-width: 768px) {
             .project-info { grid-template-columns: 1fr; gap: 30px; }
             .project-hero h1 { font-size: 12vw; }
-            .caps-tight-row { grid-template-columns: 1fr; } /* 모바일은 모자도 단독으로 */
-            .grid-runway-zigzag { gap: 60px; }
-            .runway-item { width: 85%; max-width: none; margin: 0 auto !important; } /* 모바일은 중앙 정렬 */
+            .caps-tight-row { grid-template-columns: 1fr; }
+            
+            /* 모바일에서는 1열 정렬로 깔끔하게 떨어지도록 리셋 */
+            .grid-runway-zigzag { grid-template-columns: 1fr; gap: 50px; padding: 0 5%; }
+            .runway-item:nth-child(even) { margin-top: 0; justify-self: center; }
+            .runway-item:nth-child(odd) { justify-self: center; }
+            .runway-item { max-width: none; width: 90%; }
+            
             .gallery-section-title { margin: 80px 0 20px; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
@@ -179,7 +178,7 @@
 
         <div class="gallery-section-title">Design & Tech Pack</div>
         <div class="design-master-piece">
-            <div class="img-wrap"><img src="images/24fw/24fw_design.jpg" alt="24fw Technical Flat Design"></div>
+            <div class="img-wrap"><img src="images/24fw/24fw_design.png" alt="24fw Technical Flat Design"></div>
         </div>
         <div class="caps-tight-row">
             <div class="img-wrap"><img src="images/24fw/24fw_cap1.png" alt="24fw Cap Lineup 01"></div>
@@ -201,45 +200,20 @@
         <div class="gallery-section-title">Runway Collection</div>
         <div class="gallery-container grid-runway-zigzag">
             
-            <div class="runway-row">
-                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look1.jpg" alt="Runway Look 1"></div>
-            </div>
+            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look1.jpg" alt="Runway Look 1"></div>
+            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look2.jpg" alt="Runway Look 2"></div>
             
-            <div class="runway-row even-row">
-                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look2.jpg" alt="Runway Look 2"></div>
-            </div>
+            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look3.jpg" alt="Runway Look 3"></div>
+            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look4.jpg" alt="Runway Look 4"></div>
             
-            <div class="runway-row">
-                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look3.jpg" alt="Runway Look 3"></div>
-            </div>
+            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look5.jpg" alt="Runway Look 5"></div>
+            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look6.jpg" alt="Runway Look 6"></div>
             
-            <div class="runway-row even-row">
-                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look4.jpg" alt="Runway Look 4"></div>
-            </div>
+            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look7.jpg" alt="Runway Look 7"></div>
+            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look8.jpg" alt="Runway Look 8"></div>
             
-            <div class="runway-row">
-                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look5.jpg" alt="Runway Look 5"></div>
-            </div>
-            
-            <div class="runway-row even-row">
-                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look6.jpg" alt="Runway Look 6"></div>
-            </div>
-            
-            <div class="runway-row">
-                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look7.jpg" alt="Runway Look 7"></div>
-            </div>
-            
-            <div class="runway-row even-row">
-                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look8.jpg" alt="Runway Look 8"></div>
-            </div>
-            
-            <div class="runway-row">
-                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look9.jpg" alt="Runway Look 9"></div>
-            </div>
-            
-            <div class="runway-row even-row">
-                <div class="img-wrap runway-item"><img src="images/24fw/24fw_look10.jpg" alt="Runway Look 10"></div>
-            </div>
+            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look9.jpg" alt="Runway Look 9"></div>
+            <div class="img-wrap runway-item"><img src="images/24fw/24fw_look10.jpg" alt="Runway Look 10"></div>
 
         </div>
 
