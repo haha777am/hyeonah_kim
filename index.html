@@ -58,13 +58,16 @@
         .main-intro {
             height: 100vh; display: flex; align-items: center;
             justify-content: space-between; padding: 0 10%;
+            gap: 5%; /* 양쪽 콘텐츠 간 최소 여백 확보 */
         }
 
-        .intro-left { flex: 1.2; }
+        /* 이름 영역과 비디오 영역이 겹치지 않도록 유연한 비율 할당 */
+        .intro-left { flex: 1.1; min-width: 0; }
         .brand-title {
             font-family: 'Playfair Display', serif;
             font-size: 7.5vw; line-height: 1.2; margin: 0;
             letter-spacing: -3px; font-weight: 400;
+            white-space: nowrap; /* 텍스트가 강제로 부자연스럽게 줄바꿈되는 것 방지 */
         }
         .brand-subtitle {
             font-family: monospace; color: #444; font-size: 14px;
@@ -72,20 +75,20 @@
         }
 
         .intro-right {
-            flex: 0.8; display: flex; flex-direction: column;
-            align-items: flex-end; text-align: right;
+            flex: 0.9; display: flex; flex-direction: column;
+            align-items: flex-end; text-align: right; min-width: 0;
         }
         
-        /* ✨ 비디오 컨테이너 디자인 (직사각형으로 변경) */
+        /* ✨ 비디오 컨테이너 디자인 (가로로 긴 직사각형 16:9 비율로 변경) */
         .video-wrap {
             display: block;
-            width: 28vw; /* 너비 조정 */
-            height: 38vw; /* 높이 조정 (직사각형 비율) */
-            max-width: 500px; max-height: 680px;
+            width: 35vw; /* 가로 너비 확장 */
+            aspect-ratio: 16 / 9; /* 고정 종횡비 설정으로 세로 크기 자동 계산 */
+            max-width: 580px;
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.1);
             margin-bottom: 35px; transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
-            background-color: #111; /* 로딩 전 배경색 */
+            background-color: #111;
         }
         .video-wrap:hover { transform: scale(1.02) translateY(-10px); }
 
@@ -107,12 +110,14 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* [4] 모바일 반응형 */
         @media (max-width: 768px) {
-            .main-intro { flex-direction: column; justify-content: center; text-align: center; }
-            .intro-left { margin-bottom: 50px; }
-            .intro-right { align-items: center; text-align: center; }
-            .brand-title { font-size: 18vw; }
-            .video-wrap { width: 70vw; height: 95vw; }
+            .main-intro { flex-direction: column; justify-content: center; text-align: center; gap: 40px; }
+            .intro-left { margin-bottom: 0; flex: none; }
+            .intro-right { align-items: center; text-align: center; flex: none; }
+            .brand-title { font-size: 16vw; }
+            /* 모바일에서도 균형 잡힌 가로형 비율 유지 */
+            .video-wrap { width: 80vw; height: auto; aspect-ratio: 16 / 9; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
         }
