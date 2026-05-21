@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>26FW Collection — HYEON AH KIM</title>
+    <title>24FW Collection — HYEON AH KIM</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -44,11 +44,10 @@
 
         /* [3] 상세 페이지 레이아웃 */
         .project-container {
-            padding: 150px 0 100px; /* 좌우 여백을 없애서 이미지가 꽉 차게 준비 */
+            padding: 150px 0 100px;
             max-width: 1400px; margin: 0 auto;
         }
 
-        /* 텍스트 영역 (여백 유지) */
         .project-hero, .project-info {
             padding-left: 5%; padding-right: 5%;
         }
@@ -66,31 +65,42 @@
         .info-left p { margin-bottom: 30px; font-size: 15px; color: #ddd; }
         .info-right p { font-size: 16px; line-height: 1.8; color: #aaa; font-weight: 300; margin-top: 0; text-align: justify; }
 
-        /* [4] PDF 스타일 갤러리 (틈 없이 연결) */
-        .gallery-seamless {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            gap: 0; /* 이미지 사이 간격 0 */
-        }
-        
-        .gallery-item {
-            width: 100%;
-            overflow: hidden;
-            background: #fff; /* 작업지시서 배경색과 통일 */
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            display: block; /* 이미지 하단 미세 여백 제거 핵심 */
-            border: none;
-            outline: none;
+        /* ✨ [4] 24FW 특화 섹션별 갤러리 디자인 */
+        .gallery-section-title {
+            font-family: 'Playfair Display', serif; font-size: 20px; letter-spacing: 2px;
+            color: #666; padding: 0 5%; margin: 80px 0 30px; text-transform: uppercase;
         }
 
+        /* 공통 이미지 기본 스타일 */
+        .gallery-container img {
+            width: 100%; height: auto; display: block; transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .img-wrap { overflow: hidden; background: #fff; }
+        .img-wrap:hover img { transform: scale(1.03); }
+
+        /* 섹션 1: 디자인 및 굿즈 레이아웃 (3열 그리드) */
+        .grid-design-caps {
+            display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 15px; padding: 0 5%;
+        }
+
+        /* 섹션 2: 런웨이 컬렉션 (PDF 스타일 2열 매칭 - 틈 없음) */
+        .grid-runway {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0; width: 100%;
+        }
+
+        /* 섹션 3: 룩북 에디토리얼 (고급스러운 단독 풀 와이드 배율) */
+        .grid-lookbook {
+            display: flex; flex-direction: column; gap: 40px; padding: 0 5%;
+        }
+        .lookbook-item { width: 100%; }
+
+        /* [5] 모바일 반응형 */
         @media (max-width: 768px) {
             .project-info { grid-template-columns: 1fr; gap: 30px; }
             .project-hero h1 { font-size: 12vw; }
+            .grid-design-caps { grid-template-columns: 1fr; gap: 15px; }
+            .grid-runway { grid-template-columns: 1fr; } /* 모바일은 런웨이도 1열로 */
+            .gallery-section-title { margin: 50px 0 20px; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
         }
@@ -113,36 +123,56 @@
     <main class="project-container">
         
         <div class="project-hero">
-            <h1>26FW Collection</h1>
-            <div class="project-meta">LIE / Apparel Planning & Production</div>
+            <h1>24FW Collection</h1>
+            <div class="project-meta">Archive / Structure / Reconstruction</div>
         </div>
 
         <div class="project-info">
             <div class="info-left">
                 <h3>ROLE</h3>
-                <p>Fashion Designer</p>
+                <p>Fashion Designer & Creative Director</p>
                 <h3>YEAR</h3>
-                <p>2026</p>
+                <p>2024</p>
                 <h3>CATEGORY</h3>
-                <p>Design, Sampling, Tech Pack</p>
+                <p>Runway Collection, Art Direction, Lookbook</p>
             </div>
             <div class="info-right">
                 <p>
-                    LIE 26FW 컬렉션의 주요 피스 디자인 및 샘플링을 진행했습니다. 자수 디테일이 가미된 점퍼와 레이어링 팬츠, 그리고 트임 디테일 셔츠의 소재 선정부터 도식화, 핏 수정까지의 전 과정을 핸들링했습니다.<br><br>
-                    스트라이프와 솔리드 원단을 배색하고, 플라스틱 스토퍼 등 부자재를 활용하여 브랜드 특유의 유니크한 디테일을 살렸으며, 하프 바라클라바와 베스트 세트 기획을 통해 시즌 트렌드를 반영한 니트 웨어를 제안했습니다.
+                    HYEON AH KIM의 24FW 컬렉션은 'Archive(아카이브), Structure(구조), Reconstruction(재구성)'의 아이덴티티를 런웨이와 오브제에 깊이 있게 녹여내었습니다. 정교한 도식화 작업을 바탕으로 한 해체주의적 구조의 의상들과, 브랜드 로고플레이를 위트 있게 풀어낸 헤드웨어 굿즈 라인을 함께 기획했습니다.<br><br>
+                    블루, 레드, 무채색의 강렬한 컬러 대비가 돋보이는 런웨이 피스들은 해체된 셔츠 구조와 실험적인 실루엣의 재구성을 보여주며, 이와 대비되는 미니멀하고 정제된 무드의 스튜디오 룩북 에디토리얼을 통해 컬렉션의 다각적인 예술적 가치를 완성했습니다.
                 </p>
             </div>
         </div>
 
-        <div class="gallery-seamless">
-            <div class="gallery-item"><img src="images/2026fw/1.jpg" alt="Work 01"></div>
-            <div class="gallery-item"><img src="images/2026fw/2.jpg" alt="Work 02"></div>
-            <div class="gallery-item"><img src="images/2026fw/3.jpg" alt="Work 03"></div>
-            <div class="gallery-item"><img src="images/2026fw/4.jpg" alt="Work 04"></div>
-            <div class="gallery-item"><img src="images/2026fw/5.jpg" alt="Work 05"></div>
-            <div class="gallery-item"><img src="images/2026fw/6.jpg" alt="Work 06"></div>
-            <div class="gallery-item"><img src="images/2026fw/7.jpg" alt="Work 07"></div>
-            <div class="gallery-item"><img src="images/2026fw/8.jpg" alt="Work 08"></div>
+        <div class="gallery-section-title">Design & Goods Spec</div>
+        <div class="gallery-container grid-design-caps">
+            <div class="img-wrap"><img src="images/24fw/24fw_design.png" alt="24fw Design Sketch"></div>
+            <div class="img-wrap"><img src="images/24fw/24fw_cap1.png" alt="24fw Cap Design 01"></div>
+            <div class="img-wrap"><img src="images/24fw/24fw_cap2.png" alt="24fw Cap Design 02"></div>
+        </div>
+
+        <div class="gallery-section-title">Runway Collection</div>
+        <div class="gallery-container grid-runway">
+            <div class="img-wrap"><img src="images/24fw/24fw_look1.jpg" alt="Runway Look 1"></div>
+            <div class="img-wrap"><img src="images/24fw/24fw_look2.jpg" alt="Runway Look 2"></div>
+            <div class="img-wrap"><img src="images/24fw/24fw_look3.jpg" alt="Runway Look 3"></div>
+            <div class="img-wrap"><img src="images/24fw/24fw_look4.jpg" alt="Runway Look 4"></div>
+            <div class="img-wrap"><img src="images/24fw/24fw_look5.jpg" alt="Runway Look 5"></div>
+            <div class="img-wrap"><img src="images/24fw/24fw_look6.jpg" alt="Runway Look 6"></div>
+            <div class="img-wrap"><img src="images/24fw/24fw_look7.jpg" alt="Runway Look 7"></div>
+            <div class="img-wrap"><img src="images/24fw/24fw_look8.jpg" alt="Runway Look 8"></div>
+            <div class="img-wrap"><img src="images/24fw/24fw_look9.jpg" alt="Runway Look 9"></div>
+            <div class="img-wrap"><img src="images/24fw/24fw_look10.jpg" alt="Runway Look 10"></div>
+        </div>
+
+        <div class="gallery-section-title">Lookbook Editorial</div>
+        <div class="gallery-container grid-lookbook">
+            <div class="img-wrap lookbook-item"><img src="images/24fw/lookbook-02.jpg" alt="Editorial Look 02"></div>
+            <div class="img-wrap lookbook-item"><img src="images/24fw/lookbook-03.jpg" alt="Editorial Look 03"></div>
+            <div class="img-wrap lookbook-item"><img src="images/24fw/lookbook-04.jpg" alt="Editorial Look 04"></div>
+            <div class="img-wrap lookbook-item"><img src="images/24fw/lookbook-05.jpg" alt="Editorial Look 05"></div>
+            <div class="img-wrap lookbook-item"><img src="images/24fw/lookbook-06.jpg" alt="Editorial Look 06"></div>
+            <div class="img-wrap lookbook-item"><img src="images/24fw/lookbook-07.jpg" alt="Editorial Look 07"></div>
         </div>
 
     </main>
