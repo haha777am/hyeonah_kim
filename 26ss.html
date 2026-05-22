@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>26FW Collection — HYEON AH KIM</title>
+    <title>26SS Collection — HYEON AH KIM</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -44,11 +44,10 @@
 
         /* [3] 상세 페이지 레이아웃 */
         .project-container {
-            padding: 150px 0 100px; /* 좌우 여백을 없애서 이미지가 꽉 차게 준비 */
-            max-width: 1400px; margin: 0 auto;
+            padding: 150px 0 100px;
+            max-width: 1300px; margin: 0 auto;
         }
 
-        /* 텍스트 영역 (여백 유지) */
         .project-hero, .project-info {
             padding-left: 5%; padding-right: 5%;
         }
@@ -60,37 +59,89 @@
         .project-info {
             display: grid; grid-template-columns: 1fr 2fr; gap: 60px;
             border-top: 1px solid #222; border-bottom: 1px solid #222;
-            padding: 60px 5%; margin-bottom: 100px;
+            padding: 60px 5%; margin-bottom: 80px;
         }
         .info-left h3 { font-family: monospace; font-size: 14px; color: #666; margin-bottom: 10px; letter-spacing: 2px;}
         .info-left p { margin-bottom: 30px; font-size: 15px; color: #ddd; }
         .info-right p { font-size: 16px; line-height: 1.8; color: #aaa; font-weight: 300; margin-top: 0; text-align: justify; }
 
-        /* [4] PDF 스타일 갤러리 (틈 없이 연결) */
-        .gallery-seamless {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            gap: 0; /* 이미지 사이 간격 0 */
+        /* 🎬 유튜브 비디오 반응형 컨테이너 서식 */
+        .video-section {
+            padding: 0 5%;
+            margin: 80px 0;
         }
-        
-        .gallery-item {
+        .video-wrap {
+            position: relative;
             width: 100%;
-            overflow: hidden;
-            background: #fff; /* 작업지시서 배경색과 통일 */
+            padding-bottom: 56.25%; /* 16:9 비율 유지 */
+            height: 0;
+            background: #000;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
         }
-        
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            display: block; /* 이미지 하단 미세 여백 제거 핵심 */
-            border: none;
-            outline: none;
+        .video-wrap iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
         }
 
+        /* 섹션 타이틀 */
+        .gallery-section-title {
+            font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: 3px;
+            color: #555; padding: 0 5%; margin: 120px 0 40px; text-transform: uppercase;
+        }
+
+        /* 이미지 기본 공통 스타일 */
+        .img-wrap { overflow: hidden; background: #fff; display: block; }
+        .img-wrap img { width: 100%; height: auto; display: block; transition: transform 0.6s ease; }
+        .img-wrap:hover img { transform: scale(1.02); }
+
+        /* SECTION 1: TECH PACK / DESIGN */
+        .design-master-piece {
+            padding: 0 5%; margin-bottom: 20px;
+        }
+        /* 디자인 비어있는 공간의 임시 안내 점선 프레임 */
+        .empty-design-box {
+            width: 100%; height: 450px; border: 1px dashed #333; 
+            display: flex; align-items: center; justify-content: center; 
+            color: #444; font-size: 14px; letter-spacing: 1px;
+        }
+
+        /* SECTION 2: MAIN IMAGE (단일 풀와이드 배치) */
+        .grid-main-focus {
+            padding: 0 5%; margin-bottom: 20px;
+        }
+
+        /* SECTION 3: LOOKBOOK EDITORIAL (스크린샷 기준 1~9번 총 9장) */
+        .grid-lookbook {
+            display: flex; flex-direction: column; gap: 60px; padding: 0 5%;
+        }
+        .lookbook-item { width: 100%; }
+
+        /* SECTION 4: RUNWAY COLLECTION (스크린샷 기준 show 1~11번 지그재그 배치) */
+        .grid-runway-masonry {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 0 5%; margin-top: 80px;
+        }
+        .runway-column { display: flex; flex-direction: column; gap: 100px; }
+        .runway-column.right-col { padding-top: 250px; }
+        .runway-item { width: 100%; max-width: 480px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .runway-column.left-col .runway-item { margin-left: auto; }
+        .runway-column.right-col .runway-item { margin-right: auto; }
+
+        /* 모바일 반응형 */
         @media (max-width: 768px) {
             .project-info { grid-template-columns: 1fr; gap: 30px; }
             .project-hero h1 { font-size: 12vw; }
+            .grid-runway-masonry { grid-template-columns: 1fr; gap: 40px; }
+            .runway-column { gap: 40px; }
+            .runway-column.right-col { padding-top: 0; }
+            .runway-item { max-width: none; margin: 0 auto !important; }
+            .empty-design-box { height: 250px; }
+            
+            .video-section { margin: 40px 0; }
+            .video-wrap { cursor: auto; }
+
+            .gallery-section-title { margin: 80px 0 20px; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
         }
@@ -113,36 +164,82 @@
     <main class="project-container">
         
         <div class="project-hero">
-            <h1>26FW Collection</h1>
-            <div class="project-meta">LIE / Apparel Planning & Production</div>
+            <h1>26SS Collection</h1>
+            <div class="project-meta">Dynamic Fluidity & Organic Form</div>
         </div>
 
         <div class="project-info">
             <div class="info-left">
                 <h3>ROLE</h3>
-                <p>Fashion Designer</p>
+                <p>Fashion Designer & Creative Director</p>
                 <h3>YEAR</h3>
                 <p>2026</p>
                 <h3>CATEGORY</h3>
-                <p>Design, Sampling, Tech Pack</p>
+                <p>Runway, Tech Pack, Sampling</p>
             </div>
             <div class="info-right">
                 <p>
-                    LIE 26FW 컬렉션의 주요 피스 디자인 및 샘플링을 진행했습니다. 자수 디테일이 가미된 점퍼와 레이어링 팬츠, 그리고 트임 디테일 셔츠의 소재 선정부터 도식화, 핏 수정까지의 전 과정을 핸들링했습니다.<br><br>
-                    스트라이프와 솔리드 원단을 배색하고, 플라스틱 스토퍼 등 부자재를 활용하여 브랜드 특유의 유니크한 디테일을 살렸으며, 하프 바라클라바와 베스트 세트 기획을 통해 시즌 트렌드를 반영한 니트 웨어를 제안했습니다.
+                    브랜드의 26SS 컬렉션을 위해 자연스럽게 흐르는 실루엣과 유기적인 구조를 시각화하는 작업을 수행했습니다. 가벼운 소재의 텍스처와 역동적인 드레이핑 기술을 조화롭게 결합하여 한층 더 해방감 있고 우아한 무드를 연출했습니다.<br><br>
+                    컬렉션의 기획 단계부터 피팅, 샘플 퀄리티 컨트롤, 런웨이 최종 라인업까지 모든 연출 과정을 주도하며 완성도 높은 핏을 구현하였습니다. 이번 시즌은 입체적인 실루엣 설계와 미니멀한 디테일의 조화를 통해 고유의 아이덴티티를 투영하는 데 집중했습니다.
                 </p>
             </div>
         </div>
 
-        <div class="gallery-seamless">
-            <div class="gallery-item"><img src="images/2026fw/1.jpg" alt="Work 01"></div>
-            <div class="gallery-item"><img src="images/2026fw/2.jpg" alt="Work 02"></div>
-            <div class="gallery-item"><img src="images/2026fw/3.jpg" alt="Work 03"></div>
-            <div class="gallery-item"><img src="images/2026fw/4.jpg" alt="Work 04"></div>
-            <div class="gallery-item"><img src="images/2026fw/5.jpg" alt="Work 05"></div>
-            <div class="gallery-item"><img src="images/2026fw/6.jpg" alt="Work 06"></div>
-            <div class="gallery-item"><img src="images/2026fw/7.jpg" alt="Work 07"></div>
-            <div class="gallery-item"><img src="images/2026fw/8.jpg" alt="Work 08"></div>
+        <div class="gallery-section-title">Runway & Campaign Video</div>
+        <div class="video-section">
+            <div class="video-wrap">
+                <iframe 
+                    src="https://www.youtube.com/embed/evjg0D-wcew" 
+                    title="26SS Collection Video" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <div class="gallery-section-title">Technical Flat</div>
+        <div class="design-master-piece">
+            <div class="empty-design-box">DESIGN WORK SPACE (준비 중)</div>
+        </div>
+        
+        <div class="gallery-section-title">Main image</div>
+        <div class="grid-main-focus">
+            <div class="img-wrap"><img src="images/26ss/main.png" alt="26ss Main 01"></div>
+        </div>
+
+        <div class="gallery-section-title">Lookbook Editorial</div>
+        <div class="gallery-container grid-lookbook">
+            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook1.png" alt="26ss Editorial 01"></div>
+            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook2.png" alt="26ss Editorial 02"></div>
+            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook3.png" alt="26ss Editorial 03"></div>
+            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook4.png" alt="26ss Editorial 04"></div>
+            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook5.png" alt="26ss Editorial 05"></div>
+            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook6.png" alt="26ss Editorial 06"></div>
+            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook7.png" alt="26ss Editorial 07"></div>
+            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook8.png" alt="26ss Editorial 08"></div>
+            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook9.png" alt="26ss Editorial 09"></div>
+        </div>
+
+        <div class="gallery-section-title">Runway Highlights</div>
+        <div class="grid-runway-masonry">
+            
+            <div class="runway-column left-col">
+                <div class="img-wrap runway-item"><img src="images/26ss/show1.png" alt="Runway Show 01"></div>
+                <div class="img-wrap runway-item"><img src="images/26ss/show3.png" alt="Runway Show 03"></div>
+                <div class="img-wrap runway-item"><img src="images/26ss/show5.png" alt="Runway Show 05"></div>
+                <div class="img-wrap runway-item"><img src="images/26ss/show7.png" alt="Runway Show 07"></div>
+                <div class="img-wrap runway-item"><img src="images/26ss/show9.png" alt="Runway Show 09"></div>
+                <div class="img-wrap runway-item"><img src="images/26ss/show11.png" alt="Runway Show 11"></div>
+            </div>
+
+            <div class="runway-column right-col">
+                <div class="img-wrap runway-item"><img src="images/26ss/show2.png" alt="Runway Show 02"></div>
+                <div class="img-wrap runway-item"><img src="images/26ss/show4.png" alt="Runway Show 04"></div>
+                <div class="img-wrap runway-item"><img src="images/26ss/show6.png" alt="Runway Show 06"></div>
+                <div class="img-wrap runway-item"><img src="images/26ss/show8.png" alt="Runway Show 08"></div>
+                <div class="img-wrap runway-item"><img src="images/26ss/show10.png" alt="Runway Show 10"></div>
+            </div>
+
         </div>
 
     </main>
@@ -168,6 +265,13 @@
                 setTimeout(() => { window.location.href = targetUrl; }, 500); 
             });
         });
+
+        // 유튜브 내부 작동 컨트롤 시 커서 사라짐 예외 처리
+        const videoWrap = document.querySelector('.video-wrap');
+        if(videoWrap) {
+            videoWrap.addEventListener('mouseenter', () => { cursor.style.display = 'none'; });
+            videoWrap.addEventListener('mouseleave', () => { cursor.style.display = 'block'; });
+        }
     </script>
 </body>
 </html>
