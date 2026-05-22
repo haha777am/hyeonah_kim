@@ -65,6 +65,26 @@
         .info-left p { margin-bottom: 30px; font-size: 15px; color: #ddd; }
         .info-right p { font-size: 16px; line-height: 1.8; color: #aaa; font-weight: 300; margin-top: 0; text-align: justify; }
 
+        /* 🎬 유튜브 비디오 반응형 컨테이너 서식 */
+        .video-section {
+            padding: 0 5%;
+            margin: 80px 0;
+        }
+        .video-wrap {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 비율 유지 */
+            height: 0;
+            background: #000;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+        .video-wrap iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+        }
+
         /* 섹션 타이틀 */
         .gallery-section-title {
             font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: 3px;
@@ -81,7 +101,7 @@
             padding: 0 5%; margin-bottom: 20px;
         }
 
-        /* ✨ [NEW] SECTION 2: MAIN CAMPAIGN (2열 가로 배치) */
+        /* ✨ SECTION 2: MAIN CAMPAIGN (2열 가로 배치) */
         .grid-main-focus {
             display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 0 5%;
         }
@@ -111,6 +131,11 @@
             .runway-column { gap: 40px; }
             .runway-column.right-col { padding-top: 0; }
             .runway-item { max-width: none; margin: 0 auto !important; }
+            
+            /* 비디오 마진 조절 및 커서 예외 처리 활성화 */
+            .video-section { margin: 40px 0; }
+            .video-wrap { cursor: auto; }
+
             .gallery-section-title { margin: 80px 0 20px; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
@@ -149,9 +174,22 @@
             </div>
             <div class="info-right">
                 <p>
-                    재직 중인 브랜드의 25FW 컬렉션을 위해 테일러링의 본질적인 구조를 재해석하는 작업을 수행했습니다. 정교한 도식화 작성을 통해 미니멀한 실루엣 안에서도 브랜드 특유의 정체성이 드러날 수 있도록 패턴과 디테일을 설계했습니다.<br><br>
+                    재직 중인 브랜드의 25FW 컬렉션을 위해 테일러링의 본질적인 구조를 재해석하는 작업을 수행했습니다. 정교한 도식화 작성을 통해 미니멀한 실루엣 안에서도 브랜드 특유의 정체성이 드러날 수 있도록 패턴 and 디테일을 설계했습니다.<br><br>
                     셔츠와 자켓의 칼라 구조를 변형하거나, 정제된 무채색 팔레트 안에서 소재의 텍스처 대비를 활용하여 시각적 깊이감을 더했습니다. 디자인 기획부터 샘플 생산 관리, 그리고 최종 런웨이 쇼 피스 확정까지 전 과정을 직접 핸들링하며 컬렉션의 완성도를 높였습니다.
                 </p>
+            </div>
+        </div>
+
+        <!-- 🎬 [25FW 컬렉션 비디오 매립] -->
+        <div class="gallery-section-title">Runway & Campaign Video</div>
+        <div class="video-section">
+            <div class="video-wrap">
+                <iframe 
+                    src="https://www.youtube.com/embed/lX6DUXtQ7oM" 
+                    title="25FW Collection Video" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
             </div>
         </div>
 
@@ -160,12 +198,11 @@
             <div class="img-wrap"><img src="images/25fw/25fw_design.jpg" alt="25fw Master Design"></div>
         </div>
         
-  <div class="gallery-section-title">Main image</div>
-        <div class="design-master-piece">
-            <div class="img-wrap"><img srcimg src="img src="images/25fw/main1.jpg" alt="25fw Main 01"></div>
-            
-        <div class="design-master-piece">
-            <div class="img-wrap"><img srcimg src="images/25fw/main2.jpg" alt="25fw Main 02"></div>
+        <!-- 🛠️ 오타 교정 및 Main Image 세션 (2열 배치 스타일 `.grid-main-focus` 적용) -->
+        <div class="gallery-section-title">Main image</div>
+        <div class="grid-main-focus">
+            <div class="img-wrap"><img src="images/25fw/main1.jpg" alt="25fw Main 01"></div>
+            <div class="img-wrap"><img src="images/25fw/main2.jpg" alt="25fw Main 02"></div>
         </div>
 
 
@@ -219,6 +256,13 @@
                 setTimeout(() => { window.location.href = targetUrl; }, 500); 
             });
         });
+
+        // 🎬 유튜브 내부 플레이어 조작 시 커스텀 커서 숨김 처리 스크립트
+        const videoWrap = document.querySelector('.video-wrap');
+        if(videoWrap) {
+            videoWrap.addEventListener('mouseenter', () => { cursor.style.display = 'none'; });
+            videoWrap.addEventListener('mouseleave', () => { cursor.style.display = 'block'; });
+        }
     </script>
 </body>
 </html>
