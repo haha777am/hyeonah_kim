@@ -65,25 +65,13 @@
         .info-left p { margin-bottom: 30px; font-size: 15px; color: #ddd; }
         .info-right p { font-size: 16px; line-height: 1.8; color: #aaa; font-weight: 300; margin-top: 0; text-align: justify; }
 
-        /* 🎬 유튜브 비디오 반응형 컨테이너 서식 */
-        .video-section {
-            padding: 0 5%;
-            margin: 80px 0;
-        }
+        /* 🎬 유튜브 비디오 컨테이너 */
+        .video-section { padding: 0 5%; margin: 80px 0; }
         .video-wrap {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 비율 유지 */
-            height: 0;
-            background: #000;
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0; background: #000;
             box-shadow: 0 20px 50px rgba(0,0,0,0.6);
         }
-        .video-wrap iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: 0;
-        }
+        .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
         /* 섹션 타이틀 */
         .gallery-section-title {
@@ -91,56 +79,45 @@
             color: #555; padding: 0 5%; margin: 120px 0 40px; text-transform: uppercase;
         }
 
-        /* 이미지 기본 공통 스타일 */
+        /* 이미지 공통 스타일 */
         .img-wrap { overflow: hidden; background: #fff; display: block; }
         .img-wrap img { width: 100%; height: auto; display: block; transition: transform 0.6s ease; }
         .img-wrap:hover img { transform: scale(1.02); }
 
-        /* SECTION 1: TECH PACK / DESIGN */
-        .design-master-piece {
-            padding: 0 5%; margin-bottom: 20px;
-        }
-        /* 디자인 비어있는 공간의 임시 안내 점선 프레임 */
+        /* 디자인 공간 */
+        .design-master-piece { padding: 0 5%; margin-bottom: 20px; }
         .empty-design-box {
             width: 100%; height: 450px; border: 1px dashed #333; 
             display: flex; align-items: center; justify-content: center; 
             color: #444; font-size: 14px; letter-spacing: 1px;
         }
 
-        /* SECTION 2: MAIN IMAGE (단일 풀와이드 배치) */
-        .grid-main-focus {
-            padding: 0 5%; margin-bottom: 20px;
-        }
+        /* 메인 이미지 */
+        .grid-main-focus { padding: 0 5%; margin-bottom: 20px; }
 
-        /* SECTION 3: LOOKBOOK EDITORIAL (스크린샷 기준 1~9번 총 9장) */
-        .grid-lookbook {
-            display: flex; flex-direction: column; gap: 60px; padding: 0 5%;
-        }
-        .lookbook-item { width: 100%; }
-
-        /* SECTION 4: RUNWAY COLLECTION (스크린샷 기준 show 1~11번 지그재그 배치) */
-        .grid-runway-masonry {
+        /* ✨ 지그재그(Masonry) 공통 레이아웃 스타일 */
+        .masonry-grid {
             display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 0 5%; margin-top: 80px;
         }
-        .runway-column { display: flex; flex-direction: column; gap: 100px; }
-        .runway-column.right-col { padding-top: 250px; }
-        .runway-item { width: 100%; max-width: 480px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .runway-column.left-col .runway-item { margin-left: auto; }
-        .runway-column.right-col .runway-item { margin-right: auto; }
+        .masonry-column { display: flex; flex-direction: column; gap: 100px; }
+        .masonry-column.right-col { padding-top: 250px; } /* 오른쪽 기둥 내리기 (지그재그 핵심) */
+        
+        .masonry-item { 
+            width: 100%; max-width: 480px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+        }
+        .masonry-column.left-col .masonry-item { margin-left: auto; } /* 왼쪽 기둥 아이템은 오른쪽 정렬 */
+        .masonry-column.right-col .masonry-item { margin-right: auto; } /* 오른쪽 기둥 아이템은 왼쪽 정렬 */
 
         /* 모바일 반응형 */
         @media (max-width: 768px) {
             .project-info { grid-template-columns: 1fr; gap: 30px; }
             .project-hero h1 { font-size: 12vw; }
-            .grid-runway-masonry { grid-template-columns: 1fr; gap: 40px; }
-            .runway-column { gap: 40px; }
-            .runway-column.right-col { padding-top: 0; }
-            .runway-item { max-width: none; margin: 0 auto !important; }
+            .masonry-grid { grid-template-columns: 1fr; gap: 40px; }
+            .masonry-column { gap: 40px; }
+            .masonry-column.right-col { padding-top: 0; }
+            .masonry-item { max-width: none; margin: 0 auto !important; }
             .empty-design-box { height: 250px; }
-            
-            .video-section { margin: 40px 0; }
-            .video-wrap { cursor: auto; }
-
             .gallery-section-title { margin: 80px 0 20px; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
@@ -188,12 +165,7 @@
         <div class="gallery-section-title">Runway & Campaign Video</div>
         <div class="video-section">
             <div class="video-wrap">
-                <iframe 
-                    src="https://www.youtube.com/embed/evjg0D-wcew" 
-                    title="26SS Collection Video" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen>
-                </iframe>
+                <iframe src="https://www.youtube.com/embed/evjg0D-wcew" title="26SS Collection Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
 
@@ -208,38 +180,39 @@
         </div>
 
         <div class="gallery-section-title">Lookbook Editorial</div>
-        <div class="gallery-container grid-lookbook">
-            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook1.jpg" alt="26ss Editorial 01"></div>
-            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook2.jpg" alt="26ss Editorial 02"></div>
-            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook3.jpg" alt="26ss Editorial 03"></div>
-            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook4.jpg" alt="26ss Editorial 04"></div>
-            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook5.jpg" alt="26ss Editorial 05"></div>
-            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook6.jpg" alt="26ss Editorial 06"></div>
-            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook7.jpg" alt="26ss Editorial 07"></div>
-            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook8.jpg" alt="26ss Editorial 08"></div>
-            <div class="img-wrap lookbook-item"><img src="images/26ss/lookbook9.jpg" alt="26ss Editorial 09"></div>
+        <div class="masonry-grid">
+            <div class="masonry-column left-col">
+                <div class="img-wrap masonry-item"><img src="images/26ss/lookbook1.jpg" alt="Lookbook 01"></div>
+                <div class="img-wrap masonry-item"><img src="images/26ss/lookbook3.jpg" alt="Lookbook 03"></div>
+                <div class="img-wrap masonry-item"><img src="images/26ss/lookbook5.jpg" alt="Lookbook 05"></div>
+                <div class="img-wrap masonry-item"><img src="images/26ss/lookbook7.jpg" alt="Lookbook 07"></div>
+                <div class="img-wrap masonry-item"><img src="images/26ss/lookbook9.jpg" alt="Lookbook 09"></div>
+            </div>
+            <div class="masonry-column right-col">
+                <div class="img-wrap masonry-item"><img src="images/26ss/lookbook2.jpg" alt="Lookbook 02"></div>
+                <div class="img-wrap masonry-item"><img src="images/26ss/lookbook4.jpg" alt="Lookbook 04"></div>
+                <div class="img-wrap masonry-item"><img src="images/26ss/lookbook6.jpg" alt="Lookbook 06"></div>
+                <div class="img-wrap masonry-item"><img src="images/26ss/lookbook8.jpg" alt="Lookbook 08"></div>
+            </div>
         </div>
 
         <div class="gallery-section-title">Runway Highlights</div>
-        <div class="grid-runway-masonry">
-            
-            <div class="runway-column left-col">
-                <div class="img-wrap runway-item"><img src="images/26ss/show1.jpg" alt="Runway Show 01"></div>
-                <div class="img-wrap runway-item"><img src="images/26ss/show3.jpg" alt="Runway Show 03"></div>
-                <div class="img-wrap runway-item"><img src="images/26ss/show5.jpg" alt="Runway Show 05"></div>
-                <div class="img-wrap runway-item"><img src="images/26ss/show7.jpg" alt="Runway Show 07"></div>
-                <div class="img-wrap runway-item"><img src="images/26ss/show9.jpg" alt="Runway Show 09"></div>
-                <div class="img-wrap runway-item"><img src="images/26ss/show11.jpg" alt="Runway Show 11"></div>
+        <div class="masonry-grid">
+            <div class="masonry-column left-col">
+                <div class="img-wrap masonry-item"><img src="images/26ss/show1.jpg" alt="Runway Show 01"></div>
+                <div class="img-wrap masonry-item"><img src="images/26ss/show3.jpg" alt="Runway Show 03"></div>
+                <div class="img-wrap masonry-item"><img src="images/26ss/show5.jpg" alt="Runway Show 05"></div>
+                <div class="img-wrap masonry-item"><img src="images/26ss/show7.jpg" alt="Runway Show 07"></div>
+                <div class="img-wrap masonry-item"><img src="images/26ss/show9.jpg" alt="Runway Show 09"></div>
+                <div class="img-wrap masonry-item"><img src="images/26ss/show11.jpg" alt="Runway Show 11"></div>
             </div>
-
-            <div class="runway-column right-col">
-                <div class="img-wrap runway-item"><img src="images/26ss/show2.jpg" alt="Runway Show 02"></div>
-                <div class="img-wrap runway-item"><img src="images/26ss/show4.jpg" alt="Runway Show 04"></div>
-                <div class="img-wrap runway-item"><img src="images/26ss/show6.jpg" alt="Runway Show 06"></div>
-                <div class="img-wrap runway-item"><img src="images/26ss/show8.jpg" alt="Runway Show 08"></div>
-                <div class="img-wrap runway-item"><img src="images/26ss/show10.jpg" alt="Runway Show 10"></div>
+            <div class="masonry-column right-col">
+                <div class="img-wrap masonry-item"><img src="images/26ss/show2.jpg" alt="Runway Show 02"></div>
+                <div class="img-wrap masonry-item"><img src="images/26ss/show4.jpg" alt="Runway Show 04"></div>
+                <div class="img-wrap masonry-item"><img src="images/26ss/show6.jpg" alt="Runway Show 06"></div>
+                <div class="img-wrap masonry-item"><img src="images/26ss/show8.jpg" alt="Runway Show 08"></div>
+                <div class="img-wrap masonry-item"><img src="images/26ss/show10.jpg" alt="Runway Show 10"></div>
             </div>
-
         </div>
 
     </main>
@@ -256,7 +229,6 @@
         links.forEach(link => {
             link.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
             link.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
-            
             link.addEventListener('click', function(e) {
                 if (this.target === '_blank' || this.getAttribute('href').startsWith('mailto:')) return;
                 e.preventDefault();
@@ -266,7 +238,6 @@
             });
         });
 
-        // 유튜브 내부 작동 컨트롤 시 커서 사라짐 예외 처리
         const videoWrap = document.querySelector('.video-wrap');
         if(videoWrap) {
             videoWrap.addEventListener('mouseenter', () => { cursor.style.display = 'none'; });
