@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gyeomson Collaboration — HYEON AH KIM</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400;0,700;1,400&family=Noto+Sans+KR:wght=300;400;500&display=swap" rel="stylesheet">
     <style>
         /* 공통 스타일 및 애니메이션 */
         body {
@@ -20,7 +20,7 @@
         .custom-cursor {
             position: fixed; top: 0; left: 0; width: 12px; height: 12px;
             background-color: #fff; border-radius: 50%; pointer-events: none; 
-            z-index: 9999; transform: translate(-50%, -50%);
+            z-index: 10005; transform: translate(-50%, -50%);
             transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease; mix-blend-mode: difference; 
         }
         .custom-cursor.hover { width: 45px; height: 45px; background-color: transparent; border: 1px solid #fff; }
@@ -50,9 +50,9 @@
         .info-left p { margin-bottom: 30px; font-size: 15px; color: #ddd; }
         .info-right p { font-size: 16px; line-height: 1.8; color: #aaa; font-weight: 300; margin-top: 0; text-align: justify; }
 
-        /* 갤러리 영역 */
-        .gallery-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 40px 20px; }
-        .gallery-item { position: relative; overflow: hidden; background: transparent; }
+        /* ✨ 갤러리 영역 - 이미지가 작게 들어가도록 2열(repeat(2, 1fr)) 레이아웃으로 변경 */
+        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 30px; }
+        .gallery-item { position: relative; overflow: hidden; background: transparent; cursor: none; }
         
         /* 이미지 설정 (원본 컬러 유지, 배경 투명) */
         .gallery-item img { 
@@ -61,18 +61,54 @@
             background: transparent;
         }
         .gallery-item:hover img { transform: scale(1.02); }
-        
-        /* 레이아웃 클래스 */
-        .full { grid-column: span 12; margin-bottom: 20px; } 
 
+        /* ✨ 호버 시 이미지 위에 깔릴 은은한 어두운 딤(Dim) 레이어 */
+        .gallery-item::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4); opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+        }
+        .gallery-item:hover::after { opacity: 1; }
+
+        /* ✨ 호버 시 나타날 'click' 텍스트 스타일 */
+        .hover-label {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9);
+            font-family: monospace; font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+            color: #fff; opacity: 0; z-index: 2; transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            pointer-events: none;
+        }
+        .gallery-item:hover .hover-label { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
+
+        /* ✨ 원본보기 라이트박스 모달 스타일 */
+        .lightbox-modal {
+            display: none; position: fixed; z-index: 10000; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(11, 11, 11, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            justify-content: center; align-items: center; opacity: 0; transition: opacity 0.4s ease;
+        }
+        .lightbox-modal.show { display: flex; opacity: 1; }
+        
+        .lightbox-content {
+            max-width: 90%; max-height: 85vh; object-fit: contain;
+            transform: scale(0.95); transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+        .lightbox-modal.show .lightbox-content { transform: scale(1); }
+        
+        .lightbox-close {
+            position: absolute; top: 40px; right: 5%; color: #fff; font-size: 40px; font-weight: 200;
+            font-family: sans-serif; line-height: 1; cursor: pointer; transition: opacity 0.3s; opacity: 0.6;
+        }
+        .lightbox-close:hover { opacity: 1; }
+
+        /* 반응형 디자인 */
         @media (max-width: 768px) {
             .project-info { grid-template-columns: 1fr; gap: 30px; }
-            .gallery-grid { display: flex; flex-direction: column; gap: 30px; }
-            .full { margin-bottom: 0; }
+            .gallery-grid { grid-template-columns: 1fr; gap: 30px; } /* 모바일에서는 1열 배열 */
             .project-hero h1 { font-size: 12vw; }
             .back-btn { top: 20px; font-size: 11px; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
+            .gallery-item { cursor: auto; }
+            .lightbox-close { top: 20px; right: 20px; font-size: 32px; }
         }
     </style>
 </head>
@@ -118,34 +154,47 @@
 
         <div class="gallery-grid">
             
-            <div class="gallery-item full">
+            <div class="gallery-item">
                 <img src="images/gyeomson/neckarf01.jpg" alt="Gyeomson Floral Pattern Skyblue">
+                <div class="hover-label">click</div>
             </div>
-            <div class="gallery-item full">
+            <div class="gallery-item">
                 <img src="images/gyeomson/neckarf02.jpg" alt="Gyeomson Floral Pattern Black">
+                <div class="hover-label">click</div>
             </div>
 
-            <div class="gallery-item full">
+            <div class="gallery-item">
                 <img src="images/gyeomson/neckarf03.jpg" alt="Gyeomson Geometric Pattern Gold">
+                <div class="hover-label">click</div>
             </div>
-            <div class="gallery-item full">
+            <div class="gallery-item">
                 <img src="images/gyeomson/neckarf04.jpg" alt="Gyeomson Geometric Pattern Green">
+                <div class="hover-label">click</div>
             </div>
 
-            <div class="gallery-item full">
+            <div class="gallery-item">
                 <img src="images/gyeomson/neckarf05.jpg" alt="Gyeomson Typography Pattern Black">
+                <div class="hover-label">click</div>
             </div>
-            <div class="gallery-item full">
+            <div class="gallery-item">
                 <img src="images/gyeomson/neckarf06.jpg" alt="Gyeomson Typography Pattern Brown">
+                <div class="hover-label">click</div>
             </div>
 
-            <div class="gallery-item full">
+            <div class="gallery-item">
                 <img src="images/gyeomson/neckarf07.jpg" alt="Gyeomson Fairisle Pattern Grey">
+                <div class="hover-label">click</div>
             </div>
 
         </div>
 
     </main>
+
+    <!-- 원본 이미지 팝업용 모달 레이어 -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg" src="" alt="">
+    </div>
 
     <script>
         const cursor = document.querySelector('.custom-cursor');
@@ -167,6 +216,35 @@
                 document.body.classList.add('fade-out');
                 setTimeout(() => { window.location.href = targetUrl; }, 500); 
             });
+        });
+
+        // 라이트박스 및 이미지 클릭 이벤트 정의
+        const lightbox = document.getElementById('lightboxModal');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        galleryItems.forEach(item => {
+            // 이미지 영역에 들어갔을 때 동그란 마우스 커서 반응 연동
+            item.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
+            item.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
+            
+            // 클릭 시 해당 내부 이미지 주소를 가져와 모달 오픈
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('show');
+            });
+        });
+
+        // 닫기 액션 가이드 (버튼 클릭 / 배경 클릭 / ESC 키 타핑)
+        lightboxClose.addEventListener('click', () => { lightbox.classList.remove('show'); });
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('show'); });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('show')) {
+                lightbox.classList.remove('show');
+            }
         });
     </script>
 </body>
