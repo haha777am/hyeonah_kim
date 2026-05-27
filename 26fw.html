@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>26FW Collection — HYEON AH KIM</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         /* [1] 공통 스타일 및 애니메이션 */
         body {
@@ -17,11 +17,11 @@
         @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
         body.fade-out { opacity: 0 !important; transition: opacity 0.5s ease; }
 
-        /* 커스텀 커서 */
+        /* 커스텀 커서 (라이트박스 위로 오도록 z-index 수정) */
         .custom-cursor {
             position: fixed; top: 0; left: 0; width: 12px; height: 12px;
             background-color: #fff; border-radius: 50%; pointer-events: none; 
-            z-index: 9999; transform: translate(-50%, -50%);
+            z-index: 10005; transform: translate(-50%, -50%);
             transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
             mix-blend-mode: difference; 
         }
@@ -120,6 +120,36 @@
             width: 100%; height: auto; display: block;
         }
 
+        /* =========================================
+           ✨ [신규] 원본보기 라이트박스 모달 스타일
+           ========================================= */
+        .lightbox-modal {
+            display: none;
+            position: fixed; z-index: 10000; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(11, 11, 11, 0.95);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            justify-content: center; align-items: center;
+            opacity: 0; transition: opacity 0.4s ease;
+        }
+        .lightbox-modal.show { display: flex; opacity: 1; }
+        
+        .lightbox-content {
+            max-width: 90%; max-height: 85vh;
+            object-fit: contain;
+            transform: scale(0.95); transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+        .lightbox-modal.show .lightbox-content { transform: scale(1); }
+        
+        .lightbox-close {
+            position: absolute; top: 40px; right: 5%;
+            color: #fff; font-size: 40px; font-weight: 200;
+            font-family: sans-serif; line-height: 1; cursor: pointer;
+            transition: opacity 0.3s; opacity: 0.6;
+        }
+        .lightbox-close:hover { opacity: 1; }
+
         /* 모바일 반응형 */
         @media (max-width: 768px) {
             .project-info { grid-template-columns: 1fr; gap: 30px; }
@@ -132,6 +162,7 @@
             .custom-cursor { display: none; }
             body { cursor: auto; }
             .backstage-small-item { max-width: 80%; } 
+            .lightbox-close { top: 20px; right: 20px; font-size: 32px; }
         }
     </style>
 </head>
@@ -245,6 +276,12 @@
 
     </main>
 
+    <!-- ✨ [신규] 라이트박스 모달 구조 생성을 위한 태그 -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg" src="" alt="">
+    </div>
+
     <script>
         const cursor = document.querySelector('.custom-cursor');
         const links = document.querySelectorAll('a');
@@ -271,6 +308,47 @@
             videoWrap.addEventListener('mouseenter', () => { cursor.style.display = 'none'; });
             videoWrap.addEventListener('mouseleave', () => { cursor.style.display = 'block'; });
         }
+
+        // =========================================
+        // ✨ [신규] 라이트박스 제어 JavaScript 스크립트
+        // =========================================
+        const lightbox = document.getElementById('lightboxModal');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        // 룩북 및 런웨이 하이라이트의 격자 내 모든 이미지 수집
+        const gridImages = document.querySelectorAll('.masonry-item img');
+
+        gridImages.forEach(img => {
+            // 이미지에 마우스 올리면 커서 원형 호버 효과 제공 (클릭 가능하다는 유도 피드백)
+            img.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
+            img.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
+            
+            // 이미지 클릭 시 라이트박스 오픈
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('show');
+            });
+        });
+
+        // 닫기 버튼 클릭 시 모달 닫기
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('show');
+        });
+
+        // 모달 바깥쪽(배경) 클릭 시 닫기
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('show');
+            }
+        });
+
+        // ESC 키 입력 시 스마트 닫기 기능 추가
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('show')) {
+                lightbox.classList.remove('show');
+            }
+        });
     </script>
 </body>
 </html>
