@@ -50,9 +50,23 @@
         .info-left p { margin-bottom: 30px; font-size: 15px; color: #ddd; }
         .info-right p { font-size: 16px; line-height: 1.8; color: #aaa; font-weight: 300; margin-top: 0; text-align: justify; }
 
-        /* ✨ 갤러리 영역 - 이미지가 작게 들어가도록 2열(repeat(2, 1fr)) 레이아웃으로 변경 */
-        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 30px; }
-        .gallery-item { position: relative; overflow: hidden; background: transparent; cursor: none; }
+        /* ✨ 갤러리 영역 - 윗줄 4개, 밑줄 3개 배치를 위한 Flexbox 레이아웃 구성 */
+        .gallery-grid { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 40px 30px; 
+        }
+        
+        /* ✨ 모든 이미지 카드의 크기를 정확히 동일하게 맞추는 크기 계산 (4열 기준 간격 차감) */
+        .gallery-item { 
+            position: relative; 
+            overflow: hidden; 
+            background: transparent; 
+            cursor: none; 
+            width: calc(25% - 22.5px); 
+            box-sizing: border-box;
+        }
         
         /* 이미지 설정 (원본 컬러 유지, 배경 투명) */
         .gallery-item img { 
@@ -62,14 +76,14 @@
         }
         .gallery-item:hover img { transform: scale(1.02); }
 
-        /* ✨ 호버 시 이미지 위에 깔릴 은은한 어두운 딤(Dim) 레이어 */
+        /* 호버 시 이미지 위에 깔릴 은은한 어두운 딤(Dim) 레이어 */
         .gallery-item::after {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.4); opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
         }
         .gallery-item:hover::after { opacity: 1; }
 
-        /* ✨ 호버 시 나타날 'click' 텍스트 스타일 */
+        /* 호버 시 나타날 'click' 텍스트 스타일 */
         .hover-label {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9);
             font-family: monospace; font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
@@ -78,7 +92,7 @@
         }
         .gallery-item:hover .hover-label { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
 
-        /* ✨ 원본보기 라이트박스 모달 스타일 */
+        /* 원본보기 라이트박스 모달 스타일 */
         .lightbox-modal {
             display: none; position: fixed; z-index: 10000; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(11, 11, 11, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -102,7 +116,7 @@
         /* 반응형 디자인 */
         @media (max-width: 768px) {
             .project-info { grid-template-columns: 1fr; gap: 30px; }
-            .gallery-grid { grid-template-columns: 1fr; gap: 30px; } /* 모바일에서는 1열 배열 */
+            .gallery-item { width: 100%; } /* 모바일에서는 1열 배열로 유연하게 변환 */
             .project-hero h1 { font-size: 12vw; }
             .back-btn { top: 20px; font-size: 11px; }
             .custom-cursor { display: none; }
@@ -162,7 +176,6 @@
                 <img src="images/gyeomson/neckarf02.jpg" alt="Gyeomson Floral Pattern Black">
                 <div class="hover-label">click</div>
             </div>
-
             <div class="gallery-item">
                 <img src="images/gyeomson/neckarf03.jpg" alt="Gyeomson Geometric Pattern Gold">
                 <div class="hover-label">click</div>
@@ -180,7 +193,6 @@
                 <img src="images/gyeomson/neckarf06.jpg" alt="Gyeomson Typography Pattern Brown">
                 <div class="hover-label">click</div>
             </div>
-
             <div class="gallery-item">
                 <img src="images/gyeomson/neckarf07.jpg" alt="Gyeomson Fairisle Pattern Grey">
                 <div class="hover-label">click</div>
@@ -190,7 +202,6 @@
 
     </main>
 
-    <!-- 원본 이미지 팝업용 모달 레이어 -->
     <div class="lightbox-modal" id="lightboxModal">
         <span class="lightbox-close">&times;</span>
         <img class="lightbox-content" id="lightboxImg" src="" alt="">
@@ -218,32 +229,49 @@
             });
         });
 
-        // 라이트박스 및 이미지 클릭 이벤트 정의
+        // ===================================================
+        // ✨ [고도화] 라이트박스 및 화살표 키 네비게이션 스크립트
+        // ===================================================
         const lightbox = document.getElementById('lightboxModal');
         const lightboxImg = document.getElementById('lightboxImg');
         const lightboxClose = document.querySelector('.lightbox-close');
         const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        // 인덱스 매칭을 위해 순수 이미지 객체들을 배열로 수집
+        const allImages = Array.from(document.querySelectorAll('.gallery-item img'));
+        let currentIndex = 0;
 
-        galleryItems.forEach(item => {
-            // 이미지 영역에 들어갔을 때 동그란 마우스 커서 반응 연동
+        function updateLightbox(index) {
+            currentIndex = index;
+            lightboxImg.src = allImages[currentIndex].src;
+            lightboxImg.alt = allImages[currentIndex].alt;
+        }
+
+        galleryItems.forEach((item, index) => {
             item.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
             item.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
             
-            // 클릭 시 해당 내부 이미지 주소를 가져와 모달 오픈
             item.addEventListener('click', () => {
-                const img = item.querySelector('img');
-                lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
+                updateLightbox(index);
                 lightbox.classList.add('show');
             });
         });
 
-        // 닫기 액션 가이드 (버튼 클릭 / 배경 클릭 / ESC 키 타핑)
         lightboxClose.addEventListener('click', () => { lightbox.classList.remove('show'); });
         lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('show'); });
+        
+        // 키보드 이벤트 (ESC 닫기 + 좌우 화살표로 사진 전환)
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('show')) {
+            if (!lightbox.classList.contains('show')) return;
+
+            if (e.key === 'Escape') {
                 lightbox.classList.remove('show');
+            } else if (e.key === 'ArrowRight') {
+                const nextIndex = (currentIndex + 1) % allImages.length;
+                updateLightbox(nextIndex);
+            } else if (e.key === 'ArrowLeft') {
+                const prevIndex = (currentIndex - 1 + allImages.length) % allImages.length;
+                updateLightbox(prevIndex);
             }
         });
     </script>
