@@ -21,7 +21,7 @@
         .custom-cursor {
             position: fixed; top: 0; left: 0; width: 12px; height: 12px;
             background-color: #fff; border-radius: 50%; pointer-events: none; 
-            z-index: 9999; transform: translate(-50%, -50%);
+            z-index: 10005; transform: translate(-50%, -50%);
             transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
             mix-blend-mode: difference; 
         }
@@ -106,13 +106,13 @@
             display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 0 5%;
         }
 
-        /* SECTION 3: LOOKBOOK EDITORIAL */
+        /* ✨ SECTION 3: LOOKBOOK EDITORIAL (세로 한 줄에서 안정적인 2열 그리드로 축소 변경) */
         .grid-lookbook {
-            display: flex; flex-direction: column; gap: 60px; padding: 0 5%;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 30px; padding: 0 5%;
         }
         .lookbook-item { width: 100%; }
 
-        /* SECTION 4: RUNWAY COLLECTION (해결된 2열 컬럼 분리형 지그재그) */
+        /* SECTION 4: RUNWAY COLLECTION (2열 컬럼 분리형 지그재그) */
         .grid-runway-masonry {
             display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 0 5%; margin-top: 80px;
         }
@@ -122,23 +122,45 @@
         .runway-column.left-col .runway-item { margin-left: auto; }
         .runway-column.right-col .runway-item { margin-right: auto; }
 
+        /* ✨ 원본보기 라이트박스 모달 스타일 */
+        .lightbox-modal {
+            display: none; position: fixed; z-index: 10000; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(11, 11, 11, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            justify-content: center; align-items: center; opacity: 0; transition: opacity 0.4s ease;
+        }
+        .lightbox-modal.show { display: flex; opacity: 1; }
+        
+        .lightbox-content {
+            max-width: 90%; max-height: 85vh; object-fit: contain;
+            transform: scale(0.95); transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+        .lightbox-modal.show .lightbox-content { transform: scale(1); }
+        
+        .lightbox-close {
+            position: absolute; top: 40px; right: 5%; color: #fff; font-size: 40px; font-weight: 200;
+            font-family: sans-serif; line-height: 1; cursor: pointer; transition: opacity 0.3s; opacity: 0.6;
+        }
+        .lightbox-close:hover { opacity: 1; }
+
         /* 모바일 반응형 */
         @media (max-width: 768px) {
             .project-info { grid-template-columns: 1fr; gap: 30px; }
             .project-hero h1 { font-size: 12vw; }
             .grid-main-focus { grid-template-columns: 1fr; }
+            .grid-lookbook { grid-template-columns: 1fr; gap: 30px; } /* 모바일에서는 직관적인 1열 정렬 */
             .grid-runway-masonry { grid-template-columns: 1fr; gap: 40px; }
             .runway-column { gap: 40px; }
             .runway-column.right-col { padding-top: 0; }
             .runway-item { max-width: none; margin: 0 auto !important; }
             
-            /* 비디오 마진 조절 및 커서 예외 처리 활성화 */
             .video-section { margin: 40px 0; }
             .video-wrap { cursor: auto; }
 
             .gallery-section-title { margin: 80px 0 20px; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
+            .lightbox-close { top: 20px; right: 20px; font-size: 32px; }
         }
     </style>
 </head>
@@ -174,7 +196,7 @@
             </div>
             <div class="info-right">
                 <p>
-                    재브랜드 LIE의 25FW 컬렉션 작업에서 메인 피스 디자인 및 개발을 담당하며, 시즌 컨셉에 기반한 디자인 기획부터 샘플 완성까지의 전 과정을 수행했습니다.
+                    브랜드 LIE의 25FW 컬렉션 작업에서 메인 피스 디자인 및 개발을 담당하며, 시즌 컨셉에 기반한 디자인 기획부터 샘플 완성까지의 전 과정을 수행했습니다.
 
 도식화 및 패턴 수정, 샘플링과 핏 보완 작업을 반복하며 컬렉션 완성도를 높였고, 자재 및 디테일 개발 과정에서 프로모션 업체와의 커뮤니케이션을 진행했습니다. 또한 룩 구성과 스타일링 작업에 참여하여 시즌 무드와 브랜드 아이덴티티를 효과적으로 구현했습니다.<br><br>
 
@@ -192,7 +214,7 @@
                     title="25FW Collection Video" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     allowfullscreen>
-                </iframe>
+                </table>
             </div>
         </div>
 
@@ -201,7 +223,6 @@
             <div class="img-wrap"><img src="images/25fw/25fw_design.jpg" alt="25fw Master Design"></div>
         </div>
         
-        <!-- 🛠️ 오타 교정 및 Main Image 세션 (2열 배치 스타일 `.grid-main-focus` 적용) -->
         <div class="gallery-section-title">Main image</div>
         <div class="grid-main-focus">
             <div class="img-wrap"><img src="images/25fw/main1.jpg" alt="25fw Main 01"></div>
@@ -238,6 +259,12 @@
 
     </main>
 
+    <!-- 원본 이미지 팝업용 모달 레이어 -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg" src="" alt="">
+    </div>
+
     <script>
         const cursor = document.querySelector('.custom-cursor');
         const links = document.querySelectorAll('a');
@@ -266,6 +293,39 @@
             videoWrap.addEventListener('mouseenter', () => { cursor.style.display = 'none'; });
             videoWrap.addEventListener('mouseleave', () => { cursor.style.display = 'block'; });
         }
+
+        // ✨ 라이트박스 팝업 및 전 이미지 요소 상호작용 스크립트 정의
+        const lightbox = document.getElementById('lightboxModal');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        
+        // 페이지 내 모든 이미지 래퍼(.img-wrap)를 대상으로 설정하여 일관성 확보
+        const imgWraps = document.querySelectorAll('.img-wrap');
+
+        imgWraps.forEach(wrap => {
+            // 이미지에 마우스를 올리면 커서가 원형 크기로 자연스럽게 확대됨
+            wrap.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
+            wrap.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
+            
+            // 클릭 시 팝업 디스플레이
+            wrap.addEventListener('click', () => {
+                const img = wrap.querySelector('img');
+                if (img) {
+                    lightboxImg.src = img.src;
+                    lightboxImg.alt = img.alt;
+                    lightbox.classList.add('show');
+                }
+            });
+        });
+
+        // 모달창 닫기 이벤트 리스너 패키지 (종료 버튼 / 여백 바탕 클릭 / ESC 단축키)
+        lightboxClose.addEventListener('click', () => { lightbox.classList.remove('show'); });
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('show'); });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('show')) {
+                lightbox.classList.remove('show');
+            }
+        });
     </script>
 </body>
 </html>
