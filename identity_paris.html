@@ -50,15 +50,11 @@
         }
         .gallery-item:hover .overlay-text { opacity: 1; }
 
-        /* 영상 및 하단 포스터 레이아웃 클래스 */
-        .full { grid-column: span 12; height: auto; } /* 메인 영상 */
-        .center-half { grid-column: span 6; height: auto; display: flex; justify-content: center; }
-        .center-half img { object-fit: contain; max-height: 600px; width: 80%; background: transparent; }
-        .center-full { grid-column: span 12; height: auto; display: flex; justify-content: center; margin-bottom: 40px; }
-        .center-full img { object-fit: contain; max-height: 400px; width: 60%; }
+        /* 영상 레이아웃 클래스 */
+        .full { grid-column: span 12; height: auto; }
 
         /* =========================================
-           ✨ 숫자 사진(1~18) 전용 완벽한 지그재그 레이아웃
+            ✨ 숫자 사진(1~18) 전용 완벽한 지그재그 레이아웃
            ========================================= */
         .show-gallery-zigzag {
             display: grid;
@@ -74,6 +70,39 @@
             transform: translateY(120px); 
         }
 
+        /* =========================================
+           ✨ [신규] 하단 포스터 & 인비테이션 투명 직사각 틀 레이아웃
+           ========================================= */
+        .poster-showcase {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr; /* 포스터비율을 약간 더 넓게 균형 조절 */
+            gap: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.08); /* 은은한 투명 테두리 */
+            background: rgba(255, 255, 255, 0.02); /* 투명한 내부 배경 */
+            backdrop-filter: blur(15px); /* 고급스러운 흐림 효과 */
+            -webkit-backdrop-filter: blur(15px);
+            padding: 50px;
+            border-radius: 4px;
+            margin: 100px auto;
+            box-sizing: border-box;
+            align-items: center;
+        }
+
+        /* 오른쪽 초대장 2종을 세로로 쌓는 컨테이너 */
+        .invitation-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 35px; /* 초대장 사이 간격 */
+            justify-content: center;
+        }
+
+        /* 쇼케이스 내부의 이미지들은 비율에 맞게 contain 처리 */
+        .poster-showcase .gallery-item img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
         /* 모바일 대응 */
         @media (max-width: 768px) {
             .show-info { grid-template-columns: 1fr; }
@@ -81,8 +110,12 @@
             .show-gallery { display: flex; flex-direction: column; gap: 30px; }
             .show-gallery-zigzag { grid-template-columns: 1fr; width: 100%; gap: 30px; padding-bottom: 0; margin-bottom: 80px; }
             .show-gallery-zigzag .gallery-item:nth-child(even) { transform: translateY(0); } /* 모바일에선 지그재그 해제 */
-            .full, .center-half, .center-full { height: auto; margin: 0; width: 100%; }
-            .center-half img, .center-full img { width: 100%; max-height: auto; }
+            .full { height: auto; margin: 0; width: 100%; }
+            
+            /* 모바일 쇼케이스 최적화 */
+            .poster-showcase { grid-template-columns: 1fr; padding: 25px; gap: 30px; margin: 60px auto; }
+            .invitation-stack { gap: 25px; }
+
             .custom-cursor { display: none; }
             body { cursor: auto; }
         }
@@ -152,23 +185,24 @@
             <div class="gallery-item"><span class="overlay-text">RUNWAY 18</span><img src="images/2/18.jpg" alt="Runway 18"></div>
         </div>
 
-        <div class="show-gallery">
-            
-            <div class="gallery-item center">
-                <span class="overlay-text">AFFICHE 1</span>
+        <div class="poster-showcase">
+            <div class="gallery-item">
+                <span class="overlay-text">AFFICHE</span>
                 <img src="images/2/affiche.jpg" alt="Affiche 1">
             </div>
 
-            <div class="gallery-item center-full">
-                <span class="overlay-text">INVITATION</span>
-                <img src="images/2/invitation.jpg" alt="Invitation">
+            <div class="invitation-stack">
+                <div class="gallery-item">
+                    <span class="overlay-text">INVITATION</span>
+                    <img src="images/2/invitation.jpg" alt="Invitation">
+                </div>
+                <div class="gallery-item">
+                    <span class="overlay-text">INVITATION NORMAL</span>
+                    <img src="images/2/invitation_normal.jpg" alt="Invitation Normal">
+                </div>
             </div>
-            <div class="gallery-item center-full">
-                <span class="overlay-text">INVITATION NORMAL</span>
-                <img src="images/2/invitation_normal.jpg" alt="Invitation Normal">
-            </div>
-
         </div>
+
     </main>
 
     <script>
