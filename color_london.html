@@ -52,7 +52,6 @@
 
         /* 상하단 일반 배치용 클래스 */
         .full { grid-column: span 12; height: auto; margin-bottom: 40px; } /* 메인영상 */
-        .half { grid-column: span 6; height: auto; } /* 한 줄에 2개 (Affiche, Etude) */
         .center-small { grid-column: 4 / span 6; height: auto; margin: 0 auto; width: 100%; } /* 중앙 작게 (video1) */
         .contain-img img { object-fit: contain; max-height: 700px; background: transparent; }
 
@@ -73,13 +72,30 @@
             transform: translateY(120px); 
         }
 
+        /* =========================================
+           ✨ Affiche & Etude 레이아웃 분리 적용
+           ========================================= */
+        .affiche-row { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 5px; /* Affiche 두 개 사이 간격 아주 약간만 띄움 */
+            margin-bottom: 120px; /* 기존 gap(40px)의 3배 여백으로 아래 영상과 간격 띄움 */
+        }
+        .etude-row { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px; 
+            margin-bottom: 80px; 
+        }
+
         /* 모바일 대응 */
         @media (max-width: 768px) {
             .show-hero h1 { font-size: 10vw; }
             .show-gallery { display: flex; flex-direction: column; gap: 30px; }
             .show-gallery-zigzag { grid-template-columns: 1fr; width: 100%; gap: 30px; padding-bottom: 0; }
             .show-gallery-zigzag .gallery-item:nth-child(even) { transform: translateY(0); } /* 모바일에선 지그재그 해제 */
-            .full, .half, .center-small { height: auto; margin: 0; }
+            .affiche-row, .etude-row { grid-template-columns: 1fr; gap: 30px; margin-bottom: 60px; }
+            .full, .center-small { height: auto; margin: 0; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
         }
@@ -162,31 +178,34 @@
             <div class="gallery-item"><span class="overlay-text">RUNWAY 21</span><img src="images/3/21.jpg" alt="Runway 21"></div>
         </div>
 
-        <div class="show-gallery">
-            
-            <div class="gallery-item half contain-img">
+        <!-- ✨ Affiche 영역 분리 -->
+        <div class="affiche-row">
+            <div class="gallery-item contain-img">
                 <span class="overlay-text">AFFICHE 1</span>
                 <img src="images/3/affiche.jpg" alt="Affiche 1">
             </div>
-            <div class="gallery-item half contain-img">
+            <div class="gallery-item contain-img">
                 <span class="overlay-text">AFFICHE 2</span>
                 <img src="images/3/affiche2.jpg" alt="Affiche 2">
             </div>
+        </div>
 
-            <div class="gallery-item half">
+        <!-- ✨ Etude 영상 영역 분리 -->
+        <div class="etude-row">
+            <div class="gallery-item">
                 <span class="overlay-text">ETUDE FILM 1</span>
                 <video autoplay muted loop playsinline>
                     <source src="images/3/etude1.MP4" type="video/mp4">
                 </video>
             </div>
-            <div class="gallery-item half">
+            <div class="gallery-item">
                 <span class="overlay-text">ETUDE FILM 2</span>
                 <video autoplay muted loop playsinline>
                     <source src="images/3/etude2.MP4" type="video/mp4">
                 </video>
             </div>
-
         </div>
+        
     </main>
 
     <script>
