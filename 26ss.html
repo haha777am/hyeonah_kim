@@ -21,7 +21,7 @@
         .custom-cursor {
             position: fixed; top: 0; left: 0; width: 12px; height: 12px;
             background-color: #fff; border-radius: 50%; pointer-events: none; 
-            z-index: 9999; transform: translate(-50%, -50%);
+            z-index: 10005; transform: translate(-50%, -50%);
             transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
             mix-blend-mode: difference; 
         }
@@ -109,6 +109,27 @@
         .masonry-column.left-col .masonry-item { margin-left: auto; } /* 왼쪽 기둥 아이템은 오른쪽 정렬 */
         .masonry-column.right-col .masonry-item { margin-right: auto; } /* 오른쪽 기둥 아이템은 왼쪽 정렬 */
 
+        /* ✨ 원본보기 라이트박스 모달 스타일 추가 */
+        .lightbox-modal {
+            display: none; position: fixed; z-index: 10000; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(11, 11, 11, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            justify-content: center; align-items: center; opacity: 0; transition: opacity 0.4s ease;
+        }
+        .lightbox-modal.show { display: flex; opacity: 1; }
+        
+        .lightbox-content {
+            max-width: 90%; max-height: 85vh; object-fit: contain;
+            transform: scale(0.95); transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+        .lightbox-modal.show .lightbox-content { transform: scale(1); }
+        
+        .lightbox-close {
+            position: absolute; top: 40px; right: 5%; color: #fff; font-size: 40px; font-weight: 200;
+            font-family: sans-serif; line-height: 1; cursor: pointer; transition: opacity 0.3s; opacity: 0.6;
+        }
+        .lightbox-close:hover { opacity: 1; }
+
         /* 모바일 반응형 */
         @media (max-width: 768px) {
             .project-info { grid-template-columns: 1fr; gap: 30px; }
@@ -121,6 +142,7 @@
             .gallery-section-title { margin: 80px 0 20px; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
+            .lightbox-close { top: 20px; right: 20px; font-size: 32px; }
         }
     </style>
 </head>
@@ -221,6 +243,12 @@
 
     </main>
 
+    <!-- 원본 이미지 팝업용 모달 레이어 -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg" src="" alt="">
+    </div>
+
     <script>
         const cursor = document.querySelector('.custom-cursor');
         const links = document.querySelectorAll('a');
@@ -247,6 +275,39 @@
             videoWrap.addEventListener('mouseenter', () => { cursor.style.display = 'none'; });
             videoWrap.addEventListener('mouseleave', () => { cursor.style.display = 'block'; });
         }
+
+        // ✨ 라이트박스 및 룩북/쇼 이미지 클릭 이벤트 처리
+        const lightbox = document.getElementById('lightboxModal');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        
+        // 룩북과 런웨이 하이라이트에 포함된 모든 이미지 랩 선택
+        const targetImages = document.querySelectorAll('.masonry-item');
+
+        targetImages.forEach(item => {
+            // 이미지에 마우스 올렸을 때 커스텀 커서 호버 상태(원 확대) 적용
+            item.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
+            item.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
+            
+            // 이미지 클릭 시 라이트박스 팝업 생성
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                if (img) {
+                    lightboxImg.src = img.src;
+                    lightboxImg.alt = img.alt;
+                    lightbox.classList.add('show');
+                }
+            });
+        });
+
+        // 팝업 닫기 이벤트 핸들러 (X 버튼 클릭 / 딤 배경 클릭 / ESC 키 입력)
+        lightboxClose.addEventListener('click', () => { lightbox.classList.remove('show'); });
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('show'); });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('show')) {
+                lightbox.classList.remove('show');
+            }
+        });
     </script>
 </body>
 </html>
