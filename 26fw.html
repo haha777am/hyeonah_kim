@@ -44,11 +44,10 @@
 
         /* [3] 상세 페이지 레이아웃 */
         .project-container {
-            padding: 150px 0 100px; /* 좌우 여백을 없애서 이미지가 꽉 차게 준비 */
-            max-width: 1400px; margin: 0 auto;
+            padding: 150px 0 100px;
+            max-width: 1300px; margin: 0 auto;
         }
 
-        /* 텍스트 영역 (여백 유지) */
         .project-hero, .project-info {
             padding-left: 5%; padding-right: 5%;
         }
@@ -60,39 +59,83 @@
         .project-info {
             display: grid; grid-template-columns: 1fr 2fr; gap: 60px;
             border-top: 1px solid #222; border-bottom: 1px solid #222;
-            padding: 60px 5%; margin-bottom: 100px;
+            padding: 60px 5%; margin-bottom: 80px;
         }
         .info-left h3 { font-family: monospace; font-size: 14px; color: #666; margin-bottom: 10px; letter-spacing: 2px;}
         .info-left p { margin-bottom: 30px; font-size: 15px; color: #ddd; }
         .info-right p { font-size: 16px; line-height: 1.8; color: #aaa; font-weight: 300; margin-top: 0; text-align: justify; }
 
-        /* [4] PDF 스타일 갤러리 (틈 없이 연결) */
-        .gallery-seamless {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            gap: 0; /* 이미지 사이 간격 0 */
+        /* 🎬 유튜브 비디오 컨테이너 */
+        .video-section { padding: 0 5%; margin: 80px 0; }
+        .video-wrap {
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0; background: #000;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
         }
-        
-        .gallery-item {
-            width: 100%;
-            overflow: hidden;
-            background: #fff; /* 작업지시서 배경색과 통일 */
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            display: block; /* 이미지 하단 미세 여백 제거 핵심 */
-            border: none;
-            outline: none;
+        .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        /* 섹션 타이틀 */
+        .gallery-section-title {
+            font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: 3px;
+            color: #555; padding: 0 5%; margin: 120px 0 40px; text-transform: uppercase;
         }
 
+        /* 이미지 공통 스타일 */
+        .img-wrap { overflow: hidden; background: #fff; display: block; }
+        .img-wrap img { width: 100%; height: auto; display: block; transition: transform 0.6s ease; }
+        .img-wrap:hover img { transform: scale(1.02); }
+
+        /* 디자인 공간 */
+        .design-master-piece { padding: 0 5%; margin-bottom: 20px; }
+        
+        /* 메인 이미지 (기존 스타일 유지, HTML에서 사용 안 함) */
+        .grid-main-focus { padding: 0 5%; margin-bottom: 20px; }
+
+        /* ✨ 지그재그(Masonry) 공통 레이아웃 스타일 */
+        .masonry-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 0 5%; margin-top: 80px;
+        }
+        .masonry-column { display: flex; flex-direction: column; gap: 100px; }
+        .masonry-column.right-col { padding-top: 250px; } /* 오른쪽 기둥 내리기 (지그재그 핵심) */
+        
+        .masonry-item { 
+            width: 100%; max-width: 480px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+        }
+        .masonry-column.left-col .masonry-item { margin-left: auto; } /* 왼쪽 기둥 아이템은 오른쪽 정렬 */
+        .masonry-column.right-col .masonry-item { margin-right: auto; } /* 오른쪽 기둥 아이템은 왼쪽 정렬 */
+
+        /* ✨ 젤 밑에 작게 중앙 정렬 백스테이지 스타일 */
+        .backstage-bottom-section {
+            display: flex;
+            justify-content: center; /* 가로 중앙 */
+            align-items: center;
+            padding: 120px 5% 60px; /* 상단 여백 크게, 하단 여백 */
+            border-top: 1px solid #222; /* 위에 구분선 추가 */
+        }
+        
+        .backstage-small-item {
+            width: 100%;
+            max-width: 300px; /* 작게 정의 */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: #000; /* 액자 효과 */
+            padding: 5px; /* 액자 테두리 */
+        }
+        .backstage-small-item img {
+            width: 100%; height: auto; display: block;
+        }
+
+        /* 모바일 반응형 */
         @media (max-width: 768px) {
             .project-info { grid-template-columns: 1fr; gap: 30px; }
             .project-hero h1 { font-size: 12vw; }
+            .masonry-grid { grid-template-columns: 1fr; gap: 40px; }
+            .masonry-column { gap: 40px; }
+            .masonry-column.right-col { padding-top: 0; }
+            .masonry-item { max-width: none; margin: 0 auto !important; }
+            .gallery-section-title { margin: 80px 0 20px; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
+            .backstage-small-item { max-width: 200px; } /* 모바일에서 더 작게 */
         }
     </style>
 </head>
@@ -114,35 +157,98 @@
         
         <div class="project-hero">
             <h1>26FW Collection</h1>
-            <div class="project-meta">LIE / Apparel Planning & Production</div>
+            <div class="project-meta">Dynamic Fluidity & Organic Form</div>
         </div>
 
         <div class="project-info">
             <div class="info-left">
                 <h3>ROLE</h3>
-                <p>Fashion Designer</p>
+                <p>Fashion Designer & Creative Director</p>
                 <h3>YEAR</h3>
                 <p>2026</p>
                 <h3>CATEGORY</h3>
-                <p>Design, Sampling, Tech Pack</p>
+                <p>Runway, Tech Pack, Sampling</p>
             </div>
             <div class="info-right">
                 <p>
-                    LIE 26FW 컬렉션의 주요 피스 디자인 및 샘플링을 진행했습니다. 자수 디테일이 가미된 점퍼와 레이어링 팬츠, 그리고 트임 디테일 셔츠의 소재 선정부터 도식화, 핏 수정까지의 전 과정을 핸들링했습니다.<br><br>
-                    스트라이프와 솔리드 원단을 배색하고, 플라스틱 스토퍼 등 부자재를 활용하여 브랜드 특유의 유니크한 디테일을 살렸으며, 하프 바라클라바와 베스트 세트 기획을 통해 시즌 트렌드를 반영한 니트 웨어를 제안했습니다.
+                    브랜드 LIE의 26FW 컬렉션 작업에서 시즌 컨셉을 기반으로 메인 피스 디자인과 디벨롭 전반을 담당했습니다. 디자인 기획 단계부터 샘플 개발, 디테일 수정 및 완성도 보완 과정까지 주도적으로 진행하며 컬렉션의 방향성을 구현했습니다.<br><br>
+                    
+                    도식화 및 패턴 수정, 샘플링과 핏 보완 작업을 반복하며 실루엣과 착용감을 발전시켰고, 소재와 부자재 선정 및 제작 커뮤니케이션을 통해 컬렉션 완성도를 높였습니다. 또한 룩 구성과 스타일링 작업에 참여하여 시즌 무드와 브랜드 아이덴티티가 효과적으로 전달될 수 있도록 기여했습니다.<br><br>
+
+                    컬렉션 전반의 균형과 디테일 완성도를 고려한 디자인 디벨롭과 실질적인 제작 운영을 병행하며, 런웨이와 비주얼 결과물의 완성도를 높이는 데 집중했습니다.
                 </p>
             </div>
         </div>
 
-        <div class="gallery-seamless">
-            <div class="gallery-item"><img src="images/2026fw/1.jpg" alt="Work 01"></div>
-            <div class="gallery-item"><img src="images/2026fw/2.jpg" alt="Work 02"></div>
-            <div class="gallery-item"><img src="images/2026fw/3.jpg" alt="Work 03"></div>
-            <div class="gallery-item"><img src="images/2026fw/4.jpg" alt="Work 04"></div>
-            <div class="gallery-item"><img src="images/2026fw/5.jpg" alt="Work 05"></div>
-            <div class="gallery-item"><img src="images/2026fw/6.jpg" alt="Work 06"></div>
-            <div class="gallery-item"><img src="images/2026fw/7.jpg" alt="Work 07"></div>
-            <div class="gallery-item"><img src="images/2026fw/8.jpg" alt="Work 08"></div>
+        <div class="gallery-section-title">Runway & Campaign Video</div>
+        <div class="video-section">
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/6EX8ADlGAjs" title="26FW Collection Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="gallery-section-title">Technical Flat</div>
+        <div class="design-master-piece">
+                  <div class="img-wrap"><img src="images/26fw/26fw_design_01.jpg" alt="26fw tech 01"></div>
+                  <div class="img-wrap"><img src="images/26fw/26fw_design_02.jpg" alt="26fw tech 02"></div>
+        </div>
+        
+        <!-- [수정] Main image (기존 위치) 섹션 삭제 -->
+
+        <div class="gallery-section-title">Lookbook Editorial</div>
+        <div class="masonry-grid">
+            <div class="masonry-column left-col">
+                <div class="img-wrap masonry-item"><img src="images/26fw/26fw_lookbook-01.jpg" alt="Lookbook 01"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/26fw_lookbook-03.jpg" alt="Lookbook 03"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/26fw_lookbook-05.jpg" alt="Lookbook 05"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/26fw_lookbook-07.jpg" alt="Lookbook 07"></div>
+            </div>
+            <div class="masonry-column right-col">
+                <div class="img-wrap masonry-item"><img src="images/26fw/26fw_lookbook-02.jpg" alt="Lookbook 02"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/26fw_lookbook-04.jpg" alt="Lookbook 04"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/26fw_lookbook-06.jpg" alt="Lookbook 06"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/26fw_lookbook-08.jpg" alt="Lookbook 08"></div>
+            </div>
+        </div>
+
+        <div class="gallery-section-title">Runway Highlights</div>
+        <div class="masonry-grid">
+            <div class="masonry-column left-col">
+                <div class="img-wrap masonry-item"><img src="images/26fw/01.jpg" alt="Runway Show 01"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/03.jpg" alt="Runway Show 03"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/05.jpg" alt="Runway Show 05"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/07.jpg" alt="Runway Show 07"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/09.jpg" alt="Runway Show 09"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/11.jpg" alt="Runway Show 11"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/12.jpg" alt="Runway Show 12"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/14.jpg" alt="Runway Show 14"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/16.jpg" alt="Runway Show 16"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/18.jpg" alt="Runway Show 18"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/20.jpg" alt="Runway Show 20"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/22.jpg" alt="Runway Show 22"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/24.jpg" alt="Runway Show 24"></div>
+            </div>
+            <div class="masonry-column right-col">
+                <div class="img-wrap masonry-item"><img src="images/26fw/02.jpg" alt="Runway Show 02"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/04.jpg" alt="Runway Show 04"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/06.jpg" alt="Runway Show 06"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/08.jpg" alt="Runway Show 08"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/10.jpg" alt="Runway Show 10"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/11_2.jpg" alt="Runway Show 11_2"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/13.jpg" alt="Runway Show 13"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/15.jpg" alt="Runway Show 15"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/17.jpg" alt="Runway Show 17"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/19.jpg" alt="Runway Show 19"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/21.jpg" alt="Runway Show 21"></div>
+                <div class="img-wrap masonry-item"><img src="images/26fw/23.jpg" alt="Runway Show 23"></div>
+            </div>
+        </div>
+
+        <!-- ✨ [추가] 젤 밑에 작게 중앙 정렬 백스테이지 섹션 -->
+        <div class="backstage-bottom-section">
+            <div class="backstage-small-item">
+                <img src="images/26fw/backstage.jpg" alt="26fw Backstage Behind the Scenes">
+            </div>
         </div>
 
     </main>
@@ -159,7 +265,6 @@
         links.forEach(link => {
             link.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
             link.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
-            
             link.addEventListener('click', function(e) {
                 if (this.target === '_blank' || this.getAttribute('href').startsWith('mailto:')) return;
                 e.preventDefault();
@@ -168,6 +273,12 @@
                 setTimeout(() => { window.location.href = targetUrl; }, 500); 
             });
         });
+
+        const videoWrap = document.querySelector('.video-wrap');
+        if(videoWrap) {
+            videoWrap.addEventListener('mouseenter', () => { cursor.style.display = 'none'; });
+            videoWrap.addEventListener('mouseleave', () => { cursor.style.display = 'block'; });
+        }
     </script>
 </body>
 </html>
