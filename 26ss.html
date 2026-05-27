@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>26SS Collection — HYEON AH KIM</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400;0,700;1,400&family=Noto+Sans+KR:wght=300;400;500&display=swap" rel="stylesheet">
     <style>
         /* [1] 공통 스타일 및 애니메이션 */
         body {
@@ -276,36 +276,73 @@
             videoWrap.addEventListener('mouseleave', () => { cursor.style.display = 'block'; });
         }
 
-        // ✨ 라이트박스 및 룩북/쇼 이미지 클릭 이벤트 처리
+        // ===================================================
+        // ✨ [고도화] 라이트박스 및 화살표 키 네비게이션 스크립트
+        // ===================================================
         const lightbox = document.getElementById('lightboxModal');
         const lightboxImg = document.getElementById('lightboxImg');
         const lightboxClose = document.querySelector('.lightbox-close');
         
-        // 룩북과 런웨이 하이라이트에 포함된 모든 이미지 랩 선택
-        const targetImages = document.querySelectorAll('.masonry-item');
+        // 대상 이미지 요소를 배열로 가져오기
+        const targetItems = Array.from(document.querySelectorAll('.masonry-item'));
+        let currentIndex = 0;
 
-        targetImages.forEach(item => {
-            // 이미지에 마우스 올렸을 때 커스텀 커서 호버 상태(원 확대) 적용
+        // 💡 지그재그 구조에서 뒤섞인 DOM 순서를 파일명 숫자 정렬로 바로잡기 (Lookbook 1~9 순서 정렬, Show 1~11 순서 정렬)
+        targetItems.sort((a, b) => {
+            const srcA = a.querySelector('img').getAttribute('src');
+            const srcB = b.querySelector('img').getAttribute('src');
+            
+            const isShowA = srcA.includes('show');
+            const isShowB = srcB.includes('show');
+            
+            // 다른 섹션일 경우 Lookbook을 우선 배치
+            if (isShowA !== isShowB) {
+                return isShowA ? 1 : -1;
+            }
+            
+            // 같은 섹션 내에서는 파일명 끝에 붙은 숫자 크기대로 순서 정렬
+            const numA = parseInt(srcA.match(/(\d+)\./)[1]);
+            const numB = parseInt(srcB.match(/(\d+)\./)[1]);
+            return numA - numB;
+        });
+
+        // 라이트박스 콘텐츠 교체 함수
+        function updateLightbox(index) {
+            currentIndex = index;
+            const img = targetItems[currentIndex].querySelector('img');
+            if (img) {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+            }
+        }
+
+        // 클릭 및 마우스 호버 이벤트 설정
+        targetItems.forEach((item, index) => {
             item.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
             item.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
             
-            // 이미지 클릭 시 라이트박스 팝업 생성
             item.addEventListener('click', () => {
-                const img = item.querySelector('img');
-                if (img) {
-                    lightboxImg.src = img.src;
-                    lightboxImg.alt = img.alt;
-                    lightbox.classList.add('show');
-                }
+                updateLightbox(index);
+                lightbox.classList.add('show');
             });
         });
 
-        // 팝업 닫기 이벤트 핸들러 (X 버튼 클릭 / 딤 배경 클릭 / ESC 키 입력)
+        // 팝업 닫기 이벤트 핸들러 (X 버튼 클릭 / 딤 배경 클릭)
         lightboxClose.addEventListener('click', () => { lightbox.classList.remove('show'); });
         lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('show'); });
+        
+        // ⌨️ 키보드 내비게이션 (ESC 닫기 + 좌우 화살표 키 순환 기능)
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('show')) {
+            if (!lightbox.classList.contains('show')) return;
+
+            if (e.key === 'Escape') {
                 lightbox.classList.remove('show');
+            } else if (e.key === 'ArrowRight') {
+                const nextIndex = (currentIndex + 1) % targetItems.length;
+                updateLightbox(nextIndex);
+            } else if (e.key === 'ArrowLeft') {
+                const prevIndex = (currentIndex - 1 + targetItems.length) % targetItems.length;
+                updateLightbox(prevIndex);
             }
         });
     </script>
