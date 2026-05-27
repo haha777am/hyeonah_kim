@@ -21,7 +21,7 @@
         .custom-cursor {
             position: fixed; top: 0; left: 0; width: 12px; height: 12px;
             background-color: #fff; border-radius: 50%; pointer-events: none; 
-            z-index: 9999; transform: translate(-50%, -50%);
+            z-index: 10005; transform: translate(-50%, -50%);
             transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
             mix-blend-mode: difference; 
         }
@@ -91,9 +91,10 @@
             color: #555; padding: 0 5%; margin: 120px 0 40px; text-transform: uppercase;
         }
 
-        /* 이미지 기본 공통 스타일 */
+        /* 이미지 기본 공통 스타일 및 부드러운 호버 효과 */
         .img-wrap { overflow: hidden; background: #fff; display: block; }
-        .img-wrap img { width: 100%; height: auto; display: block; }
+        .img-wrap img { width: 100%; height: auto; display: block; transition: transform 0.6s ease; }
+        .img-wrap:hover img { transform: scale(1.02); }
 
         /* SECTION 1: TECH PACK & GOODS DESIGN */
         .design-master-piece {
@@ -111,13 +112,13 @@
             object-fit: cover; width: 100%; height: 100%;
         }
 
-        /* SECTION 2: LOOKBOOK EDITORIAL */
+        /* ✨ SECTION 2: LOOKBOOK EDITORIAL (세로 한 줄에서 안정적인 2열 그리드로 축소 변경) */
         .grid-lookbook {
-            display: flex; flex-direction: column; gap: 60px; padding: 0 5%;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 30px; padding: 0 5%;
         }
         .lookbook-item { width: 100%; }
 
-        /* ✨ [해결] SECTION 3: RUNWAY COLLECTION (2열 컬럼 분리형 메이슨리 구조) */
+        /* SECTION 3: RUNWAY COLLECTION (2열 컬럼 분리형 메이슨리 구조) */
         .grid-runway-masonry {
             display: grid;
             grid-template-columns: 1fr 1fr; /* 좌측 기둥, 우측 기둥 반반 분리 */
@@ -151,6 +152,27 @@
             transform: translateY(-10px);
         }
 
+        /* ✨ 원본보기 라이트박스 모달 스타일 */
+        .lightbox-modal {
+            display: none; position: fixed; z-index: 10000; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(11, 11, 11, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            justify-content: center; align-items: center; opacity: 0; transition: opacity 0.4s ease;
+        }
+        .lightbox-modal.show { display: flex; opacity: 1; }
+        
+        .lightbox-content {
+            max-width: 90%; max-height: 85vh; object-fit: contain;
+            transform: scale(0.95); transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+        .lightbox-modal.show .lightbox-content { transform: scale(1); }
+        
+        .lightbox-close {
+            position: absolute; top: 40px; right: 5%; color: #fff; font-size: 40px; font-weight: 200;
+            font-family: sans-serif; line-height: 1; cursor: pointer; transition: opacity 0.3s; opacity: 0.6;
+        }
+        .lightbox-close:hover { opacity: 1; }
+
         /* [5] 모바일 반응형 */
         @media (max-width: 768px) {
             .project-info { grid-template-columns: 1fr; gap: 30px; }
@@ -162,6 +184,7 @@
             .video-section { margin: 40px 0; }
             
             /* 모바일은 1열로 펴주기 */
+            .grid-lookbook { grid-template-columns: 1fr; gap: 30px; }
             .grid-runway-masonry { grid-template-columns: 1fr; gap: 40px; }
             .runway-column { gap: 40px; }
             .runway-column.right-col { padding-top: 0; }
@@ -173,6 +196,7 @@
             .gallery-section-title { margin: 80px 0 20px; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
+            .lightbox-close { top: 20px; right: 20px; font-size: 32px; }
         }
     </style>
 </head>
@@ -217,7 +241,7 @@
             </div>
         </div>
 
-        <!-- ✨ [추천 위치] 컬렉션 소개 직후 런웨이 영상 매립 -->
+        <!-- 🎬 컬렉션 소개 직후 런웨이 영상 매립 -->
         <div class="gallery-section-title">Runway Fashion Show</div>
         <div class="video-section">
             <div class="video-wrap">
@@ -274,6 +298,12 @@
 
     </main>
 
+    <!-- 원본 이미지 팝업용 모달 레이어 -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg" src="" alt="">
+    </div>
+
     <script>
         const cursor = document.querySelector('.custom-cursor');
         const links = document.querySelectorAll('a');
@@ -302,6 +332,39 @@
             videoWrap.addEventListener('mouseenter', () => { cursor.style.display = 'none'; });
             videoWrap.addEventListener('mouseleave', () => { cursor.style.display = 'block'; });
         }
+
+        // ✨ 라이트박스 팝업 및 전체 이미지 상호작용 스크립트
+        const lightbox = document.getElementById('lightboxModal');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        
+        // 페이지 내부의 모든 이미지 래퍼(.img-wrap)를 타겟팅
+        const imgWraps = document.querySelectorAll('.img-wrap');
+
+        imgWraps.forEach(wrap => {
+            // 이미지에 호버할 때 마우스 커서가 커지도록 바인딩
+            wrap.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
+            wrap.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
+            
+            // 이미지 클릭 시 라이트박스 팝업 활성화
+            wrap.addEventListener('click', () => {
+                const img = wrap.querySelector('img');
+                if (img) {
+                    lightboxImg.src = img.src;
+                    lightboxImg.alt = img.alt;
+                    lightbox.classList.add('show');
+                }
+            });
+        });
+
+        // 모달창 닫기 제어 패키지 (X 버튼 클릭 / 여백 클릭 / ESC 키 입력)
+        lightboxClose.addEventListener('click', () => { lightbox.classList.remove('show'); });
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('show'); });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('show')) {
+                lightbox.classList.remove('show');
+            }
+        });
     </script>
 </body>
 </html>
