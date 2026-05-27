@@ -82,9 +82,10 @@
         .item-main { display: flex; flex-direction: column; }
         .item-title { 
             font-family: 'Playfair Display', serif; font-size: 24px; 
-            line-height: 1.2; transition: 0.4s; display: block; margin-bottom: 10px;
+            line-height: 1.2; transition: color 0.4s ease; display: block; margin-bottom: 10px;
         }
-        .archive-item:hover .item-title { font-style: italic; color: #a68d60; }
+        /* ✨ 수정된 부분: 호버 시 이탤릭체 제거하고 색상만 변경 ✨ */
+        .archive-item:hover .item-title { color: #a68d60; }
         
         .item-location { font-family: monospace; color: #888; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
         .item-year { font-family: 'Playfair Display', serif; color: #555; font-size: 15px; margin-top: 15px; font-weight: 700; }
@@ -155,8 +156,8 @@
 
             <a href="identity_paris.html" class="archive-item">
                 <div class="preview">
-                    <img src="images/2/01.jpg" alt="Identity Static" class="photo-static">
-                    <img src="images/2/03.jpg" alt="Identity Hover" class="photo-hover">
+                    <img src="images/2/03.jpg" alt="Identity Static" class="photo-static">
+                    <img src="images/2/01.jpg" alt="Identity Hover" class="photo-hover">
                 </div>
                 <div class="item-main">
                     <span class="item-title">Focus: Identity</span>
@@ -192,6 +193,14 @@
         links.forEach(link => {
             link.addEventListener('mouseenter', () => { cursor.classList.add('hover'); });
             link.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); });
+            link.addEventListener('click', function(e) {
+                // 페이지 이동 시 페이드 아웃 효과 추가 (옵션)
+                if (this.target === '_blank' || this.getAttribute('href').startsWith('mailto:')) return;
+                e.preventDefault();
+                const targetUrl = this.href;
+                document.body.classList.add('fade-out');
+                setTimeout(() => { window.location.href = targetUrl; }, 500); 
+            });
         });
     </script>
 </body>
