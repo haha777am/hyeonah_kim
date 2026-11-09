@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <meta property="og:type" content="website">
-    <meta property="og:title" content="HYEON AH KIM — CREATIVE DIRECTION">
+    <meta property="og:title" content="HYEON AH KIM — Fashion Designer">
     <meta property="og:description" content="Fashion Designer & Art Show Director. Archive / Structure / Reconstruction.">
     <meta property="og:image" content="https://haha777am.github.io/hyeonah_kim/images/main-focus.jpg">
     <meta property="og:url" content="https://haha777am.github.io/hyeonah_kim/">
     
     <meta name="twitter:card" content="summary_large_image">
     
-    <title>HYEON AH KIM — ARCHIVE</title>
+    <title>HYEON AH KIM — Fashion Designer</title>
+    <meta name="description" content="Hyeon Ah Kim — Fashion Designer &amp; Art Show Director. 시즌 컨셉 기획부터 샘플링, 생산까지. Archive / Structure / Reconstruction.">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <style>
         /* [1] CSS 초기화 및 공통 스타일 */
@@ -121,7 +122,39 @@
             .custom-cursor { display: none; }
             body { cursor: auto; }
         }
+
+        /* [5] 홈 추가: 소개 문구 / 버튼 / 대표작 */
+        .main-intro { height: auto; min-height: 100vh; box-sizing: border-box; padding-top: 110px; padding-bottom: 60px; }
+        .intro-bio { margin: 28px 0 0 auto; max-width: 420px; text-align: left; word-break: keep-all; font-size: 14px; line-height: 1.9; font-weight: 300; color: #aaa; }
+        .intro-bio span { display: block; margin-top: 8px; color: #666; font-size: 13px; }
+        .intro-cta { display: flex; gap: 12px; margin-top: 28px; justify-content: flex-end; }
+        .btn { display: inline-block; padding: 12px 28px; border-radius: 50px; font-family: monospace; font-size: 12px; letter-spacing: 2px; text-decoration: none; color: #000; background: #fff; border: 1px solid #fff; transition: 0.4s; }
+        .btn:hover { background: transparent; color: #fff; }
+        .btn.ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.3); }
+        .btn.ghost:hover { border-color: #fff; }
+
+        .home-works { padding: 60px 10% 0; max-width: 1600px; margin: 0 auto; box-sizing: border-box; }
+        .home-works-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 30px; }
+        .home-works-head h2 { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 32px; margin: 0; letter-spacing: -1px; }
+        .text-link { font-family: monospace; font-size: 12px; letter-spacing: 2px; color: #888; text-decoration: none; transition: 0.3s; }
+        .text-link:hover { color: #fff; }
+        .home-works-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 15px; }
+        .home-card { display: block; text-decoration: none; color: #fff; }
+        .home-card .thumb { display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #111; }
+        .home-card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), filter 0.8s ease; }
+        .home-card:hover img { transform: scale(1.05); filter: grayscale(0%); }
+        .hc-title { display: block; margin-top: 14px; font-family: 'Playfair Display', serif; font-size: 20px; }
+        .hc-meta { display: block; margin-top: 4px; font-family: monospace; font-size: 11px; letter-spacing: 1px; color: #666; text-transform: uppercase; }
+
+        @media (max-width: 768px) {
+            .main-intro { padding: 120px 10% 60px; }
+            .intro-bio { margin-left: auto; margin-right: auto; text-align: center; }
+            .intro-cta { justify-content: center; }
+            .home-works { padding: 40px 5% 0; }
+            .home-works-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+        }
     </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -129,7 +162,7 @@
 
     <header>
         <div class="nav-capsule">
-            <a href="index.html" class="active">HOME</a>
+            <a href="index.html" class="active" aria-current="page">HOME</a>
             <a href="work.html">WORK</a>
             <a href="artshow.html">ART SHOW</a>
             <a href="collab.html">COLLAB</a>
@@ -144,7 +177,7 @@
         </div>
         
         <div class="intro-right fade-in" style="animation-delay: 0.3s;">
-            <a href="cv.html" class="video-wrap">
+            <a href="cv.html" class="video-wrap" aria-label="C.V 보기">
                 <video autoplay muted loop playsinline>
                     <source src="images/3/etude1.MP4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -154,8 +187,46 @@
                 Archive / Structure / Reconstruction<br>
                 아카이브 / 구조 / 재구성<br>
             </p>
+            <p class="intro-bio">
+                시즌 컨셉 기획부터 샘플링, 생산까지 컬렉션 전 과정을 담당하는 패션 디자이너입니다.
+                파리 Studio Berçot에서 패션 디자인과 아티스틱 디렉션을 공부했고, 아트쇼 디렉터로 전시형 패션쇼를 4회 기획했습니다.
+                <span>Fashion designer handling collections from concept to production. Studio Berçot, Paris.</span>
+            </p>
+            <div class="intro-cta">
+                <a href="work.html" class="btn">VIEW WORK</a>
+                <a href="cv.html" class="btn ghost">C.V</a>
+            </div>
         </div>
     </main>
+
+    <section class="home-works">
+        <div class="home-works-head">
+            <h2>Selected Works</h2>
+            <a href="work.html" class="text-link">VIEW ALL →</a>
+        </div>
+        <div class="home-works-grid">
+            <a href="26fw.html" class="home-card">
+                <span class="thumb"><img src="images/26fw/main.jpg" alt="26FW Collection" loading="lazy" decoding="async"></span>
+                <span class="hc-title">26FW Collection</span>
+                <span class="hc-meta">Runway, Tech Pack, Sampling — 2026</span>
+            </a>
+            <a href="26ss.html" class="home-card">
+                <span class="thumb"><img src="images/26ss/main.jpg" alt="26SS Collection" loading="lazy" decoding="async"></span>
+                <span class="hc-title">26SS Collection</span>
+                <span class="hc-meta">Runway, Tech Pack, Sampling — 2026</span>
+            </a>
+            <a href="25fw.html" class="home-card">
+                <span class="thumb"><img src="images/25fw/main.jpg" alt="25FW Collection" loading="lazy" decoding="async"></span>
+                <span class="hc-title">25FW Collection</span>
+                <span class="hc-meta">Runway, Tech Pack, Sampling — 2025</span>
+            </a>
+            <a href="24fw.html" class="home-card">
+                <span class="thumb"><img src="images/24fw/24fw_look7.jpg" alt="24FW Collection" loading="lazy" decoding="async"></span>
+                <span class="hc-title">24FW Collection</span>
+                <span class="hc-meta">Runway, Art Direction, Lookbook — 2024</span>
+            </a>
+        </div>
+    </section>
 
     <script>
         const cursor = document.querySelector('.custom-cursor');
@@ -195,5 +266,6 @@
             }
         });
     </script>
+    <script src="site.js"></script>
 </body>
 </html>
