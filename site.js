@@ -5,7 +5,7 @@
     /* ▼▼▼ 여기만 채우면 사이트 전체에 연락처가 반영돼요 ▼▼▼ */
     var SITE = {
         email: 'p_oiuytrewq@naver.com',          // 예: 'name@example.com'  → 푸터·C.V·연락 폼에 연결돼요 (비우면 이메일 링크는 숨겨져요)
-        formEndpoint: '',   // Formspree 같은 폼 주소 (비워두면 보내기 버튼이 이메일 앱을 열어줘요)
+        formEndpoint: 'https://formspree.io/f/xeaayaao',   // Formspree 같은 폼 주소 (비워두면 보내기 버튼이 이메일 앱을 열어줘요)
         instagram: 'https://instagram.com/corde.ah'
     };
     /* ▲▲▲ ----------------------------------------------- ▲▲▲ */
@@ -21,6 +21,14 @@
         if (!SITE.email) return;
         el.setAttribute('href', 'mailto:' + SITE.email);
         el.removeAttribute('hidden');
+    });
+
+    // 인쇄용 연락처 한 줄 (이메일 · 인스타그램)
+    document.querySelectorAll('[data-print-contact]').forEach(function (el) {
+        var parts = [];
+        if (SITE.email) parts.push(SITE.email);
+        if (SITE.instagram) parts.push('@' + SITE.instagram.replace(/\/+$/, '').split('/').pop());
+        el.textContent = parts.join('  ·  ');
     });
 
     // [data-print] 요소: 누르면 인쇄/PDF 저장 창 열기

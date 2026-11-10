@@ -63,6 +63,11 @@ textarea:focus-visible {
 .site-footer a { color: #888; text-decoration: none; transition: color 0.3s; }
 .site-footer a:hover { color: #fff; }
 
+/* 콜라보 페이지: 컬러별 소제목 */
+.color-title { font-family: 'Playfair Display', serif; font-size: 28px; letter-spacing: -0.5px; margin-top: 30px; padding-top: 30px; border-top: 1px solid #1d1d1d; color: #fff; }
+.color-title span { font-family: monospace; font-size: 12px; letter-spacing: 3px; color: #a68d60; margin-right: 12px; text-transform: uppercase; vertical-align: middle; }
+.hd-scarf img { max-width: 900px; margin: 0 auto; }
+
 /* C.V 의 PDF 저장 링크 */
 .cv-pdf {
     display: inline-block;
@@ -86,17 +91,39 @@ textarea:focus-visible {
     .site-footer { flex-direction: column; align-items: flex-start; margin-top: 60px; }
 }
 
-/* C.V 를 인쇄/PDF 로 저장할 때: 흰 배경 + 검은 글씨, 장식 요소 숨김 */
+/* C.V 를 인쇄/PDF 로 저장할 때: A4 흰 종이 이력서 레이아웃 */
+.print-contact { display: none; }
+
+@page { size: A4; margin: 16mm 16mm 18mm; }
+
 @media print {
-    body { background: #fff !important; color: #000 !important; cursor: auto !important; animation: none !important; opacity: 1 !important; }
-    header, .custom-cursor, .mini-circle-wrap, .site-footer, .cv-pdf, .secret-link { display: none !important; }
-    .cv-container { padding: 0 !important; max-width: none !important; }
-    .cv-hero { display: block !important; margin-bottom: 20px !important; }
-    .cv-hero-text h1, .cv-item h3 { color: #000 !important; }
-    .cv-hero-text h1 span { color: #555 !important; }
-    .cv-hero-text p, .cv-item p, .cv-item .date { color: #333 !important; }
-    .section-title { color: #666 !important; }
-    .cv-section { border-top: 1px solid #ccc !important; padding: 24px 0 !important; break-inside: avoid; }
-    .contact-link { color: #000 !important; font-size: 16px !important; display: block !important; padding: 4px 0 !important; }
-    a { color: #000 !important; }
+    html, body { background: #fff !important; color: #111 !important; animation: none !important; opacity: 1 !important; cursor: auto !important; }
+    body { font-size: 10.5pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    header, .custom-cursor, .mini-circle-wrap, .site-footer, .cv-pdf, .secret-link,
+    .contact-link, .nav-capsule { display: none !important; }
+
+    .cv-container { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+
+    /* 맨 위: 이름 + 연락처 */
+    .cv-hero { display: block !important; margin: 0 0 4mm !important; padding: 0 0 5mm !important; border-bottom: 0.6pt solid #111; }
+    .cv-hero-text > p { margin: 0 0 3mm !important; font-size: 8.5pt !important; letter-spacing: 2.5pt !important; color: #777 !important; }
+    .cv-hero-text h1 { margin: 0 !important; font-size: 30pt !important; line-height: 1.05 !important; letter-spacing: -0.5pt !important; color: #111 !important; }
+    .cv-hero-text h1 span { color: #8a7040 !important; }
+    .print-contact { display: block; margin: 5mm 0 0; font-family: monospace; font-size: 9pt; letter-spacing: 0.5pt; color: #444; }
+
+    /* 섹션: 왼쪽 제목 / 오른쪽 내용 */
+    .cv-section { display: grid !important; grid-template-columns: 34mm 1fr !important; gap: 0 6mm !important; padding: 4mm 0 1mm !important; border-top: 0.4pt solid #ccc !important; }
+    .cv-section:first-of-type { border-top: 0 !important; }
+    .cv-section.cv-contact { display: none !important; }
+    .section-title { font-size: 8.5pt !important; letter-spacing: 1.5pt !important; color: #8a7040 !important; padding-top: 1mm; }
+
+    .cv-item { margin: 0 0 3.5mm !important; break-inside: avoid; page-break-inside: avoid; }
+    .cv-item .date { margin: 0 0 1mm !important; font-size: 8.5pt !important; letter-spacing: 0.5pt !important; color: #777 !important; }
+    .cv-item h3 { margin: 0 0 0.8mm !important; font-size: 11.5pt !important; font-weight: 500 !important; color: #111 !important; }
+    .cv-item h3[style] { margin-top: 4mm !important; }
+    .cv-item p { font-size: 9.3pt !important; line-height: 1.55 !important; color: #333 !important; }
+
+    /* 섹션 제목만 페이지 끝에 남지 않게 */
+    .section-title, .cv-section > .cv-list > .cv-item:first-child { break-after: avoid; }
+    a { color: inherit !important; text-decoration: none !important; }
 }

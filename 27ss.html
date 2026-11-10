@@ -196,7 +196,7 @@
         <div class="project-info">
             <div class="info-left">
                 <h3>ROLE</h3>
-                <p>Fashion Designer</p>
+                <p>Fashion Designer & Creative Director</p>
                 <h3>YEAR</h3>
                 <p>2027</p>
                 <h3>CATEGORY</h3>
@@ -204,8 +204,8 @@
             </div>
             <div class="info-right">
                 <p>
-                    브랜드 LIE의 2027 S/S 컬렉션은 2026년 9월 2일 서울패션위크(동대문디자인플라자 아트홀 1관)에서 공개되었습니다. 주제는 ‘SECOND SKIN: FILTERING LIGHT’. 생명을 키우는 동시에 피부를 태우고 색을 바래게 하는 빛의 양면성에서 출발해, 옷을 빛을 받아들이고 걸러내며 조절하는 ‘두 번째 피부’로 해석했습니다.<br><br>
-                    LIE 특유의 테일러링을 바탕으로 정교한 절개와 비대칭 구조, 드레이핑과 레이어링을 더했고, 메쉬·시어 소재와 레이스로 빛의 투과와 그림자의 변화를 실루엣에 담았습니다. 화이트와 블랙을 중심으로 태양의 온기를 닮은 옐로우와 맑은 하늘빛 블루를 더했으며, 리사이클 나일론과 폴리에스터를 사용해 지속가능성도 함께 고려했습니다.<br><br>
+                    브랜드 LIE의 2027 S/S 컬렉션은 2026년 9월 2일 서울패션위크 둘째 날, 동대문디자인플라자(DDP)에서 첫 순서로 공개되었습니다. 주제는 ‘SECOND SKIN: FILTERING LIGHT’. 생명을 키우는 동시에 피부를 태우고 색을 바래게 하는 빛의 양면성에서 출발해, 옷을 빛을 받아들이고 걸러내며 조절하는 ‘두 번째 피부’로 해석했습니다.<br><br>
+                    브랜드명 LIE는 ‘Life is an expression(삶은 표현이다)’에서 왔으며, 이번 시즌은 구조적인 아름다움에 집중해 매끈한 소재와 거친 질감, 유연한 실루엣과 각진 절개선을 한 벌에 섞었습니다. LIE 특유의 테일러링을 바탕으로 정교한 절개와 비대칭 구조, 드레이핑과 레이어링을 더했고, 메쉬·시어 소재와 레이스로 빛의 투과와 그림자의 변화를 실루엣에 담았습니다. 화이트와 블랙을 중심으로 태양의 온기를 닮은 옐로우와 맑은 하늘빛 블루를 더했으며, 리사이클 나일론과 폴리에스터를 사용해 지속가능성도 함께 고려했습니다.<br><br>
                     아웃도어 브랜드 <a href="insooth.html" style="color:inherit; text-decoration:underline; text-underline-offset:4px;">인수스(INSOOTH)</a>와의 협업, 마크라메 작가 정윤희와의 업사이클링 작업, K-컬처 플랫폼 링크서울과 함께한 무용수 김재진의 퍼포먼스가 더해져 런웨이가 하나의 무대 작품으로 확장되었습니다.<br><br>
                     저는 시즌 컨셉 리서치부터 샘플링, 생산까지 컬렉션 제작 전반에 참여했습니다.
                     <!-- ✏️ 여기에 본인이 맡은 구체적인 작업(담당 룩, 직접 제작한 쇼피스, 협업 커뮤니케이션 등)을 한두 문장 추가하세요 -->
@@ -213,22 +213,17 @@
             </div>
         </div>
 
-        <!-- ▼ 27SS 런웨이 영상이 준비되면 아래 주석을 풀고 YOUTUBE_VIDEO_ID 만 바꿔 넣으세요
-        <div class="gallery-section-title">Runway & Campaign Video</div>
-        <div class="video-section">
-            <div class="video-wrap">
-                <iframe src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID" title="27SS Collection Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-        </div>
-        ▲ -->
+        <!-- ▼ 영상: 아래 data-youtube="" 안에 유튜브 영상 ID(주소의 v= 뒤 글자)만 넣으면 자동으로 나타나요. 비어 있으면 숨겨져요 -->
+        <div class="gallery-section-title" data-slot="video">Runway & Campaign Video</div>
+        <div class="video-section" id="videoSlot" data-youtube=""></div>
 
-        <div class="gallery-section-title">Technical Flat</div>
+        <div class="gallery-section-title" data-slot="tf">Technical Flat</div>
         <div class="design-master-piece">
                   <div class="img-wrap"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/27ss_design_01.jpg" alt="27ss tech 01"></div>
                   <div class="img-wrap"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/27ss_design_02.jpg" alt="27ss tech 02"></div>
         </div>
 
-        <div class="gallery-section-title">Lookbook Editorial</div>
+        <div class="gallery-section-title" data-slot="lb">Lookbook Editorial</div>
         <div class="masonry-grid">
             <div class="masonry-column left-col">
                 <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/27ss_lookbook-01.jpg" alt="Lookbook 01" loading="lazy" decoding="async"></div>
@@ -245,7 +240,7 @@
             </div>
         </div>
 
-        <div class="gallery-section-title">Runway Highlights</div>
+        <div class="gallery-section-title" data-slot="show">Runway Highlights</div>
         <div class="masonry-grid">
             <div class="masonry-column left-col">
                 <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/01.jpg" alt="Runway Show 01" loading="lazy" decoding="async"></div>
@@ -290,6 +285,25 @@
         <img class="lightbox-content" id="lightboxImg" src="" alt="">
     </div>
 
+    <script>
+        // 사진·영상 자리: 파일이 없으면 제목까지 자동으로 숨겨져요 (사진을 넣으면 자동으로 나타남)
+        window.addEventListener('load', () => {
+            const slot = document.getElementById('videoSlot');
+            const id = slot && slot.dataset.youtube.trim();
+            if (id) {
+                slot.innerHTML = '<div class="video-wrap"><iframe src="https://www.youtube.com/embed/' + id + '" title="27SS Collection Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>';
+            } else if (slot) {
+                slot.style.display = 'none';
+                const t = document.querySelector('[data-slot="video"]'); if (t) t.style.display = 'none';
+            }
+            document.querySelectorAll('.gallery-section-title[data-slot]:not([data-slot="video"])').forEach(t => {
+                const block = t.nextElementSibling;
+                const srcs = block ? [...block.querySelectorAll('img')].map(i => i.getAttribute('src')) : [];
+                Promise.all(srcs.map(src => new Promise(res => { const im = new Image(); im.onload = () => res(true); im.onerror = () => res(false); im.src = src; })))
+                    .then(r => { if (!r.some(Boolean)) { t.style.display = 'none'; if (block) block.style.display = 'none'; } });
+            });
+        });
+    </script>
     <script>
         const cursor = document.querySelector('.custom-cursor');
         const links = document.querySelectorAll('a');

@@ -70,12 +70,12 @@
         .gallery-item:hover img { transform: scale(1.02); }
         
         /* 레이아웃 클래스 - 테크팩은 텍스트가 잘 보이도록 모두 꽉 차게 배치 */
-        .full { grid-column: span 12; margin-bottom: 20px; } 
+        .full { grid-column: span 12; margin-bottom: 20px; } .half { grid-column: span 6; } .gallery-item.half img { background: transparent; }
 
         @media (max-width: 768px) {
             .project-info { grid-template-columns: 1fr; gap: 30px; }
             .gallery-grid { display: flex; flex-direction: column; gap: 30px; }
-            .full { margin-bottom: 0; }
+            .full { margin-bottom: 0; } .half { grid-column: auto; }
             .project-hero h1 { font-size: 12vw; }
             .back-btn { top: 20px; font-size: 11px; }
             .custom-cursor { display: none; }
@@ -148,6 +148,19 @@
                 <img src="images/insooth/plate03.jpg" alt="Insooth Plate Specification 3" loading="lazy" decoding="async">
             </div>
 
+            <div class="full" style="height: 60px; margin: 0;"></div>
+            <div class="gallery-item half"><img src="images/insooth/model_01.jpg" alt="Insooth model shot 1" loading="lazy" decoding="async"></div>
+            <div class="gallery-item half"><img src="images/insooth/model_02.jpg" alt="Insooth model shot 2" loading="lazy" decoding="async"></div>
+            <div class="gallery-item half"><img src="images/insooth/model_03.jpg" alt="Insooth model shot 3" loading="lazy" decoding="async"></div>
+            <div class="gallery-item half"><img src="images/insooth/model_04.jpg" alt="Insooth model shot 4" loading="lazy" decoding="async"></div>
+            <div class="gallery-item half"><img src="images/insooth/model_05.jpg" alt="Insooth model shot 5" loading="lazy" decoding="async"></div>
+            <div class="gallery-item half"><img src="images/insooth/model_06.jpg" alt="Insooth model shot 6" loading="lazy" decoding="async"></div>
+            <div class="gallery-item half"><img src="images/insooth/model_07.jpg" alt="Insooth model shot 7" loading="lazy" decoding="async"></div>
+            <div class="gallery-item half"><img src="images/insooth/model_08.jpg" alt="Insooth model shot 8" loading="lazy" decoding="async"></div>
+            <div class="gallery-item half"><img src="images/insooth/model_09.jpg" alt="Insooth model shot 9" loading="lazy" decoding="async"></div>
+            <div class="gallery-item half"><img src="images/insooth/model_10.jpg" alt="Insooth model shot 10" loading="lazy" decoding="async"></div>
+            <div class="gallery-item half"><img src="images/insooth/model_11.jpg" alt="Insooth model shot 11" loading="lazy" decoding="async"></div>
+            <div class="gallery-item half"><img src="images/insooth/model_12.jpg" alt="Insooth model shot 12" loading="lazy" decoding="async"></div>
         </div>
 
     </main>
