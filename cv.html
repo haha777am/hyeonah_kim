@@ -48,61 +48,66 @@
         .nav-capsule a.active, .nav-capsule a:hover { color: #fff; background: rgba(255,255,255,0.1); }
 
         /* 컨텐츠 레이아웃 */
-        .cv-container { padding: 180px 10% 100px; max-width: 1200px; margin: 0 auto; }
+        .cv-container { padding: 170px 8% 110px; max-width: 1180px; margin: 0 auto; }
 
-        /* 상단 타이틀 + 미니 원형 비디오 */
-        .cv-hero { 
-            margin-bottom: 120px; 
-            display: flex; 
-            align-items: flex-end; 
-            justify-content: space-between;
-        }
-        .cv-hero-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 8vw; line-height: 0.9; margin: 0;
-            text-transform: uppercase; letter-spacing: -2px;
-        }
-        .cv-hero-text h1 span { color: #a68d60; }
-
-        .mini-circle-wrap {
-            width: 15vw; height: 15vw; max-width: 200px; max-height: 200px;
-            border-radius: 50%; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        
-        /* ✨ 비디오 스타일 적용 */
-        .mini-circle-wrap video { 
-            width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s; 
-        }
+        /* 상단 */
+        .cv-hero { margin-bottom: 90px; display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
+        .cv-eyebrow { font-family: monospace; letter-spacing: 6px; font-size: 12px; color: #6d6d6d; margin: 0 0 26px; text-transform: uppercase; }
+        .cv-hero-text h1 { font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(44px, 6.4vw, 92px); line-height: 1; margin: 0; letter-spacing: -1px; }
+        .cv-hero-text h1 span { color: #a68d60; font-style: italic; }
+        .cv-profile { max-width: 560px; margin: 34px 0 0; color: #9a9a9a; font-size: 15px; line-height: 1.95; font-weight: 300; word-break: keep-all; }
+        .cv-actions { margin-top: 38px; display: flex; gap: 14px; flex-wrap: wrap; }
+        .cv-pdf { display: inline-block; padding: 13px 26px; border: 1px solid #a68d60; border-radius: 40px; color: #a68d60; font-family: monospace; font-size: 12px; letter-spacing: 3px; text-decoration: none; transition: .3s; }
+        .cv-pdf:hover { background: #a68d60; color: #0a0a0a; }
+        .mini-circle-wrap { flex: none; width: 15vw; height: 15vw; max-width: 190px; max-height: 190px; border-radius: 50%; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); transition: 1s cubic-bezier(0.19, 1, 0.22, 1); }
+        .mini-circle-wrap video { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
         .mini-circle-wrap:hover video { filter: grayscale(0%); transform: scale(1.05); }
 
-        /* 섹션 스타일 */
-        .cv-section { display: grid; grid-template-columns: 1fr 2fr; padding: 60px 0; border-top: 1px solid #222; }
-        .section-title { font-family: monospace; color: #a68d60; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; }
-
+        /* 섹션 */
+        .cv-section { display: grid; grid-template-columns: 220px 1fr; padding: 56px 0; border-top: 1px solid #1f1f1f; }
+        .section-title { font-family: monospace; color: #a68d60; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; padding-top: 4px; }
         .cv-list { list-style: none; padding: 0; margin: 0; }
-        .cv-item { margin-bottom: 50px; }
-        .cv-item h3 { font-size: 22px; margin: 0 0 10px 0; font-weight: 400; color: #fff; }
-        .cv-item p { color: #888; margin: 0; font-size: 14.5px; line-height: 1.8; font-weight: 300; }
-        .cv-item .date { font-family: monospace; color: #555; margin-bottom: 8px; display: block; font-size: 13px; letter-spacing: 1px; }
+        .cv-item { display: grid; grid-template-columns: 170px 1fr; gap: 28px; padding: 0 0 38px; }
+        .cv-item:last-child { padding-bottom: 0; }
+        .cv-item .date { font-family: monospace; color: #6a6a6a; font-size: 12px; letter-spacing: 1.5px; padding-top: 7px; }
+        .cv-item h3 { font-size: 20px; margin: 0 0 6px; font-weight: 400; color: #f2f2f2; letter-spacing: .2px; }
+        .cv-item .org { color: #a68d60; font-size: 13.5px; margin: 0 0 12px; letter-spacing: .3px; }
+        .cv-item .sub { color: #7c7c7c; margin: 0; font-size: 14px; font-weight: 300; }
+        .cv-item ul { list-style: none; padding: 0; margin: 0; }
+        .cv-item li { color: #8a8a8a; font-size: 14px; line-height: 1.85; font-weight: 300; padding-left: 18px; position: relative; word-break: keep-all; }
+        .cv-item li::before { content: ""; position: absolute; left: 0; top: .95em; width: 8px; height: 1px; background: #5a5a5a; }
+        .cv-list.compact .cv-item { padding-bottom: 22px; }
+        .cv-list.compact .cv-item h3 { font-size: 17px; margin: 0; }
+        .cv-list.compact .cv-item { align-items: baseline; }
+        .cv-list.compact .cv-item .date { padding-top: 0; }
+
+        /* 스킬 & 언어 */
+        .skill-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+        .skill-row svg { width: 46px; height: 46px; display: block; }
+        .skill-names { margin: 14px 0 0; color: #6e6e6e; font-size: 12.5px; letter-spacing: 1px; font-family: monospace; }
+        .lang-row { display: grid; grid-template-columns: 110px 1fr auto; align-items: center; gap: 18px; padding: 10px 0; border-bottom: 1px solid #1a1a1a; max-width: 460px; }
+        .lang-row:last-child { border-bottom: 0; }
+        .lang-row b { font-weight: 400; color: #e6e6e6; font-size: 15px; }
+        .lang-row small { color: #707070; font-size: 12.5px; }
+        .dots i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #a68d60; margin-left: 5px; }
+        .dots i.o { background: none; border: 1px solid #5d5338; }
+        .expertise-block + .expertise-block { margin-top: 44px; }
+        .block-label { font-family: monospace; color: #5f5f5f; font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 0 0 18px; }
 
         /* 연락처 */
-        .contact-link {
-            display: block; font-size: 3vw; color: #fff;
-            text-decoration: none; margin-top: 20px;
-            font-family: 'Playfair Display', serif; transition: 0.3s;
-        }
+        .contact-link { display: block; font-size: clamp(26px, 3.2vw, 44px); color: #fff; text-decoration: none; margin: 0 0 14px; font-family: 'Playfair Display', serif; transition: 0.3s; }
         .contact-link:hover { opacity: 0.5; padding-left: 20px; }
-
-        .secret-link { display: inline-block; margin-top: 50px; font-family: monospace; font-size: 12px; color: #333; letter-spacing: 2px; text-decoration: none; transition: 0.4s ease; }
+        .secret-link { display: inline-block; margin-top: 40px; font-family: monospace; font-size: 12px; color: #333; letter-spacing: 2px; text-decoration: none; transition: 0.4s ease; }
         .secret-link:hover { color: #a68d60; }
 
         @media (max-width: 768px) {
-            .cv-hero { flex-direction: column; align-items: center; text-align: center; gap: 30px; }
-            .cv-section { grid-template-columns: 1fr; gap: 30px; }
-            .cv-hero h1 { font-size: 15vw; }
-            .contact-link { font-size: 8vw; }
+            .cv-container { padding: 140px 7% 80px; }
+            .cv-hero { flex-direction: column-reverse; align-items: flex-start; gap: 30px; margin-bottom: 60px; }
+            .mini-circle-wrap { width: 110px; height: 110px; }
+            .cv-section { grid-template-columns: 1fr; gap: 28px; padding: 44px 0; }
+            .cv-item { grid-template-columns: 1fr; gap: 6px; }
+            .cv-item .date { padding-top: 0; }
+            .lang-row { grid-template-columns: 90px 1fr auto; }
             .custom-cursor { display: none; }
             body { cursor: auto; }
         }
@@ -126,9 +131,10 @@
     <main class="cv-container">
         <div class="cv-hero">
             <div class="cv-hero-text">
-                <p style="font-family: monospace; letter-spacing: 5px; color: #444; margin-bottom: 20px;">FASHION DESIGNER_HYEON AH KIM</p>
-                <h1>CURRICULUM<br><span>VITAE</span></h1>
-                <a href="HyeonAh_Kim_CV.pdf" class="cv-pdf" download="HyeonAh_Kim_CV.pdf">↓ DOWNLOAD PDF</a>
+                <p class="cv-eyebrow">Fashion Designer — Hyeon Ah Kim</p>
+                <h1>Curriculum<br><span>Vitae</span></h1>
+                <p class="cv-profile">파리 Studio Berçot에서 패션 디자인과 아티스틱 디렉션을 공부한 패션 디자이너. 시즌 컨셉 기획부터 샘플링·생산 핸들링, 룩북과 패션쇼 스타일링까지 맡고 있으며, 전시와 패션쇼를 결합한 아트 퍼포먼스를 4회 기획·연출했습니다.</p>
+                <div class="cv-actions"><a href="HyeonAh_Kim_CV.pdf" class="cv-pdf" download="HyeonAh_Kim_CV.pdf">↓ DOWNLOAD PDF</a></div>
                 <p class="print-contact" data-print-contact></p>
             </div>
             <div class="mini-circle-wrap">
@@ -144,83 +150,75 @@
             <div class="cv-list">
                 <div class="cv-item">
                     <span class="date">2024.01 — PRESENT</span>
-                    <h3>Fashion Designer</h3>
-                    <p>LIE (주식회사 엘아이이) — 입사 당시 개인사업자, 이후 법인 전환.<br>시즌 컨셉 기획 및 제안.<br>시즌 리서치, 샘플링 및 메인 생산 핸들링.<br>협업 프로젝트 기획 및 그래픽 디자인 참여.<br>룩북 및 패션쇼 스타일링 제안.</p>
+                    <div><h3>Fashion Designer</h3><p class="org">LIE (주식회사 엘아이이)</p>
+                    <ul><li>시즌 컨셉 기획 및 제안</li><li>시즌 리서치, 샘플링 및 메인 생산 핸들링</li><li>협업 프로젝트 기획 및 그래픽 디자인 참여</li><li>룩북 및 패션쇼 스타일링 제안</li></ul></div>
                 </div>
                 <div class="cv-item">
                     <span class="date">2020.10 — 2022.09</span>
-                    <h3>Art Show Director</h3>
-                    <p>Focus Art Fair (PARIS & LONDON).<br>전시와 패션쇼를 결합한 아트 퍼포먼스 기획 (총 4회).<br>의상 구상 및 제작, 무대 연출 및 모델 동선 총괄.</p>
+                    <div><h3>Art Show Director</h3><p class="org">Focus Art Fair — Paris &amp; London</p>
+                    <ul><li>전시와 패션쇼를 결합한 아트 퍼포먼스 기획 (총 4회)</li><li>의상 구상 및 제작, 무대 연출 및 모델 동선 총괄</li></ul></div>
                 </div>
                 <div class="cv-item">
                     <span class="date">2021.04 — 2021.08</span>
-                    <h3>Design Intern</h3>
-                    <p>Hong Lee Company (Paris, France).<br>Studio Berçot 3년 과정 수료 후 현지 인턴십 진행.</p>
+                    <div><h3>Design Intern</h3><p class="org">Hong Lee Company — Paris</p>
+                    <ul><li>Studio Berçot 3년 과정 수료 후 현지 인턴십 진행</li></ul></div>
                 </div>
             </div>
         </section>
 
         <section class="cv-section">
             <div class="section-title">Exhibitions</div>
-            <div class="cv-list">
-                <div class="cv-item">
-                    <span class="date">2022.09</span>
-                    <h3>Focus Art Fair &lt;Boom&gt;</h3>
-                    <p>Paris, France</p>
-                </div>
-                <div class="cv-item">
-                    <span class="date">2021.08</span>
-                    <h3>Focus Art Fair &lt;Color of Life&gt;</h3>
-                    <p>London, UK</p>
-                </div>
-                <div class="cv-item">
-                    <span class="date">2021.06</span>
-                    <h3>Focus Art Fair &lt;Identity&gt;</h3>
-                    <p>Paris, France</p>
-                </div>
-                <div class="cv-item">
-                    <span class="date">2020.10</span>
-                    <h3>Focus Art Fair &lt;Color of 3&gt;</h3>
-                    <p>Paris, France</p>
-                </div>
+            <div class="cv-list compact">
+                <div class="cv-item"><span class="date">2022.09</span><div><h3>Focus Art Fair &lt;Boom&gt;</h3><p class="sub">Paris, France</p></div></div>
+                <div class="cv-item"><span class="date">2021.08</span><div><h3>Focus Art Fair &lt;Color of Life&gt;</h3><p class="sub">London, UK</p></div></div>
+                <div class="cv-item"><span class="date">2021.06</span><div><h3>Focus Art Fair &lt;Identity&gt;</h3><p class="sub">Paris, France</p></div></div>
+                <div class="cv-item"><span class="date">2020.10</span><div><h3>Focus Art Fair &lt;Color of 3&gt;</h3><p class="sub">Paris, France</p></div></div>
             </div>
         </section>
 
         <section class="cv-section">
             <div class="section-title">Education</div>
             <div class="cv-list">
-                <div class="cv-item">
-                    <span class="date">2018.09 — 2021.06</span>
-                    <h3>Ecole Studio Berçot</h3>
-                    <p>Paris, France (Fashion Design & Artistic Direction)</p>
-                </div>
-                <div class="cv-item">
-                    <span class="date">2017.09 — 2018.06</span>
-                    <h3>Alliance Française Cavilam</h3>
-                    <p>Vichy, France (프랑스어 어학연수)</p>
-                </div>
-                <div class="cv-item">
-                    <span class="date">2014.03 — 2016.03</span>
-                    <h3>경원고등학교</h3>
-                    <p>Busan, South Korea</p>
-                </div>
+                <div class="cv-item"><span class="date">2018.09 — 2021.06</span><div><h3>Ecole Studio Berçot</h3><p class="sub">Paris, France — Fashion Design &amp; Artistic Direction</p></div></div>
+                <div class="cv-item"><span class="date">2017.09 — 2018.06</span><div><h3>Alliance Française Cavilam</h3><p class="sub">Vichy, France — 프랑스어 어학연수</p></div></div>
+                <div class="cv-item"><span class="date">2014.03 — 2016.03</span><div><h3>경원고등학교</h3><p class="sub">Busan, South Korea</p></div></div>
             </div>
         </section>
 
         <section class="cv-section">
             <div class="section-title">Expertise</div>
-            <div class="cv-list">
-                <div class="cv-item">
-                    <span class="date">TECHNICAL SKILLS</span>
-                    <h3>Visual Tools</h3>
-                    <p>Adobe Photoshop, Illustrator, CLO 3D.</p>
-                    <h3 style="margin-top: 30px;">License</h3>
-                    <p>Driving License (Class 1 / C1).</p>
+            <div>
+                <div class="expertise-block">
+                    <p class="block-label">Technical Skills</p>
+                    <div class="skill-row" role="img" aria-label="Adobe Illustrator, Adobe Photoshop, Microsoft Excel, CLO 3D"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250"><defs><style>.ai-b{fill:#300;}.ai-c{fill:#ff9a00;}</style></defs><rect class="ai-b" width="250" height="250" rx="42.74" ry="42.74"/><path class="ai-c" d="M122.11,66.15h-37.41l-42.97,115.62h33.48l5.58-17.27h42.98l5.58,17.27h34.5l-41.73-115.62ZM102.27,135.65h-12.17l12.17-37.69,12.17,37.69h-12.17Z"/><rect class="ai-c" x="168.12" y="90.74" width="30.98" height="91.03"/><path class="ai-c" d="M200.12,74.28c.09,8.49-6.78,14.49-16.5,14.41-9.73.08-16.59-5.92-16.5-14.41-.09-8.49,6.78-14.49,16.5-14.41,9.73-.08,16.59,5.92,16.5,14.41Z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 234"><style>.ps0{fill:#001E36;}.ps1{fill:#31A8FF;}</style><path class="ps0" d="M42.5,0h155C221,0,240,19,240,42.5v149c0,23.5-19,42.5-42.5,42.5h-155C19,234,0,215,0,191.5v-149C0,19,19,0,42.5,0z"/><path class="ps1" d="M54,164.1V61.2c0-0.7,0.3-1.1,1-1.1c1.7,0,3.3,0,5.6-0.1c2.4-0.1,4.9-0.1,7.6-0.2c2.7-0.1,5.6-0.1,8.7-0.2c3.1-0.1,6.1-0.1,9.1-0.1c8.2,0,15,1,20.6,3.1c5,1.7,9.6,4.5,13.4,8.2c3.2,3.2,5.7,7.1,7.3,11.4c1.5,4.2,2.3,8.5,2.3,13c0,8.6-2,15.7-6,21.3c-4,5.6-9.6,9.8-16.1,12.2c-6.8,2.5-14.3,3.4-22.5,3.4c-2.4,0-4,0-5-0.1c-1-0.1-2.4-0.1-4.3-0.1v32.1c0.1,0.7-0.4,1.3-1.1,1.4c-0.1,0-0.2,0-0.4,0H55.2C54.4,165.4,54,165,54,164.1z M75.8,79.4V113c1.4,0.1,2.7,0.2,3.9,0.2H85c3.9,0,7.8-0.6,11.5-1.8c3.2-0.9,6-2.8,8.2-5.3c2.1-2.5,3.1-5.9,3.1-10.3c0.1-3.1-0.7-6.2-2.3-8.9c-1.7-2.6-4.1-4.6-7-5.7c-3.7-1.5-7.7-2.1-11.8-2c-2.6,0-4.9,0-6.8,0.1C77.9,79.2,76.5,79.3,75.8,79.4L75.8,79.4z"/><path class="ps1" d="M192,106.9c-3-1.6-6.2-2.7-9.6-3.4c-3.7-0.8-7.4-1.3-11.2-1.3c-2-0.1-4.1,0.2-6,0.7c-1.3,0.3-2.4,1-3.1,2c-0.5,0.8-0.8,1.8-0.8,2.7c0,0.9,0.4,1.8,1,2.6c0.9,1.1,2.1,2,3.4,2.7c2.3,1.2,4.7,2.3,7.1,3.3c5.4,1.8,10.6,4.3,15.4,7.3c3.3,2.1,6,4.9,7.9,8.3c1.6,3.2,2.4,6.7,2.3,10.3c0.1,4.7-1.3,9.4-3.9,13.3c-2.8,4-6.7,7.1-11.2,8.9c-4.9,2.1-10.9,3.2-18.1,3.2c-4.6,0-9.1-0.4-13.6-1.3c-3.5-0.6-7-1.7-10.2-3.2c-0.7-0.4-1.2-1.1-1.1-1.9v-17.4c0-0.3,0.1-0.7,0.4-0.9c0.3-0.2,0.6-0.1,0.9,0.1c3.9,2.3,8,3.9,12.4,4.9c3.8,1,7.8,1.5,11.8,1.5c3.8,0,6.5-0.5,8.3-1.4c1.6-0.7,2.7-2.4,2.7-4.2c0-1.4-0.8-2.7-2.4-4c-1.6-1.3-4.9-2.8-9.8-4.7c-5.1-1.8-9.8-4.2-14.2-7.2c-3.1-2.2-5.7-5.1-7.6-8.5c-1.6-3.2-2.4-6.7-2.3-10.2c0-4.3,1.2-8.4,3.4-12.1c2.5-4,6.2-7.2,10.5-9.2c4.7-2.4,10.6-3.5,17.7-3.5c4.1,0,8.3,0.3,12.4,0.9c3,0.4,5.9,1.2,8.6,2.3c0.4,0.1,0.8,0.5,1,0.9c0.1,0.4,0.2,0.8,0.2,1.2v16.3c0,0.4-0.2,0.8-0.5,1C192.9,107.1,192.4,107.1,192,106.9z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2289.75 2130"><defs><linearGradient id="g1" gradientUnits="userSpaceOnUse" x1="203.5132" y1="402.9817" x2="967.9868" y2="1727.0183"><stop offset="0" stop-color="#18884F"/><stop offset=".5" stop-color="#117E43"/><stop offset="1" stop-color="#0B6631"/></linearGradient></defs><path fill="#185C37" d="M1437.75,1011.75L532.5,852v1180.393c0,53.907,43.7,97.607,97.607,97.607l0,0h1562.036c53.907,0,97.607-43.7,97.607-97.607l0,0V1597.5L1437.75,1011.75z"/><path fill="#21A366" d="M1437.75,0H630.107C576.2,0,532.5,43.7,532.5,97.607c0,0,0,0,0,0V532.5l905.25,532.5L1917,1224.75L2289.75,1065V532.5L1437.75,0z"/><path fill="#107C41" d="M532.5,532.5h905.25V1065H532.5V532.5z"/><path opacity="0.1" d="M1180.393,426H532.5v1331.25h647.893c53.834-0.175,97.432-43.773,97.607-97.607V523.607C1277.825,469.773,1234.227,426.175,1180.393,426z"/><path opacity="0.2" d="M1127.143,479.25H532.5V1810.5h594.643c53.834-0.175,97.432-43.773,97.607-97.607V576.857C1224.575,523.023,1180.977,479.425,1127.143,479.25z"/><path opacity="0.2" d="M1127.143,479.25H532.5V1704h594.643c53.834-0.175,97.432-43.773,97.607-97.607V576.857C1224.575,523.023,1180.977,479.425,1127.143,479.25z"/><path opacity="0.2" d="M1073.893,479.25H532.5V1704h541.393c53.834-0.175,97.432-43.773,97.607-97.607V576.857C1171.325,523.023,1127.727,479.425,1073.893,479.25z"/><path fill="url(#g1)" d="M97.607,479.25h976.285c53.907,0,97.607,43.7,97.607,97.607v976.285c0,53.907-43.7,97.607-97.607,97.607H97.607C43.7,1650.75,0,1607.05,0,1553.143V576.857C0,522.95,43.7,479.25,97.607,479.25z"/><path fill="#FFFFFF" d="M302.3,1382.264l205.332-318.169L319.5,747.683h151.336l102.666,202.35c9.479,19.223,15.975,33.494,19.49,42.919h1.331c6.745-15.336,13.845-30.228,21.3-44.677L725.371,747.79h138.929l-192.925,314.548L869.2,1382.263H721.378L602.79,1160.158c-5.586-9.45-10.326-19.376-14.164-29.66h-1.757c-3.474,10.075-8.083,19.722-13.739,28.755l-122.102,223.011H302.3z"/><path fill="#33C481" d="M2192.143,0H1437.75v532.5h852V97.607C2289.75,43.7,2246.05,0,2192.143,0L2192.143,0z"/><path fill="#107C41" d="M1437.75,1065h852v532.5h-852V1065z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect x=".5" y=".5" width="47" height="47" rx="10" fill="#f4f6f9" stroke="#dfe3ea"/><svg x="6" y="6" width="36" height="36" viewBox="73 90 700 700" fill="none">
+<path d="M745.996 625.631L742.747 630.159C683.844 713.595 587.26 771.376 475.301 779.569L469.887 780L465.122 704.756C463.607 679.315 481.148 657.108 506.485 650.856C546.764 640.938 583.362 620.457 612.381 591.566C630.571 573.672 659.157 570.006 681.029 584.02L745.996 625.631Z" fill="url(#cA)"/>
+<path d="M437.19 701.737V704.756L432.426 780L426.796 779.569C315.053 771.376 218.469 713.595 159.349 630.159L156.101 625.631L221.067 584.02C242.94 570.006 271.525 573.672 289.716 591.566C318.951 620.457 355.549 640.938 395.828 650.856C419.866 656.893 437.19 677.59 437.19 701.737Z" fill="url(#cA)"/>
+<path d="M234.71 499.074C241.64 523.437 230.595 549.309 206.991 560.735L137.476 594.153L135.094 589.41C86.5855 491.528 90.0504 381.572 135.094 290.59L137.476 285.846L206.991 319.264C230.595 330.475 241.856 356.563 234.71 380.926C223.232 419.518 223.232 460.482 234.71 499.074Z" fill="url(#cA)"/>
+<path d="M437.19 175.244C438.706 200.685 420.949 222.892 395.828 229.144C355.549 239.062 318.951 259.543 289.716 288.218C271.741 306.328 243.156 309.994 221.284 295.98L156.101 254.369L159.349 249.841C222.8 160.152 322.849 108.193 426.796 100.431L432.426 100L437.19 175.244Z" fill="url(#cA)"/>
+<path d="M746 254.369L681.033 295.98C659.161 309.994 630.576 306.328 612.385 288.218C583.366 259.543 546.768 239.062 506.272 229.144C481.152 222.892 463.394 200.685 465.127 175.244L469.891 100L475.305 100.431C579.252 108.193 679.517 160.152 742.752 249.841L746 254.369Z" fill="url(#cA)"/>
+<path d="M217.439 554.122C170.387 491.576 142.5 413.795 142.5 329.5C142.5 315.915 143.224 302.499 144.636 289.289L137.476 285.846L135.094 290.59C90.0504 381.572 86.5855 491.528 135.094 589.41L137.476 594.153L206.991 560.735C210.81 558.887 214.301 556.659 217.439 554.122Z" fill="url(#cB)"/>
+<path d="M236.355 577.286C231.054 578.693 225.897 580.926 221.067 584.02L156.101 625.631L159.349 630.159C218.469 713.595 315.053 771.376 426.796 779.569L432.426 780L437.19 704.756V701.737C437.19 699.449 437.035 697.192 436.733 694.975C357.738 677.814 288.054 635.693 236.355 577.286Z" fill="url(#cB)"/>
+<path d="M465.06 699.992C465.007 701.565 465.027 703.154 465.122 704.756L469.887 780L475.301 779.569C587.26 771.376 683.844 713.595 742.747 630.159L745.996 625.631L745.432 625.269C682.166 674.309 602.742 703.5 516.5 703.5C499.048 703.5 481.876 702.305 465.06 699.992Z" fill="url(#cB)"/>
+<path d="M437.189 175.244C438.704 200.685 420.947 222.892 395.826 229.144C355.547 239.061 318.949 259.543 289.714 288.218C281.943 296.048 272.19 301.177 261.853 303.346C299.259 236.551 361.684 185.662 436.437 163.368L437.189 175.244Z" fill="url(#cC)"/>
+<path d="M466.336 156.123L465.125 175.244C463.393 200.685 481.15 222.892 506.271 229.144C546.767 239.061 583.365 259.543 612.383 288.218C630.574 306.328 659.159 309.994 681.031 295.98L745.998 254.369L742.75 249.841C742.381 249.319 742.011 248.797 741.64 248.277C687.226 188.511 608.793 151 521.599 151C502.715 151 484.243 152.759 466.336 156.123Z" fill="url(#cC)"/>
+<defs><linearGradient id="cA" x1="576.002" y1="438.499" x2="260.331" y2="595.079" gradientUnits="userSpaceOnUse"><stop stop-color="#4ECDFF"/><stop offset="1" stop-color="#086FD8"/></linearGradient>
+<linearGradient id="cB" x1="142.048" y1="376.287" x2="754.923" y2="671.435" gradientUnits="userSpaceOnUse"><stop offset="0.156535" stop-color="#4ECDFF"/><stop offset="0.84195" stop-color="#086FD8"/><stop offset="1" stop-color="#4ECDFF"/></linearGradient>
+<linearGradient id="cC" x1="414.5" y1="185" x2="652.5" y2="329.5" gradientUnits="userSpaceOnUse"><stop stop-color="#086FD8"/><stop offset="1" stop-color="#4ECDFF"/></linearGradient></defs></svg></svg>
+</div>
+                    <p class="skill-names">ILLUSTRATOR · PHOTOSHOP · EXCEL · CLO 3D</p>
                 </div>
-                <div class="cv-item">
-                    <span class="date">LANGUAGES</span>
-                    <h3>Communication</h3>
-                    <p>Korean (Native) / French (Business Fluent) / English (Conversational).</p>
+                <div class="expertise-block">
+                    <p class="block-label">Languages</p>
+                    <div class="lang-row"><b>Korean</b><small>Native</small><span class="dots"><i></i><i></i><i></i><i></i><i></i></span></div>
+                    <div class="lang-row"><b>French</b><small>Business</small><span class="dots"><i></i><i></i><i></i><i></i><i class="o"></i></span></div>
+                    <div class="lang-row"><b>English</b><small>Conversational</small><span class="dots"><i></i><i></i><i></i><i class="o"></i><i class="o"></i></span></div>
+                </div>
+                <div class="expertise-block">
+                    <p class="block-label">License</p>
+                    <p class="sub" style="color:#c9c9c9;font-size:15px;margin:0">Driver’s License · Class 1</p>
                 </div>
             </div>
         </section>
@@ -230,7 +228,7 @@
             <div>
                 <a href="#" class="contact-link" data-email hidden>Email.</a>
                 <a href="contact.html" class="contact-link">Message.</a>
-                <a href="https://instagram.com/corde.ah" class="contact-link" target="_blank">Instagram.</a>
+                <a href="https://instagram.com/corde.ah" class="contact-link" target="_blank" rel="noopener">Instagram.</a>
                 <a href="bside.html" class="secret-link">[+] OFF THE RECORD</a>
             </div>
         </section>
