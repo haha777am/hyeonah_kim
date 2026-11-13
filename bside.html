@@ -96,6 +96,7 @@
         // mp4 파일:  { src: 'images/bside/01.mp4', poster: 'images/bside/01.jpg', caption: 'Paris, 2021' }
         // 유튜브:    { youtube: '영상ID', caption: 'Weekend Vibe' }
         const VIDEOS = [
+            { src: 'images/bside/01.mp4', poster: 'images/bside/01.jpg', caption: 'Coldplay — In My Place (Band Cover)' }
         ];
         // ▲▲▲ -------------------------------------------------------- ▲▲▲
 
@@ -115,6 +116,8 @@
                     else e.target.pause();
                 });
             }, { threshold: 0.5 });
+
+            if (VIDEOS.length === 1) { grid.style.columnCount = '1'; grid.style.maxWidth = '960px'; grid.style.margin = '0 auto'; }
 
             VIDEOS.forEach((v) => {
                 const fig = document.createElement('figure');
