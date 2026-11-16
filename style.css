@@ -294,3 +294,7 @@ html, body { cursor: auto !important; }
 a, button, label, summary, [role="button"], .gallery-item, .archive-item, .grid-item, .home-card, video { cursor: pointer !important; }
 /* art show titles are set in capitals: give them a little air */
 .show-hero h1 { letter-spacing: 0.02em !important; }
+/* list pages: clear gap between title and description */
+h1.page-title { margin-bottom: 28px !important; }
+.page-sub { margin: 0 auto 72px !important; }
+@media (max-width: 768px) { h1.page-title { margin-bottom: 20px !important; } .page-sub { margin-bottom: 44px !important; } }
