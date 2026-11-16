@@ -205,6 +205,14 @@
             body { cursor: auto; }
             .lightbox-close { top: 20px; right: 20px; font-size: 32px; }
         }
+
+        /* From Design to Look */
+        figure.d2l { margin: 0; }
+        figure.d2l .img-wrap { background: #f4f1eb; }
+        figure.d2l.dark .img-wrap { background: #000; }
+        figure.d2l figcaption { margin-top: 12px; font-family: monospace; font-size: 11px; letter-spacing: 2px; color: #777; text-transform: uppercase; }
+        figure.d2l figcaption b { color: #a68d60; font-weight: 400; margin-right: 8px; }
+        .d2l-intro { padding: 0 5%; margin: -24px 0 32px; color: #777; font-size: 14px; font-weight: 300; }
     </style>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -262,14 +270,18 @@
             </div>
         </div>
 
-        <div class="gallery-section-title">Design &amp; Tech Pack</div>
-        <div class="g-block"><div class="g-grid cols-1 r-auto"><div class="img-wrap"><img src="images/24fw/24fw_design.jpg" alt="24FW Technical Flat Design" loading="lazy" decoding="async"></div></div><div class="g-grid cols-2 r-21"><div class="img-wrap"><img src="images/24fw/24fw_cap1.png" alt="24FW Cap Lineup 01" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/24fw/24fw_cap2.png" alt="24FW Cap Lineup 02" loading="lazy" decoding="async"></div></div></div>
-
         <div class="gallery-section-title">Lookbook Editorial <small>06</small></div>
         <div class="g-block"><div class="g-grid cols-2 r-a4"><div class="img-wrap"><img src="images/24fw/lookbook-02.jpg" alt="24FW Lookbook 02" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/24fw/lookbook-03.jpg" alt="24FW Lookbook 03" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/24fw/lookbook-04.jpg" alt="24FW Lookbook 04" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/24fw/lookbook-05.jpg" alt="24FW Lookbook 05" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/24fw/lookbook-06.jpg" alt="24FW Lookbook 06" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/24fw/lookbook-07.jpg" alt="24FW Lookbook 07" loading="lazy" decoding="async"></div></div></div>
 
         <div class="gallery-section-title">Runway Looks <small>10</small></div>
         <div class="g-block"><div class="g-grid cols-5 r-23"><div class="img-wrap"><img src="images/24fw/24fw_look1.jpg" alt="24FW Runway Look 1" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/24fw/24fw_look2.jpg" alt="24FW Runway Look 2" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/24fw/24fw_look3.jpg" alt="24FW Runway Look 3" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/24fw/24fw_look4.jpg" alt="24FW Runway Look 4" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/24fw/24fw_look5.jpg" alt="24FW Runway Look 5" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/24fw/24fw_look6.jpg" alt="24FW Runway Look 6" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/24fw/24fw_look7.jpg" alt="24FW Runway Look 7" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/24fw/24fw_look8.jpg" alt="24FW Runway Look 8" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/24fw/24fw_look9.jpg" alt="24FW Runway Look 9" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/24fw/24fw_look10.jpg" alt="24FW Runway Look 10" loading="lazy" decoding="async"></div></div></div>
+
+        <div class="gallery-section-title">From Design to Look</div>
+        <p class="d2l-intro">도식화에서 런웨이까지 — 직접 디자인한 아이템과 실제 룩.</p>
+        <div class="g-block">
+            <div class="g-grid cols-3 r-45"><figure class="d2l"><div class="img-wrap"><img src="images/24fw/flat_top.jpg" alt="Turtleneck technical flat" loading="lazy" decoding="async"></div><figcaption><b>01</b> Turtleneck — front / back</figcaption></figure><figure class="d2l"><div class="img-wrap"><img src="images/24fw/flat_pants.jpg" alt="Denim trousers technical flat" loading="lazy" decoding="async"></div><figcaption><b>02</b> Denim Trousers — front / back</figcaption></figure><figure class="d2l"><div class="img-wrap"><img src="images/24fw/24fw_look1.jpg" alt="24FW Runway Look 1" loading="lazy" decoding="async"></div><figcaption><b>→</b> Runway Look 01</figcaption></figure></div>
+            <div class="g-grid cols-3 r-45"><figure class="d2l"><div class="img-wrap"><img src="images/24fw/flat_logo.jpg" alt="Logo development" loading="lazy" decoding="async"></div><figcaption><b>03</b> Logo Development</figcaption></figure><figure class="d2l"><div class="img-wrap"><img src="images/24fw/24fw_look2.jpg" alt="24FW Runway Look 2" loading="lazy" decoding="async"></div><figcaption><b>→</b> Runway Look 02</figcaption></figure><figure class="d2l dark"><div class="img-wrap"><img src="images/24fw/flat_cap.jpg" alt="Cap tech pack" loading="lazy" decoding="async"></div><figcaption><b>04</b> Cap — logo application</figcaption></figure></div>
+        </div>
 
     </main>
 
