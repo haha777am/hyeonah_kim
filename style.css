@@ -162,3 +162,9 @@ textarea:focus-visible {
   .g-grid.center-last.c2 .img-wrap { width: 100%; }
   .g-grid.center-last.c4 .img-wrap, .g-grid.center-last.c5 .img-wrap { width: calc((100% - 8px) / 2); }
 }
+/* 옛 지그재그용 폭 제한 해제 (26SS 등) */
+.g-grid .img-wrap.masonry-item { max-width: none; width: auto; margin: 0; box-shadow: none; }
+.g-grid.center-last .img-wrap.masonry-item.masonry-item { max-width: none; }
+.g-grid.center-last.c4 .img-wrap.masonry-item { width: calc((100% - 3 * 14px) / 4); }
+@media (max-width: 1100px) { .g-grid.center-last.c4 .img-wrap.masonry-item { width: calc((100% - 2 * 14px) / 3); } }
+@media (max-width: 768px) { .g-grid.center-last.c4 .img-wrap.masonry-item { width: calc((100% - 8px) / 2); } }
