@@ -26,7 +26,7 @@
     // 인쇄용 연락처 한 줄 (이메일 · 인스타그램)
     document.querySelectorAll('[data-print-contact]').forEach(function (el) {
         var parts = [];
-        if (SITE.email) parts.push(SITE.email);
+        if (SITE.email && !el.hasAttribute('data-no-email')) parts.push(SITE.email);
         if (SITE.instagram) parts.push('@' + SITE.instagram.replace(/\/+$/, '').split('/').pop());
         el.textContent = parts.join('  ·  ');
     });
@@ -61,7 +61,7 @@
         nav.appendChild(a);
     }
 
-    if (SITE.email) addLink(SITE.email, 'mailto:' + SITE.email);
+    if (SITE.email && page !== 'cv.html') addLink(SITE.email, 'mailto:' + SITE.email);
     addLink('Message', 'contact.html');
     if (SITE.instagram) addLink('Instagram', SITE.instagram, true);
 
