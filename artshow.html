@@ -77,6 +77,7 @@
         }
         
         /* 사진-사진 스왑 설정 (컬러 유지) */
+        .preview video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); }
         .preview img { 
             position: absolute; top: 0; left: 0;
             width: 100%; height: 100%; object-fit: cover; display: block;
@@ -145,8 +146,8 @@
             
             <a href="boom_paris.html" class="archive-item">
                 <div class="preview">
-                    <img src="images/boom/poster.jpg" alt="Focus: BOOM invitation" class="photo-static">
-                    <img src="images/boom/overview_04.jpg" alt="Focus: BOOM show overview" class="photo-hover" loading="lazy" decoding="async">
+                    <img src="images/boom/overview_04.jpg" alt="Focus: BOOM show overview" class="photo-static">
+                    <video src="images/boom/reel.mp4" class="photo-hover hover-video" muted loop playsinline preload="none" aria-label="Focus: BOOM show highlights"></video>
                 </div>
                 <div class="item-main">
                     <span class="item-title">Focus: BOOM</span>
@@ -217,5 +218,12 @@
         });
     </script>
     <script src="site.js"></script>
+<script>
+document.querySelectorAll('.archive-item').forEach(card=>{
+  const v=card.querySelector('video.hover-video'); if(!v) return;
+  card.addEventListener('mouseenter',()=>{ v.currentTime=0; const p=v.play(); if(p) p.catch(()=>{}); });
+  card.addEventListener('mouseleave',()=>{ v.pause(); });
+});
+</script>
 </body>
 </html>
