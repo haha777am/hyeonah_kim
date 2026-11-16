@@ -71,7 +71,7 @@
         /* [4] 이미지 갤러리 그리드 (3분할) */
         .archive-grid { 
             display: grid;
-            grid-template-columns: repeat(3, 1fr); 
+            grid-template-columns: repeat(4, minmax(0, 1fr)); 
             gap: 15px; 
             animation: fadeIn 1.2s ease forwards;
         }
@@ -83,7 +83,7 @@
             overflow: hidden;
             text-decoration: none;
             background: #111;
-            aspect-ratio: 4 / 5; 
+            aspect-ratio: 3 / 4; 
         }
 
         .grid-item img {
@@ -100,7 +100,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 30px;
+            padding: 24px;
             background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
             box-sizing: border-box;
             transform: translateY(20px);
@@ -120,7 +120,7 @@
 
         .item-title { 
             font-family: 'Playfair Display', serif; 
-            font-size: 28px; 
+            font-size: 22px; 
             color: #fff;
             margin-bottom: 5px;
             display: block;
@@ -128,8 +128,9 @@
         .item-meta { 
             font-family: monospace; 
             color: #aaa; 
-            font-size: 14px; 
-            letter-spacing: 2px; 
+            font-size: 11px; 
+            letter-spacing: 1.5px; 
+            line-height: 1.6; 
             text-transform: uppercase;
         }
 
@@ -137,6 +138,8 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @media (max-width: 1024px) and (min-width: 769px) { .archive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
         /* 모바일 대응 */
         @media (max-width: 768px) {
@@ -173,14 +176,14 @@
 
     <main class="container">
         <h1 class="page-title">Collaborations</h1>
-        <p class="page-sub">브랜드·기관과 함께한 그래픽 패턴, 액세서리, 테크팩 프로젝트.</p>
+        <p class="page-sub">브랜드·기관과 함께한 액세서리, 유니폼, 테크팩 프로젝트.</p>
         
         <div class="archive-grid">
             <a href="seoul.html" class="grid-item">
                 <img src="images/seoul/cap2.jpg" alt="Seoul Collaboration">
                 <div class="item-info">
                     <span class="item-title">Seoul City</span>
-                    <span class="item-meta">Accessories, Graphic Pattern</span>
+                    <span class="item-meta">Caps, Scarves, Packaging</span>
                 </div>
             </a>
 
@@ -188,22 +191,22 @@
                 <img src="images/gyeomson/neckarf03.jpg" alt="Gyeomson Partnership">
                 <div class="item-info">
                     <span class="item-title">Gyeomson</span>
-                    <span class="item-meta">Graphic Design, Pattern Design</span>
+                    <span class="item-meta">Socks, Neckarf, Necktie</span>
                 </div>
             </a>
 
             <a href="insooth.html" class="grid-item">
-                <img src="images/insooth/plate01.jpg" alt="Insooth Collaboration" loading="lazy" decoding="async">
+                <img src="images/insooth/model_01.jpg" alt="Insooth Collaboration" loading="lazy" decoding="async">
                 <div class="item-info">
                     <span class="item-title">Insooth</span>
-                    <span class="item-meta">Tech Pack, Creative Collaboration</span>
+                    <span class="item-meta">Signature Cap, Tech Pack</span>
                 </div>
             </a>
             <a href="jtbc.html" class="grid-item">
-                <img src="images/jtbc/thumb_suit_setup.jpg" alt="JTBC commentator suit set-up — technical flat" loading="lazy" decoding="async">
+                <img src="images/jtbc/thumb_portrait.jpg" alt="JTBC commentator suit set-up — technical flat" loading="lazy" decoding="async">
                 <div class="item-info">
                     <span class="item-title">JTBC</span>
-                    <span class="item-meta">Winter Olympics &amp; World Cup Commentator Uniforms, 2026</span>
+                    <span class="item-meta">Commentator Uniforms, 2026</span>
                 </div>
             </a>
         </div>
