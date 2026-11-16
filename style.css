@@ -127,3 +127,38 @@ textarea:focus-visible {
     .section-title, .cv-section > .cv-list > .cv-item:first-child { break-after: avoid; }
     a { color: inherit !important; text-decoration: none !important; }
 }
+
+/* ===== 시즌 페이지 공통: 정렬형 갤러리 그리드 ===== */
+.gallery-section-title small { font-family: monospace; font-size: 12px; color: #a68d60; letter-spacing: 2px; margin-left: 10px; vertical-align: middle; }
+.g-block { padding: 0 5%; display: grid; gap: 14px; }
+.g-grid { display: grid; gap: 14px; }
+.g-grid.cols-1 { grid-template-columns: 1fr; }
+.g-grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.g-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.g-grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.g-grid.cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.g-grid .img-wrap { cursor: zoom-in; }
+.g-grid.r-23 .img-wrap { aspect-ratio: 2 / 3; background: #111; }
+.g-grid.r-45 .img-wrap { aspect-ratio: 4 / 5; background: #111; }
+.g-grid.r-32 .img-wrap { aspect-ratio: 3 / 2; background: #111; }
+.g-grid.r-21 .img-wrap { aspect-ratio: 2721 / 1356; background: #000; }
+.g-grid.r-a4 .img-wrap { aspect-ratio: 3508 / 2480; background: #fff; }
+.g-grid[class*=" r-"]:not(.r-auto) .img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.g-grid.r-32 .img-wrap img, .g-grid.r-21 .img-wrap img, .g-grid.r-a4 .img-wrap img { object-position: center; }
+.g-grid.r-auto .img-wrap img { width: 100%; height: auto; }
+.g-grid.narrow { max-width: 900px; margin: 0 auto; width: 100%; }
+.g-grid.center-last { display: flex; flex-wrap: wrap; justify-content: center; }
+.g-grid.center-last.c2 .img-wrap { width: calc((100% - 14px) / 2); }
+.g-grid.center-last.c4 .img-wrap { width: calc((100% - 3 * 14px) / 4); }
+.g-grid.center-last.c5 .img-wrap { width: calc((100% - 4 * 14px) / 5); }
+@media (max-width: 1100px) {
+  .g-grid.cols-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .g-grid.center-last.c5 .img-wrap, .g-grid.center-last.c4 .img-wrap { width: calc((100% - 2 * 14px) / 3); }
+}
+@media (max-width: 768px) {
+  .g-block, .g-grid { gap: 8px; }
+  .g-grid.cols-3.r-23, .g-grid.cols-4, .g-grid.cols-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g-grid.cols-2.r-a4, .g-grid.cols-2.r-32, .g-grid.cols-3.r-32 { grid-template-columns: 1fr; }
+  .g-grid.center-last.c2 .img-wrap { width: 100%; }
+  .g-grid.center-last.c4 .img-wrap, .g-grid.center-last.c5 .img-wrap { width: calc((100% - 8px) / 2); }
+}
