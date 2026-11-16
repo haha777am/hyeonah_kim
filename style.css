@@ -248,3 +248,13 @@ header a, header .back-btn { pointer-events: auto; }
 .jtbc-part h2 { font-size: clamp(24px, 2.2vw, 32px) !important; }
 .gallery-grid > .gallery-section-title { grid-column: 1 / -1; width: 100%; padding-left: 0 !important; padding-right: 0 !important; margin-top: 70px !important; }
 .gallery-grid > .gallery-section-title:first-child { margin-top: 0 !important; border-top: 0; padding-top: 0 !important; }
+
+/* desktop: use more of the screen width, same edges on every page */
+.container, .project-container, .show-container, .bside-container { max-width: 1760px !important; padding-left: 4% !important; padding-right: 4% !important; box-sizing: border-box; }
+.home-works, .home-stats { max-width: 1760px !important; padding-left: 4% !important; padding-right: 4% !important; }
+.cv-container { max-width: 1440px !important; padding-left: 6% !important; padding-right: 6% !important; }
+@media (max-width: 768px) {
+  .container, .project-container, .show-container, .bside-container, .home-works, .home-stats { padding-left: 5% !important; padding-right: 5% !important; }
+  .cv-container { padding-left: 6% !important; padding-right: 6% !important; }
+}
+.main-intro { max-width: 1760px; margin: 0 auto; padding-left: 4% !important; padding-right: 4% !important; box-sizing: border-box; }
