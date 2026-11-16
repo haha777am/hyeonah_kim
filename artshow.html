@@ -121,7 +121,7 @@
             .photo-static { opacity: 1 !important; }
         }
     </style>
-    <link rel="stylesheet" href="style.css?v=1119">
+    <link rel="stylesheet" href="style.css?v=1120">
 </head>
 <body>
 
@@ -129,11 +129,11 @@
 
     <header>
         <div class="nav-capsule">
-            <a href="index.html">HOME</a>
-            <a href="work.html">WORK</a>
-            <a href="artshow.html" class="active" aria-current="page">ART SHOW</a>
-            <a href="collab.html">COLLAB</a>
-            <a href="cv.html">C.V</a>
+            <a href="index.html">Home</a>
+            <a href="work.html">Work</a>
+            <a href="artshow.html" class="active" aria-current="page">Art Show</a>
+            <a href="collab.html">Collab</a>
+            <a href="cv.html">CV</a>
         </div>
     </header>
 
@@ -207,12 +207,11 @@
                 if (this.target === '_blank' || this.getAttribute('href').startsWith('mailto:')) return;
                 e.preventDefault();
                 const targetUrl = this.href;
-                document.body.classList.add('fade-out');
-                setTimeout(() => { window.location.href = targetUrl; }, 500); 
+                window.location.href = targetUrl; 
             });
         });
     </script>
-    <script src="site.js?v=1117"></script>
+    <script src="site.js?v=1120"></script>
 <script>
 document.querySelectorAll('.archive-item').forEach(card=>{
   const v=card.querySelector('video.hover-video'); if(!v) return;

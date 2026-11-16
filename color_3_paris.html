@@ -75,22 +75,22 @@
             body { cursor: auto; }
         }
     </style>
-    <link rel="stylesheet" href="style.css?v=1119">
+    <link rel="stylesheet" href="style.css?v=1120">
 </head>
 <body>
     <header>
         <div class="nav-capsule">
-            <a href="index.html">HOME</a>
-            <a href="work.html">WORK</a>
-            <a href="artshow.html" class="active" aria-current="page">ART SHOW</a>
-            <a href="collab.html">COLLAB</a>
-            <a href="cv.html">C.V</a>
+            <a href="index.html">Home</a>
+            <a href="work.html">Work</a>
+            <a href="artshow.html" class="active" aria-current="page">Art Show</a>
+            <a href="collab.html">Collab</a>
+            <a href="cv.html">CV</a>
         </div>
     </header>
     <div class="custom-cursor"></div>
 
     <header>
-        <a href="artshow.html" class="back-btn">← BACK TO ART SHOW</a>
+        <a href="artshow.html" class="back-btn">Back to Art Show</a>
     </header>
 
     <main class="show-container">
@@ -101,13 +101,13 @@
 
         <div class="project-info show-project-info">
             <div class="info-left">
-                <h3>ROLE</h3>
+                <h3>Role</h3>
                 <p>Creative Director</p>
-                <h3>YEAR</h3>
+                <h3>Year</h3>
                 <p>2020</p>
-                <h3>VENUE</h3>
+                <h3>Venue</h3>
                 <p>Espace Thorigny, Paris</p>
-                <h3>CATEGORY</h3>
+                <h3>Category</h3>
                 <p>Art Show, Costume Design, Show Direction</p>
             </div>
             <div class="info-right">
@@ -120,7 +120,7 @@
         <div class="show-gallery">
             
             <div class="gallery-item full">
-                <span class="overlay-text">MAIN SHOW FILM</span>
+                <span class="overlay-text">Main show film</span>
                 <video autoplay muted loop playsinline>
                     <source src="images/1/video.mp4" type="video/mp4">
                     <img src="images/1/main.jpg" alt="Main View Fallback">
@@ -133,12 +133,12 @@
             </div>
 
             <div class="gallery-item center-block">
-                <span class="overlay-text">RUNWAY CUT 01</span>
+                <span class="overlay-text">Runway cut 01</span>
                 <img src="images/1/1.jpg" alt="Runway View 1" loading="lazy" decoding="async">
             </div>
             
             <div class="gallery-item center-block">
-                <span class="overlay-text">RUNWAY CUT 02</span>
+                <span class="overlay-text">Runway cut 02</span>
                 <img src="images/1/2.jpg" alt="Runway View 2" loading="lazy" decoding="async">
             </div>
 
@@ -154,7 +154,7 @@
                 </video>
             </div>
             <div class="gallery-item half">
-                <span class="overlay-text">FINALE</span>
+                <span class="overlay-text">Finale</span>
                 <video autoplay muted loop playsinline>
                     <source src="images/1/end.mp4" type="video/mp4">
                 </video>
@@ -177,8 +177,7 @@
                 if (this.target === '_blank') return;
                 e.preventDefault();
                 const targetUrl = this.href;
-                document.body.classList.add('fade-out');
-                setTimeout(() => { window.location.href = targetUrl; }, 500);
+                window.location.href = targetUrl;
             });
         });
 
@@ -188,6 +187,6 @@
             }
         });
     </script>
-    <script src="site.js?v=1117"></script>
+    <script src="site.js?v=1120"></script>
 </body>
 </html>

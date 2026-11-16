@@ -80,14 +80,14 @@
 }
 @media (max-width: 600px) { .video-grid { column-count: 1; } }
     </style>
-    <link rel="stylesheet" href="style.css?v=1119">
+    <link rel="stylesheet" href="style.css?v=1120">
 </head>
 <body>
 
     <div class="custom-cursor"></div>
 
     <header>
-        <a href="cv.html" class="back-btn">← BACK TO C.V</a>
+        <a href="cv.html" class="back-btn">Back to CV</a>
     </header>
 
     <main class="bside-container">
@@ -99,7 +99,7 @@
 
         <div class="video-grid" id="video-grid"></div>
         <div class="bside-foot">
-            <a href="https://blog.naver.com/p_oiuytrewq" class="blog-btn" target="_blank" rel="noopener">Blog <span aria-hidden="true">↗</span></a>
+            <a href="https://blog.naver.com/p_oiuytrewq" class="blog-btn" target="_blank" rel="noopener">Blog</a>
         </div>
     </main>
 
@@ -117,7 +117,7 @@
             const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
             if (!VIDEOS.length) {
-                grid.outerHTML = '<p class="video-empty">VIDEOS COMING SOON</p>';
+                grid.outerHTML = '<p class="video-empty">Videos coming soon</p>';
                 return;
             }
 
@@ -201,11 +201,10 @@
                 if (this.target === '_blank' || this.getAttribute('href').startsWith('mailto:')) return;
                 e.preventDefault();
                 const targetUrl = this.href;
-                document.body.classList.add('fade-out');
-                setTimeout(() => { window.location.href = targetUrl; }, 500); 
+                window.location.href = targetUrl; 
             });
         });
     </script>
-    <script src="site.js?v=1117"></script>
+    <script src="site.js?v=1120"></script>
 </body>
 </html>

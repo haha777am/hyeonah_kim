@@ -251,7 +251,7 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="style.css?v=1119">
+    <link rel="stylesheet" href="style.css?v=1120">
 </head>
 
 <body>
@@ -262,11 +262,11 @@
     <!-- 네비게이션 -->
     <header>
         <nav class="nav-capsule">
-            <a href="index.html">HOME</a>
-            <a href="work.html" class="active" aria-current="page">WORK</a>
-            <a href="artshow.html">ART SHOW</a>
-            <a href="collab.html">COLLAB</a>
-            <a href="cv.html">C.V</a>
+            <a href="index.html">Home</a>
+            <a href="work.html" class="active" aria-current="page">Work</a>
+            <a href="artshow.html">Art Show</a>
+            <a href="collab.html">Collab</a>
+            <a href="cv.html">CV</a>
         </nav>
     </header>
 
@@ -394,15 +394,11 @@
                 e.preventDefault();
 
                 const targetUrl = this.href;
-                document.body.classList.add('fade-out');
-
-                setTimeout(() => {
-                    window.location.href = targetUrl;
-                }, 500);
+                window.location.href = targetUrl;
             });
         });
     </script>
 
-    <script src="site.js?v=1117"></script>
+    <script src="site.js?v=1120"></script>
 </body>
 </html>

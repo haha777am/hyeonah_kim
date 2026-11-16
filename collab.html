@@ -159,7 +159,7 @@
             body { cursor: auto; }
         }
     </style>
-    <link rel="stylesheet" href="style.css?v=1119">
+    <link rel="stylesheet" href="style.css?v=1120">
 </head>
 <body>
 
@@ -167,11 +167,11 @@
 
     <header>
         <div class="nav-capsule">
-            <a href="index.html">HOME</a>
-            <a href="work.html">WORK</a>
-            <a href="artshow.html">ART SHOW</a>
-            <a href="collab.html" class="active" aria-current="page">COLLAB</a>
-            <a href="cv.html">C.V</a>
+            <a href="index.html">Home</a>
+            <a href="work.html">Work</a>
+            <a href="artshow.html">Art Show</a>
+            <a href="collab.html" class="active" aria-current="page">Collab</a>
+            <a href="cv.html">CV</a>
         </div>
     </header>
 
@@ -231,14 +231,10 @@
                 
                 e.preventDefault();
                 const targetUrl = this.href;
-                document.body.classList.add('fade-out');
-                
-                setTimeout(() => {
-                    window.location.href = targetUrl;
-                }, 500); 
+                window.location.href = targetUrl; 
             });
         });
     </script>
-    <script src="site.js?v=1117"></script>
+    <script src="site.js?v=1120"></script>
 </body>
 </html>

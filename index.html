@@ -195,19 +195,19 @@
             .closing-cta { flex-wrap: wrap; }
         }
     </style>
-    <link rel="stylesheet" href="style.css?v=1119">
+    <link rel="stylesheet" href="style.css?v=1120">
 </head>
-<body>
+<body class="is-home">
 
     <div class="custom-cursor"></div>
 
     <header>
         <div class="nav-capsule">
-            <a href="index.html" class="active" aria-current="page">HOME</a>
-            <a href="work.html">WORK</a>
-            <a href="artshow.html">ART SHOW</a>
-            <a href="collab.html">COLLAB</a>
-            <a href="cv.html">C.V</a>
+            <a href="index.html" class="active" aria-current="page">Home</a>
+            <a href="work.html">Work</a>
+            <a href="artshow.html">Art Show</a>
+            <a href="collab.html">Collab</a>
+            <a href="cv.html">CV</a>
         </div>
     </header>
 
@@ -230,8 +230,8 @@
                 <span>From concept to production — Studio Berçot, Paris.</span>
             </p>
             <div class="intro-cta">
-                <a href="work.html" class="btn">VIEW WORK</a>
-                <a href="cv.html" class="btn ghost">C.V</a>
+                <a href="work.html" class="btn">View work</a>
+                <a href="cv.html" class="btn ghost">CV</a>
             </div>
         </div>
     </main>
@@ -239,7 +239,7 @@
     <section class="home-works">
         <div class="home-works-head">
             <h2>Selected Works</h2>
-            <a href="work.html" class="text-link">VIEW ALL →</a>
+            <a href="work.html" class="text-link">View all</a>
         </div>
         <div class="home-works-grid">
             <a href="27ss.html" class="home-card feature" id="feature-27ss">
@@ -273,7 +273,7 @@
     <section class="home-works home-artshow">
         <div class="home-works-head">
             <h2>Art Show</h2>
-            <a href="artshow.html" class="text-link">VIEW ALL →</a>
+            <a href="artshow.html" class="text-link">View all</a>
         </div>
         <div class="home-works-grid artshow-grid">
             <a href="boom_paris.html" class="home-card">
@@ -302,7 +302,7 @@
     <section class="home-works home-collabs">
         <div class="home-works-head">
             <h2>Collaborations</h2>
-            <a href="collab.html" class="text-link">VIEW ALL →</a>
+            <a href="collab.html" class="text-link">View all</a>
         </div>
         <div class="collab-grid">
             <a href="jtbc.html" class="home-card">
@@ -327,8 +327,8 @@
         <p class="closing-eyebrow">Collaboration &amp; project inquiries</p>
         <h2>Let&rsquo;s work <em>together.</em></h2>
         <div class="closing-cta">
-            <a href="contact.html" class="btn">GET IN TOUCH</a>
-            <a href="cv.html" class="btn ghost">VIEW C.V</a>
+            <a href="contact.html" class="btn">Get in touch</a>
+            <a href="cv.html" class="btn ghost">View CV</a>
         </div>
     </section>
 
@@ -354,11 +354,7 @@
                 if (href && href !== '#') {
                     e.preventDefault();
                     const targetUrl = this.href;
-                    document.body.classList.add('fade-out');
-
-                    setTimeout(() => {
-                        window.location.href = targetUrl;
-                    }, 500);
+                    window.location.href = targetUrl;
                 }
             });
         });
@@ -370,6 +366,6 @@
             }
         });
     </script>
-    <script src="site.js?v=1117"></script>
+    <script src="site.js?v=1120"></script>
 </body>
 </html>

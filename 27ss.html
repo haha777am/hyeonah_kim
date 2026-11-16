@@ -213,21 +213,21 @@
         @media (max-width: 768px) { .g-grid.cols-2.r-spec { grid-template-columns: 1fr; } }
         .g-grid.lineup .img-wrap { background: #fff; }
     </style>
-    <link rel="stylesheet" href="style.css?v=1119">
+    <link rel="stylesheet" href="style.css?v=1120">
 </head>
 <body>
 
     <div class="custom-cursor"></div>
 
-    <a href="work.html" class="back-btn">← BACK TO WORK</a>
+    <a href="work.html" class="back-btn">Back to Work</a>
 
     <header>
         <div class="nav-capsule">
-            <a href="index.html">HOME</a>
-            <a href="work.html" class="active" aria-current="page">WORK</a>
-            <a href="artshow.html">ART SHOW</a>
-            <a href="collab.html">COLLAB</a>
-            <a href="cv.html">C.V</a>
+            <a href="index.html">Home</a>
+            <a href="work.html" class="active" aria-current="page">Work</a>
+            <a href="artshow.html">Art Show</a>
+            <a href="collab.html">Collab</a>
+            <a href="cv.html">CV</a>
         </div>
     </header>
 
@@ -240,11 +240,11 @@
 
         <div class="project-info">
             <div class="info-left">
-                <h3>ROLE</h3>
+                <h3>Role</h3>
                 <p>Fashion Designer</p>
-                <h3>YEAR</h3>
+                <h3>Year</h3>
                 <p>2027</p>
-                <h3>CATEGORY</h3>
+                <h3>Category</h3>
                 <p>Runway, Collaboration, Sampling</p>
             </div>
             <div class="info-right">
@@ -320,8 +320,7 @@
                 if (this.target === '_blank' || this.getAttribute('href').startsWith('mailto:')) return;
                 e.preventDefault();
                 const targetUrl = this.href;
-                document.body.classList.add('fade-out');
-                setTimeout(() => { window.location.href = targetUrl; }, 500); 
+                window.location.href = targetUrl; 
             });
         });
 
@@ -388,6 +387,6 @@
             }
         });
     </script>
-    <script src="site.js?v=1117"></script>
+    <script src="site.js?v=1120"></script>
 </body>
 </html>

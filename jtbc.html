@@ -95,28 +95,28 @@
         .sheet-cap span { margin-left: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #a68d60; text-transform: uppercase; }
         .gallery-item.white { background: #fff; }
     </style>
-    <link rel="stylesheet" href="style.css?v=1119">
+    <link rel="stylesheet" href="style.css?v=1120">
 </head>
 <body>
 
     <div class="custom-cursor"></div>
 
-    <a href="collab.html" class="back-btn">← BACK TO COLLAB</a>
+    <a href="collab.html" class="back-btn">Back to Collaborations</a>
 
     <header>
         <div class="nav-capsule">
-            <a href="index.html">HOME</a>
-            <a href="work.html">WORK</a>
-            <a href="artshow.html">ART SHOW</a>
-            <a href="collab.html" class="active" aria-current="page">COLLAB</a>
-            <a href="cv.html">C.V</a>
+            <a href="index.html">Home</a>
+            <a href="work.html">Work</a>
+            <a href="artshow.html">Art Show</a>
+            <a href="collab.html" class="active" aria-current="page">Collab</a>
+            <a href="cv.html">CV</a>
         </div>
     </header>
 
     <main class="project-container">
         <div class="project-hero"><h1>JTBC</h1><div class="project-meta">Commentator Uniforms — Winter Olympics &amp; World Cup</div></div>
         <div class="project-info">
-            <div class="info-left"><h3>ROLE</h3><p>Fashion Designer</p><h3>YEAR</h3><p>2026</p><h3>CATEGORY</h3><p>Tie Design, Made-to-Measure Shirts &amp; Suits, Production</p></div>
+            <div class="info-left"><h3>Role</h3><p>Fashion Designer</p><h3>Year</h3><p>2026</p><h3>Category</h3><p>Tie Design, Made-to-Measure Shirts &amp; Suits, Production</p></div>
             <div class="info-right">
                 <p class="ko">JTBC 2026 밀라노 코르티나 동계올림픽과 2026 FIFA 월드컵 중계 해설진의 중계복. 대회별 넥타이를 디자인하고, 해설진 전원을 직접 체촌해 맞춤 셔츠와 정장을 생산했습니다.</p>
                 <p class="en">Commentator uniforms for JTBC’s coverage of the Milano Cortina 2026 Winter Olympics and the 2026 FIFA World Cup. Designed a tie for each event and produced made-to-measure shirts and suits from each commentator’s measurements.</p>
@@ -159,11 +159,10 @@
                 if (this.target === '_blank' || this.getAttribute('href').startsWith('mailto:')) return;
                 e.preventDefault();
                 const targetUrl = this.href;
-                document.body.classList.add('fade-out');
-                setTimeout(() => { window.location.href = targetUrl; }, 500); 
+                window.location.href = targetUrl; 
             });
         });
     </script>
-    <script src="site.js?v=1117"></script>
+    <script src="site.js?v=1120"></script>
 </body>
 </html>

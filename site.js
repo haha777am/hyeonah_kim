@@ -47,7 +47,7 @@
     footer.className = 'site-footer';
 
     var copy = document.createElement('span');
-    copy.textContent = '© ' + new Date().getFullYear() + ' HYEON AH KIM';
+    copy.textContent = '© ' + new Date().getFullYear() + ' Hyeon Ah Kim';
     footer.appendChild(copy);
 
     var nav = document.createElement('nav');
