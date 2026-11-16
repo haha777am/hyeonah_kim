@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insooth — Hyeon Ah Kim</title>
     <meta name="description" content="인수스(INSOOTH) 콜라보 — 볼캡·테크 티셔츠 Tech Pack, 메탈 로고 플레이트 스펙.">
@@ -12,7 +13,7 @@
     <meta property="og:url" content="https://haha777am.github.io/hyeonah_kim/insooth.html">
     <meta name="twitter:card" content="summary_large_image">
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;700&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
         /* 공통 스타일 및 애니메이션 */
         body {
@@ -38,14 +39,14 @@
         .nav-capsule a { text-decoration: none; color: #777; padding: 10px 25px; border-radius: 50px; font-size: 13px; letter-spacing: 1px; transition: 0.4s; }
         .nav-capsule a:hover, .nav-capsule a.active { color: #fff; }
         
-        .back-btn { position: absolute; left: 5%; top: 50px; font-family: monospace; color: #fff; text-decoration: none; font-size: 13px; letter-spacing: 2px; transition: 0.3s; z-index: 1001; }
+        .back-btn { position: absolute; left: 5%; top: 50px; font-family: 'IBM Plex Mono', monospace; color: #fff; text-decoration: none; font-size: 13px; letter-spacing: 2px; transition: 0.3s; z-index: 1001; }
         .back-btn:hover { opacity: 0.5; padding-left: 10px; }
 
         /* 상세 페이지 레이아웃 */
         .project-container { padding: 150px 5% 100px; max-width: 1400px; margin: 0 auto; }
         .project-hero { margin-bottom: 80px; text-align: center; }
         .project-hero h1 { font-family: 'Playfair Display', serif; font-size: 6vw; margin: 0 0 20px; line-height: 1; }
-        .project-meta { font-family: monospace; color: #a68d60; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; }
+        .project-meta { font-family: 'IBM Plex Mono', monospace; color: #a68d60; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; }
 
         /* 프로젝트 설명 영역 */
         .project-info {
@@ -53,7 +54,7 @@
             border-top: 1px solid #222; border-bottom: 1px solid #222;
             padding: 60px 0; margin-bottom: 100px;
         }
-        .info-left h3 { font-family: monospace; font-size: 14px; color: #666; margin-bottom: 10px; letter-spacing: 2px;}
+        .info-left h3 { font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #666; margin-bottom: 10px; letter-spacing: 2px;}
         .info-left p { margin-bottom: 30px; font-size: 15px; color: #ddd; }
         .info-right p { font-size: 16px; line-height: 1.8; color: #aaa; font-weight: 300; margin-top: 0; text-align: justify; }
 
@@ -70,7 +71,7 @@
         .gallery-item:hover img { transform: scale(1.02); }
         
         /* 레이아웃 클래스 - 테크팩은 텍스트가 잘 보이도록 모두 꽉 차게 배치 */
-        .full { grid-column: span 12; margin-bottom: 20px; } .half { grid-column: span 6; } .gallery-item.half img { background: transparent; }
+        .full { grid-column: span 12; margin-bottom: 20px; } .half { grid-column: span 6; } .quarter { grid-column: span 3; } .gallery-item.half img { background: transparent; }
 
         @media (max-width: 768px) {
             .project-info { grid-template-columns: 1fr; gap: 30px; }
@@ -104,7 +105,7 @@
         
         <div class="project-hero">
             <h1>Insooth</h1>
-            <div class="project-meta">Creative Collaboration</div>
+            <div class="project-meta">Tech Pack Collaboration</div>
         </div>
 
         <div class="project-info">
@@ -114,7 +115,7 @@
                 <h3>YEAR</h3>
                 <p>2025 — 2026</p>
                 <h3>CATEGORY</h3>
-                <p>Tech Pack, Hardware Spec, Collab</p>
+                <p>Signature Cap, T-shirt, Logo Plate</p>
             </div>
             <div class="info-right">
                 <p class="ko">아웃도어 브랜드 인수스(INSOOTH)와의 협업. 시그니처 볼캡과 스티치 테크 티셔츠(S.T.T)의 작업지시서, 금속 로고 플레이트의 두께·곡률·타공 위치 등 3D 스펙과 사이즈 베리에이션을 정리했습니다.</p>
@@ -123,7 +124,7 @@
         </div>
 
         <div class="gallery-grid">
-            
+            <h2 class="gallery-section-title">Tech Pack <small>03</small></h2>
             <div class="gallery-item full">
                 <img src="images/insooth/1.jpg" alt="Insooth Signature Cap Tech Pack">
             </div>
@@ -134,7 +135,7 @@
                 <img src="images/insooth/3.jpg" alt="Insooth Stitch Tech T-shirt Tech Pack 2" loading="lazy" decoding="async">
             </div>
 
-            <div class="full" style="height: 60px; background: transparent; margin: 0;"></div>
+            <h2 class="gallery-section-title">Logo Plate <small>03</small></h2>
 
             <div class="gallery-item full">
                 <img src="images/insooth/plate01.jpg" alt="Insooth Plate Specification 1" loading="lazy" decoding="async">
@@ -145,20 +146,19 @@
             <div class="gallery-item full">
                 <img src="images/insooth/plate03.jpg" alt="Insooth Plate Specification 3" loading="lazy" decoding="async">
             </div>
-
-            <div class="full" style="height: 60px; margin: 0;"></div>
-            <div class="gallery-item half"><img src="images/insooth/model_01.jpg" alt="Insooth model shot 1" loading="lazy" decoding="async"></div>
-            <div class="gallery-item half"><img src="images/insooth/model_02.jpg" alt="Insooth model shot 2" loading="lazy" decoding="async"></div>
-            <div class="gallery-item half"><img src="images/insooth/model_03.jpg" alt="Insooth model shot 3" loading="lazy" decoding="async"></div>
-            <div class="gallery-item half"><img src="images/insooth/model_04.jpg" alt="Insooth model shot 4" loading="lazy" decoding="async"></div>
-            <div class="gallery-item half"><img src="images/insooth/model_05.jpg" alt="Insooth model shot 5" loading="lazy" decoding="async"></div>
-            <div class="gallery-item half"><img src="images/insooth/model_06.jpg" alt="Insooth model shot 6" loading="lazy" decoding="async"></div>
-            <div class="gallery-item half"><img src="images/insooth/model_07.jpg" alt="Insooth model shot 7" loading="lazy" decoding="async"></div>
-            <div class="gallery-item half"><img src="images/insooth/model_08.jpg" alt="Insooth model shot 8" loading="lazy" decoding="async"></div>
-            <div class="gallery-item half"><img src="images/insooth/model_09.jpg" alt="Insooth model shot 9" loading="lazy" decoding="async"></div>
-            <div class="gallery-item half"><img src="images/insooth/model_10.jpg" alt="Insooth model shot 10" loading="lazy" decoding="async"></div>
-            <div class="gallery-item half"><img src="images/insooth/model_11.jpg" alt="Insooth model shot 11" loading="lazy" decoding="async"></div>
-            <div class="gallery-item half"><img src="images/insooth/model_12.jpg" alt="Insooth model shot 12" loading="lazy" decoding="async"></div>
+            <h2 class="gallery-section-title">Lookbook <small>12</small></h2>
+            <div class="gallery-item quarter"><img src="images/insooth/model_01.jpg" alt="Insooth model shot 1" loading="lazy" decoding="async"></div>
+            <div class="gallery-item quarter"><img src="images/insooth/model_02.jpg" alt="Insooth model shot 2" loading="lazy" decoding="async"></div>
+            <div class="gallery-item quarter"><img src="images/insooth/model_03.jpg" alt="Insooth model shot 3" loading="lazy" decoding="async"></div>
+            <div class="gallery-item quarter"><img src="images/insooth/model_04.jpg" alt="Insooth model shot 4" loading="lazy" decoding="async"></div>
+            <div class="gallery-item quarter"><img src="images/insooth/model_05.jpg" alt="Insooth model shot 5" loading="lazy" decoding="async"></div>
+            <div class="gallery-item quarter"><img src="images/insooth/model_06.jpg" alt="Insooth model shot 6" loading="lazy" decoding="async"></div>
+            <div class="gallery-item quarter"><img src="images/insooth/model_07.jpg" alt="Insooth model shot 7" loading="lazy" decoding="async"></div>
+            <div class="gallery-item quarter"><img src="images/insooth/model_08.jpg" alt="Insooth model shot 8" loading="lazy" decoding="async"></div>
+            <div class="gallery-item quarter"><img src="images/insooth/model_09.jpg" alt="Insooth model shot 9" loading="lazy" decoding="async"></div>
+            <div class="gallery-item quarter"><img src="images/insooth/model_10.jpg" alt="Insooth model shot 10" loading="lazy" decoding="async"></div>
+            <div class="gallery-item quarter"><img src="images/insooth/model_11.jpg" alt="Insooth model shot 11" loading="lazy" decoding="async"></div>
+            <div class="gallery-item quarter"><img src="images/insooth/model_12.jpg" alt="Insooth model shot 12" loading="lazy" decoding="async"></div>
         </div>
 
     </main>

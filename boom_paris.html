@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Focus: BOOM — Hyeon Ah Kim</title>
     <meta name="description" content="Focus Art Fair: BOOM — Carrousel du Louvre, Paris 2022.09. 크리에이티브 디렉션.">
@@ -11,7 +12,7 @@
     <meta property="og:image" content="https://haha777am.github.io/hyeonah_kim/images/boom/runway_01.jpg">
     <meta property="og:url" content="https://haha777am.github.io/hyeonah_kim/boom_paris.html">
     <meta name="twitter:card" content="summary_large_image">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;700&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
         /* [1] 기본 테마 및 전환 효과 */
         body { margin: 0; background-color: #0b0b0b; color: #fff; font-family: 'Noto Sans KR', sans-serif; cursor: none; animation: fadeInPage 0.8s ease forwards; overflow-x: hidden; }
@@ -23,7 +24,7 @@
 
         /* 네비게이션 */
         header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 40px 5%; box-sizing: border-box; mix-blend-mode: difference; }
-        .back-btn { font-family: monospace; color: #fff; text-decoration: none; font-size: 13px; letter-spacing: 2px; transition: 0.3s; }
+        .back-btn { font-family: 'IBM Plex Mono', monospace; color: #fff; text-decoration: none; font-size: 13px; letter-spacing: 2px; transition: 0.3s; }
         .back-btn:hover { opacity: 0.5; padding-left: 10px; }
 
         /* 레이아웃 */
@@ -31,7 +32,7 @@
         .show-hero { margin-bottom: 80px; text-align: center; }
         .show-hero h1 { font-family: 'Playfair Display', serif; font-size: 6vw; margin: 0; line-height: 1.1; text-transform: uppercase; }
         .show-hero h1 span { font-style: italic; color: #a68d60; }
-        .show-meta { display: flex; justify-content: center; gap: 40px; margin-top: 30px; font-family: monospace; font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase; }
+        .show-meta { display: flex; justify-content: center; gap: 40px; margin-top: 30px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase; }
 
         /* 중간 설명글 영역 */
         .show-info { max-width: 800px; margin: 80px auto 100px; text-align: center; border-top: 1px solid #222; padding-top: 80px; }
@@ -71,7 +72,7 @@
         /* 텍스트 오버레이 (마우스 올리면 나오는 글씨) */
         .overlay-text {
             position: absolute; bottom: 20px; left: 20px; z-index: 10;
-            font-family: monospace; font-size: 12px; color: #fff; letter-spacing: 2px;
+            font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #fff; letter-spacing: 2px;
             opacity: 0; transition: 0.5s; pointer-events: none; text-shadow: 0px 2px 4px rgba(0,0,0,0.8);
         }
         .gallery-item:hover .overlay-text { opacity: 1; }
@@ -90,7 +91,7 @@
         .boom-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 980px; margin: 90px auto 0; }
         .boom-intro figure { margin: 0; }
         .boom-intro img, .boom-intro video { width: 100%; aspect-ratio: 480 / 676; object-fit: cover; display: block; background: #111; }
-        .boom-intro figcaption, .photo-credit { margin-top: 10px; font-family: monospace; font-size: 11px; letter-spacing: 2px; color: #666; text-transform: uppercase; }
+        .boom-intro figcaption, .photo-credit { margin-top: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #666; text-transform: uppercase; }
         .photo-credit { padding: 0 5%; margin-top: 18px; }
         .g-grid.r-34 .img-wrap { aspect-ratio: 3 / 4; background: #111; }
         .g-grid.r-34 .img-wrap img { width: 100%; height: 100%; object-fit: cover; }

@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get in Touch — Hyeon Ah Kim</title>
     <meta name="description" content="Hyeon Ah Kim에게 문의·협업 제안을 남겨주세요.">
@@ -11,7 +12,7 @@
     <meta property="og:image" content="https://haha777am.github.io/hyeonah_kim/images/24fw/main.jpg">
     <meta property="og:url" content="https://haha777am.github.io/hyeonah_kim/contact.html">
     <meta name="twitter:card" content="summary_large_image">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;700&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0; background-color: #0b0b0b; color: #fff;
@@ -32,7 +33,7 @@
 
         .back-btn {
             position: fixed; top: 46px; left: 5%; z-index: 10;
-            font-family: monospace; color: #666; text-decoration: none;
+            font-family: 'IBM Plex Mono', monospace; color: #666; text-decoration: none;
             font-size: 12px; letter-spacing: 2px; transition: 0.3s;
         }
         .back-btn:hover { color: #fff; padding-left: 10px; }
@@ -44,20 +45,20 @@
 
         /* 왼쪽: 타이틀 */
         .contact-info { position: sticky; top: 140px; animation: rise 1s ease both; }
-        .eyebrow { font-family: monospace; font-size: 12px; letter-spacing: 5px; color: #6d6d6d; text-transform: uppercase; margin: 0 0 28px; }
+        .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 5px; color: #6d6d6d; text-transform: uppercase; margin: 0 0 28px; }
         .contact-info h1 { font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(56px, 7.4vw, 112px); line-height: .95; letter-spacing: -2px; margin: 0; }
         .contact-info h1 em { color: #a68d60; }
         .lede { margin: 34px 0 0; color: #8e8e8e; font-size: 15px; line-height: 1.95; font-weight: 300; word-break: keep-all; max-width: 420px; }
         .lede span { display: block; margin-top: 6px; color: #5f5f5f; font-size: 13px; }
         .direct { margin-top: 52px; padding-top: 26px; border-top: 1px solid #1f1f1f; max-width: 420px; }
-        .direct small { display: block; font-family: monospace; font-size: 11px; letter-spacing: 3px; color: #5f5f5f; text-transform: uppercase; margin-bottom: 12px; }
+        .direct small { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 3px; color: #5f5f5f; text-transform: uppercase; margin-bottom: 12px; }
         .direct a { font-family: 'Playfair Display', serif; font-size: 24px; color: #ddd; text-decoration: none; transition: .3s; }
         .direct a:hover { color: #a68d60; }
 
         /* 오른쪽: 폼 */
         .contact-form { animation: rise 1s .15s ease both; }
         .field { margin-bottom: 40px; }
-        .field label, .field legend { display: flex; gap: 14px; align-items: baseline; font-family: monospace; font-size: 11px; color: #6a6a6a; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 2.5px; padding: 0; }
+        .field label, .field legend { display: flex; gap: 14px; align-items: baseline; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #6a6a6a; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 2.5px; padding: 0; }
         .field label i, .field legend i { font-style: normal; color: #a68d60; }
         .field input, .field textarea {
             width: 100%; box-sizing: border-box; background: transparent; border: none; border-bottom: 1px solid #2a2a2a;
@@ -71,7 +72,7 @@
 
         .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
         .chips input { position: absolute; opacity: 0; pointer-events: none; }
-        .chips label { margin: 0; display: inline-block; padding: 10px 18px; border: 1px solid #2a2a2a; border-radius: 40px; font-family: monospace; font-size: 11px; letter-spacing: 2px; color: #8a8a8a; text-transform: uppercase; cursor: none; transition: .3s; }
+        .chips label { margin: 0; display: inline-block; padding: 10px 18px; border: 1px solid #2a2a2a; border-radius: 40px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #8a8a8a; text-transform: uppercase; cursor: none; transition: .3s; }
         .chips label:hover { border-color: #555; color: #ddd; }
         .chips input:checked + label { border-color: #a68d60; color: #0b0b0b; background: #a68d60; }
         .chips input:focus-visible + label { outline: 1px solid #fff; outline-offset: 3px; }
@@ -79,7 +80,7 @@
         .send-btn {
             display: inline-flex; align-items: center; gap: 16px;
             background: transparent; color: #a68d60; border: 1px solid #a68d60; border-radius: 40px;
-            padding: 16px 30px; font-family: monospace; font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+            padding: 16px 30px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
             cursor: none; transition: .4s; margin-top: 6px;
         }
         .send-btn span { transition: transform .4s; }

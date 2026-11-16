@@ -2,9 +2,13 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Off the Record — Hyeon Ah Kim</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Off the Record — 작업 밖의 기록. Notes from outside the studio. Hyeon Ah Kim.">
+    <meta property="og:title" content="Off the Record — Hyeon Ah Kim">
+    <meta property="og:image" content="https://haha777am.github.io/hyeonah_kim/images/27ss/scene_03.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;700&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
         /* [1] 기본 테마 & 전환 효과 */
         body {
@@ -30,11 +34,11 @@
             box-sizing: border-box; mix-blend-mode: difference;
         }
         .back-btn {
-            font-family: monospace; color: #fff; text-decoration: none;
+            font-family: 'IBM Plex Mono', monospace; color: #fff; text-decoration: none;
             font-size: 13px; letter-spacing: 2px; transition: 0.3s;
         }
         .back-btn:hover { opacity: 0.5; letter-spacing: 4px; }
-        .page-indicator { font-family: monospace; font-size: 12px; letter-spacing: 3px; color: #888; text-transform: uppercase; }
+        .page-indicator { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 3px; color: #888; text-transform: uppercase; }
 
         /* [3] B-SIDE 레이아웃 */
         .bside-container {
@@ -42,7 +46,7 @@
         }
         
         .bside-hero { margin: 0 auto 80px; max-width: 960px; padding-bottom: 40px; text-align: center; border-bottom: 1px solid #1c1c1c; }
-        .bside-eyebrow { font-family: monospace; font-size: 12px; letter-spacing: 5px; color: #6d6d6d; text-transform: uppercase; margin: 0 0 28px; }
+        .bside-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 5px; color: #6d6d6d; text-transform: uppercase; margin: 0 0 28px; }
         .bside-eyebrow b { color: #a68d60; font-weight: 400; }
         .bside-hero h1 {
             font-family: 'Playfair Display', serif; font-weight: 400;
@@ -52,9 +56,9 @@
         .bside-lede { margin: 22px 0 0; color: #777; font-size: 15px; font-weight: 300; line-height: 1.9; word-break: keep-all; }
         .bside-tags { list-style: none; padding: 0; margin: 26px 0 0; display: flex; gap: 10px; flex-wrap: wrap; }
         .bside-foot { text-align: center; margin-top: 90px; }
-        .blog-btn { display: inline-flex; gap: 10px; align-items: center; padding: 11px 24px; border: 1px solid #2a2a2a; border-radius: 40px; font-family: monospace; font-size: 11px; letter-spacing: 3px; color: #777; text-decoration: none; text-transform: uppercase; transition: .4s; }
+        .blog-btn { display: inline-flex; gap: 10px; align-items: center; padding: 11px 24px; border: 1px solid #2a2a2a; border-radius: 40px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 3px; color: #777; text-decoration: none; text-transform: uppercase; transition: .4s; }
         .blog-btn:hover { border-color: #a68d60; color: #a68d60; }
-        .bside-tags li { font-family: monospace; font-size: 11px; letter-spacing: 2.5px; color: #8a8a8a; text-transform: uppercase; padding: 7px 14px; border: 1px solid #2a2a2a; border-radius: 40px; }
+        .bside-tags li { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2.5px; color: #8a8a8a; text-transform: uppercase; padding: 7px 14px; border: 1px solid #2a2a2a; border-radius: 40px; }
         /* 영상 그리드 */
 .video-grid { column-count: 3; column-gap: 20px; }
 .video-card { break-inside: avoid; margin: 0 0 28px; }
@@ -62,10 +66,10 @@
 .video-frame video { width: 100%; display: block; filter: grayscale(50%); transition: filter 0.5s ease; }
 .video-frame:hover video { filter: grayscale(0%); }
 .video-frame iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; display: block; }
-.video-card figcaption { margin-top: 12px; font-family: monospace; font-size: 12px; letter-spacing: 1px; color: #777; }
-.sound-btn { position: absolute; right: 12px; bottom: 12px; padding: 5px 12px; border: 1px solid rgba(255,255,255,0.3); border-radius: 50px; background: rgba(0,0,0,0.55); color: #fff; font-family: monospace; font-size: 11px; letter-spacing: 1px; cursor: none; }
+.video-card figcaption { margin-top: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #777; }
+.sound-btn { position: absolute; right: 12px; bottom: 12px; padding: 5px 12px; border: 1px solid rgba(255,255,255,0.3); border-radius: 50px; background: rgba(0,0,0,0.55); color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 1px; cursor: none; }
 .sound-btn:hover { border-color: #fff; }
-.video-empty { text-align: center; font-family: monospace; font-size: 13px; letter-spacing: 3px; color: #444; padding: 80px 0; }
+.video-empty { text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 3px; color: #444; padding: 80px 0; }
 
 /* 모바일 대응 */
 @media (max-width: 1024px) { .video-grid { column-count: 2; } }

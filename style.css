@@ -54,7 +54,7 @@ textarea:focus-visible {
     padding: 40px 5%;
     margin-top: 80px;
     border-top: 1px solid #1d1d1d;
-    font-family: monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
     letter-spacing: 1px;
     color: #666;
@@ -64,8 +64,8 @@ textarea:focus-visible {
 .site-footer a:hover { color: #fff; }
 
 /* 콜라보 페이지: 컬러별 소제목 */
-.color-title { font-family: 'Playfair Display', serif; font-size: 28px; letter-spacing: -0.5px; margin-top: 30px; padding-top: 30px; border-top: 1px solid #1d1d1d; color: #fff; }
-.color-title span { font-family: monospace; font-size: 12px; letter-spacing: 3px; color: #a68d60; margin-right: 12px; text-transform: uppercase; vertical-align: middle; }
+.color-title { font-family: 'Playfair Display', serif; font-size: clamp(24px, 2.2vw, 32px); letter-spacing: -0.5px; margin-top: 30px; padding-top: 30px; border-top: 1px solid #1d1d1d; color: #fff; }
+.color-title span { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 3px; color: #a68d60; margin-right: 12px; text-transform: uppercase; vertical-align: middle; }
 .hd-scarf img { max-width: 900px; margin: 0 auto; }
 
 /* C.V 의 PDF 저장 링크 */
@@ -73,7 +73,7 @@ textarea:focus-visible {
     display: inline-block;
     margin-top: 28px;
     padding-bottom: 4px;
-    font-family: monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
     letter-spacing: 3px;
     color: #a68d60;
@@ -109,7 +109,7 @@ textarea:focus-visible {
     .cv-hero-text > p { margin: 0 0 3mm !important; font-size: 8.5pt !important; letter-spacing: 2.5pt !important; color: #777 !important; }
     .cv-hero-text h1 { margin: 0 !important; font-size: 30pt !important; line-height: 1.05 !important; letter-spacing: -0.5pt !important; color: #111 !important; }
     .cv-hero-text h1 span { color: #8a7040 !important; }
-    .print-contact { display: block; margin: 5mm 0 0; font-family: monospace; font-size: 9pt; letter-spacing: 0.5pt; color: #444; }
+    .print-contact { display: block; margin: 5mm 0 0; font-family: 'IBM Plex Mono', monospace; font-size: 9pt; letter-spacing: 0.5pt; color: #444; }
 
     /* 섹션: 왼쪽 제목 / 오른쪽 내용 */
     .cv-section { display: grid !important; grid-template-columns: 34mm 1fr !important; gap: 0 6mm !important; padding: 4mm 0 1mm !important; border-top: 0.4pt solid #ccc !important; }
@@ -129,7 +129,7 @@ textarea:focus-visible {
 }
 
 /* ===== 시즌 페이지 공통: 정렬형 갤러리 그리드 ===== */
-.gallery-section-title small { font-family: monospace; font-size: 12px; color: #a68d60; letter-spacing: 2px; margin-left: 10px; vertical-align: middle; }
+.gallery-section-title small { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #a68d60; letter-spacing: 2px; margin-left: 10px; vertical-align: middle; }
 .g-block { padding: 0 5%; display: grid; gap: 14px; }
 .g-grid { display: grid; gap: 14px; }
 .g-grid.cols-1 { grid-template-columns: 1fr; }
@@ -180,7 +180,7 @@ header .nav-capsule a { text-decoration: none; color: #777; padding: 10px 25px; 
 header .nav-capsule a:hover { color: #fff; }
 header .nav-capsule a.active { color: #fff; background: rgba(255,255,255,0.15); }
 /* back link */
-a.back-btn { position: fixed; left: 5%; top: 52px; z-index: 1001; font-family: monospace; color: #777; text-decoration: none; font-size: 12px; letter-spacing: 2px; transition: .3s; }
+a.back-btn { position: fixed; left: 5%; top: 52px; z-index: 1001; font-family: 'IBM Plex Mono', monospace; color: #777; text-decoration: none; font-size: 12px; letter-spacing: 2px; transition: .3s; }
 a.back-btn:hover { color: #fff; padding-left: 8px; opacity: 1; }
 /* page titles: one serif, one weight, one scale */
 h1.page-title, .hero-content h1, .show-hero h1, .project-hero h1 {
@@ -190,7 +190,7 @@ h1.page-title, .hero-content h1, .show-hero h1, .project-hero h1 {
 }
 .show-hero h1 em, .show-hero h1 span, .project-hero h1 em, .hero-content h1 em { color: #a68d60; font-style: italic; font-weight: 400; }
 /* small caps line under titles */
-.project-meta, .show-meta, .hero-content p { font-family: monospace; font-size: 12px !important; letter-spacing: 4px !important; text-transform: uppercase; }
+.project-meta, .show-meta, .hero-content p { font-family: 'IBM Plex Mono', monospace; font-size: 12px !important; letter-spacing: 4px !important; text-transform: uppercase; }
 .page-sub { font-family: 'Noto Sans KR', sans-serif !important; font-size: 14px !important; letter-spacing: 0 !important; color: #777 !important; font-weight: 300; text-transform: none !important; }
 .project-meta, .hero-content p { color: #a68d60 !important; }
 /* section titles inside project pages */
@@ -199,9 +199,9 @@ h1.page-title, .hero-content h1, .show-hero h1, .project-hero h1 {
   letter-spacing: -0.3px !important; text-transform: none !important; color: #e8e8e8 !important;
   margin: 120px 0 34px !important; padding: 30px 5% 0 !important; border-top: 1px solid #1f1f1f;
 }
-.gallery-section-title small { font-family: monospace; font-size: 12px; color: #a68d60; letter-spacing: 2px; margin-left: 14px; vertical-align: middle; }
+.gallery-section-title small { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #a68d60; letter-spacing: 2px; margin-left: 14px; vertical-align: middle; }
 /* info block labels */
-.info-left h3 { font-family: monospace; font-size: 11px !important; letter-spacing: 3px !important; color: #6a6a6a !important; font-weight: 400; }
+.info-left h3 { font-family: 'IBM Plex Mono', monospace; font-size: 11px !important; letter-spacing: 3px !important; color: #6a6a6a !important; font-weight: 400; }
 @media (max-width: 768px) {
   header { padding: 20px 0; }
   header .nav-capsule { max-width: calc(100vw - 20px); padding: 4px; }
@@ -234,12 +234,17 @@ header a, header .back-btn { pointer-events: auto; }
 .info-right p.ko { font-size: 15px; line-height: 1.85; color: #d4d4d4; font-weight: 300; text-align: left; margin: 0 0 8px; word-break: keep-all; }
 .info-right p.en { font-size: 13.5px; line-height: 1.75; color: #7c7c7c; font-weight: 300; text-align: left; margin: 0 0 26px; letter-spacing: 0; }
 .info-right p.en:last-child { margin-bottom: 0; }
-.info-right p.lab { font-family: monospace; font-size: 11px; letter-spacing: 3px; color: #a68d60; text-transform: uppercase; margin: 6px 0 12px; }
+.info-right p.lab { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 3px; color: #a68d60; text-transform: uppercase; margin: 6px 0 12px; }
 .info-right p.lead { font-family: 'Noto Sans KR', sans-serif; font-size: 20px; color: #eee; font-weight: 400; margin: 0 0 18px; line-height: 1.4; }
 .info-right p.lead span { display: block; margin-top: 6px; font-family: 'Playfair Display', serif; font-size: 16px; color: #777; font-weight: 400; font-style: italic; }
 .info-right hr.sep { border: 0; border-top: 1px solid #222; margin: 32px 0 26px; }
-.info-right p.press { font-family: monospace; font-size: 11px; letter-spacing: 1.5px; color: #555; margin: 0; }
+.info-right p.press { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 1.5px; color: #555; margin: 0; }
 .info-right a.ilink { color: inherit; text-decoration: underline; text-underline-offset: 4px; }
 .part-text p.ko { font-size: 15px; line-height: 1.85; color: #d4d4d4; font-weight: 300; margin: 0 0 8px; word-break: keep-all; }
 .part-text p.en { font-size: 13.5px; line-height: 1.75; color: #7c7c7c; font-weight: 300; margin: 0 0 32px; }
 .page-sub .en-sub { display: block; color: #666; }
+
+/* consistency pass */
+.jtbc-part h2 { font-size: clamp(24px, 2.2vw, 32px) !important; }
+.gallery-grid > .gallery-section-title { grid-column: 1 / -1; width: 100%; padding-left: 0 !important; padding-right: 0 !important; margin-top: 70px !important; }
+.gallery-grid > .gallery-section-title:first-child { margin-top: 0 !important; border-top: 0; padding-top: 0 !important; }
