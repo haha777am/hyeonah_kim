@@ -228,3 +228,4 @@ h1.page-title, .hero-content h1, .show-hero h1, .project-hero h1 {
 }
 /* hidden radio chips must not create sideways scroll */
 .chips { position: relative; }
+header a, header .back-btn { pointer-events: auto; }
