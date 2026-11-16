@@ -127,6 +127,28 @@
             width: 100%; height: auto; display: block;
         }
 
+
+        /* 정렬형 그리드: 같은 비율·같은 높이로 줄 맞춤 */
+        .gallery-section-title small { font-family: monospace; font-size: 12px; color: #a68d60; letter-spacing: 2px; margin-left: 10px; vertical-align: middle; }
+        .g-block { padding: 0 5%; display: grid; gap: 14px; }
+        .g-grid { display: grid; gap: 14px; }
+        .g-grid.cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+        .g-grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .g-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .g-grid .img-wrap { background: #111; cursor: zoom-in; }
+        .g-grid.r-23 .img-wrap { aspect-ratio: 2 / 3; }
+        .g-grid.r-32 .img-wrap { aspect-ratio: 3 / 2; }
+        .g-grid .img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+        .g-grid.r-32 .img-wrap img { object-position: center; }
+        .g-grid.bs .img-wrap.wide { grid-column: span 2; aspect-ratio: auto; }
+        .g-grid.bs .img-wrap.wide img { object-position: center; }
+        @media (max-width: 1100px) { .g-grid.cols-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+        @media (max-width: 768px) {
+            .g-block, .g-grid { gap: 8px; }
+            .g-grid.cols-5, .g-grid.cols-4, .g-grid.cols-3.r-23 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .g-grid.cols-3.r-32 { grid-template-columns: 1fr; }
+        }
+
         /* 원본보기 라이트박스 모달 스타일 */
         .lightbox-modal {
             display: none;
@@ -223,60 +245,20 @@
                   <div class="img-wrap"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/27ss_design_02.jpg" alt="27ss tech 02"></div>
         </div>
 
-        <div class="gallery-section-title" data-slot="lb">Lookbook Editorial</div>
-        <div class="masonry-grid">
-            <div class="masonry-column left-col">
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/27ss_lookbook-01.jpg" alt="Lookbook 01" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/27ss_lookbook-03.jpg" alt="Lookbook 03" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/27ss_lookbook-05.jpg" alt="Lookbook 05" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/27ss_lookbook-07.jpg" alt="Lookbook 07" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/27ss_lookbook-09.jpg" alt="Lookbook 09" loading="lazy" decoding="async"></div>
-            </div>
-            <div class="masonry-column right-col">
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/27ss_lookbook-02.jpg" alt="Lookbook 02" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/27ss_lookbook-04.jpg" alt="Lookbook 04" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/27ss_lookbook-06.jpg" alt="Lookbook 06" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/27ss_lookbook-08.jpg" alt="Lookbook 08" loading="lazy" decoding="async"></div>
-            </div>
+        <div class="gallery-section-title" data-slot="lb">Lookbook Editorial <small>15</small></div>
+        <div class="g-block"><div class="g-grid cols-5 r-23"><div class="img-wrap"><img src="images/27ss/lookbook_01.jpg" alt="27SS Lookbook 01" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/lookbook_02.jpg" alt="27SS Lookbook 02" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/lookbook_03.jpg" alt="27SS Lookbook 03" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/lookbook_04.jpg" alt="27SS Lookbook 04" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/lookbook_05.jpg" alt="27SS Lookbook 05" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/lookbook_06.jpg" alt="27SS Lookbook 06" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/lookbook_07.jpg" alt="27SS Lookbook 07" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/lookbook_08.jpg" alt="27SS Lookbook 08" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/lookbook_09.jpg" alt="27SS Lookbook 09" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/lookbook_10.jpg" alt="27SS Lookbook 10" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/lookbook_11.jpg" alt="27SS Lookbook 11" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/lookbook_12.jpg" alt="27SS Lookbook 12" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/lookbook_13.jpg" alt="27SS Lookbook 13" loading="lazy" decoding="async"></div><div class="img-wrap detail"><img src="images/27ss/lookbook_14.jpg" alt="27SS Lookbook 14" loading="lazy" decoding="async"></div><div class="img-wrap detail"><img src="images/27ss/lookbook_15.jpg" alt="27SS Lookbook 15" loading="lazy" decoding="async"></div></div></div>
+
+        <div class="gallery-section-title" data-slot="show">Runway Looks <small>16</small></div>
+        <div class="g-block"><div class="g-grid cols-4 r-23"><div class="img-wrap"><img src="images/27ss/runway_01.jpg" alt="27SS Runway Look 01" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/runway_02.jpg" alt="27SS Runway Look 02" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/runway_03.jpg" alt="27SS Runway Look 03" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/runway_04.jpg" alt="27SS Runway Look 04" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/runway_05.jpg" alt="27SS Runway Look 05" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/runway_06.jpg" alt="27SS Runway Look 06" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/runway_07.jpg" alt="27SS Runway Look 07" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/runway_08.jpg" alt="27SS Runway Look 08" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/runway_09.jpg" alt="27SS Runway Look 09" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/runway_10.jpg" alt="27SS Runway Look 10" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/runway_11.jpg" alt="27SS Runway Look 11" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/runway_12.jpg" alt="27SS Runway Look 12" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/runway_13.jpg" alt="27SS Runway Look 13" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/runway_14.jpg" alt="27SS Runway Look 14" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/runway_15.jpg" alt="27SS Runway Look 15" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/runway_16.jpg" alt="27SS Runway Look 16" loading="lazy" decoding="async"></div></div></div>
+
+        <div class="gallery-section-title" data-slot="scene">Show Scenes <small>19</small></div>
+        <div class="g-block">
+            <div class="g-grid cols-4 r-23"><div class="img-wrap"><img src="images/27ss/moment_01.jpg" alt="27SS Show Moment 01" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/moment_02.jpg" alt="27SS Show Moment 02" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/moment_03.jpg" alt="27SS Show Moment 03" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/moment_04.jpg" alt="27SS Show Moment 04" loading="lazy" decoding="async"></div></div>
+            <div class="g-grid cols-3 r-32"><div class="img-wrap"><img src="images/27ss/scene_01.jpg" alt="27SS Show Scene 01" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/scene_02.jpg" alt="27SS Show Scene 02" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/scene_03.jpg" alt="27SS Show Scene 03" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/scene_04.jpg" alt="27SS Show Scene 04" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/scene_05.jpg" alt="27SS Show Scene 05" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/scene_06.jpg" alt="27SS Show Scene 06" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/scene_07.jpg" alt="27SS Show Scene 07" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/scene_08.jpg" alt="27SS Show Scene 08" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/scene_09.jpg" alt="27SS Show Scene 09" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/scene_10.jpg" alt="27SS Show Scene 10" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/scene_11.jpg" alt="27SS Show Scene 11" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/scene_12.jpg" alt="27SS Show Scene 12" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/scene_13.jpg" alt="27SS Show Scene 13" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/scene_14.jpg" alt="27SS Show Scene 14" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/scene_15.jpg" alt="27SS Show Scene 15" loading="lazy" decoding="async"></div></div>
         </div>
 
-        <div class="gallery-section-title" data-slot="show">Runway Highlights</div>
-        <div class="masonry-grid">
-            <div class="masonry-column left-col">
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/01.jpg" alt="Runway Show 01" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/03.jpg" alt="Runway Show 03" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/05.jpg" alt="Runway Show 05" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/07.jpg" alt="Runway Show 07" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/09.jpg" alt="Runway Show 09" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/11.jpg" alt="Runway Show 11" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/13.jpg" alt="Runway Show 13" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/15.jpg" alt="Runway Show 15" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/17.jpg" alt="Runway Show 17" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/19.jpg" alt="Runway Show 19" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/21.jpg" alt="Runway Show 21" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/23.jpg" alt="Runway Show 23" loading="lazy" decoding="async"></div>
-            </div>
-            <div class="masonry-column right-col">
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/02.jpg" alt="Runway Show 02" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/04.jpg" alt="Runway Show 04" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/06.jpg" alt="Runway Show 06" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/08.jpg" alt="Runway Show 08" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/10.jpg" alt="Runway Show 10" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/12.jpg" alt="Runway Show 12" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/14.jpg" alt="Runway Show 14" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/16.jpg" alt="Runway Show 16" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/18.jpg" alt="Runway Show 18" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/20.jpg" alt="Runway Show 20" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/22.jpg" alt="Runway Show 22" loading="lazy" decoding="async"></div>
-                <div class="img-wrap masonry-item"><img onerror="this.closest('.img-wrap').style.display='none'" src="images/27ss/24.jpg" alt="Runway Show 24" loading="lazy" decoding="async"></div>
-            </div>
-        </div>
-
-        <div class="backstage-bottom-section">
-            <div class="backstage-small-item">
-                <img onerror="this.closest('.backstage-bottom-section').style.display='none'" src="images/27ss/backstage.jpg" alt="27ss Backstage Behind the Scenes" loading="lazy" decoding="async">
-            </div>
-        </div>
+        <div class="gallery-section-title" data-slot="bs">Backstage <small>05</small></div>
+        <div class="g-block"><div class="g-grid cols-3 r-23 bs"><div class="img-wrap"><img src="images/27ss/backstage_01.jpg" alt="27SS Backstage 01" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/backstage_02.jpg" alt="27SS Backstage 02" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/backstage_03.jpg" alt="27SS Backstage 03" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/27ss/backstage_04.jpg" alt="27SS Backstage 04" loading="lazy" decoding="async"></div><div class="img-wrap wide"><img src="images/27ss/backstage_05.jpg" alt="27SS Backstage 05" loading="lazy" decoding="async"></div></div></div>
 
     </main>
 
@@ -339,7 +321,7 @@
         const lightboxClose = document.querySelector('.lightbox-close');
         
         // 페이지 안의 모든 클릭 가능한 이미지들을 순서대로 수집 (배열화)
-        const allGalleryImages = Array.from(document.querySelectorAll('.img-wrap img, .backstage-small-item img'));
+        const allGalleryImages = Array.from(document.querySelectorAll('.img-wrap img'));
         let currentIndex = 0;
 
         // 라이트박스 컨텐츠 내용을 변경해주는 핵심 함수
