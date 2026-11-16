@@ -115,6 +115,10 @@
         .otr-link:hover { border-color: #a68d60; background: linear-gradient(135deg, rgba(166,141,96,0.16), rgba(255,255,255,0.02)); }
         .otr-link:hover .otr-arrow { transform: translate(6px, -50%); }
         .cv-contact .otr-link { box-sizing: border-box; }
+        .otr-mini { display: inline-flex; gap: 10px; align-items: center; margin-top: 26px; font-family: monospace; font-size: 11px; letter-spacing: 3px; color: #5f5f5f; text-transform: uppercase; text-decoration: none; transition: .3s; }
+        .otr-mini span { transition: transform .3s; }
+        .otr-mini:hover { color: #a68d60; }
+        .otr-mini:hover span { transform: translateX(4px); }
         .contact-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 760px; }
         .contact-cards .otr-link { margin-top: 0; max-width: none; }
         .cv-contact .otr-link:not(.c-card) { max-width: 760px; margin-top: 14px; }
@@ -262,12 +266,7 @@
                         <span class="otr-arrow" aria-hidden="true">↗</span>
                     </a>
                 </div>
-                <a href="bside.html" class="otr-link">
-                    <span class="otr-tag">[+] Personal Archive</span>
-                    <span class="otr-title">Off the <em>Record</em></span>
-                    <span class="otr-desc">작업 밖의 기록 — 음악, 일상, 취향의 조각들</span>
-                    <span class="otr-arrow" aria-hidden="true">→</span>
-                </a>
+                <a href="bside.html" class="otr-mini">[+] Off the Record <span aria-hidden="true">→</span></a>
             </div>
         </section>
     </main>
