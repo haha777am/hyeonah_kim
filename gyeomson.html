@@ -131,6 +131,17 @@
             .gallery-item { cursor: auto; }
             .lightbox-close { top: 20px; right: 20px; font-size: 32px; }
         }
+        .gallery-item.sheet { width: 100%; background: #fff; }
+        .project-container .gallery-section-title { padding-left: 0 !important; padding-right: 0 !important; }
+        .gallery-grid.balot { gap: 14px; margin-bottom: 120px; }
+        .sheet-label { width: 100%; margin: 40px 0 0; font-family: 'Playfair Display', serif; font-size: 20px; color: #eee; }
+        .sheet-label span { margin-left: 12px; font-family: monospace; font-size: 11px; letter-spacing: 2px; color: #a68d60; text-transform: uppercase; }
+        .size-table { width: 100%; margin-top: 40px; border-collapse: collapse; font-size: 14px; color: #bbb; text-align: center; }
+        .size-table th { width: 16%; text-align: left; font-family: monospace; font-size: 11px; letter-spacing: 2px; color: #666; font-weight: 400; text-transform: uppercase; }
+        .size-table th, .size-table td { padding: 16px 8px; border-top: 1px solid #222; }
+        .size-table tr:last-child th, .size-table tr:last-child td { border-bottom: 1px solid #222; }
+        .size-table tr:first-child td { color: #eee; }
+        @media (max-width: 768px) { .size-table { font-size: 12px; } .size-table th { width: 22%; } .sheet-label { font-size: 17px; margin-top: 28px; } }
     </style>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -154,7 +165,7 @@
         
         <div class="project-hero">
             <h1>Gyeomson</h1>
-            <div class="project-meta">Graphic Design Collaboration</div>
+            <div class="project-meta">Accessories Collaboration</div>
         </div>
 
         <div class="project-info">
@@ -164,16 +175,52 @@
                 <h3>YEAR</h3>
                 <p>2025 — 2026</p>
                 <h3>CATEGORY</h3>
-                <p>Graphic Design, Pattern Design</p>
+                <p>Socks, Neckarf, Necktie</p>
             </div>
             <div class="info-right">
                 <p>
-                    '겸손(Gyeomson)'과의 콜라보레이션 프로젝트를 위한 넥스카프(Neckarf) 그래픽 패턴 디자인 작업물입니다.<br><br>
-                    섬세한 플로럴 아트워크부터 클래식한 기하학적 쉐입, 그리고 레터링을 활용한 모던한 패턴까지 브랜드의 아이덴티티를 시각적으로 풀어냈습니다. 각 디자인마다 대비되는 컬러 베리에이션을 두어 다양한 무드로 연출이 가능하도록 기획했습니다.
+                    '겸손은힘들다'와 함께한 액세서리 콜라보레이션입니다. 겸손은힘들다몰에서 판매된 발옷(양말) 시즌2, 넥카프, 넥타이를 디자인했습니다.<br><br>
+                    <strong>발옷 Season 2.</strong> 평일·주말·광란 3가지 테마의 크루 삭스 각 5종과 여름용 페이크 삭스 5종까지, 총 20가지 디자인을 개발했습니다. 30수 면사에 흡한속건 기능 원사를 더하고 200침 고밀도 편직과 무봉제 설계를 적용했으며, 페이크 삭스에는 벗겨짐 방지 구조와 뒤꿈치 실리콘을 넣었습니다.<br><br>
+                    <strong>Neckarf.</strong> 플로럴, 기하학, 레터링, 페어아일 네 가지 방향의 그래픽 패턴으로 넥카프를 디자인했습니다.
                 </p>
             </div>
         </div>
 
+        <h2 class="gallery-section-title">발옷 Season 2 <small>20</small></h2>
+        <div class="gallery-grid balot">
+            <div class="gallery-item sheet">
+                <img src="images/gyeomson/balot_cover.jpg" alt="발옷 Season 2 — full range" loading="lazy" decoding="async">
+                <div class="hover-label">click</div>
+            </div>
+            <p class="sheet-label">Weekday <span>평일 · Crew 5</span></p>
+            <div class="gallery-item sheet">
+                <img src="images/gyeomson/balot_weekday.jpg" alt="발옷 Season 2 — Weekday crew socks" loading="lazy" decoding="async">
+                <div class="hover-label">click</div>
+            </div>
+            <p class="sheet-label">Weekend <span>주말 · Crew 5</span></p>
+            <div class="gallery-item sheet">
+                <img src="images/gyeomson/balot_weekend.jpg" alt="발옷 Season 2 — Weekend crew socks" loading="lazy" decoding="async">
+                <div class="hover-label">click</div>
+            </div>
+            <p class="sheet-label">Frenzy <span>광란 · Crew 5</span></p>
+            <div class="gallery-item sheet">
+                <img src="images/gyeomson/balot_frenzy.jpg" alt="발옷 Season 2 — Frenzy crew socks" loading="lazy" decoding="async">
+                <div class="hover-label">click</div>
+            </div>
+            <p class="sheet-label">Summer <span>여름 · Fake Socks 5</span></p>
+            <div class="gallery-item sheet">
+                <img src="images/gyeomson/balot_summer.jpg" alt="발옷 Season 2 — Summer fake socks" loading="lazy" decoding="async">
+                <div class="hover-label">click</div>
+            </div>
+            <table class="size-table">
+                <tr><th>Size</th><td>더 작은 발옷</td><td>작은 발옷</td><td>큰 발옷</td></tr>
+                <tr><th>Foot</th><td>190–215mm</td><td>220–245mm</td><td>250–290mm</td></tr>
+                <tr><th>Sole</th><td>18cm</td><td>20cm</td><td>23cm</td></tr>
+                <tr><th>Ankle</th><td>19cm</td><td>20cm</td><td>26cm</td></tr>
+            </table>
+        </div>
+
+        <h2 class="gallery-section-title">Neckarf <small>07</small></h2>
         <div class="gallery-grid">
             
             <div class="gallery-item">
