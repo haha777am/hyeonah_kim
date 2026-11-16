@@ -229,3 +229,17 @@ h1.page-title, .hero-content h1, .show-hero h1, .project-hero h1 {
 /* hidden radio chips must not create sideways scroll */
 .chips { position: relative; }
 header a, header .back-btn { pointer-events: auto; }
+
+/* bilingual project copy: Korean first, English beneath */
+.info-right p.ko { font-size: 15px; line-height: 1.85; color: #d4d4d4; font-weight: 300; text-align: left; margin: 0 0 8px; word-break: keep-all; }
+.info-right p.en { font-size: 13.5px; line-height: 1.75; color: #7c7c7c; font-weight: 300; text-align: left; margin: 0 0 26px; letter-spacing: 0; }
+.info-right p.en:last-child { margin-bottom: 0; }
+.info-right p.lab { font-family: monospace; font-size: 11px; letter-spacing: 3px; color: #a68d60; text-transform: uppercase; margin: 6px 0 12px; }
+.info-right p.lead { font-family: 'Noto Sans KR', sans-serif; font-size: 20px; color: #eee; font-weight: 400; margin: 0 0 18px; line-height: 1.4; }
+.info-right p.lead span { display: block; margin-top: 6px; font-family: 'Playfair Display', serif; font-size: 16px; color: #777; font-weight: 400; font-style: italic; }
+.info-right hr.sep { border: 0; border-top: 1px solid #222; margin: 32px 0 26px; }
+.info-right p.press { font-family: monospace; font-size: 11px; letter-spacing: 1.5px; color: #555; margin: 0; }
+.info-right a.ilink { color: inherit; text-decoration: underline; text-underline-offset: 4px; }
+.part-text p.ko { font-size: 15px; line-height: 1.85; color: #d4d4d4; font-weight: 300; margin: 0 0 8px; word-break: keep-all; }
+.part-text p.en { font-size: 13.5px; line-height: 1.75; color: #7c7c7c; font-weight: 300; margin: 0 0 32px; }
+.page-sub .en-sub { display: block; color: #666; }
