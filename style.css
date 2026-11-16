@@ -242,7 +242,7 @@ header a, header .back-btn { pointer-events: auto; }
 .info-right a.ilink { color: inherit; text-decoration: underline; text-underline-offset: 4px; }
 .part-text p.ko { font-size: 15px; line-height: 1.85; color: #d4d4d4; font-weight: 300; margin: 0 0 8px; word-break: keep-all; }
 .part-text p.en { font-size: 13.5px; line-height: 1.75; color: #7c7c7c; font-weight: 300; margin: 0 0 32px; }
-.page-sub .en-sub { display: block; color: #666; }
+.page-sub .en-sub { display: block !important; margin-top: 6px; color: #666; font-size: 13px; }
 
 /* consistency pass */
 .jtbc-part h2 { font-size: clamp(24px, 2.2vw, 32px) !important; }
