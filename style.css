@@ -292,3 +292,5 @@ body.fade-out { opacity: 1 !important; }
 .custom-cursor { display: none !important; }
 html, body { cursor: auto !important; }
 a, button, label, summary, [role="button"], .gallery-item, .archive-item, .grid-item, .home-card, video { cursor: pointer !important; }
+/* art show titles are set in capitals: give them a little air */
+.show-hero h1 { letter-spacing: 0.02em !important; }
