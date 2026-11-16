@@ -153,6 +153,45 @@
             .home-works { padding: 40px 5% 0; }
             .home-works-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
         }
+
+        /* [6] 경력 요약 / 대표작 피처 / 콜라보 / 마무리 */
+        .home-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 1600px; margin: 0 auto; padding: 0 10%; box-sizing: border-box; }
+        .stat { padding: 34px 26px 30px 0; border-top: 1px solid #222; border-bottom: 1px solid #222; }
+        .stat + .stat { padding-left: 26px; border-left: 1px solid #222; }
+        .stat b { display: block; font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(34px, 3.4vw, 52px); line-height: 1; letter-spacing: -1px; }
+        .stat span { display: block; margin-top: 14px; font-family: monospace; font-size: 11px; letter-spacing: 1.5px; line-height: 1.8; color: #777; text-transform: uppercase; }
+
+        .home-works { padding-top: 110px; }
+        .home-card.feature { grid-column: span 2; grid-row: span 2; display: flex; flex-direction: column; }
+        .home-card.feature .thumb { flex: 1; aspect-ratio: auto; min-height: 0; }
+        .home-card.feature .hc-title { font-size: 28px; }
+        .hc-title em { color: #a68d60; }
+
+        .collab-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
+        .collab-grid .thumb { aspect-ratio: 4 / 3; }
+        .collab-grid .thumb.flat { background: #f4f4f2; }
+        .collab-grid .thumb.flat img { object-fit: contain; padding: 6%; box-sizing: border-box; }
+
+        .home-closing { text-align: center; padding: 160px 10% 150px; }
+        .closing-eyebrow { font-family: monospace; font-size: 11px; letter-spacing: 4px; color: #666; text-transform: uppercase; margin: 0 0 26px; }
+        .home-closing h2 { font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(44px, 6vw, 92px); letter-spacing: -2px; line-height: 1; margin: 0; }
+        .home-closing h2 em { color: #a68d60; }
+        .closing-cta { display: flex; gap: 12px; justify-content: center; margin-top: 44px; }
+
+        @media (max-width: 900px) {
+            .home-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0 5%; }
+            .stat, .stat + .stat { padding: 26px 16px; border-left: 0; }
+            .stat:nth-child(even) { border-left: 1px solid #222; }
+            .stat:nth-child(n+3) { border-top: 0; }
+            .collab-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .home-works { padding-top: 80px; }
+            .home-card.feature { grid-column: span 2; grid-row: auto; }
+            .home-card.feature .thumb { aspect-ratio: 4 / 5; }
+            .home-closing { padding: 110px 6% 100px; }
+            .closing-cta { flex-wrap: wrap; }
+        }
     </style>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -173,7 +212,7 @@
     <main class="main-intro">
         <div class="intro-left fade-in">
             <h1 class="brand-title">Hyeon Ah<br>Kim</h1>
-            <p class="brand-subtitle">fashion designer</p>
+            <p class="brand-subtitle">fashion designer — LIE</p>
         </div>
         
         <div class="intro-right fade-in" style="animation-delay: 0.3s;">
@@ -188,9 +227,9 @@
                 아카이브 / 구조 / 재구성<br>
             </p>
             <p class="intro-bio">
-                시즌 컨셉 기획부터 샘플링, 생산까지 컬렉션 전 과정을 담당하는 패션 디자이너입니다.
-                파리 Studio Berçot에서 패션 디자인을 전공했고, 홍리컴퍼니와 포커스 아트페어에서 아트쇼 디렉터로 전시형 패션쇼를 4회 총괄했습니다.
-                <span>Fashion designer handling collections from concept to production. Studio Berçot, Paris.</span>
+                디자이너 여성복 브랜드 LIE에서 시즌 컨셉 기획부터 샘플링, 생산까지 컬렉션 전 과정을 담당하는 패션 디자이너입니다.
+                파리 Studio Berçot에서 패션 디자인을 전공했고, 홍리컴퍼니(파리)에서 디자인 인턴을 거쳐 포커스 아트페어 아트쇼 디렉터로 전시형 패션쇼를 4회 총괄했습니다.
+                <span>Fashion designer at LIE by Lee Chung Chung, leading collections from concept to production. Studio Berçot, Paris.</span>
             </p>
             <div class="intro-cta">
                 <a href="work.html" class="btn">VIEW WORK</a>
@@ -199,12 +238,24 @@
         </div>
     </main>
 
+    <section class="home-stats" aria-label="Career highlights">
+        <div class="stat"><b>2024—</b><span>Fashion Designer<br>LIE by Lee Chung Chung</span></div>
+        <div class="stat"><b>5</b><span>Collections<br>24FW — 27SS</span></div>
+        <div class="stat"><b>4</b><span>Art Shows Directed<br>Paris &amp; London</span></div>
+        <div class="stat"><b>5</b><span>Collaboration Projects<br>JTBC · Seoul City · more</span></div>
+    </section>
+
     <section class="home-works">
         <div class="home-works-head">
             <h2>Selected Works</h2>
             <a href="work.html" class="text-link">VIEW ALL →</a>
         </div>
         <div class="home-works-grid">
+            <a href="27ss.html" class="home-card feature" id="feature-27ss">
+                <span class="thumb"><img src="images/27ss/main.jpg" alt="27SS Collection — Second Skin: Filtering Light" decoding="async" onerror="this.closest('.home-card').remove()"></span>
+                <span class="hc-title">27SS Collection <em>— Second Skin</em></span>
+                <span class="hc-meta">Runway, Collaboration, Sampling — Seoul Fashion Week 2026</span>
+            </a>
             <a href="26fw.html" class="home-card">
                 <span class="thumb"><img src="images/26fw/main.jpg" alt="26FW Collection" loading="lazy" decoding="async"></span>
                 <span class="hc-title">26FW Collection</span>
@@ -225,6 +276,39 @@
                 <span class="hc-title">24FW Collection</span>
                 <span class="hc-meta">Runway, Art Direction, Lookbook — 2024</span>
             </a>
+        </div>
+    </section>
+
+    <section class="home-works home-collabs">
+        <div class="home-works-head">
+            <h2>Collaborations</h2>
+            <a href="collab.html" class="text-link">VIEW ALL →</a>
+        </div>
+        <div class="collab-grid">
+            <a href="jtbc_olympics.html" class="home-card">
+                <span class="thumb flat"><img src="images/jtbc/wo_2.jpg" alt="JTBC × LIE — Winter Olympics commentator uniform" loading="lazy" decoding="async"></span>
+                <span class="hc-title">JTBC × LIE — Winter Olympics</span>
+                <span class="hc-meta">Commentator Uniform — 2026</span>
+            </a>
+            <a href="jtbc_worldcup.html" class="home-card">
+                <span class="thumb flat"><img src="images/jtbc/wc_1.jpg" alt="JTBC — World Cup commentator uniform" loading="lazy" decoding="async"></span>
+                <span class="hc-title">JTBC — World Cup</span>
+                <span class="hc-meta">Commentator Uniform — 2026</span>
+            </a>
+            <a href="seoul.html" class="home-card">
+                <span class="thumb"><img src="images/seoul/cap2.jpg" alt="Seoul City collaboration" loading="lazy" decoding="async"></span>
+                <span class="hc-title">Seoul City — Seoul My Soul</span>
+                <span class="hc-meta">Accessories, Graphic Pattern — 2025—2026</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="home-closing">
+        <p class="closing-eyebrow">Collaboration &amp; project inquiries</p>
+        <h2>Let&rsquo;s work <em>together.</em></h2>
+        <div class="closing-cta">
+            <a href="contact.html" class="btn">GET IN TOUCH</a>
+            <a href="cv.html" class="btn ghost">VIEW C.V</a>
         </div>
     </section>
 
