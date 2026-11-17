@@ -143,6 +143,9 @@
         .size-table tr:last-child th, .size-table tr:last-child td { border-bottom: 1px solid #222; }
         .size-table tr:first-child td { color: #eee; }
         @media (max-width: 768px) { .size-table { font-size: 12px; } .size-table th { width: 22%; } .sheet-label { font-size: 17px; margin-top: 28px; } }
+        .photo-row { margin: 0 0 14px; }
+        .photo-row + .gallery-grid { margin-top: 0; }
+        @media (max-width: 768px) { .g-grid.cols-4.photo-row { grid-template-columns: repeat(2, minmax(0,1fr)); } .g-grid.cols-3.photo-row { grid-template-columns: 1fr; } }
     </style>
     <link rel="stylesheet" href="style.css?v=1122">
 </head>
@@ -176,7 +179,7 @@
                 <h3>Year</h3>
                 <p>2025 — 2026</p>
                 <h3>Category</h3>
-                <p>Socks, Neckarf, Necktie</p>
+                <p>Socks, Necktie, Neckarf</p>
             </div>
             <div class="info-right">
                 <p class="ko">‘겸손은힘들다’ 몰에서 판매된 액세서리 — 발옷(양말) 시즌2, 넥카프, 넥타이를 디자인했습니다.</p>
@@ -191,6 +194,7 @@
         </div>
 
         <h2 class="gallery-section-title">발옷 Season 2 <small>20</small></h2>
+        <div class="g-grid cols-4 r-auto photo-row"><div class="img-wrap"><img src="images/gyeomson/balot_photo_weekday.jpg" alt="발옷 Season 2 — Weekday" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/gyeomson/balot_photo_weekend.jpg" alt="발옷 Season 2 — Weekend" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/gyeomson/balot_photo_frenzy.jpg" alt="발옷 Season 2 — Frenzy" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/gyeomson/balot_photo_summer.jpg" alt="발옷 Season 2 — Summer fake socks" loading="lazy" decoding="async"></div></div>
         <div class="gallery-grid balot">
             <div class="gallery-item sheet">
                 <img src="images/gyeomson/balot_cover.jpg" alt="발옷 Season 2 — full range" loading="lazy" decoding="async">
@@ -224,7 +228,11 @@
             </table>
         </div>
 
+        <h2 class="gallery-section-title">Necktie <small>03</small></h2>
+        <div class="g-grid cols-3 r-auto photo-row"><div class="img-wrap"><img src="images/gyeomson/tie_photo_1.jpg" alt="Gyeomson necktie — brown textured" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/gyeomson/tie_photo_2.jpg" alt="Gyeomson necktie — navy geometric" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/gyeomson/tie_photo_3.jpg" alt="Gyeomson necktie — black floral jacquard" loading="lazy" decoding="async"></div></div>
+
         <h2 class="gallery-section-title">Neckarf <small>07</small></h2>
+        <div class="g-grid cols-2 r-auto photo-row"><div class="img-wrap"><img src="images/gyeomson/neckarf_photo_1.jpg" alt="Gyeomson neckarf — beige and black logo knit" loading="lazy" decoding="async"></div><div class="img-wrap"><img src="images/gyeomson/neckarf_photo_2.jpg" alt="Gyeomson neckarf — white and black toile knit" loading="lazy" decoding="async"></div></div>
         <div class="gallery-grid">
             
             <div class="gallery-item">
