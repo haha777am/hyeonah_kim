@@ -158,6 +158,19 @@
             .custom-cursor { display: none; }
             body { cursor: auto; }
         }
+        .trims { margin-top: 140px; padding-top: 60px; border-top: 1px solid #1f1f1f; }
+        .trims-title { font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(26px, 2.4vw, 36px); color: #fff; margin: 0 0 14px; }
+        .trims-sub { margin: 0 0 40px; color: #c8c8c8; font-size: 15px; font-weight: 300; line-height: 1.8; }
+        .trims-sub span { display: block; color: #777; font-size: 13.5px; }
+        .trims-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 15px; }
+        .trim-item { display: block; color: inherit; text-decoration: none; }
+        .trim-thumb { display: block; aspect-ratio: 4 / 3; background: #fff; overflow: hidden; }
+        .trim-thumb img { width: 100%; height: 100%; object-fit: contain; padding: 8%; box-sizing: border-box; transition: transform .4s ease; }
+        .trim-item:hover .trim-thumb img { transform: scale(1.04); }
+        .trim-cap { display: block; margin-top: 12px; font-size: 14px; color: #ddd; }
+        .trim-cap em { display: block; font-style: normal; font-size: 12px; color: #777; margin-top: 2px; }
+        @media (max-width: 1100px) { .trims-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 768px) { .trims { margin-top: 80px; padding-top: 40px; } .trims-grid { gap: 10px; } }
     </style>
     <link rel="stylesheet" href="style.css?v=1122">
 </head>
@@ -189,10 +202,10 @@
             </a>
 
             <a href="gyeomson.html" class="grid-item">
-                <img src="images/gyeomson/neckarf03.jpg" alt="Gyeomson Partnership">
+                <img src="images/gyeomson/balot_photo_weekday.jpg" alt="Gyeomson socks">
                 <div class="item-info">
                     <span class="item-title">Gyeomson</span>
-                    <span class="item-meta">Socks, Neckarf, Necktie</span>
+                    <span class="item-meta">Socks, Necktie, Neckarf</span>
                 </div>
             </a>
 
@@ -200,7 +213,7 @@
                 <img src="images/insooth/thumb_plate_34.jpg" alt="Insooth logo plate specification" loading="lazy" decoding="async">
                 <div class="item-info">
                     <span class="item-title">Insooth</span>
-                    <span class="item-meta">Signature Cap, Tech Pack</span>
+                    <span class="item-meta">Logo Plate, Tech Pack</span>
                 </div>
             </a>
             <a href="jtbc.html" class="grid-item">
@@ -211,6 +224,21 @@
                 </div>
             </a>
         </div>
+
+        <section class="trims">
+            <h2 class="trims-title">Trims, Logos &amp; Embroidery</h2>
+            <p class="trims-sub">로고 플레이트, 자수, 심볼 로고 등 부자재·그래픽 작업.<span>Hardware, embroidery and logo artwork across projects.</span></p>
+            <div class="trims-grid">
+            <a href="insooth.html" class="trim-item"><span class="trim-thumb"><img src="images/insooth/thumb_plate_43.jpg" alt="Metal logo plate — Insooth" loading="lazy" decoding="async"></span><span class="trim-cap">Metal logo plate<em>Insooth</em></span></a>
+            <a href="seoul.html" class="trim-item"><span class="trim-thumb"><img src="images/seoul/green_cap_embroidery.jpg" alt="Embroidery artwork — Seoul City" loading="lazy" decoding="async"></span><span class="trim-cap">Embroidery artwork<em>Seoul City</em></span></a>
+            <a href="24fw.html" class="trim-item"><span class="trim-thumb"><img src="images/24fw/logo_01.jpg" alt="Symbol logo — LIE 24FW" loading="lazy" decoding="async"></span><span class="trim-cap">Symbol logo<em>LIE 24FW</em></span></a>
+            <a href="24fw.html" class="trim-item"><span class="trim-thumb"><img src="images/24fw/logo_02.jpg" alt="Logo artwork — LIE 24FW" loading="lazy" decoding="async"></span><span class="trim-cap">Logo artwork<em>LIE 24FW</em></span></a>
+            <a href="24fw.html" class="trim-item"><span class="trim-thumb"><img src="images/24fw/logo_03.jpg" alt="Logo artwork — LIE 24FW" loading="lazy" decoding="async"></span><span class="trim-cap">Logo artwork<em>LIE 24FW</em></span></a>
+            <a href="24fw.html" class="trim-item"><span class="trim-thumb"><img src="images/24fw/logo_04.jpg" alt="ALL·YMPIC graphic — LIE 24FW" loading="lazy" decoding="async"></span><span class="trim-cap">ALL·YMPIC graphic<em>LIE 24FW</em></span></a>
+            <a href="27ss.html" class="trim-item"><span class="trim-thumb"><img src="images/27ss/logo_01.jpg" alt="Logo artwork — LIE 27SS" loading="lazy" decoding="async"></span><span class="trim-cap">Logo artwork<em>LIE 27SS</em></span></a>
+            <a href="27ss.html" class="trim-item"><span class="trim-thumb"><img src="images/27ss/logo_02.jpg" alt="Logo artwork — LIE 27SS" loading="lazy" decoding="async"></span><span class="trim-cap">Logo artwork<em>LIE 27SS</em></span></a>
+            </div>
+        </section>
     </main>
 
     <script>

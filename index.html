@@ -169,7 +169,8 @@
         .hc-title em { color: #a68d60; }
 
         .artshow-grid .thumb { aspect-ratio: 3 / 4; }
-        .collab-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
+        .collab-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 15px; }
+        @media (max-width: 1100px) and (min-width: 769px) { .collab-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
         .collab-grid .thumb { aspect-ratio: 4 / 3; }
         .collab-grid .thumb.flat { background: #f4f4f2; }
         .collab-grid .thumb.flat img { object-fit: contain; padding: 6%; box-sizing: border-box; }
@@ -305,20 +306,25 @@
             <a href="collab.html" class="text-link">View all</a>
         </div>
         <div class="collab-grid">
-            <a href="jtbc.html" class="home-card">
-                <span class="thumb" style="background:#fff"><img src="images/jtbc/thumb_suit_setup.jpg" alt="JTBC commentator suit set-up — technical flat" loading="lazy" decoding="async"></span>
-                <span class="hc-title">JTBC — Commentator Uniforms</span>
-                <span class="hc-meta">Winter Olympics &amp; World Cup — 2026</span>
-            </a>
             <a href="seoul.html" class="home-card">
-                <span class="thumb"><img src="images/seoul/cap2.jpg" alt="Seoul City collaboration" loading="lazy" decoding="async"></span>
+                <span class="thumb"><img src="images/seoul/cap2.jpg" alt="Seoul City caps" loading="lazy" decoding="async"></span>
                 <span class="hc-title">Seoul City — Seoul My Soul</span>
-                <span class="hc-meta">Accessories, Graphic Pattern — 2025—2026</span>
+                <span class="hc-meta">Caps, Scarves, Packaging — 2024—2026</span>
+            </a>
+            <a href="gyeomson.html" class="home-card">
+                <span class="thumb"><img src="images/gyeomson/balot_photo_weekday.jpg" alt="Gyeomson socks" loading="lazy" decoding="async"></span>
+                <span class="hc-title">Gyeomson</span>
+                <span class="hc-meta">Socks, Necktie, Neckarf — 2025—2026</span>
             </a>
             <a href="insooth.html" class="home-card">
                 <span class="thumb" style="background:#fff"><img src="images/insooth/thumb_plate_43.jpg" alt="Insooth logo plate specification" loading="lazy" decoding="async"></span>
                 <span class="hc-title">Insooth</span>
-                <span class="hc-meta">Tech Pack, Creative Collaboration — 2025—2026</span>
+                <span class="hc-meta">Logo Plate, Tech Pack — 2025—2026</span>
+            </a>
+            <a href="jtbc.html" class="home-card">
+                <span class="thumb" style="background:#fff"><img src="images/jtbc/thumb_suit_setup.jpg" alt="JTBC commentator suit set-up" loading="lazy" decoding="async"></span>
+                <span class="hc-title">JTBC — Commentator Uniforms</span>
+                <span class="hc-meta">Winter Olympics &amp; World Cup — 2026</span>
             </a>
         </div>
     </section>
